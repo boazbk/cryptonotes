@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "C:\\DBOX\\WORK\\Writeups\\HigherOrderPRF\\Notes"
+		}
+	],
+	"settings": {
+		"search.usePCRE2": true,
+		"sync.autoDownload": true,
+		"sync.autoUpload": true,
+		"sync.quietSync": true
+	}
+}

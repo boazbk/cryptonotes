@@ -1,0 +1,890 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Preface}{19}{chapter*.2}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.1}To the student}{21}{section.3}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.1.1}Is the effort worth it?}{21}{subsection.4}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.2}To potential instructors}{22}{section.5}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.3}Acknowledgements}{24}{section.8}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{Preliminaries}{27}{part*.9}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {0}Introduction}{29}{chapter.10}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.1}Integer multiplication: an example of an algorithm}{30}{section.11}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.2}Extended Example: A faster way to multiply (optional)}{33}{section.15}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.3}Algorithms beyond arithmetic}{37}{section.29}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.4}On the importance of negative results.}{38}{section.30}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.5}Roadmap to the rest of this book}{39}{section.31}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {0.5.1}Dependencies between chapters}{40}{subsection.32}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.6}Exercises}{42}{section.34}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {0.7}Bibliographical notes}{44}{section.52}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Mathematical Background}{47}{chapter.53}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.1}This chapter: a reader's manual}{47}{section.54}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.2}A quick overview of mathematical prerequisites}{48}{section.55}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.3}Reading mathematical texts}{49}{section.56}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.3.1}Definitions}{50}{subsection.59}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.3.2}Assertions: Theorems, lemmas, claims}{50}{subsection.62}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.3.3}Proofs}{50}{subsection.63}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.4}Basic discrete math objects}{51}{section.64}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.4.1}Sets}{51}{subsection.65}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Operations on sets:}{51}{paragraph*.68}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Tuples, lists, strings, sequences:}{52}{paragraph*.69}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Cartesian product:}{52}{paragraph*.70}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.4.2}Special sets}{52}{subsection.71}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Strings:}{53}{paragraph*.73}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Generalizing the star operation:}{53}{paragraph*.79}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Concatenation:}{53}{paragraph*.81}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.4.3}Functions}{54}{subsection.82}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Partial functions:}{55}{paragraph*.84}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Basic facts about functions:}{55}{paragraph*.85}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.4.4}Graphs}{56}{subsection.88}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.4.5}Logic operators and quantifiers}{59}{subsection.103}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{For sufficiently large n.}{60}{paragraph*.105}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.4.6}Quantifiers for summations and products}{60}{subsection.106}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.4.7}Parsing formulas: bound and free variables}{60}{subsection.111}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.4.8}Asymptotics and Big-\(O\) notation}{62}{subsection.115}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.4.9}Some ``rules of thumb'' for Big-\(O\) notation}{63}{subsection.118}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.5}Proofs}{64}{section.120}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.5.1}Proofs and programs}{65}{subsection.124}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.5.2}Proof writing style}{65}{subsection.128}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.5.3}Patterns in proofs}{66}{subsection.133}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Proofs by contradiction:}{66}{paragraph*.134}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Proofs of a universal statement:}{67}{paragraph*.136}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Proofs of an implication:}{67}{paragraph*.138}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Proofs of equivalence:}{67}{paragraph*.142}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Proofs by combining intermediate claims:}{67}{paragraph*.143}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Proofs by case distinction:}{68}{paragraph*.144}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Proofs by induction:}{68}{paragraph*.145}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Without loss of generality (w.l.o.g):}{68}{paragraph*.146}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.6}Extended example: Topological Sorting}{69}{section.148}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.6.1}Mathematical induction}{70}{subsection.155}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{(a)}{71}{paragraph*.157}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{(b)}{71}{paragraph*.158}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.6.2}Proving the result by induction}{71}{subsection.160}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.6.3}Minimality and uniqueness}{73}{subsection.162}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.7}This book: notation and conventions}{75}{section.164}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.7.1}Variable name conventions}{76}{subsection.165}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {1.7.2}Some idioms}{77}{subsection.167}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.8}Exercises}{79}{section.168}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1.9}Bibliographical notes}{81}{section.201}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Computation and Representation}{83}{chapter.202}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Defining representations}{84}{section.205}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.1}Representing natural numbers}{85}{subsection.206}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.2}Meaning of representations (discussion)}{87}{subsection.212}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Representations beyond natural numbers}{88}{section.213}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.1}Representing (potentially negative) integers}{88}{subsection.214}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.2}Two's complement representation (optional)}{89}{subsection.217}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2.3}Rational numbers, and representing pairs of strings}{90}{subsection.220}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Representing real numbers}{91}{section.228}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.3.1}Can we represent reals \emph {exactly}?}{92}{subsection.231}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.4}Representing objects beyond numbers}{98}{section.246}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.1}Finite representations}{99}{subsection.250}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.2}Prefix-free encoding}{99}{subsection.253}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.3}Making representations prefix-free}{102}{subsection.263}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.4}``Proof by Python'' (optional)}{103}{subsection.266}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.5}Representing letters and text}{105}{subsection.267}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.6}Representing vectors, matrices, images}{107}{subsection.271}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.7}Representing graphs}{107}{subsection.272}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.8}Representing lists and nested lists}{107}{subsection.274}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.4.9}Notation}{108}{subsection.275}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.5}Defining computational tasks as mathematical functions}{108}{section.276}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.5.1}Distinguish functions from programs!}{110}{subsection.279}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.6}Exercises}{112}{section.283}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.7}Bibliographical notes}{116}{section.327}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{I\hspace {1em}Finite computation}{119}{part.328}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Defining computation}{121}{chapter.329}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Defining computation}{122}{section.333}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Computing using AND, OR, and NOT.}{124}{section.337}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.1}Some properties of AND and OR}{126}{subsection.345}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.2}Extended example: Computing \(\ensuremath {\mathit {XOR}}\) from \(\ensuremath {\mathit {AND}}\), \(\ensuremath {\mathit {OR}}\), and \(\ensuremath {\mathit {NOT}}\)}{126}{subsection.347}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.3}Informally defining ``basic operations'' and ``algorithms''}{129}{subsection.353}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Boolean Circuits}{130}{section.360}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.1}Boolean circuits: a formal definition}{131}{subsection.367}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.2}Equivalence of circuits and straight-line programs}{134}{subsection.374}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}Physical implementations of computing devices (digression)}{138}{section.382}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.1}Transistors}{138}{subsection.384}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.2}Logical gates from transistors}{139}{subsection.389}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.3}Biological computing}{139}{subsection.392}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.4}Cellular automata and the game of life}{140}{subsection.394}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.5}Neural networks}{140}{subsection.396}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.6}A computer made from marbles and pipes}{141}{subsection.398}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.5}The NAND function}{141}{section.402}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5.1}NAND Circuits}{142}{subsection.409}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5.2}More examples of NAND circuits (optional)}{144}{subsection.418}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Incrementing integers.}{144}{paragraph*.419}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{From increment to addition.}{145}{paragraph*.422}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5.3}The NAND-CIRC Programming language}{145}{subsection.424}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.6}Equivalence of all these models}{147}{section.432}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.6.1}Circuits with other gate sets}{148}{subsection.434}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.6.2}Specification vs.\nobreakspace {}implementation (again)}{150}{subsection.438}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.7}Exercises}{151}{section.440}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.8}Biographical notes}{153}{section.460}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Syntactic sugar, and computing every function}{155}{chapter.461}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}Some examples of syntactic sugar}{156}{section.463}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.1}User-defined procedures}{156}{subsection.466}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.2}Proof by Python (optional)}{159}{subsection.473}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.1.3}Conditional statements}{161}{subsection.477}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Extended example: Addition and Multiplication (optional)}{162}{section.479}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.3}The LOOKUP function}{164}{section.484}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.3.1}Constructing a NAND-CIRC program for \(\ensuremath {\mathit {LOOKUP}}\)}{164}{subsection.489}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Proof of \cref {lookup-thm} from \cref {lookup-rec-lem}.}{165}{paragraph*.492}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.4}Computing \emph {every} function}{166}{section.495}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.4.1}Proof of NAND's Universality}{167}{subsection.501}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.4.2}Improving by a factor of \(n\) (optional)}{169}{subsection.506}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.5}Computing every function: An alternative proof}{170}{section.517}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.6}The class \(\ensuremath {\mathit {SIZE}}(T)\)}{172}{section.525}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.7}Exercises}{175}{section.533}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.8}Bibliographical notes}{179}{section.563}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}Code as data, data as code}{181}{chapter.564}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.1}Representing programs as strings}{182}{section.568}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.2}Counting programs, and lower bounds on the size of NAND-CIRC programs}{184}{section.571}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.2.1}Size hierarchy theorem (optional)}{186}{subsection.578}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.3}The tuples representation}{188}{section.588}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.3.1}From tuples to strings}{189}{subsection.591}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.4}A NAND-CIRC interpreter in NAND-CIRC}{190}{section.593}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Take-away points.}{190}{paragraph*.595}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.4.1}Efficient universal programs}{191}{subsection.598}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.4.2}A NAND-CIRC interpeter in ``pseudocode''}{192}{subsection.603}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.4.3}A NAND interpreter in Python}{194}{subsection.605}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.4.4}Constructing the NAND-CIRC interpreter in NAND-CIRC}{194}{subsection.607}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.5}A Python interpreter in NAND-CIRC (discussion)}{197}{section.612}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.6}The physical extended Church-Turing thesis (discussion)}{199}{section.613}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.6.1}Attempts at refuting the PECTT}{201}{subsection.615}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.7}Recap of Part I: Finite Computation}{206}{section.619}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Sneak preview:}{207}{paragraph*.620}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.8}Exercises}{207}{section.621}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.9}Bibliographical notes}{209}{section.639}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{II\hspace {1em}Uniform computation}{211}{part.640}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Loops and infinity}{213}{chapter.641}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.1}Turing Machines}{216}{section.647}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.1.1}Extended example: A Turing machine for palindromes}{217}{subsection.652}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.1.2}Turing machines: a formal definition}{219}{subsection.654}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.1.3}Computable functions}{220}{subsection.661}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.1.4}Infinite loops and partial functions}{222}{subsection.667}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.2}Turing machines as programming languages}{223}{section.670}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.2.1}The NAND-TM Programming language}{224}{subsection.671}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Default values.}{226}{paragraph*.675}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.2.2}Sneak peak: NAND-TM vs Turing machines}{227}{subsection.683}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.2.3}Examples}{228}{subsection.685}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.3}Equivalence of Turing machines and NAND-TM programs}{230}{section.688}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.3.1}Specification vs implementation (again)}{233}{subsection.696}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.4}NAND-TM syntactic sugar}{234}{section.698}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.4.1}``GOTO'' and inner loops}{235}{subsection.699}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Other loops.}{236}{paragraph*.700}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.5}Uniformity, and NAND vs NAND-TM (discussion)}{237}{section.703}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.6}Exercises}{238}{section.704}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.7}Bibliographical notes}{241}{section.725}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {7}Equivalent models of computation}{243}{chapter.726}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.1}RAM machines and NAND-RAM}{244}{section.728}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.2}The gory details (optional)}{248}{section.737}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.2.1}Indexed access in NAND-TM}{248}{subsection.738}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.2.2}Two dimensional arrays in NAND-TM}{250}{subsection.744}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.2.3}All the rest}{250}{subsection.747}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.3}Turing equivalence (discussion)}{251}{section.749}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.3.1}The ``Best of both worlds'' paradigm}{252}{subsection.751}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.3.2}Let's talk about abstractions.}{253}{subsection.754}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Defining Algorithms.}{255}{paragraph*.757}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.3.3}Turing completeness and equivalence, a formal definition (optional)}{255}{subsection.758}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.4}Cellular automata}{256}{section.760}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Finite configuration.}{257}{paragraph*.764}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.4.1}One dimensional cellular automata are Turing complete}{257}{subsection.765}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.4.2}Configurations of Turing machines and the next-step function}{258}{subsection.768}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Completing the proof of \cref {onedimcathm}.}{260}{paragraph*.775}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.5}Lambda calculus and functional programming languages}{261}{section.783}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{The λ operator.}{261}{paragraph*.784}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.5.1}Applying functions to functions}{262}{subsection.787}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.5.2}Obtaining multi-argument functions via Currying}{263}{subsection.792}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.5.3}Formal description of the λ calculus.}{263}{subsection.795}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Equivalence of λ expressions.}{264}{paragraph*.797}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.5.4}Infinite loops in the λ calculus}{266}{subsection.810}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.6}The ``Enhanced'' λ calculus}{266}{section.812}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.6.1}Computing a function in the enhanced λ calculus}{269}{subsection.824}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.6.2}Enhanced λ calculus is Turing-complete}{270}{subsection.827}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.7}From enhanced to pure λ calculus}{273}{section.831}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.7.1}List processing}{274}{subsection.834}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.7.2}The Y combinator, or recursion without recursion}{275}{subsection.837}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{From Python to the \mitlambda calculus.}{277}{paragraph*.842}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.8}The Church-Turing Thesis (discussion)}{278}{section.845}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.8.1}Different models of computation}{279}{subsection.846}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.9}Exercises}{280}{section.848}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7.10}Bibliographical notes}{284}{section.874}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {8}Universality and uncomputability}{287}{chapter.875}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8.1}Universality or a meta-circular evaluator}{288}{section.877}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.1.1}Proving the existence of a universal Turing Machine}{289}{subsection.881}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.1.2}Implications of universality (discussion)}{292}{subsection.889}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8.2}Is every function computable?}{293}{section.891}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8.3}The Halting problem}{295}{section.895}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.3.1}Is the Halting problem really hard? (discussion)}{298}{subsection.901}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.3.2}A direct proof of the uncomputability of \(\ensuremath {\mathit {HALT}}\) (optional)}{299}{subsection.903}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8.4}Reductions}{301}{section.904}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.4.1}Example: Halting on the zero problem}{302}{subsection.907}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8.5}Rice's Theorem and the impossibility of general software verification}{305}{section.914}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.5.1}Rice's Theorem}{307}{subsection.920}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.5.2}Halting and Rice's Theorem for other Turing-complete models}{311}{subsection.927}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {8.5.3}Is software verification doomed? (discussion)}{312}{subsection.929}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8.6}Exercises}{314}{section.931}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {8.7}Bibliographical notes}{317}{section.958}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {9}Restricted computational models}{319}{chapter.959}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.1}Turing completeness as a bug}{319}{section.962}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.2}Regular expressions}{321}{section.964}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.3}Deterministic finite automata, and efficient matching of regular expressions (optional)}{326}{section.982}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.3.1}Matching regular expressions using constant memory}{329}{subsection.994}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.3.2}Deterministic Finite Automata}{331}{subsection.1003}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.3.3}Regular functions are closed under complement}{334}{subsection.1013}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.4}Limitations of regular expressions}{335}{section.1015}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.5}Other semantic properties of regular expressions}{340}{section.1025}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.6}Context free grammars}{342}{section.1031}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.6.1}Context-free grammars as a computational model}{345}{subsection.1034}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.6.2}The power of context free grammars}{346}{subsection.1038}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.6.3}Limitations of context-free grammars (optional)}{348}{subsection.1043}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.7}Semantic properties of context free languages}{350}{section.1047}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.7.1}Uncomputability of context-free grammar equivalence (optional)}{350}{subsection.1051}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.8}Summary of semantic properties for regular expressions and context-free grammars}{353}{section.1057}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.9}Exercises}{354}{section.1059}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {9.10}Bibliographical notes}{356}{section.1085}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {10}Is every theorem provable?}{359}{chapter.1086}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.1}Hilbert's Program and Gödel's Incompleteness Theorem}{360}{section.1088}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.1.1}Defining ``Proof Systems''}{361}{subsection.1090}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Mathematical statements.}{361}{paragraph*.1091}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Proof systems.}{361}{paragraph*.1092}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.2}Gödel's Incompleteness Theorem: Computational variant}{362}{section.1099}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.3}Quantified integer statements}{365}{section.1104}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.4}Diophantine equations and the MRDP Theorem}{367}{section.1112}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.5}Hardness of quantified integer statements}{369}{section.1116}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.5.1}Step 1: Quantified mixed statements and computation histories}{369}{subsection.1119}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {10.5.2}Step 2: Reducing mixed statements to integer statements}{372}{subsection.1128}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.6}Exercises}{374}{section.1132}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {10.7}Bibliographical notes}{377}{section.1149}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{III\hspace {1em}Efficient algorithms}{379}{part.1150}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {11}Efficient computation}{381}{chapter.1151}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {11.1}Problems on graphs}{383}{section.1154}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.1.1}Finding the shortest path in a graph}{384}{subsection.1156}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.1.2}Finding the longest path in a graph}{386}{subsection.1159}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.1.3}Finding the minimum cut in a graph}{386}{subsection.1161}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.1.4}Min-Cut Max-Flow and Linear programming}{387}{subsection.1163}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.1.5}Finding the maximum cut in a graph}{389}{subsection.1168}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.1.6}A note on convexity}{389}{subsection.1169}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {11.2}Beyond graphs}{391}{section.1173}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.2.1}SAT}{391}{subsection.1174}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{2SAT.}{391}{paragraph*.1176}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{3SAT.}{392}{paragraph*.1177}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.2.2}Solving linear equations}{392}{subsection.1178}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.2.3}Solving quadratic equations}{393}{subsection.1181}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {11.3}More advanced examples}{393}{section.1182}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.3.1}Determinant of a matrix}{393}{subsection.1183}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.3.2}Permanent of a matrix}{395}{subsection.1188}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Permanent modulo 2.}{395}{paragraph*.1190}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Permanent modulo 3.}{395}{paragraph*.1191}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.3.3}Finding a zero-sum equilibrium}{395}{subsection.1192}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.3.4}Finding a Nash equilibrium}{396}{subsection.1194}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.3.5}Primality testing}{396}{subsection.1195}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {11.3.6}Integer factoring}{397}{subsection.1196}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {11.4}Our current knowledge}{397}{section.1197}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {11.5}Exercises}{398}{section.1199}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {11.6}Bibliographical notes}{398}{section.1203}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {11.7}Further explorations}{399}{section.1204}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {12}Modeling running time}{401}{chapter.1205}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {12.1}Formally defining running time}{402}{section.1207}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {12.1.1}Polynomial and Exponential Time}{404}{subsection.1212}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {12.2}Modeling running time using RAM Machines / NAND-RAM}{406}{section.1218}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {12.3}Extended Church-Turing Thesis (discussion)}{411}{section.1234}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {12.4}Efficient universal machine: a NAND-RAM interpreter in NAND-RAM}{412}{section.1235}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {12.4.1}Timed Universal Turing Machine}{414}{subsection.1244}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {12.5}The time hierarchy theorem}{415}{section.1248}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {12.6}Non uniform computation}{419}{section.1262}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {12.6.1}Oblivious NAND-TM programs}{420}{subsection.1268}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {12.6.2}``Unrolling the loop'': algorithmic transformation of Turing Machines to circuits}{423}{subsection.1277}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {12.6.3}Can uniform algorithms simulate non uniform ones?}{426}{subsection.1290}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {12.6.4}Uniform vs.\nobreakspace {}Nonuniform computation: A recap}{427}{subsection.1293}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {12.7}Exercises}{429}{section.1294}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {12.8}Bibliographical notes}{432}{section.1310}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {13}Polynomial-time reductions}{433}{chapter.1311}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13.1}Formal definitions of problems}{434}{section.1317}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{3SAT.}{434}{paragraph*.1318}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Quadratic equations.}{435}{paragraph*.1320}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Longest path.}{435}{paragraph*.1321}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Maximum cut.}{435}{paragraph*.1322}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13.2}Polynomial-time reductions}{435}{section.1323}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Transitivity of reductions.}{437}{paragraph*.1329}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13.3}Reducing 3SAT to zero one equations}{437}{section.1331}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Anatomy of a reduction.}{440}{paragraph*.1339}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {13.3.1}Quadratic equations}{441}{subsection.1340}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13.4}The independent set problem}{442}{section.1344}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13.5}Reducing Independent Set to Maximum Cut}{445}{section.1349}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13.6}Reducing 3SAT to Longest Path}{447}{section.1354}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Note:}{447}{paragraph*.1355}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {13.6.1}Summary of relations}{449}{subsection.1360}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13.7}Exercises}{450}{section.1362}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {13.8}Bibliographical notes}{450}{section.1363}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {14}NP, NP completeness, and the Cook-Levin Theorem}{451}{chapter.1364}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {14.1}The class \(\mathbf {NP}\)}{451}{section.1366}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {14.1.1}Examples of functions in \(\mathbf {NP}\)}{454}{subsection.1372}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {14.1.2}Basic facts about \(\mathbf {NP}\)}{456}{subsection.1375}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {14.2}From \(\mathbf {NP}\) to 3SAT: The Cook-Levin Theorem}{458}{section.1381}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {14.2.1}What does this mean?}{459}{subsection.1385}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {14.2.2}The Cook-Levin Theorem: Proof outline}{460}{subsection.1388}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {14.3}The \(\ensuremath {\mathit {NANDSAT}}\) Problem, and why it is \(\mathbf {NP}\) hard.}{461}{section.1393}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {14.4}The \(3\ensuremath {\mathit {NAND}}\) problem}{463}{section.1397}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {14.5}From \(3\ensuremath {\mathit {NAND}}\) to \(3\ensuremath {\mathit {SAT}}\)}{465}{section.1402}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {14.6}Wrapping up}{466}{section.1408}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {14.7}Exercises}{468}{section.1410}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {14.8}Bibliographical notes}{469}{section.1417}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {15}What if P equals NP?}{471}{chapter.1418}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {15.1}Search-to-decision reduction}{472}{section.1419}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {15.2}Optimization}{475}{section.1422}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {15.2.1}Example: Supervised learning}{478}{subsection.1434}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {15.2.2}Example: Breaking cryptosystems}{479}{subsection.1435}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {15.3}Finding mathematical proofs}{479}{section.1436}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {15.4}Quantifier elimination (advanced)}{481}{section.1437}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {15.4.1}Application: self improving algorithm for \(3\ensuremath {\mathit {SAT}}\)}{483}{subsection.1447}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {15.5}Approximating counting problems and posterior sampling (advanced, optional)}{484}{section.1448}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Posterior sampling and probabilistic programming.}{485}{paragraph*.1451}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {15.6}What does all of this imply?}{485}{section.1452}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {15.7}Can \(\mathbf {P} \neq \mathbf {NP}\) be neither true nor false?}{487}{section.1454}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {15.8}Is \(\mathbf {P}=\mathbf {NP}\) ``in practice''?}{488}{section.1455}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {15.9}What if \(\mathbf {P} \neq \mathbf {NP}\)?}{489}{section.1456}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {15.10}Exercises}{490}{section.1457}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {15.11}Bibliographical notes}{490}{section.1458}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {16}Space bounded computation}{491}{chapter.1459}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {16.1}Exercises}{491}{section.1460}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {16.2}Bibliographical notes}{491}{section.1461}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{IV\hspace {1em}Randomized computation}{493}{part.1462}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {17}Probability Theory 101}{495}{chapter.1463}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {17.1}Random coins}{495}{section.1464}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {17.1.1}Random variables}{498}{subsection.1473}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {17.1.2}Distributions over strings}{500}{subsection.1482}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {17.1.3}More general sample spaces.}{500}{subsection.1483}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {17.2}Correlations and independence}{501}{section.1484}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Conditional probability:}{502}{paragraph*.1489}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{More than two events:}{502}{paragraph*.1490}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {17.2.1}Independent random variables}{502}{subsection.1493}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {17.2.2}Collections of independent random variables.}{504}{subsection.1498}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {17.3}Concentration and tail bounds}{504}{section.1503}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{The averaging principle.}{506}{paragraph*.1508}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {17.3.1}Chebyshev's Inequality}{506}{subsection.1510}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {17.3.2}The Chernoff bound}{507}{subsection.1513}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {17.4}Exercises}{508}{section.1517}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {17.5}Bibliographical notes}{511}{section.1545}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {18}Probabilistic computation}{513}{chapter.1546}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {18.1}Finding approximately good maximum cuts.}{514}{section.1548}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Randomized algorithms work in the worst case.}{515}{paragraph*.1554}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {18.1.1}Amplifying the success of randomized algorithms}{515}{subsection.1556}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {18.1.2}Success amplification}{516}{subsection.1559}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {18.1.3}Two-sided amplification}{517}{subsection.1568}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {18.1.4}What does this mean?}{518}{subsection.1572}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {18.1.5}Solving SAT through randomization}{519}{subsection.1573}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {18.1.6}Bipartite matching.}{520}{subsection.1581}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {18.2}Exercises}{523}{section.1590}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {18.3}Bibliographical notes}{524}{section.1599}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {18.4}Acknowledgements}{524}{section.1600}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {19}Modeling randomized computation}{525}{chapter.1601}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {19.1}Modeling randomized computation}{526}{section.1611}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {19.1.1}An alternative view: random coins as an ``extra input''}{528}{subsection.1618}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Random tapes.}{530}{paragraph*.1624}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {19.1.2}Success amplification of two-sided error algorithms}{530}{subsection.1625}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {19.2}\(\mathbf {BPP}\) and \(\mathbf {NP}\) completeness}{532}{section.1631}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {19.3}The power of randomization}{533}{section.1634}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {19.3.1}Solving \(\mathbf {BPP}\) in exponential time}{533}{subsection.1638}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {19.3.2}Simulating randomized algorithms by circuits}{534}{subsection.1640}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {19.4}Derandomization}{535}{section.1645}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {19.4.1}Pseudorandom generators}{536}{subsection.1646}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {19.4.2}From existence to constructivity}{538}{subsection.1650}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {19.4.3}Usefulness of pseudorandom generators}{539}{subsection.1651}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {19.5}\(\mathbf {P}=\mathbf {NP}\) and \(\mathbf {BPP}\) vs \(\mathbf {P}\)}{540}{section.1653}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {19.6}Non-constructive existence of pseudorandom generators (advanced, optional)}{543}{section.1663}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {19.7}Exercises}{546}{section.1668}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {19.8}Bibliographical notes}{546}{section.1669}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{V\hspace {1em}Advanced topics}{547}{part.1670}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {20}Cryptography}{549}{chapter.1671}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {20.1}Classical cryptosystems}{550}{section.1672}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {20.2}Defining encryption}{552}{section.1678}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {20.3}Defining security of encryption}{553}{section.1683}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {20.4}Perfect secrecy}{555}{section.1686}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {20.4.1}Example: Perfect secrecy in the battlefield}{556}{subsection.1689}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {20.4.2}Constructing perfectly secret encryption}{557}{subsection.1692}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {20.5}Necessity of long keys}{558}{section.1696}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {20.6}Computational secrecy}{560}{section.1700}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {20.6.1}Stream ciphers or the ``derandomized one-time pad''}{562}{subsection.1704}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {20.7}Computational secrecy and \(\mathbf {NP}\)}{565}{section.1716}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {20.8}Public key cryptography}{567}{section.1719}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {20.8.1}Defining public key encryption}{569}{subsection.1721}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {20.8.2}Diffie-Hellman key exchange}{570}{subsection.1724}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {20.9}Other security notions}{572}{section.1725}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {20.10}Magic}{572}{section.1726}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {20.10.1}Zero knowledge proofs}{573}{subsection.1727}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {20.10.2}Fully homomorphic encryption}{573}{subsection.1728}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {20.10.3}Multiparty secure computation}{574}{subsection.1729}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {20.11}Exercises}{575}{section.1730}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {20.12}Bibliographical notes}{575}{section.1731}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {21}Proofs and algorithms}{577}{chapter.1732}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {21.1}Exercises}{577}{section.1733}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {21.2}Bibliographical notes}{577}{section.1734}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {22}Quantum computing}{579}{chapter.1735}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {22.1}The double slit experiment}{580}{section.1736}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {22.2}Quantum amplitudes}{580}{section.1739}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {22.2.1}Linear algebra quick review}{583}{subsection.1741}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {22.3}Bell's Inequality}{584}{section.1742}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {22.4}Quantum weirdness}{586}{section.1747}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {22.5}Quantum computing and computation - an executive summary.}{586}{section.1748}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {22.6}Quantum systems}{589}{section.1751}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {22.6.1}Quantum amplitudes}{590}{subsection.1752}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {22.6.2}Quantum systems: an executive summary}{591}{subsection.1755}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {22.7}Analysis of Bell's Inequality (optional)}{591}{section.1756}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {22.8}Quantum computation}{594}{section.1762}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {22.8.1}Quantum circuits}{594}{subsection.1763}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {22.8.2}QNAND-CIRC programs (optional)}{597}{subsection.1773}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {22.8.3}Uniform computation}{598}{subsection.1777}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {22.9}Physically realizing quantum computation}{599}{section.1780}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {22.10}Shor's Algorithm: Hearing the shape of prime factors}{600}{section.1782}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {22.10.1}Period finding}{600}{subsection.1784}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {22.10.2}Shor's Algorithm: A bird's eye view}{601}{subsection.1788}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Step 1: Reduce to period finding.}{601}{paragraph*.1789}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {paragraph}{Step 2: Period finding via the Quantum Fourier Transform.}{602}{paragraph*.1790}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {22.11}Quantum Fourier Transform (advanced, optional)}{604}{section.1799}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {22.11.1}Quantum Fourier Transform over the Boolean Cube: Simon's Algorithm}{605}{subsection.1802}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {22.11.2}From Fourier to Period finding: Simon's Algorithm (advanced, optional)}{607}{subsection.1812}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {22.11.3}From Simon to Shor (advanced, optional)}{607}{subsection.1814}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {22.12}Exercises}{609}{section.1819}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {22.13}Bibliographical notes}{609}{section.1827}% 
+\defcounter {refsection}{0}\relax 
+\contentsline {part}{VI\hspace {1em}Appendices}{611}{part.1828}% 
+\contentsfinish 

@@ -1,0 +1,12 @@
+[submodule "content"]
+	path = crypto
+	url = https://github.com/boazbk/crypto.git
+	branch = master
+[submodule "deploy"]
+	path = deploy
+	url = https://github.com/boazbk/introtcsweb.git
+	branch = master
+[submodule "figure"]
+	path = figure
+	url = https://github.com/boazbk/bookfigures.git
+	branch = master

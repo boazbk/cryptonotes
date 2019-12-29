@@ -1,0 +1,1982 @@
+\chapter{Loops and infinity}\label{chaploops}
+
+\begin{objectives} \label[objectives]{Learn-the-model-of-Turing}
+
+\begin{itemize}
+\tightlist
+\item
+  Learn the model of \emph{Turing machines}, which can compute functions
+  of \emph{arbitrary input lengths}.
+\item
+  See a programming-language description of Turing machines, using
+  NAND-TM programs, which add \emph{loops} and \emph{arrays} to
+  NAND-CIRC.
+\item
+  See some basic syntactic sugar and equivalence of variants of Turing
+  machines and NAND-TM programs.
+\end{itemize}
+
+\end{objectives}
+
+\begin{quote}
+\emph{``An algorithm is a finite answer to an infinite number of
+questions.''}, Attributed to Stephen Kleene.
+\end{quote}
+
+\begin{quote}
+\emph{``The bounds of arithmetic were however outstepped the moment the
+idea of applying the {[}punched{]} cards had occurred; and the
+Analytical Engine does not occupy common ground with mere''calculating
+machines."" \ldots{} In enabling mechanism to combine together general
+symbols, in successions of unlimited variety and extent, a uniting link
+is established between the operations of matter and the abstract mental
+processes of the most abstract branch of mathematical science. "}, Ada
+Augusta, countess of Lovelace, 1843
+\end{quote}
+
+The model of Boolean circuits (or equivalently, the NAND-CIRC
+programming language) has one very significant drawback: a Boolean
+circuit can only compute a \emph{finite} function \(f\), and in
+particular since every gate has two inputs, a size \(s\) circuit can
+compute on an input of length at most \(2s\). This does not capture our
+intuitive notion of an algorithm as a \emph{single recipe} to compute a
+potentially infinite function. For example, the standard elementary
+school multiplication algorithm is a \emph{single} algorithm that
+multiplies numbers of all lengths, but yet we cannot express this
+algorithm as a single circuit, but rather need a different circuit (or
+equivalently, a NAND-CIRC program) for every input length (see
+\cref{multschoolfig}).
+
+
+\begin{marginfigure}
+\centering
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/multiplicationschool.png}
+\caption{Once you know how to multiply multi-digit numbers, you can do
+so for every number \(n\) of digits, but if you had to describe
+multiplication using NAND-CIRC programs or Boolean circuits, you would
+need a different program/circuit for every length \(n\) of the input.}
+\label{multschoolfig}
+\end{marginfigure}
+
+Let us consider the case of the simple \emph{parity} or \emph{XOR}
+function \(\ensuremath{\mathit{XOR}}:\{0,1\}^* \rightarrow \{0,1\}\),
+where \(\ensuremath{\mathit{XOR}}(x)\) equals \(1\) iff the number of
+\(1\)'s in \(x\) is odd. (In other words,
+\(\ensuremath{\mathit{XOR}}(x) = \sum_{i=0}^{|x|-1} x_i \mod 2\) for
+every \(x\in \{0,1\}^*\).) As simple as it is, the
+\(\ensuremath{\mathit{XOR}}\) function cannot be computed by a NAND-CIRC
+program. Rather, for every \(n\), we can compute
+\(\ensuremath{\mathit{XOR}}_n\) (the restriction of
+\(\ensuremath{\mathit{XOR}}\) to \(\{0,1\}^n\)) using a different
+NAND-CIRC program. For example, \cref{XOR5fig} presents the NAND-CIRC
+program (or equivalently the circuit) to compute
+\(\ensuremath{\mathit{XOR}}_5\).
+
+
+\begin{marginfigure}
+\centering
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/xor5circprog.png}
+\caption{The NAND circuit and NAND-CIRC program for computing the XOR of
+\(5\) bits. Note how the circuit for \(\ensuremath{\mathit{XOR}}_5\)
+merely repeats four times the circuit to compute the XOR of \(2\) bits.}
+\label{XOR5fig}
+\end{marginfigure}
+
+This code for computing \(\ensuremath{\mathit{XOR}}_5\) is rather
+repetitive, and more importantly, does not capture the fact that there
+is a \emph{single} algorithm to compute the parity on all inputs.
+Typical programming language use the notion of \emph{loops} to express
+such an algorithm, along the lines of:
+
+\begin{code}
+# s is the "running parity", initialized to 0
+while i<len(X):
+    u = NAND(s,X[i])
+    v = NAND(s,u)
+    w = NAND(X[i],u)
+    s = NAND(v,w)
+    i+= 1
+Y[0] = s
+\end{code}
+
+
+\begin{marginfigure}
+\centering
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/algcomponents.png}
+\caption{An algorithm is a finite recipe to compute on arbitrarily long
+inputs. The components of an algorithm include the instructions to be
+performed, finite state or ``local variables'', the memory to store the
+input and intermediate computations, as well as mechanisms to decide
+which part of the memory to access, and when to repeat instructions and
+when to halt.}
+\label{algcomponentfig}
+\end{marginfigure}
+
+Generally an algorithm is, as we quote above, ``a finite answer to an
+infinite number of questions''. To express an algorithm we need to write
+down a finite set of instructions that will enable us to compute on
+arbitrarily long inputs. To describe and execute an algorithm we need
+the following components (see \cref{algcomponentfig}):
+
+\begin{itemize}
+\item
+  The finite set of instructions to be performed.
+\item
+  Some ``local variables'' or finite state used in the execution.
+\item
+  A potentially unbounded working memory to store the input as well as
+  any other values we may require later.
+\item
+  While the memory is unbounded, at every single step we can only read
+  and write to a finite part of it, and we need a way to \emph{address}
+  which are the parts we want to read from and write to.
+\item
+  If we only have a finite set of instructions but our input can be
+  arbitrarily long, we will need to \emph{repeat} instructions (i.e.,
+  \emph{loop} back). We need a mechanism to decide when we will loop and
+  when we will halt.
+\end{itemize}
+
+In this chapter we will show how we can extend the model of Boolean
+circuits / straight-line programs so that it can capture these kinds of
+constructs. We will see two ways to do so:
+
+\begin{itemize}
+\item
+  \emph{Turing machines}, invented by Alan Turing in 1936, are an
+  hypothetical abstract device that yields a finite description of an
+  algorithm that can handle arbitrarily long inputs.
+\item
+  The \emph{NAND-TM Programming language} extends NAND-CIRC with the
+  notion of \emph{loops} and \emph{arrays} to obtain finite programs
+  that can compute a function with arbitrarily long inputs.
+\end{itemize}
+
+It turns out that these two models are \emph{equivalent}, and in fact
+they are equivalent to a great many other computational models including
+programming languages you may be familiar with such as C, Lisp, Python,
+JavaScript, etc. This notion, known as \emph{Turing equivalence} or
+\emph{Turing completeness}, will be discussed in
+\cref{chapequivalentmodels}. See \cref{chaploopoverviewfig} for an
+overview of the models presented in this chapter and
+\cref{chapequivalentmodels}.
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/chaploopoverview.png}
+\caption{Overview of our models for finite and unbounded computation. In
+the previous chapters we study the computation of \emph{finite
+functions}, which are functions \(f:\{0,1\}^n \rightarrow \{0,1\}^m\)
+for some fixed \(n,m\), and modeled computing these functions using
+circuits or straightline programs. In this chapter we study computing
+\emph{unbounded} functions of the form
+\(F:\{0,1\}^* \rightarrow \{0,1\}^m\) or
+\(F:\{0,1\}^* \rightarrow \{0,1\}^*\). We model computing these
+functions using \emph{Turing Machines} or (equivalently) NAND-TM
+programs which add the notion of \emph{loops} to the NAND-CIRC
+programming language. In \cref{chapequivalentmodels} we will show that
+these models are equivalent to many other models, including RAM
+machines, the \(\lambda\) calculus, and all the common programming
+languages including C, Python, Java, JavaScript, etc.}
+\label{chaploopoverviewfig}
+\end{figure}
+
+\hypertarget{infinite}{}
+\begin{remark}[Finite vs infinite computation] \label[remark]{infinite}
+
+Previously in this book we studied the computation of \emph{finite}
+functions \(f:\{0,1\}^n \rightarrow \{0,1\}^m\). Such a function \(f\)
+can always be described by listing all the \(2^n\) values it takes on
+inputs \(x\in \{0,1\}^n\).
+
+In this chapter we consider functions that take inputs of
+\emph{unbounded} size, such as the function
+\(\ensuremath{\mathit{XOR}}:\{0,1\}^* \rightarrow \{0,1\}\) that maps
+\(x\) to \(\sum_{i=0}^{|x|-1} x_i \mod 2\). While we can describe
+\(\ensuremath{\mathit{XOR}}\) using a finite number of symbols (in fact
+we just did so in the previous sentence), it takes infinitely many
+possible inputs and so we cannot just write down all of its values. The
+same is true for many other functions capturing important computational
+tasks including addition, multiplication, sorting, finding paths in
+graphs, fitting curves to points, and so on and so forth.
+
+To contrast with the finite case, we will sometimes call a function
+\(F:\{0,1\}^* \rightarrow \{0,1\}\) (or
+\(F:\{0,1\}^* \rightarrow \{0,1\}^*\)) \emph{infinite} but we emphasize
+that the functions we are interested in always take an input which is a
+finite string. It's just that, unlike the finite case, this string can
+be arbitrarily long and is not fixed to some particular length \(n\).
+
+Some texts present the task of computing a function
+\(F:\{0,1\}^* \rightarrow \{0,1\}\) as the task of deciding membership
+in the \emph{language} \(L \subseteq \{0,1\}^*\) defined as
+\(L = \{ x\in \{0,1\}^* \;|\; F(x) = 1 \}\). These two views are
+equivalent, see \cref{decidablelanguagesrem}.
+
+\end{remark}
+
+\section{Turing Machines}\label{Turing-Machines}
+
+\begin{quote}
+\emph{``Computing is normally done by writing certain symbols on paper.
+We may suppose that this paper is divided into squares like a child's
+arithmetic book.. The behavior of the {[}human{]} computer at any moment
+is determined by the symbols which he is observing, and of his `state of
+mind' at that moment\ldots{} We may suppose that in a simple operation
+not more than one symbol is altered.''},\\
+\emph{``We compare a man in the process of computing \ldots{} to a
+machine which is only capable of a finite number of
+configurations\ldots{} The machine is supplied with a `tape' (the
+analogue of paper) \ldots{} divided into sections (called `squares')
+each capable of bearing a `symbol'\,''}, Alan Turing, 1936
+\end{quote}
+
+\begin{quote}
+\emph{``What is the difference between a Turing machine and the modern
+computer? It's the same as that between Hillary's ascent of Everest and
+the establishment of a Hilton hotel on its peak.''} , Alan Perlis, 1982.
+\end{quote}
+
+
+\begin{marginfigure}
+\centering
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/alan-turing-running.jpg}
+\caption{Aside from his many other achievements, Alan Turing was an
+excellent long distance runner who just fell shy of making England's
+olympic team. A fellow runner once asked him why he punished himself so
+much in training. Alan said ``I have such a stressful job that the only
+way I can get it out of my mind is by running hard; it's the only way I
+can get some release.''}
+\label{turingrunning}
+\end{marginfigure}
+
+The ``granddaddy'' of all models of computation is the \emph{Turing
+Machine}. Turing machines were defined in 1936 by Alan Turing in an
+attempt to formally capture all the functions that can be computed by
+human ``computers'' (see \cref{humancomputersfig}) that follow a
+well-defined set of rules, such as the standard algorithms for addition
+or multiplication.
+
+
+\begin{marginfigure}
+\centering
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/HumanComputers.jpg}
+\caption{Until the advent of electronic computers, the word ``computer''
+was used to describe a person that performed calculations. Most of these
+``human computers'' were women, and they were absolutely essential to
+many achievements including mapping the stars, breaking the Enigma
+cipher, and the NASA space mission; see also the bibliographical notes.
+Photo from \href{https://www.loc.gov/pictures/item/2016838906/}{National
+Photo Company Collection}; see also \cite{sobel2017the}.}
+\label{humancomputersfig}
+\end{marginfigure}
+
+Turing thought of such a person as having access to as much ``scratch
+paper'' as they need. For simplicity we can think of this scratch paper
+as a one dimensional piece of graph paper (or \emph{tape}, as it is
+commonly referred to), which is divided to ``cells'', where each
+``cell'' can hold a single symbol (e.g., one digit or letter, and more
+generally some element of a finite \emph{alphabet}). At any point in
+time, the person can read from and write to a single cell of the paper,
+and based on the contents can update his/her finite mental state, and/or
+move to the cell immediately to the left or right of the current one.
+
+
+\begin{marginfigure}
+\centering
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/SPTM.jpg}
+\caption{Steam-powered Turing Machine mural, painted by CSE grad
+students at the University of Washington on the night before spring
+qualifying examinations, 1987. Image from
+\url{https://www.cs.washington.edu/building/art/SPTM}.}
+\label{steamturingmachine}
+\end{marginfigure}
+
+Turing modeled such a computation by a ``machine'' that maintains one of
+\(k\) states. At each point in time the machine reads from its ``work
+tape'' a single symbol from a finite alphabet \(\Sigma\) and uses that
+to update its state, write to tape, and possibly move to an adjacent
+cell (see \cref{turing-machine-fig}). To compute a function \(F\) using
+this machine, we initialize the tape with the input \(x\in \{0,1\}^*\)
+and our goal is to ensure that the tape will contain the value \(F(x)\)
+at the end of the computation. Specifically, a computation of a Turing
+Machine \(M\) with \(k\) states and alphabet \(\Sigma\) on input
+\(x\in \{0,1\}^*\) proceeds as follows:
+
+\begin{itemize}
+\item
+  Initially the machine is at state \(0\) (known as the ``starting
+  state'') and the tape is initialized to
+  \(\triangleright,x_0,\ldots,x_{n-1},\varnothing,\varnothing,\ldots\).
+  We use the symbol \(\triangleright\) to denote the beginning of the
+  tape, and the symbol \(\varnothing\) to denote an empty cell. We will
+  always assume that the alphabet \(\Sigma\) is a (potentially strict)
+  superset of \(\{ \triangleright, \varnothing , 0 , 1 \}\).
+\item
+  The location \(i\) to which the machine points to is set to \(0\).
+\item
+  At each step, the machine reads the symbol \(\sigma = T[i]\) that is
+  in the \(i^{th}\) location of the tape, and based on this symbol and
+  its state \(s\) decides on:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    What symbol \(\sigma'\) to write on the tape\\
+  \item
+    Whether to move \textbf{L}eft (i.e., \(i \leftarrow i-1\)),
+    \textbf{R}ight (i.e., \(i \leftarrow i+1\)), \textbf{S}tay in place,
+    or \textbf{H}alt the computation.
+  \item
+    What is going to be the new state \(s \in [k]\)
+  \end{itemize}
+\item
+  The set of rules the Turing machine follows is known as its
+  \emph{transition function}.
+\item
+  When the machine halts then its output is the binary string obtained
+  by reading the tape from the beginning until the head position,
+  dropping all symbolssuch as \(\triangleright\), \(\varnothing\), etc.
+  that are not either \(0\) or \(1\).
+\end{itemize}
+
+
+\begin{marginfigure}
+\centering
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/turingmachinecomponents.png}
+\caption{The components of a Turing Machine. Note how they correspond to
+the general components of algorithms as described in
+\cref{algcomponentfig}.}
+\label{turingmachinecomponentsfig}
+\end{marginfigure}
+
+\subsection{Extended example: A Turing machine for
+palindromes}\label{turingmachinepalindrome}
+
+Let \(\ensuremath{\mathit{PAL}}\) (for \emph{palindromes}) be the
+function that on input \(x\in \{0,1\}^*\), outputs \(1\) if and only if
+\(x\) is an (even length) \emph{palindrome}, in the sense that
+\(x = w_0 \cdots w_{n-1}w_{n-1}w_{n-2}\cdots w_0\) for some \(n\in \N\)
+and \(w\in \{0,1\}^n\).
+
+We now show a Turing Machine \(M\) that computes
+\(\ensuremath{\mathit{PAL}}\). To specify \(M\) we need to specify
+\textbf{(i)} \(M\)'s tape alphabet \(\Sigma\) which should contain at
+least the symbols \(0\),\(1\), \(\triangleright\) and \(\varnothing\),
+and \textbf{(ii)} \(M\)'s \emph{transition function} which determines
+what action \(M\) takes when it reads a given symbol while it is in a
+particular state.
+
+In our case, \(M\) will use the alphabet
+\(\{ 0,1,\triangleright, \varnothing, \times \}\) and will have \(k=14\)
+states. Though the states are simply numbers between \(0\) and \(k-1\),
+for convenience we will give them the following labels:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\begin{minipage}[b]{0.28\columnwidth}\raggedright
+State\strut
+\end{minipage} & \begin{minipage}[b]{0.66\columnwidth}\raggedright
+Label\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.28\columnwidth}\raggedright
+0\strut
+\end{minipage} & \begin{minipage}[t]{0.66\columnwidth}\raggedright
+\texttt{START}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.28\columnwidth}\raggedright
+1\strut
+\end{minipage} & \begin{minipage}[t]{0.66\columnwidth}\raggedright
+\texttt{RIGHT\_0}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.28\columnwidth}\raggedright
+2\strut
+\end{minipage} & \begin{minipage}[t]{0.66\columnwidth}\raggedright
+\texttt{RIGHT\_1}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.28\columnwidth}\raggedright
+3\strut
+\end{minipage} & \begin{minipage}[t]{0.66\columnwidth}\raggedright
+\texttt{LOOK\_FOR\_0}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.28\columnwidth}\raggedright
+4\strut
+\end{minipage} & \begin{minipage}[t]{0.66\columnwidth}\raggedright
+\texttt{LOOK\_FOR\_1}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.28\columnwidth}\raggedright
+5\strut
+\end{minipage} & \begin{minipage}[t]{0.66\columnwidth}\raggedright
+\texttt{RETURN}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.28\columnwidth}\raggedright
+6\strut
+\end{minipage} & \begin{minipage}[t]{0.66\columnwidth}\raggedright
+\texttt{REJECT}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.28\columnwidth}\raggedright
+7\strut
+\end{minipage} & \begin{minipage}[t]{0.66\columnwidth}\raggedright
+\texttt{ACCEPT}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.28\columnwidth}\raggedright
+8\strut
+\end{minipage} & \begin{minipage}[t]{0.66\columnwidth}\raggedright
+\texttt{OUTPUT\_0}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.28\columnwidth}\raggedright
+9\strut
+\end{minipage} & \begin{minipage}[t]{0.66\columnwidth}\raggedright
+\texttt{OUTPUT\_1}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.28\columnwidth}\raggedright
+10\strut
+\end{minipage} & \begin{minipage}[t]{0.66\columnwidth}\raggedright
+\texttt{0\_AND\_BLANK}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.28\columnwidth}\raggedright
+11\strut
+\end{minipage} & \begin{minipage}[t]{0.66\columnwidth}\raggedright
+\texttt{1\_AND\_BLANK}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.28\columnwidth}\raggedright
+12\strut
+\end{minipage} & \begin{minipage}[t]{0.66\columnwidth}\raggedright
+\texttt{BLANK\_AND\_STOP}\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+We describe the operation of our Turing Machine \(M\) in words:
+
+\begin{itemize}
+\item
+  \(M\) starts in state \texttt{START} and will go right, looking for
+  the first symbol that is \(0\) or \(1\). If we find \(\varnothing\)
+  before we hit such a symbol then we will move to the
+  \texttt{OUTPUT\_1} state that we describe below.
+\item
+  Once \(M\) finds such a symbol \(b \in \{0,1\}\), \(M\) deletes \(b\)
+  from the tape by writing the \(\times\) symbol, it enters either the
+  \texttt{RIGHT\_0} or \texttt{RIGHT\_1} mode according to the value of
+  \(b\) and starts moving rightwards until it hits the first
+  \(\varnothing\) or \(\times\) symbol.
+\item
+  Once we find this symbol we go into the state \texttt{LOOK\_FOR\_0} or
+  \texttt{LOOK\_FOR\_1} depending on whether we were in the state
+  \texttt{RIGHT\_0} or \texttt{RIGHT\_1} and make one left move.
+\item
+  In the state \texttt{LOOK\_FOR\_}\(b\), we check whether the value on
+  the tape is \(b\). If it is, then we delete it by changing its value
+  to \(\times\), and move to the state \texttt{RETURN}. Otherwise, we
+  change to the \texttt{OUTPUT\_0} state.
+\item
+  The \texttt{RETURN} state means we go back to the beginning.
+  Specifically, we move leftward until we hit the first symbol that is
+  not \(0\) or \(1\), in which case we change our state to
+  \texttt{START}.
+\item
+  The \texttt{OUTPUT\_}\(b\) states mean that we are going to output the
+  value \(b\). In both these states we go left until we hit
+  \(\triangleright\). Once we do so, we make a right step, and change to
+  the \texttt{1\_AND\_BLANK} or \texttt{0\_AND\_BLANK} states
+  respectively. In the latter states, we write the corresponding value,
+  and then move right and change to the \texttt{BLANK\_AND\_STOP} state,
+  in which we write \(\varnothing\) to the tape and halt.
+\end{itemize}
+
+The above description can be turned into a table describing for each one
+of the \(13\cdot 5\) combination of state and symbol, what the Turing
+machine will do when it is in that state and it reads that symbol. This
+table is known as the \emph{transition function} of the Turing machine.
+
+\subsection{Turing machines: a formal
+definition}\label{Turing-machines-a-formal-}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/turingmachine.png}
+\caption{A Turing machine has access to a \emph{tape} of unbounded
+length. At each point in the execution, the machine can read a single
+symbol of the tape, and based on that and its current state, write a new
+symbol, update the tape, decide whether to move left, right, stay, or
+halt.}
+\label{turing-machine-fig}
+\end{figure}
+
+The formal definition of Turing machines is as follows:
+
+\hypertarget{TM-def}{}
+\begin{definition}[Turing Machine] \label[definition]{TM-def}
+
+A (one tape) \emph{Turing machine} with \(k\) states and alphabet
+\(\Sigma \supseteq \{0,1, \triangleright, \varnothing \}\) is
+represented by a \emph{transition function}
+\(\delta_M:[k]\times \Sigma \rightarrow [k] \times \Sigma \times \{\mathsf{L},\mathsf{R}, \mathsf{S}, \mathsf{H} \}\).
+
+For every \(x\in \{0,1\}^*\), the \emph{output} of \(M\) on input \(x\),
+denoted by \(M(x)\), is the result of the following process:
+
+\begin{itemize}
+\item
+  We initialize \(T\) to be the sequence
+  \(\triangleright,x_0,x_1,\ldots,x_{n-1},\varnothing,\varnothing,\ldots\),
+  where \(n=|x|\). (That is, \(T[0]=\triangleright\), \(T[i+1]=x_{i}\)
+  for \(i\in [n]\), and \(T[i]=\varnothing\) for \(i>n\).)
+\item
+  We also initialize \(i=0\) and \(s=0\).
+\item
+  We then repeat the following process:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    Let \((s',\sigma',D) = \delta_M(s,T[i])\).
+  \item
+    Set \(s \rightarrow s'\), \(T[i] \rightarrow \sigma'\).
+  \item
+    If \(D=\mathsf{R}\) then set \(i \rightarrow i+1\), if
+    \(D=\mathsf{L}\) then set \(i \rightarrow \max\{i-1,0\}\). (If
+    \(D = \mathsf{S}\) then we keep \(i\) the same.)
+  \item
+    If \(D=\mathsf{H}\) then halt.
+  \end{enumerate}
+\item
+  If the process above halts, then \(M\)'s output, denoted by \(M(x)\),
+  is the string \(y\in \{0,1\}^*\) obtained by concatenating all the
+  symbols in \(\{0,1\}\) in positions \(T[0],\ldots, T[i]\) where \(i\)
+  is the final head position.
+\item
+  If The Turing machine does not halt then we denote \(M(x)=\bot\).
+\end{itemize}
+
+\end{definition}
+
+\begin{pause} \label[pause]{You-should-make-sure-you-}
+
+You should make sure you see why this formal definition corresponds to
+our informal description of a Turing Machine. To get more intuition on
+Turing Machines, you can explore some of the online available simulators
+such as \href{https://turingmachinesimulator.com/}{Martin Ugarte's},
+\href{http://morphett.info/turing/turing.html}{Anthony Morphett's}, or
+\href{http://rendell-attic.org/gol/TMapplet/index.htm}{Paul Rendell's}.
+
+\end{pause}
+
+One should not confuse the \emph{transition function} \(\delta_M\) of a
+Turing machine \(M\) with the function that the machine computes. The
+transition function \(\delta_M\) is a \emph{finite} function, with
+\(k|\Sigma|\) inputs and \(4k|\Sigma|\) outputs. (Can you see why?) The
+machine can compute an \emph{infinite} function \(F\) that takes as
+input a string \(x\in \{0,1\}^*\) of arbitrary length and might also
+produce an arbitrary length string as output.
+
+In our formal definition, we identified the machine \(M\) with its
+transition function \(\delta_M\) since the transition function tells us
+everything we need to know about the Turing machine, and hence serves as
+a good mathematical representation of it. This choice of representation
+is somewhat arbitrary, and is based on our convention that the state
+space is always the numbers \(\{0,\ldots,k-1\}\) with \(0\) as the
+starting state. Other texts use different conventions and so their
+mathematical definition of a Turing machine might look superficially
+different, but these definitions describe the same computational process
+and has the same computational powers. See \cref{chaploopnotes} for a
+comparison between \cref{TM-def} and the way Turing Machines are defined
+in texts such as Sipser \cite{SipserBook}. These definitions are
+equivalent despite their superficial differences.
+
+\subsection{Computable functions}\label{Computable-functions}
+
+We now turn to making one of the most important definitions in this
+book, that of \emph{computable functions}.
+
+\hypertarget{computablefuncdef}{}
+\begin{definition}[Computable functions] \label[definition]{computablefuncdef}
+
+Let \(F:\{0,1\}^* \rightarrow \{0,1\}^*\) be a (total) function and let
+\(M\) be a Turing machine. We say that \(M\) \emph{computes} \(F\) if
+for every \(x\in \{0,1\}^*\), \(M(x)=F(x)\).
+
+We say that a function \(F\) is \emph{computable} if there exists a
+Turing machine \(M\) that computes it.
+
+\end{definition}
+
+Defining a function ``computable'' if and only if it can be computed by
+a Turing machine might seem ``reckless'' but, as we'll see in
+\cref{chapequivalentmodels}, it turns out that being computable in the
+sense of \cref{computablefuncdef} is equivalent to being computable in
+essentially any reasonable model of computation. This is known as the
+\emph{Church Turing Thesis}. (Unlike the \emph{extended} Church Turing
+Thesis which we discussed in \cref{PECTTsec}, the Church-Turing thesis
+itself is widely believed and there are no candidate devices that attack
+it.)
+
+\hypertarget{definecompidea}{}
+\begin{bigidea} \label[bigidea]{definecompidea}
+
+We can precisely define what it means for a function to be computable by
+\emph{any possible algorithm}.
+
+\end{bigidea}
+
+This is a good point to remind the reader that \emph{functions} are
+\emph{not} the same as \emph{programs}:
+
+\[ \text{Functions} \;\neq\; \text{Programs} \;.\]
+
+A Turing machine (or program) \(M\) can \emph{compute} some function
+\(F\), but it is not the same as \(F\). In particular there can be more
+than one program to compute the same function. Being computable is a
+property of \emph{functions}, not of machines.
+
+We will often pay special attention to functions
+\(F:\{0,1\}^* \rightarrow \{0,1\}\) that have a single bit of output.
+Hence we give a special name for the set of functions of this form that
+are computable.
+
+\hypertarget{classRdef}{}
+\begin{definition}[The class $\mathbf{R}$] \label[definition]{classRdef}
+
+We define \(\mathbf{R}\) be the set of all \emph{computable} functions
+\(F:\{0,1\}^* \rightarrow \{0,1\}\).
+
+\end{definition}
+
+\hypertarget{decidablelanguagesrem}{}
+\begin{remark}[Functions vs. languages] \label[remark]{decidablelanguagesrem}
+
+Many texts use the terminology of ``languages'' rather than functions to
+refer to computational tasks. The name ``language'' has its roots in
+\emph{formal language theory} as pursued by linguists such as Noam
+Chomsky. A \emph{formal language} is a subset \(L \subseteq \{0,1\}^*\)
+(or more generally \(L \subseteq \Sigma^*\) for some finite alphabet
+\(\Sigma\)). The \emph{membership} or \emph{decision} problem for a
+language \(L\), is the task of determining, given \(x\in \{0,1\}^*\),
+whether or not \(x\in L\). A Turing machine \(M\) \emph{decides} a
+language \(L\) if for every input \(x\in \{0,1\}^*\), \(M(x)\) outputs
+\(1\) if and only if \(x\in L\). This is equivalent to computing the
+Boolean function \(F:\{0,1\}^* \rightarrow \{0,1\}\) defined as
+\(F(x)=1\) iff \(x\in L\). A language \(L\) is \emph{decidable} if there
+is a Turing machine \(M\) that decides it. For historical reasons, some
+texts also call such a language \emph{recursive} (which is the reason
+that the letter \(\mathbf{R}\) is often used to denote the set of
+computable Boolean functions / decidable languages defined in
+\cref{classRdef}).
+
+In this book we stick to the terminology of \emph{functions} rather than
+languages, but all definitions and results can be easily translated back
+and forth by using the equivalence between the function
+\(F:\{0,1\}^* \rightarrow \{0,1\}\) and the language
+\(L = \{ x\in \{0,1\}^* \;|\; F(x) = 1 \}\).
+
+\end{remark}
+
+\subsection{Infinite loops and partial
+functions}\label{Infinite-loops-and-partia}
+
+One crucial difference between circuits/straight-line programs and
+Turing machines is the following. Looking at a NAND-CIRC program \(P\),
+we can always tell how many inputs and how many outputs it has (by
+simply looking at the \texttt{X} and \texttt{Y} variables). Furthermore,
+we are guaranteed that if we invoke \(P\) on any input then \emph{some}
+output will be produced.
+
+In contrast, given any Turing machine \(M\), we cannot determine a
+priori the length of the output. In fact, we don't even know if an
+output would be produced at all! For example, it is very easy to come up
+with a Turing machine whose transition function never outputs
+\(\mathsf{H}\) and hence never halts.
+
+If a machine \(M\) fails to stop and produce an output on some an input
+\(x\), then it cannot compute any total function \(F\), since clearly on
+input \(x\), \(M\) will fail to output \(F(x)\). However, \(P\) can
+still compute a \emph{partial function}.\footnote{A \emph{partial
+  function} \(F\) from a set \(A\) to a set \(B\) is a function that is
+  only defined on a \emph{subset} of \(A\), (see \cref{functionsec}). We
+  can also think of such a function as mapping \(A\) to
+  \(B \cup \{ \bot \}\) where \(\bot\) is a special ``failure'' symbol
+  such that \(F(a)=\bot\) indicates the function \(F\) is not defined on
+  \(a\).}
+
+For example, consider the partial function \(\ensuremath{\mathit{DIV}}\)
+that on input a pair \((a,b)\) of natural numbers, outputs
+\(\ceil{a/b}\) if \(b > 0\), and is undefined otherwise. We can define a
+Turing machine \(M\) that computes \(\ensuremath{\mathit{DIV}}\) on
+input \(a,b\) by outputting the first \(c=0,1,2,\ldots\) such that
+\(cb \geq a\). If \(a>0\) and \(b=0\) then the machine \(M\) will never
+halt, but this is OK, since \(\ensuremath{\mathit{DIV}}\) is undefined
+on such inputs. If \(a=0\) and \(b=0\), the machine \(M\) will output
+\(0\), which is also OK, since we don't care about what the program
+outputs on inputs on which \(\ensuremath{\mathit{DIV}}\) is undefined.
+Formally, we define computability of partial functions as follows:
+
+\hypertarget{computablepartialfuncdef}{}
+\begin{definition}[Computable (partial or total) functions] \label[definition]{computablepartialfuncdef}
+
+Let \(F\) be either a total or partial function mapping \(\{0,1\}^*\) to
+\(\{0,1\}^*\) and let \(M\) be a Turing machine. We say that \(M\)
+\emph{computes} \(F\) if for every \(x\in \{0,1\}^*\) on which \(F\) is
+defined, \(M(x)=F(x)\). We say that a (partial or total) function \(F\)
+is \emph{computable} if there is a Turing machine that computes it.
+
+\end{definition}
+
+Note that if \(F\) is a total function, then it is defined on every
+\(x\in \{0,1\}^*\) and hence in this case,
+\cref{computablepartialfuncdef} is identical to
+\cref{computablefuncdef}.
+
+\hypertarget{botsymbol}{}
+\begin{remark}[Bot symbol] \label[remark]{botsymbol}
+
+We often use \(\bot\) as our special ``failure symbol''. If a Turing
+machine \(M\) fails to halt on some input \(x\in \{0,1\}^*\) then we
+denote this by \(M(x) = \bot\). This \emph{does not} mean that \(M\)
+outputs some encoding of the symbol \(\bot\) but rather that \(M\)
+enters into an infinite loop when given \(x\) as input.
+
+If a partial function \(F\) is undefined on \(x\) then we can also write
+\(F(x) = \bot\). Therefore one might think that
+\cref{computablepartialfuncdef} can be simplified to requiring that
+\(M(x) = F(x)\) for every \(x\in \{0,1\}^*\), which would imply that for
+every \(x\), \(M\) halts on \(x\) if and only if \(F\) is defined on
+\(x\). However this is not the case: for a Turing Machine \(M\) to
+compute a partial function \(F\) it is not \emph{necessary} for \(M\) to
+enter an infinite loop on inputs \(x\) on which \(F\) is not defined.
+All that is needed is for \(M\) to output \(F(x)\) on \(x\)'s on which
+\(F\) is defined: on other inputs it is OK for \(M\) to output an
+arbitrary value such as \(0\), \(1\), or anything else, or not to halt
+at all. To borrow a term from the \texttt{C} programming language, on
+inputs \(x\) on which \(F\) is not defined, what \(M\) does is
+``undefined behavior''.
+
+\end{remark}
+
+\section{Turing machines as programming
+languages}\label{Turing-machines-as-progra}
+
+The name ``Turing machine'', with its ``tape'' and ``head'' evokes a
+physical object, while in contrast we think of a \emph{program} as a
+piece of text. But we can think of a Turing machine as a program as
+well. For example, consider the Turing Machine \(M\) of
+\cref{turingmachinepalindrome} that computes the function
+\(\ensuremath{\mathit{PAL}}\) such that
+\(\ensuremath{\mathit{PAL}}(x)=1\) iff \(x\) is a palindrome. We can
+also describe this machine as a \emph{program} using the Python-like
+pseudocode of the form below
+
+\begin{code}
+# Gets an array Tape initialized to
+# [">", x_0 , x_1 , .... , x_(n-1), "∅", "∅", ...]
+# At the end of the execution, Tape[1] is equal to 1
+# if x is a palindrome and is equal to 0 otherwise
+def PAL(Tape):
+    head = 0
+    state = 0 # START
+    while (state != 12):
+        if (state == 0 && Tape[head]=='0'):
+            state = 3 # LOOK_FOR_0
+            Tape[head] = 'x'
+            head += 1 # move right
+        if (state==0 && Tape[head]=='1')
+            state = 4 # LOOK_FOR_1
+            Tape[head] = 'x'
+            head += 1 # move right
+        ... # more if statements here
+\end{code}
+
+The particular details of this program are not important. What matters
+is that we can describe Turing machines as \emph{programs}. Moreover,
+note that when translating a Turing machine into a program, the
+\emph{tape} becomes a \emph{list} or \emph{array} that can hold values
+from the finite set \(\Sigma\).\footnote{Most programming languages use
+  arrays of fixed size, while a Turing machine's tape is unbounded. But
+  of course there is no need to store an infinite number of
+  \(\varnothing\) symbols. If you want, you can think of the tape as a
+  list that starts off just long enough to store the input, but is
+  dynamically grown in size as the Turing machine's head explores new
+  positions.} The \emph{head position} can be thought of as an integer
+valued variable that can hold integers of unbounded size. The
+\emph{state} is a \emph{local register} that can hold one of a fixed
+number of values in \([k]\).
+
+More generally we can think of every Turing Machine \(M\) as equivalent
+to a program similar to the following:
+
+\begin{code}
+# Gets an array Tape initialized to
+# [">", x_0 , x_1 , .... , x_(n-1), "∅", "∅", ...]
+def M(Tape):
+    state = 0
+    i     = 0 # holds head location
+    while (True):
+        # Move head, modify state, write to tape
+        # based on current state and cell at head
+        # below are just examples for how program looks for a particular transition function
+        if Tape[i]=="0" and state==7: # δ_M(7,"0")=(19,"1","R")
+            i += 1
+            Tape[i]="1"
+            state = 19
+        elif Tape[i]==">" and state == 13: # δ_M(13,">")=(15,"0","S")
+            Tape[i]="0"
+            state = 15
+        elif ...
+        ...
+        elif Tape[i]==">" and state == 29: # δ_M(29,">")=(.,.,"H")
+            break # Halt
+\end{code}
+
+If we wanted to use only \emph{Boolean} (i.e., \(0\)/\(1\)-valued)
+variables then we can encode the \texttt{state} variables using
+\(\ceil{\log k}\) bits. Similarly, we can represent each element of the
+alphabet \(\Sigma\) using \(\ell=\ceil{\log |\Sigma|}\) bits and hence
+we can replace the \(\Sigma\)-valued array \texttt{Tape[]} with \(\ell\)
+Boolean-valued arrays \texttt{Tape0[]},\(\ldots\),
+\texttt{Tape}\(\ell\)\texttt{[]}.
+
+\subsection{The NAND-TM Programming
+language}\label{The-NAND-TM-Programming-l}
+
+We now introduce the \emph{NAND-TM programming language}, which aims to
+capture the power of a Turing machine in a programming language
+formalism. Just like the difference between Boolean circuits and Turing
+Machines, the main difference between NAND-TM and NAND-CIRC is that
+NAND-TM models a \emph{single uniform algorithm} that can compute a
+function that takes inputs of \emph{arbitrary lengths}. To do so, we
+extend the NAND-CIRC programming language with two constructs:
+
+\begin{itemize}
+\item
+  \emph{Loops}: NAND-CIRC is a \emph{straight-line} programming
+  language- a NAND-CIRC program of \(s\) lines takes exactly \(s\) steps
+  of computation and hence in particular cannot even touch more than
+  \(3s\) variables. \emph{Loops} allow us to capture in a short program
+  the instructions for a computation that can take an arbitrary amount
+  of time.
+\item
+  \emph{Arrays}: A NAND-CIRC program of \(s\) lines touches at most
+  \(3s\) variables. While we can use variables with names such as
+  \texttt{Foo\_17} or \texttt{Bar[22]}, they are not true arrays, since
+  the number in the identifier is a constant that is ``hardwired'' into
+  the program.
+\end{itemize}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/nandtmprog.png}
+\caption{A NAND-TM program has \emph{scalar} variables that can take a
+Boolean value, \emph{array} variables that hold a sequence of Boolean
+values, and a special \emph{index} variable \texttt{i} that can be used
+to index the array variables. We refer to the \texttt{i}-th value of the
+array variable \texttt{Spam} using \texttt{Spam[i]}. At each iteration
+of the program the index variable can be incremented or decremented by
+one step using the \texttt{MODANDJMP} operation.}
+\label{nandtmfig}
+\end{figure}
+
+Thus a good way to remember NAND-TM is using the following informal
+equation:
+
+\[
+\text{NAND-TM} \;=\; \text{NAND-CIRC} \;+\; \text{loops} \;+\; \text{arrays} \label{eqnandloops}
+\]
+
+\hypertarget{otherpl}{}
+\begin{remark}[NAND-CIRC + loops + arrays = everything.] \label[remark]{otherpl}
+
+As we will see, adding loops and arrays to NAND-CIRC is enough to
+capture the full power of all programming languages! Hence we could
+replace ``NAND-TM'' with any of \emph{Python}, \emph{C},
+\emph{Javascript}, \emph{OCaml}, etc. in the lefthand side of
+\eqref{eqnandloops}. But we're getting ahead of ourselves: this issue
+will be discussed in \cref{chapequivalentmodels}.
+
+\end{remark}
+
+Concretely, the NAND-TM programming language adds the following features
+on top of NANC-CIRC (see \cref{nandtmfig})):
+
+\begin{itemize}
+\item
+  We add a special \emph{integer valued} variable \texttt{i}. All other
+  variables in NAND-TM are \emph{Boolean valued} (as in NAND-CIRC).
+\item
+  Apart from \texttt{i} NAND-TM has two kinds of variables:
+  \emph{scalars} and \emph{arrays}. \emph{Scalar} variables hold one bit
+  (just as in NAND-CIRC). \emph{Array} variables hold an unbounded
+  number of bits. At any point in the computation we can access the
+  array variables at the location indexed by \texttt{i} using
+  \texttt{Foo[i]}. We cannot access the arrays at locations other the
+  one pointed to by \texttt{i}.
+\item
+  We use the convention that \emph{arrays} always start with a capital
+  letter, and \emph{scalar variables} (which are never indexed with
+  \texttt{i}) start with lowercase letters. Hence \texttt{Foo} is an
+  array and \texttt{bar} is a scalar variable.
+\item
+  The input and output \texttt{X} and \texttt{Y} are now considered
+  \emph{arrays} with values of zeroes and ones. (There are also two
+  other special arrays \texttt{X\_nonblank} and \texttt{Y\_nonblank},
+  see below.)
+\item
+  We add a special \texttt{MODANDJUMP} instruction that takes two
+  boolean variables \(a,b\) as input and does the following:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    If \(a=1\) and \(b=1\) then \texttt{MODANDJUMP(}\(a,b\)\texttt{)}
+    increments \texttt{i} by one and jumps to the first line of the
+    program.
+  \item
+    If \(a=0\) and \(b=1\) then \texttt{MODANDJUMP(}\(a,b\)\texttt{)}
+    decrements \texttt{i} by one and jumps to the first line of the
+    program. (If \texttt{i} is already equal to \(0\) then it stays at
+    \(0\).)
+  \item
+    If \(a=1\) and \(b=0\) then \texttt{MODANDJUMP(}\(a,b\)\texttt{)}
+    jumps to the first line of the program without modifying \texttt{i}.
+  \item
+    If \(a=b=0\) then \texttt{MODANDJUMP(}\(a,b\)\texttt{)} halts
+    execution of the program.
+  \end{itemize}
+\item
+  The\texttt{MODANDJUMP} instruction always appears in the last line of
+  a NAND-TM program and nowhere else.
+\end{itemize}
+
+\paragraph{Default values.} We need one more convention to handle
+``default values''. Turing machines have the special symbol
+\(\varnothing\) to indicate that tape location is ``blank'' or
+``uninitialized''. In NAND-TM there is no such symbol, and all variables
+are \emph{Boolean}, containing either \(0\) or \(1\). All variables and
+locations of arrays are default to \(0\) if they have not been
+initialized to another value. To keep track of whether a \(0\) in an
+array corresponds to a true zero or to an uninitialized cell, a
+programmer can always add to an array \texttt{Foo} a ``companion array''
+\texttt{Foo\_nonblank} and set \texttt{Foo\_nonblank[i]} to \(1\)
+whenever the \texttt{i}'th location is initialized. In particular we
+will use this convention for the input and output arrays \texttt{X} and
+\texttt{Y}. A NAND-TM program has \emph{four} special arrays \texttt{X},
+\texttt{X\_nonblank}, \texttt{Y}, and \texttt{Y\_nonblank}. When a
+NAND-TM program is executed on input \(x\in \{0,1\}^*\) of length \(n\),
+the first \(n\) cells of the array \texttt{X} are initialized to
+\(x_0,\ldots,x_{n-1}\) and the first \(n\) cells of the array
+\texttt{X\_nonblank} are initialized to \(1\). (All uninitialized cells
+default to \(0\).) The output of a NAND-TM program is the string
+\texttt{Y[}\(0\)\texttt{]}, \(\ldots\), \texttt{Y[}\(m-1\)\texttt{]}
+where \(m\) is the smallest integer such that
+\texttt{Y\_nonblank[}\(m\)\texttt{]}\(=0\). A NAND-TM program gets
+called with \texttt{X} and \texttt{X\_nonblank} initialized to contain
+the input, and writes to \texttt{Y} and \texttt{Y\_nonblank} to produce
+the output.
+
+Formally, NAND-TM programs are defined as follows:
+
+\hypertarget{NANDTM}{}
+\begin{definition}[NAND-TM programs] \label[definition]{NANDTM}
+
+A \emph{NAND-TM program} consists of a sequence of lines of the form
+\texttt{foo = NAND(bar,blah)} ending with a line of the form
+\texttt{MODANDJMP(foo,bar)}, where
+\texttt{foo},\texttt{bar},\texttt{blah} are either \emph{scalar
+variables} (sequences of letters, digits, and underscores) or
+\emph{array variables} of the form \texttt{Foo[i]} (starting with
+capital letter and indexed by \texttt{i}). The program has the array
+variables \texttt{X}, \texttt{X\_nonblank}, \texttt{Y},
+\texttt{Y\_nonblank} and the index variable \texttt{i} built in, and can
+use additional array and scalar variables.
+
+If \(P\) is a NAND-TM program and \(x\in \{0,1\}^*\) is an input then an
+execution of \(P\) on \(x\) is the following process:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The arrays \texttt{X} and \texttt{X\_nonblank} are initialized by
+  \texttt{X[}\(i\)\texttt{]}\(=x_i\) and
+  \texttt{X\_nonblank[}\(i\)\texttt{]}\(=1\) for all \(i\in [|x|]\). All
+  other variables and cells are initialized to \(0\). The index variable
+  \texttt{i} is also initialized to \(0\).
+\item
+  The program is executed line by line, when the last line
+  \texttt{MODANDJMP(foo,bar)} is executed then we do as follows:
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \item
+    If \texttt{foo}\(=1\) and \texttt{bar}\(=0\) then jump to the first
+    line without modifying the value of \texttt{i}.
+  \item
+    If \texttt{foo}\(=1\) and \texttt{bar}\(=1\) then increment
+    \texttt{i} by one and jump to the first line.
+  \item
+    If \texttt{foo}\(=0\) and \texttt{bar}\(=1\) then decrement
+    \texttt{i} by one (unless it is already zero) and jump to the first
+    line.
+  \item
+    If \texttt{foo}\(=0\) and \texttt{bar}\(=0\) then halt and output
+    \texttt{Y[}\(0\)\texttt{]}, \(\ldots\), \texttt{Y[}\(m-1\)\texttt{]}
+    where \(m\) is the smallest integer such that
+    \texttt{Y\_nonblank[}\(m\)\texttt{]}\(=0\).
+  \end{enumerate}
+\end{enumerate}
+
+\end{definition}
+
+\subsection{Sneak peak: NAND-TM vs Turing
+machines}\label{Sneak-peak-NAND-TM-vs-Tur}
+
+As the name implies, NAND-TM programs are a direct implementation of
+Turing machines in programming language form. We will show the
+equivalence below but you can already see how the components of Turing
+machines and NAND-TM programs correspond to one another:
+
+\begin{longtable}[]{@{}ll@{}}
+\caption{Turing Machine and NAND-TM analogs}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.41\columnwidth}\raggedright
+\textbf{Turing Machine}\strut
+\end{minipage} & \begin{minipage}[b]{0.53\columnwidth}\raggedright
+\textbf{NAND-TM program}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.41\columnwidth}\raggedright
+\textbf{Turing Machine}\strut
+\end{minipage} & \begin{minipage}[b]{0.53\columnwidth}\raggedright
+\textbf{NAND-TM program}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.41\columnwidth}\raggedright
+\emph{State:} single register that takes values in \([k]\)\strut
+\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\emph{Scalar variables:} Several variables such as \texttt{foo},
+\texttt{bar} etc.. each taking values in \(\{0,1\}\).\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.41\columnwidth}\raggedright
+\emph{Tape:} One tape containing values in a finite set \(\Sigma\).
+Potentially infinite but \(T[t]\) defaults to \(\varnothing\) for all
+locations \(t\) that have not been accessed.\strut
+\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\emph{Arrays:} Several arrays such as \texttt{Foo}, \texttt{Bar} etc..
+for each such array \texttt{Arr} and index \(j\), the value of
+\texttt{Arr} at position \(j\) is either \(0\) or \(1\). The value
+defaults to \(0\) for position that have not been written to.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.41\columnwidth}\raggedright
+\emph{Head location:} A number \(i\in \mathbb{N}\) that encodes the
+position of the head.\strut
+\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\emph{Index variable:} The variable \texttt{i} that can be used to
+access the arrays.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.41\columnwidth}\raggedright
+\emph{Accessing memory:} At every step the Turing machine has access to
+its local state, but can only access the tape at the position of the
+current head location.\strut
+\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\emph{Accessing memory:} At every step a NAND-TM program has access to
+all the scalar variables, but can only access the arrays at the location
+\texttt{i} of the index variable\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.41\columnwidth}\raggedright
+\emph{Control of location:} In each step the machine can move the head
+location by at most one position.\strut
+\end{minipage} & \begin{minipage}[t]{0.53\columnwidth}\raggedright
+\emph{Control of index variable:} In each iteration of its main loop the
+program can modify the index \texttt{i} by at most one.\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\label{TMvsNANDTMtable}
+
+\subsection{Examples}\label{Examples}
+
+We now present some examples of NAND-TM programs
+
+\hypertarget{XORENANDPP}{}
+\begin{example}[XOR in NAND-TM] \label[example]{XORENANDPP}
+
+The following is a NAND-TM program to compute the XOR function on inputs
+of arbitrary length. That is
+\(\ensuremath{\mathit{XOR}}:\{0,1\}^* \rightarrow \{0,1\}\) such that
+\(\ensuremath{\mathit{XOR}}(x) = \sum_{i=0}^{|x|-1} x_i \mod 2\) for
+every \(x\in \{0,1\}^*\).
+
+\begin{code}
+temp_0 = NAND(X[0],X[0])
+Y_nonblank[0] = NAND(X[0],temp_0)
+temp_2 = NAND(X[i],Y[0])
+temp_3 = NAND(X[i],temp_2)
+temp_4 = NAND(Y[0],temp_2)
+Y[0] = NAND(temp_3,temp_4)
+MODANDJUMP(X_nonblank[i],X_nonblank[i])
+\end{code}
+
+\end{example}
+
+\hypertarget{INCENANDPP}{}
+\begin{example}[Increment in NAND-TM] \label[example]{INCENANDPP}
+
+We now present NAND-TM program to compute the \emph{increment function}.
+That is, \(\ensuremath{\mathit{INC}}:\{0,1\}^* \rightarrow \{0,1\}^*\)
+such that for every \(x\in \{0,1\}^n\), \(\ensuremath{\mathit{INC}}(x)\)
+is the \(n+1\) bit long string \(y\) such that if
+\(X = \sum_{i=0}^{n-1}x_i \cdot 2^i\) is the number represented by
+\(x\), then \(y\) is the (least-significant digit first) binary
+representation of the number \(X+1\).
+
+We start by showing the program using the ``syntactic sugar'' we've seen
+before of using shorthand for some NAND-CIRC programs we have seen
+before to compute simple functions such as \texttt{IF}, \texttt{XOR} and
+\texttt{AND} (as well as the constant \texttt{one} function as well as
+the function \texttt{COPY} that just maps a bit to itself).
+
+\begin{code}
+carry = IF(started,carry,one(started))
+started = one(started)
+Y[i] = XOR(X[i],carry)
+carry = AND(X[i],carry)
+Y_nonblank[i] = one(started)
+MODANDJUMP(X_nonblank[i],X_nonblank[i])
+\end{code}
+
+The above is not, strictly speaking, a valid NAND-TM program. If we
+``open up'' all of the syntactic sugar, we get the following valid
+program to compute this syntactic sugar.
+
+\begin{code}
+temp_0 = NAND(started,started)
+temp_1 = NAND(started,temp_0)
+temp_2 = NAND(started,started)
+temp_3 = NAND(temp_1,temp_2)
+temp_4 = NAND(carry,started)
+carry = NAND(temp_3,temp_4)
+temp_6 = NAND(started,started)
+started = NAND(started,temp_6)
+temp_8 = NAND(X[i],carry)
+temp_9 = NAND(X[i],temp_8)
+temp_10 = NAND(carry,temp_8)
+Y[i] = NAND(temp_9,temp_10)
+temp_12 = NAND(X[i],carry)
+carry = NAND(temp_12,temp_12)
+temp_14 = NAND(started,started)
+Y_nonblank[i] = NAND(started,temp_14)
+MODANDJUMP(X_nonblank[i],X_nonblank[i])
+\end{code}
+
+\end{example}
+
+\begin{pause} \label[pause]{Working-out-the-above-two}
+
+Working out the above two examples can go a long way towards
+understanding the NAND-TM language. See the
+\href{http://tiny.cc/introtcsappendix}{appendix} and our
+\href{https://github.com/boazbk/tcscode}{GitHub repository} for a full
+specification of the NAND-TM language.
+
+\end{pause}
+
+\section{Equivalence of Turing machines and NAND-TM
+programs}\label{Equivalence-of-Turing-mac}
+
+Given the above discussion, it might not be surprising that Turing
+machines turn out to be equivalent to NAND-TM programs. Indeed, we
+designed the NAND-TM language to have this property. Nevertheless, this
+is an important result, and the first of many other such equivalence
+results we will see in this book.
+
+\hypertarget{TM-equiv-thm}{}
+\begin{theorem}[Turing machines and NAND-TM programs are equivalent] \label[theorem]{TM-equiv-thm}
+
+For every \(F:\{0,1\}^* \rightarrow \{0,1\}^*\), \(F\) is computable by
+a NAND-TM program \(P\) if and only if there is a Turing Machine \(M\)
+that computes \(F\).
+
+\end{theorem}
+
+\begin{proofidea} \label[proofidea]{To-prove-such-an-equivale}
+
+To prove such an equivalence theorem, we need to show two directions. We
+need to be able to \textbf{(1)} transform a Turing machine \(M\) to a
+NAND-TM program \(P\) that computes the same function as \(M\) and
+\textbf{(2)} transform a NAND-TM program \(P\) into a Turing machine
+\(M\) that computes the same function as \(P\).
+
+The idea of the proof is illustrated in \cref{tmvsnandppfig}. To show
+\textbf{(1)}, given a Turing machine \(M\), we will create a NAND-TM
+program \(P\) that will have an array \texttt{Tape} for the tape of
+\(M\) and scalar (i.e., non array) variable(s) \texttt{state} for the
+state of \(M\). Specifically, since the state of a Turing machine is not
+in \(\{0,1\}\) but rather in a larger set \([k]\), we will use
+\(\ceil{\log k}\) variables \texttt{state\_}\(0\) , \(\ldots\),
+\texttt{state\_}\(\ceil{\log k}-1\) variables to store the
+representation of the state. Similarly, to encode the larger alphabet
+\(\Sigma\) of the tape, we will use \(\ceil{\log |\Sigma|}\) arrays
+\texttt{Tape\_}\(0\) , \(\ldots\),
+\texttt{Tape\_}\(\ceil{\log |\Sigma|}-1\), such that the \(i^{th}\)
+location of these arrays encodes the \(i^{th}\) symbol in the tape for
+every tape. Using the fact that \emph{every} function can be computed by
+a NAND-CIRC program, we will be able to compute the transition function
+of \(M\), replacing moving left and right by decrementing and
+incrementing \texttt{i} respectively.
+
+We show \textbf{(2)} using very similar ideas. Given a program \(P\)
+that uses \(a\) array variables and \(b\) scalar variables, we will
+create a Turing machine with about \(2^b\) states to encode the values
+of scalar variables, and an alphabet of about \(2^a\) so we can encode
+the arrays using our tape. (The reason the sizes are only ``about''
+\(2^a\) and \(2^b\) is that we will need to add some symbols and steps
+for bookkeeping purposes.) The Turing Machine \(M\) will simulate each
+iteration of the program \(P\) by updating its state and tape
+accordingly.
+
+\end{proofidea}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/turingmachinevsnandtm.png}
+\caption{Comparing a Turing Machine to a NAND-TM program. Both have an
+unbounded memory component (the \emph{tape} for a Turing machine, and
+the \emph{arrays} for a NAND-TM program), as well as a constant local
+memory (\emph{state} for a Turing machine, and \emph{scalar variables}
+for a NAND-TM program). Both can only access at each step one location
+of the unbounded memory, this is the ``head'' location for a Turing
+machine, and the value of the index variable \texttt{i} for a NAND-TM
+program.}
+\label{tmvsnandppfig}
+\end{figure}
+
+\begin{proof}[Proof of \cref{TM-equiv-thm}] \label[proof]{We-start-by-proving-the-i}
+
+We start by proving the ``if'' direction of \cref{TM-equiv-thm}. Namely
+we show that given a Turing machine \(M\), we can find a NAND-TM program
+\(P_M\) such that for every input \(x\), if \(M\) halts on input \(x\)
+with output \(y\) then \(P_M(x)=y\). Since our goal is just to show such
+a program \(P_M\) \emph{exists}, we don't need to write out the full
+code of \(P_M\) line by line, and can take advantage of our various
+``syntactic sugar'' in describing it.
+
+The key observation is that by \cref{NAND-univ-thm} we can compute
+\emph{every} finite function using a NAND-CIRC program. In particular,
+consider the transition function
+\(\delta_M:[k]\times \Sigma \rightarrow [k] \times \Sigma \times \{\mathsf{L},\mathsf{R} \}\)
+of our Turing Machine. We can encode the its components as follows:
+
+\begin{itemize}
+\item
+  We encode \([k]\) using \(\{0,1\}^\ell\) and \(\Sigma\) using
+  \(\{0,1\}^{\ell'}\), where \(\ell = \ceil{\log k}\) and
+  \(\ell' = \ceil{\log |\Sigma|}\).
+\item
+  We encode the set
+  \(\{\mathsf{L},\mathsf{R}, \mathsf{S},\mathsf{H} \}\) using
+  \(\{0,1\}^2\). We will choose the encode \(\mathsf{L} \mapsto 01\),
+  \(\mathsf{R} \mapsto 11\), \(\mathsf{S} \mapsto 10\),
+  \(\mathsf{H} \mapsto 00\). (This conveniently corresponds to the
+  semantics of the \texttt{MODANDJUMP} operation.)
+\end{itemize}
+
+Hence we can identify \(\delta_M\) with a function
+\(\overline{M}:\{0,1\}^{\ell+\ell'} \rightarrow \{0,1\}^{\ell+\ell'+2}\),
+mapping strings of length \(\ell+\ell'\) to strings of length
+\(\ell+\ell'+2\). By \cref{NAND-univ-thm} there exists a finite length
+NAND-CIRC program \texttt{ComputeM} that computes this function
+\(\overline{M}\). The NAND-TM program to simulate \(M\) will essentially
+be the following:
+
+\begin{algorithm}[NAND-TM program to simulate TM $M$]
+\label[algorithm]{simMwithNANDTMarg} ~ \\ \noindent
+\begin{algorithmic}[1]
+\INPUT  $x\in \{0,1\}^*$
+\OUTPUT  $M(x)$ if $M$ halts on $x$. Otherwise go into infinite loop
+\STATE \COMMENT{ We use variables \texttt{state\_}$0$ $\ldots$ \texttt{state\_}$\ell-1$ to encode $M$'s state}
+\STATE \COMMENT{ We use arrays \texttt{Tape\_}$0$\texttt{[]} $\ldots$ \texttt{Tape\_}$\ell'-1$\texttt{[]} to encode $M$'s tape}
+\STATE \COMMENT{ We omit the initial and final "book keeping" to copy \INPUT to \texttt{Tape} and copy \OUTPUT from \texttt{Tape}}
+\STATE \COMMENT{ Use the fact that transition is finite and computable by NAND-CIRC program:}
+\STATE \texttt{state\_}$0$ $\ldots$ \texttt{state\_}$\ell-1$, \texttt{Tape\_}$0$\texttt{[i]}$\ldots$ \texttt{Tape\_}$\ell'-1$\texttt{[i]}, \texttt{dir0},\texttt{dir1} $\leftarrow$ \texttt{TRANSITION(} \texttt{state\_}$0$ $\ldots$ \texttt{state\_}$\ell-1$, \texttt{Tape\_}$0$\texttt{[i]}$\ldots$ \texttt{Tape\_}$\ell'-1$\texttt{[i]}, \texttt{dir0},\texttt{dir1} \texttt{)}
+\STATE \texttt{MODANDJMP(dir0,dir1)}
+\end{algorithmic}
+\end{algorithm}
+
+Every step of the main loop of the above program perfectly mimics the
+computation of the Turing Machine \(M\) and so the program carries out
+exactly the definition of computation by a Turing Machine as per
+\cref{TM-def}.
+
+For the other direction, suppose that \(P\) is a NAND-TM program with
+\(s\) lines, \(\ell\) scalar variables, and \(\ell'\) array variables.
+We will show that there exists a Turing machine \(M_P\) with
+\(2^\ell+C\) states and alphabet \(\Sigma\) of size \(C' + 2^{\ell'}\)
+that computes the same functions as \(P\) (where \(C\), \(C'\) are some
+constants to be determined later).
+
+Specifically, consider the function
+\(\overline{P}:\{0,1\}^\ell \times \{0,1\}^{\ell'} \rightarrow \{0,1\}^\ell \times \{0,1\}^{\ell'}\)
+that on input the contents of \(P\)'s scalar variables and the contents
+of the array variables at location \texttt{i} in the beginning of an
+iteration, outputs all the new values of these variables at the last
+line of the iteration, right before the \texttt{MODANDJUMP} instruction
+is executed.
+
+If \texttt{foo} and \texttt{bar} are the two variables that are used as
+input to the \texttt{MODANDJUMP} instruction, then this means that based
+on the values of these variables we can compute whether \texttt{i} will
+increase, decrease or stay the same, and whether the program will halt
+or jump back to the beginning. Hence a Turing machine can simulate an
+execution of \(P\) in one iteration using a finite function applied to
+its alphabet. The overall operation of the Turing machine will be as
+follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The machine \(M_P\) encodes the contents of the array variables of
+  \(P\) in its tape, and the contents of the scalar variables in (part
+  of) its state. Specifically, if \(P\) has \(\ell\) local variables and
+  \(t\) arrays, then the state space of \(M\) will be large enough to
+  encode all \(2^\ell\) assignments to the local variables and the
+  alphabet \(\Sigma\) of \(M\) will be large enough to encode all
+  \(2^t\) assignments for the array variables at each location. The head
+  location corresponds to the index variable \texttt{i}.
+\item
+  Recall that every line of the program \(P\) corresponds to reading and
+  writing either a scalar variable, or an array variable at the location
+  \texttt{i}. In one iteration of \(P\) the value of \texttt{i} remains
+  fixed, and so the machine \(M\) can simulate this iteration by reading
+  the values of all array variables at \texttt{i} (which are encoded by
+  the single symbol in the alphabet \(\Sigma\) located at the
+  \texttt{i}-th cell of the tape) , reading the values of all scalar
+  variables (which are encoded by the state), and updating both. The
+  transition function of \(M\) can output
+  \(\mathsf{L},\mathsf{S},\mathsf{R}\) depending on whether the values
+  given to the \texttt{MODANDJMP} operation are \(01\), \(10\) or \(11\)
+  respectively.
+\item
+  When the program halts (i.e., \texttt{MODANDJMP} gets \(00\)) then the
+  Turing machine will enter into a special loop to copy the results of
+  the \texttt{Y} array into the output and then halt. We can achieve
+  this by adding a few more states.
+\end{enumerate}
+
+The above is not a full formal description of a Turing Machine, but our
+goal is just to show that such a machine exists. One can see that
+\(M_P\) simulates every step of \(P\), and hence computes the same
+function as \(P\).
+
+\end{proof}
+
+\hypertarget{polyequivrem}{}
+\begin{remark}[Running time equivalence (optional)] \label[remark]{polyequivrem}
+
+If we examine the proof of \cref{TM-equiv-thm} then we can see that
+every iteration of the loop of a NAND-TM program corresponds to one step
+in the execution of the Turing machine. We will come back to this
+question of measuring number of computation steps later in this course.
+For now the main take away point is that NAND-TM programs and Turing
+Machines are essentially equivalent in power even when taking running
+time into account.
+
+\end{remark}
+
+\subsection{Specification vs implementation
+(again)}\label{Specification-vs-implemen}
+
+Once you understand the definitions of both NAND-TM programs and Turing
+Machines, \cref{TM-equiv-thm} is fairly straightforward. Indeed, NAND-TM
+programs are not as much a different model from Turing Machines as they
+are simply a reformulation of the same model using programming language
+notation. You can think of the difference between a Turing machine and a
+NAND-TM program as the difference between representing a number using
+decimal or binary notation. In contrast, the difference between a
+\emph{function} \(F\) and a Turing machine that computes \(F\) is much
+more profound: it is like the difference between the equation
+\(x^2 + x = 12\) and the number \(3\) that is a solution for this
+equation. For this reason, while we take special care in distinguishing
+\emph{functions} from \emph{programs} or \emph{machines}, we will often
+identify the two latter concepts. We will move freely between describing
+an algorithm as a Turing machine or as a NAND-TM program (as well as
+some of the other equivalent computational models we will see in
+\cref{chapequivalentmodels} and beyond).
+
+\begin{longtable}[]{@{}lll@{}}
+\caption{Specification vs Implementation formalisms}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.16\columnwidth}\raggedright
+\emph{Setting}\strut
+\end{minipage} & \begin{minipage}[b]{0.43\columnwidth}\raggedright
+\emph{Specification}\strut
+\end{minipage} & \begin{minipage}[b]{0.32\columnwidth}\raggedright
+\emph{Implementation}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{0.16\columnwidth}\raggedright
+\emph{Setting}\strut
+\end{minipage} & \begin{minipage}[b]{0.43\columnwidth}\raggedright
+\emph{Specification}\strut
+\end{minipage} & \begin{minipage}[b]{0.32\columnwidth}\raggedright
+\emph{Implementation}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.16\columnwidth}\raggedright
+\emph{Finite computation}\strut
+\end{minipage} & \begin{minipage}[t]{0.43\columnwidth}\raggedright
+\textbf{Functions} mapping \(\{0,1\}^n\) to \(\{0,1\}^m\)\strut
+\end{minipage} & \begin{minipage}[t]{0.32\columnwidth}\raggedright
+\textbf{Circuits}, \textbf{Straightline programs}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.16\columnwidth}\raggedright
+\emph{Infinite computation}\strut
+\end{minipage} & \begin{minipage}[t]{0.43\columnwidth}\raggedright
+\textbf{Functions} mapping \(\{0,1\}^*\) to \(\{0,1\}\) or to
+\(\{0,1\}^*\).\strut
+\end{minipage} & \begin{minipage}[t]{0.32\columnwidth}\raggedright
+\textbf{Algorithms}, \textbf{Turing Machines}, \textbf{Programs}\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+\label{specvsimp}
+
+\section{NAND-TM syntactic sugar}\label{NAND-TM-syntactic-sugar}
+
+Just like we did with NAND-CIRC in \cref{finiteuniversalchap}, we can
+use ``syntactic sugar'' to make NAND-TM programs easier to write. For
+starters, we can use all of the syntactic sugar of NAND-CIRC, and so
+have access to macro definitions and conditionals (i.e., if/then). But
+we can go beyond this and achieve for example:
+
+\begin{itemize}
+\item
+  Inner loops such as the \texttt{while} and \texttt{for} operations
+  common to many programming language.s
+\item
+  Multiple index variables (e.g., not just \texttt{i} but we can add
+  \texttt{j}, \texttt{k}, etc.).
+\item
+  Arrays with more than one dimension (e.g., \texttt{Foo[i][j]},
+  \texttt{Bar[i][j][k]} etc.)
+\end{itemize}
+
+In all of these cases (and many others) we can implement the new feature
+as mere ``syntactic sugar'' on top of standard NAND-TM, which means that
+the set of functions computable by NAND-TM with this feature is the same
+as the set of functions computable by standard NAND-TM. Similarly, we
+can show that the set of functions computable by Turing Machines that
+have more than one tape, or tapes of more dimensions than one, is the
+same as the set of functions computable by standard Turing machines.
+
+\subsection{``GOTO'' and inner loops}\label{nandtminnerloopssec}
+
+We can implement more advanced \emph{looping constructs} than the simple
+\texttt{MODANDJUMP}. For example, we can implement \texttt{GOTO}. A
+\texttt{GOTO} statement corresponds to jumping to a certain line in the
+execution. For example, if we have code of the form
+
+\begin{code}
+"start":  do foo
+   GOTO("end")
+"skip": do bar
+"end": do blah
+\end{code}
+
+then the program will only do \texttt{foo} and \texttt{blah} as when it
+reaches the line \texttt{GOTO("end")} it will jump to the line labeled
+with \texttt{"end"}. We can achieve the effect of \texttt{GOTO} in
+NAND-TM using conditionals. In the code below, we assume that we have a
+variable \texttt{pc} that can take strings of some constant length. This
+can be encoded using a finite number of Boolean variables
+\texttt{pc\_0}, \texttt{pc\_1}, \(\ldots\), \texttt{pc\_}\(k-1\), and so
+when we write below \texttt{pc = "label"} what we mean is something like
+\texttt{pc\_0 = 0},\texttt{pc\_1 = 1}, \(\ldots\) (where the bits
+\(0,1,\ldots\) correspond to the encoding of the finite string
+\texttt{"label"} as a string of length \(k\)). We also assume that we
+have access to conditional (i.e., \texttt{if} statements), which we can
+emulate using syntactic sugar in the same way as we did in NAND-CIRC.
+
+To emulate a GOTO statement, we will first modify a program P of the
+form
+
+\begin{code}
+do foo
+do bar
+do blah
+\end{code}
+
+to have the following form (using syntactic sugar for \texttt{if}):
+
+\begin{code}
+pc = "line1"
+if (pc=="line1"):
+    do foo
+    pc = "line2"
+if (pc=="line2"):
+    do bar
+    pc = "line3"
+if (pc=="line3"):
+    do blah
+\end{code}
+
+These two programs do the same thing. The variable \texttt{pc}
+corresponds to the ``program counter'' and tells the program which line
+to execute next. We can see that if we wanted to emulate a
+\texttt{GOTO("line3")} then we could simply modify the instruction
+\texttt{pc = "line2"} to be \texttt{pc = "line3"}.
+
+In NAND-CIRC we could only have \texttt{GOTO}s that go forward in the
+code, but since in NAND-TM everything is encompassed within a large
+outer loop, we can use the same ideas to implement \texttt{GOTO}'s that
+can go backwards, as well as conditional loops.
+
+\paragraph{Other loops.} Once we have \texttt{GOTO}, we can emulate all
+the standard loop constructs such as \texttt{while},
+\texttt{do .. until} or \texttt{for} in NAND-TM as well. For example, we
+can replace the code
+
+\begin{code}
+while foo:
+    do blah
+do bar
+\end{code}
+
+with
+
+\begin{code}
+"loop":
+    if NOT(foo): GOTO("next")
+    do blah
+    GOTO("loop")
+"next":
+    do bar
+\end{code}
+
+\hypertarget{gotorem}{}
+\begin{remark}[GOTO's in programming languages] \label[remark]{gotorem}
+
+The \texttt{GOTO} statement was a staple of most early programming
+languages, but has largely fallen out of favor and is not included in
+many modern languages such as \emph{Python}, \emph{Java},
+\emph{Javascript}. In 1968, Edsger Dijsktra wrote a famous letter titled
+``\href{https://goo.gl/bnNsjo}{Go to statement considered harmful.}''
+(see also \cref{xkcdgotofig}). The main trouble with \texttt{GOTO} is
+that it makes analysis of programs more difficult by making it harder to
+argue about \emph{invariants} of the program.
+
+When a program contains a loop of the form:
+
+\begin{code}
+for j in range(100):
+    do something
+
+do blah
+\end{code}
+
+you know that the line of code \texttt{do blah} can only be reached if
+the loop ended, in which case you know that \texttt{j} is equal to
+\(100\), and might also be able to argue other properties of the state
+of the program. In contrast, if the program might jump to
+\texttt{do blah} from any other point in the code, then it's very hard
+for you as the programmer to know what you can rely upon in this code.
+As Dijkstra said, such invariants are important because \emph{``our
+intellectual powers are rather geared to master static relations and ..
+our powers to visualize processes evolving in time are relatively poorly
+developed''} and so \emph{``we should \ldots{} do \ldots our utmost best
+to shorten the conceptual gap between the static program and the dynamic
+process.''}
+
+That said, \texttt{GOTO} is still a major part of lower level languages
+where it is used to implement higher level looping constructs such as
+\texttt{while} and \texttt{for} loops. For example, even though
+\emph{Java} doesn't have a \texttt{GOTO} statement, the Java Bytecode
+(which is a lower level representation of Java) does have such a
+statement. Similarly, Python bytecode has instructions such as
+\texttt{POP\_JUMP\_IF\_TRUE} that implement the \texttt{GOTO}
+functionality, and similar instructions are included in many assembly
+languages. The way we use \texttt{GOTO} to implement a higher level
+functionality in NAND-TM is reminiscent of the way these various jump
+instructions are used to implement higher level looping constructs.
+
+\end{remark}
+
+
+\begin{marginfigure}
+\centering
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/xkcdgoto.png}
+\caption{XKCD's take on the \texttt{GOTO} statement.}
+\label{xkcdgotofig}
+\end{marginfigure}
+
+\section{Uniformity, and NAND vs NAND-TM
+(discussion)}\label{Uniformity-and-NAND-vs-NA}
+
+While NAND-TM adds extra operations over NAND-CIRC, it is not exactly
+accurate to say that NAND-TM programs or Turing machines are ``more
+powerful'' than NAND-CIRC programs or Boolean circuits. NAND-CIRC
+programs, having no loops, are simply not applicable for computing
+functions with an unbounded number of inputs. Thus, to compute a
+function \(F:\{0,1\}^* :\rightarrow \{0,1\}^*\) using NAND-CIRC (or
+equivalently, Boolean circuits) we need a \emph{collection} of
+programs/circuits: one for every input length.
+
+The key difference between NAND-CIRC and NAND-TM is that NAND-TM allows
+us to express the fact that the algorithm for computing parities of
+length-\(100\) strings is really the same one as the algorithm for
+computing parities of length-\(5\) strings (or similarly the fact that
+the algorithm for adding \(n\)-bit numbers is the same for every \(n\),
+etc.). That is, one can think of the NAND-TM program for general parity
+as the ``seed'' out of which we can grow NAND-CIRC programs for length
+\(10\), length \(100\), or length \(1000\) parities as needed.
+
+This notion of a single algorithm that can compute functions of all
+input lengths is known as \emph{uniformity} of computation and hence we
+think of Turing machines / NAND-TM as \emph{uniform} model of
+computation, as opposed to Boolean circuits or NAND-CIRC which is a
+\emph{nonuniform} model, where we have to specify a different program
+for every input length.
+
+Looking ahead, we will see that this uniformity leads to another crucial
+difference between Turing machines and circuits. Turing machines can
+have inputs and outputs that are longer than the description of the
+machine as a string and in particular there exists a Turing machine that
+can ``self replicate'' in the sense that it can print its own code. This
+notion of ``self replication'', and the related notion of ``self
+reference'' is crucial to many aspects of computation, as well of course
+to life itself, whether in the form of digital or biological programs.
+
+For now, what you ought to remember is the following differences between
+\emph{uniform} and \emph{non uniform} computational models:
+
+\begin{itemize}
+\item
+  \textbf{Non uniform computational models:} Examples are
+  \emph{NAND-CIRC programs} and \emph{Boolean circuits}. These are
+  models where each individual program/circuit can compute a
+  \emph{finite} function \(f:\{0,1\}^n \rightarrow \{0,1\}^m\). We have
+  seen that \emph{every} finite function can be computed by \emph{some}
+  program/circuit. To discuss computation of an \emph{infinite} function
+  \(F:\{0,1\}^* \rightarrow \{0,1\}^*\) we need to allow a
+  \emph{sequence} \(\{ P_n \}_{n\in \N}\) of programs/circuits (one for
+  every input length), but this does not capture the notion of a
+  \emph{single algorithm} to compute the function \(F\).
+\item
+  \textbf{Uniform computational models:} Examples are \emph{Turing
+  machines} and \emph{NAND-TM programs}. These are model where a single
+  program/machine can take inputs of \emph{arbitrary length} and hence
+  compute an \emph{infinite} function
+  \(F:\{0,1\}^* \rightarrow \{0,1\}^*\). The number of steps that a
+  program/machine takes on some input is not a priori bounded in advance
+  and in particular there is a chance that it will enter into an
+  \emph{infinite loop}. Unlike the nonuniform case, we have \emph{not}
+  shown that every infinite function can be computed by some NAND-TM
+  program/Turing Machine. We will come back to this point in
+  \cref{chapcomputable}.
+\end{itemize}
+
+\begin{recap} \label[recap]{Turing-machines-capture-t}
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Turing machines} capture the notion of a single algorithm that
+  can evaluate functions of every input length.
+\item
+  They are equivalent to \emph{NAND-TM programs}, which add loops and
+  arrays to NAND-CIRC.
+\item
+  Unlike NAND-CIRC or Boolean circuits, the number of steps that a
+  Turing machine takes on a given input is not fixed in advance. In
+  fact, a Turing machine or a NAND-TM program can enter into an
+  \emph{infinite loop} on certain inputs, and not halt at all.
+\end{itemize}
+
+\end{recap}
+
+\section{Exercises}\label{Exercises}
+
+\hypertarget{majoritynandtm}{}
+\begin{exercise}[Explicit NAND TM programming] \label[exercise]{majoritynandtm}
+
+Produce the code of a (syntactic-sugar free) NAND-TM program \(P\) that
+computes the (unbounded input length) \emph{Majority} function
+\(Maj:\{0,1\}^* \rightarrow \{0,1\}\) where for every
+\(x\in \{0,1\}^*\), \(Maj(x)=1\) if and only if
+\(\sum_{i=0}^{|x|} x_i > |x|/2\). We say ``produce'' rather than
+``write'' because you do not have to write the code of \(P\) by hand,
+but rather can use the programming language of your choice to compute
+this code.
+
+\end{exercise}
+
+\hypertarget{computable}{}
+\begin{exercise}[Computable functions examples] \label[exercise]{computable}
+
+Prove that the following functions are computable. For all of these
+functions, you do not have to fully specify the Turing Machine or the
+NAND-TM program that computes the function, but rather only prove that
+such a machine or program exists:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\ensuremath{\mathit{INC}}:\{0,1\}^* \rightarrow \{0,1\}\) which
+  takes as input a representation of a natural number \(n\) and outputs
+  the representation of \(n+1\).
+\item
+  \(\ensuremath{\mathit{ADD}}:\{0,1\}^* \rightarrow \{0,1\}\) which
+  takes as input a representation of a pair of natural numbers \((n,m)\)
+  and outputs the representation of \(n+m\).
+\item
+  \(\ensuremath{\mathit{MULT}}:\{0,1\}^* \rightarrow \{0,1\}^*\), which
+  takes a representation of a pair of natural numbers \((n,m)\) and
+  outputs the representation of \(n\dot m\).
+\item
+  \(\ensuremath{\mathit{SORT}}:\{0,1\}^* \rightarrow \{0,1\}^*\) which
+  takes as input the representation of a list of natural numbers
+  \((a_0,\ldots,a_{n-1})\) and returns its sorted version
+  \((b_0,\ldots,b_{n-1})\) such that for every \(i\in [n]\) there is
+  some \(j \in [n]\) with \(b_i=a_j\) and
+  \(b_0 \leq b_1 \leq \cdots \leq b_{n-1}\).
+\end{enumerate}
+
+\end{exercise}
+
+\hypertarget{twoindexex}{}
+\begin{exercise}[Two index NAND-TM] \label[exercise]{twoindexex}
+
+Define NAND-TM' to be the variant of NAND-TM where there are \emph{two}
+index variables \texttt{i} and \texttt{j}. Arrays can be indexed by
+either \texttt{i} or \texttt{j}. The operation \texttt{MODANDJMP} takes
+four variables \(a,b,c,d\) and uses the values of \(c,d\) to decide
+whether to increment \texttt{j}, decrement \texttt{j} or keep it in the
+same value (corresponding to \(01\), \(10\), and \(00\) respectively).
+Prove that for every function \(F:\{0,1\}^* \rightarrow \{0,1\}^*\),
+\(F\) is computable by a NAND-TM program if and only if \(F\) is
+computable by a NAND-TM' program.
+
+\end{exercise}
+
+\hypertarget{twotapeex}{}
+\begin{exercise}[Two tape Turing machines] \label[exercise]{twotapeex}
+
+Define a \emph{two tape Turing machine} to be a Turing machine which has
+two separate tapes and two separate heads. At every step, the transition
+function gets as input the location of the cells in the two tapes, and
+can decide whether to move each head independently. Prove that for every
+function \(F:\{0,1\}^* \rightarrow \{0,1\}^*\), \(F\) is computable by a
+standard Turing Machine if and only if \(F\) is computable by a two-tape
+Turing machine.
+
+\end{exercise}
+
+\hypertarget{twodimnandtmex}{}
+\begin{exercise}[Two dimensional arrays] \label[exercise]{twodimnandtmex}
+
+Define NAND-TM'' to be the variant of NAND-TM where just like NAND-TM'
+defined in \cref{twoindexex} there are two index variables \texttt{i}
+and \texttt{j}, but now the arrays are \emph{two dimensional} and so we
+index an array \texttt{Foo} by \texttt{Foo[i][j]}. Prove that for every
+function \(F:\{0,1\}^* \rightarrow \{0,1\}^*\), \(F\) is computable by a
+NAND-TM program if and only if \(F\) is computable by a NAND-TM''
+program.
+
+\end{exercise}
+
+\hypertarget{twodimtapeex}{}
+\begin{exercise}[Two dimensional Turing machines] \label[exercise]{twodimtapeex}
+
+Define a \emph{two-dimensional Turing machine} to be a Turing machine in
+which the tape is \emph{two dimensional}. At every step the machine can
+move \(\mathsf{U}\)p, \(\mathsf{D}\)own, \(\mathsf{L}\)eft,
+\(\mathsf{R}\)ight, or \(\mathsf{S}\)tay. Prove that for every function
+\(F:\{0,1\}^* \rightarrow \{0,1\}^*\), \(F\) is computable by a standard
+Turing Machine if and only if \(F\) is computable by a two-dimensional
+Turing machine.
+
+\end{exercise}
+
+\begin{exercise} \label[exercise]{Prove-the-following-closu}
+
+Prove the following closure properties of the set \(\mathbf{R}\) defined
+in \cref{classRdef}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  If \(F \in \mathbf{R}\) then the function \(G(x) = 1 - F(x)\) is in
+  \(\mathbf{R}\).
+\item
+  If \(F,G \in \mathbf{R}\) then the function \(H(x) = F(x) \vee G(x)\)
+  is in \(\mathbf{R}\).
+\item
+  If \(F \in \mathbf{R}\) then the function \(F^*\) in in \(\mathbf{R}\)
+  where \(F^*\) is defined as follows: \(F^*(x)=1\) iff there exist some
+  strings \(w_0,\ldots,w_{k-1}\) such that
+  \(x = w_0 w_1 \cdots w_{k-1}\) and \(F(w_i)=1\) for every
+  \(i\in [k]\).
+\item
+  If \(F \in \mathbf{R}\) then the function \[
+  G(x) = \begin{cases}  \exists_{y \in \{0,1\}^{|x|}} F(xy) = 1 \\
+  0 & \text{otherwise}
+  \end{cases}
+  \] is in \(\mathbf{R}\).
+\end{enumerate}
+
+\end{exercise}
+
+\hypertarget{obliviousTMex}{}
+\begin{exercise}[Oblivious Turing Machines (challenging)] \label[exercise]{obliviousTMex}
+
+Define a Turing Machine \(M\) to be \emph{oblivious} if its head
+movements are independent of its input. That is, we say that \(M\) is
+oblivious if there exists an infinite sequence
+\(\ensuremath{\mathit{MOVE}} \in \{\mathsf{L},\mathsf{R}, \mathsf{S} \}^\infty\)
+such that for every \(x\in \{0,1\}^*\), the movements of \(M\) when
+given input \(x\) (up until the point it halts, if such point exists)
+are given by
+\(\ensuremath{\mathit{MOVE}}_0,\ensuremath{\mathit{MOVE}}_1,\ensuremath{\mathit{MOVE}}_2,\ldots\).
+
+Prove that for every function \(F:\{0,1\}^* \rightarrow \{0,1\}^*\), if
+\(F\) is computable then it is computable by an oblivious Turing
+machine. See footnote for hint.\footnote{You can use the sequence
+  \(\mathsf{R}\), \(\mathsf{L}\),\(\mathsf{R}\), \(\mathsf{R}\),
+  \(\mathsf{L}\), \(\mathsf{L}\),
+  \(\mathsf{R}\),\(\mathsf{R}\),\(\mathsf{R}\), \(\mathsf{L}\),
+  \(\mathsf{L}\), \(\mathsf{L}\), \(\ldots\).}
+
+\end{exercise}
+
+\hypertarget{singlebit-ex}{}
+\begin{exercise}[Single vs multiple bit] \label[exercise]{singlebit-ex}
+
+Prove that for every \(F:\{0,1\}^* \rightarrow \{0,1\}^*\), the function
+\(F\) is computable if and only if the following function
+\(G:\{0,1\}^* \rightarrow \{0,1\}\) is computable, where \(G\) is
+defined as follows:
+\(G(x,i,\sigma) = \begin{cases} F(x)_i & i < |F(x)|, \sigma =0 \\ 1 & i < |F(x)|, \sigma = 1 \\ 0 & i \geq |F(x)| \end{cases}\)
+
+\end{exercise}
+
+\hypertarget{uncomputabilityviacountingex}{}
+\begin{exercise}[Uncomputability via counting] \label[exercise]{uncomputabilityviacountingex}
+
+Recall that \(\mathbf{R}\) is the set of all total functions from
+\(\{0,1\}^*\) to \(\{0,1\}\) that are computable by a Turing machine
+(see \cref{classRdef}). Prove that \(\mathbf{R}\) is \emph{countable}.
+That is, prove that there exists a one-to-one map
+\(DtN:\mathbf{R} \rightarrow \mathbb{N}\). You can use the equivalence
+between Turing machines and NAND-TM programs.
+
+\end{exercise}
+
+\hypertarget{uncountablefuncex}{}
+\begin{exercise}[Not every function is computable] \label[exercise]{uncountablefuncex}
+
+Prove that the set of \emph{all} total functions from
+\(\{0,1\}^* \rightarrow \{0,1\}\) is \emph{not} countable. You can use
+the results of \cref{cantorsec}. (We will see an \emph{explicit}
+uncomputable function in \cref{chapcomputable}.)
+
+\end{exercise}
+
+\section{Bibliographical notes}\label{chaploopnotes}
+
+Augusta Ada Byron, countess of Lovelace (1815-1852) lived a short but
+turbulent life, though is today most well known for her collaboration
+with Charles Babbage (see \cite{stein1987ada} for a biography). Ada took
+an immense interest in Babbage's \emph{analytical engine}, which we
+mentioned in \cref{compchap}. In 1842-3, she translated from Italian a
+paper of Menabrea on the engine, adding copious notes (longer than the
+paper itself). The quote in the chapter's beginning is taken from Nota A
+in this text. Lovelace's notes contain several examples of
+\emph{programs} for the analytical engine, and because of this she has
+been called ``the world's first computer programmer'' though it is not
+clear whether they were written by Lovelace or Babbage himself
+\cite{holt2001ada}. Regardless, Ada was clearly one of very few people
+(perhaps the only one outside of Babbage himself) to fully appreciate
+how significant and revolutionary the idea of mechanizing computation
+truly is.
+
+The books of Shetterly \cite{shetterly2016hidden} and Sobel
+\cite{sobel2017the} discuss the history of human computers (who were
+female, more often than not) and their important contributions to
+scientific discoveries in astronomy and space exploration.
+
+Alan Turing was one of the intellectual giants of the 20th century. He
+was not only the first person to define the notion of computation, but
+also invented and used some of the world's earliest computational
+devices as part of the effort to break the \emph{Enigma} cipher during
+World War II, saving \href{https://goo.gl/KY1bJN}{millions of lives}.
+Tragically, Turing committed suicide in 1954, following his conviction
+in 1952 for homosexual acts and a court-mandated hormonal treatment. In
+2009, British prime minister Gordon Brown made an official public
+apology to Turing, and in 2013 Queen Elizabeth II granted Turing a
+posthumous pardon. Turing's life is the subject of a
+\href{https://goo.gl/3GdFdp}{great book} and a
+\href{https://goo.gl/EtQvSu}{mediocre movie}.
+
+Sipser's text \cite{SipserBook} defines a Turing machine as a
+\emph{seven tuple} consisting of the state space, input alphabet, tape
+alphabet, transition function, starting state, accepting state, and
+rejecting state. Superficially this looks like a very different
+definition than \cref{TM-def} but it is simply a different
+representation of the same concept, just as a graph can be represented
+in either adjacency list or adjacency matrix form.
+
+One difference is that Sipser considers a general set of states \(Q\)
+that is not necessarily of the form \(Q=\{0,1,2,\ldots, k-1\}\) for some
+natural number \(k>0\). Sipser also restricts his attention to Turing
+machines that output only a single bit and therefore designates two
+special \emph{halting states}: the ``\(0\) halting state'' (often known
+as the \emph{rejecting state}) and the other as the ``\(1\) halting
+state'' (often known as the \emph{accepting state}). Thus instead of
+writing \(0\) or \(1\) on an output tape, the machine will enter into
+one of these states and halt. This again makes no difference to the
+computational power, though we prefer to consider the more general model
+of multi-bit outputs. (Sipser presents the basic task of a Turing
+machine as that of \emph{deciding a language} as opposed to computing a
+function, but these are equivalent, see \cref{decidablelanguagesrem}.)
+
+Sipser considers also functions with input in \(\Sigma^*\) for an
+arbitrary alphabet \(\Sigma\) (and hence distinguishes between the
+\emph{input alphabet} which he denotes as \(\Sigma\) and the \emph{tape
+alphabet} which he denotes as \(\Gamma\)), while we restrict attention
+to functions with binary strings as input. Again this is not a major
+issue, since we can always encode an element of \(\Sigma\) using a
+binary string of length \(\log \ceil{|\Sigma|}\). Finally (and this is a
+very minor point) Sipser requires the machine to either move left or
+right in every step, without the \(\mathsf{S}\)tay operation, though
+staying in place is very easy to emulate by simply moving right and then
+back left.
+
+Another definition used in the literature is that a Turing machine \(M\)
+\emph{recognizes} a language \(L\) if for every \(x\in L\), \(M(x)=1\)
+and for every \(x\not\in L\), \(M(x) \in \{0,\bot \}\). A language \(L\)
+is \emph{recursively enumerable} if there exists a Turing machine \(M\)
+that recognizes it, and the set of all recursively enumerable languages
+is often denoted by \(\mathbf{RE}\). We will not use this terminology in
+this book.
+
+One of the first programming-language formulations of Turing machines
+was given by Wang \cite{Wang1957}. Our formulation of NAND-TM is aimed
+at making the connection with circuits more direct, with the eventual
+goal of using it for the Cook-Levin Theorem, as well as results such as
+\(\mathbf{P} \subseteq \mathbf{P_{/poly}}\) and
+\(\mathbf{BPP} \subseteq \mathbf{P_{/poly}}\). The website
+\href{https://esolangs.org}{esolangs.org} features a large variety of
+esoteric Turing-complete programming languages. One of the most famous
+of them is \href{https://esolangs.org/wiki/Brainfuck}{Brainf*ck}.
