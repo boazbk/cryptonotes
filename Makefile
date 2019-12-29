@@ -53,9 +53,6 @@ latex-book/lnotes_book.pdf: all-tex
 
 book: all-tex latex-book/lnotes_book.pdf all-html 
 
-rename-book-parts:
-	scripts/rename.sh
-
 compress-book:
 	  $(GHOSTSCRIPT)  \
 	  -sDEVICE=pdfwrite \
@@ -87,5 +84,5 @@ split-book-to-handouts: latex-book/lnotes_book.pdf
 just-deploy:
 	scripts/deploy.sh
 
-deploy: book all-word split-book-to-handouts rename-book-parts
+deploy: book all-word split-book-to-handouts 
 	scripts/deploy.sh

@@ -21,8 +21,8 @@ git push
 cd ..
 echo "Deploying binaries to s3"
 cp -Rf latex-book/lnotes_book.pdf binaries/
-cp -Rf binaries/* C:/DBOX/WORK/Homepage/Binary/introtcs/
-cd "C:/DBOX/WORK/Homepage/Binary/introtcs"
+cp -Rf binaries/* C:/DBOX/WORK/Homepage/Binary/crypto/
+cd "C:/DBOX/WORK/Homepage/Binary/crypto"
 read -p "Run acrobat? " -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]

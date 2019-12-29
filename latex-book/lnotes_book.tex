@@ -1,4 +1,4 @@
-% arara: makechapters: {items: [frontmatter, lec_00_0_preface , lec_01_introduction, lec_00_1_math_background, lec_02_representation, lec_03_computation, lec_03a_computing_every_function, lec_04_code_and_data, lec_06_loops, lec_06a_universality, lec_07_other_models, lec_08_uncomputability, lec_08a_restricted_models, lec_09_godel, lec_10_efficient_alg, lec_11_running_time, lec_12_NP, lec_13_Cook_Levin, lec_14_PvsNP, lec_15_probability, lec_16_randomized_alg, lec_17_model_rand, lec_19_cryptography, lec_24_proofs, lec_26_quantum_computing, appendix, backmatter ] }
+% arara: makechapters: {items: [frontmatter, \include{lec_00_0_preface , \include{lec_01_introduction, \include{lec_00_1_math_background, \include{lec_02_representation, \include{lec_03_computation, \include{lec_03a_computing_every_function, \include{lec_04_code_and_data, \include{lec_06_loops, \include{lec_06a_universality, \include{lec_07_other_models, \include{lec_08_uncomputability, \include{lec_08a_restricted_models, \include{lec_09_godel, \include{lec_10_efficient_alg, \include{lec_11_running_time, \include{lec_12_NP, \include{lec_13_Cook_Levin, \include{lec_14_PvsNP, \include{lec_15_probability, \include{lec_16_randomized_alg, \include{lec_17_model_rand, \include{lec_19_cryptography, \include{lec_24_proofs, \include{lec_26_quantum_computing, appendix, backmatter ] }
 
 
 
@@ -15,9 +15,9 @@
 
 %%
 % Book metadata
-\title{Introduction to \\ \noindent Theoretical \\ \noindent Computer Science}
+\title{An Intensive \\ Introduction \\ to Cryptography}
 \author[Boaz Barak]{Boaz Barak}
-\publisher{Textbook in preparation. \\ \noindent Available on \url{https://introtcs.org}}
+\publisher{Lecture notes. \\ \noindent Available on \url{https://intensecrypto.org}}
 
 
 
@@ -35,7 +35,7 @@ citestyle=alphabetic
 
 \include{frontmatter}
 
-\include{lec_00_0_preface}
+\include{lec_00_0_foreword}
 
 %%
 % Start the main matter (normal chapters)
@@ -44,92 +44,48 @@ citestyle=alphabetic
 
 \setcounter{chapter}{-1}
 
-
-\part*{Preliminaries}
+\part{Preliminaries}
 
 \include{lec_01_introduction}
+\include{lec_00_1_mathematical-background}
 
+\part{Private key cryptography}
 
-\include{lec_00_1_math_background}
+\include{lec_02_computational-security}
+\include{lec_03_pseudorandom-generators}
+\include{lec_04_pseudorandom-functions}
+\include{lec_05_prf-from-prg}
+\include{lec_06_CCA}
+\include{lec_07_hash_functions}
+\include{lec_08_hash_functions_part2}
+\include{lec_09_priv_recap}
 
+\part{Public key cryptography}
 
+\include{lec_10_public_key_intro}
+\include{lec_11_concrete_pkc}
+\include{lec_12a_CCA_public_key}
+\include{lec_12_lattices}
+\include{lec_13_handshake}
 
-\include{lec_02_representation}
+\part{Advanced topics}
 
-\part{Finite computation}
+\include{lec_14_zero_knowledge}
+\include{lec_15_FHE}
+\include{lec_16_FHE_part2}
+\include{lec_17_SFE}
+\include{lec_18_SFE_part2}
+\include{lec_19_quantum}
+\include{lec_20_quantum_part2}
+\include{lec_21_obfuscation}
+\include{lec_22_obfuscation_part2}
+\include{lec_23_anonymous}
 
-\include{lec_03_computation}
-\include{lec_03a_computing_every_function}
-\include{lec_04_code_and_data}
-%\include{lec_05_physical_implementation}
+\part{Conclusions}
 
-\part{Uniform computation}
+\include{lec_24_policy}
+\include{lec_25_course_recap}
 
-
-\include{lec_06_loops}
-%\include{lec_06a_universality}
-\include{lec_07_other_models}
-\include{lec_08_uncomputability}
-\include{lec_08a_restricted_models}
-\include{lec_09_godel}
-
-\part{Efficient algorithms}
-
-\include{lec_10_efficient_alg}
-\include{lec_11_running_time}
-\include{lec_12_NP}
-\include{lec_13_Cook_Levin}
-
-%\let\oldthechapter\thechapter
-%\renewcommand{\thechapter}{13*}
-%\addtocounter{chapter}{-1}
-%\include{lec_13a_advanced_reductions}
-%\let\thechapter\oldthechapter
-
-
-\include{lec_14_PvsNP}
-
-\include{lec_14a_space_complexity}
-
-\part{Randomized computation}
-
-\include{lec_15_probability}
-\include{lec_16_randomized_alg}
-\include{lec_17_model_rand}
-%\include{lec_18_hardness_vs_randomness}
-
-%\let\oldthechapter\thechapter
-%\renewcommand{\thechapter}{18*}
-%\addtocounter{chapter}{-1}
-%\include{lec_18a_worst_case_derand}
-%\let\thechapter\oldthechapter
-
-\part{Advanced topics} \label{advancedpart}
-
-\include{lec_19_cryptography}
-%\include{lec_20_alg_society}
-%\include{lec_21_compression_coding}
-%\include{lec_22_space_complexity}
-%\include{lec_23_stream_automata}
-\include{lec_24_proofs}
-
-%\let\oldthechapter\thechapter
-%\renewcommand{\thechapter}{24*}
-%\addtocounter{chapter}{-1}
-%\include{lec_24a_interactive_proofs}
-%\let\thechapter\oldthechapter
-
-
-%\include{lec_25_data_structures}
-\include{lec_26_quantum_computing}
-
-%\let\oldthechapter\thechapter
-%\renewcommand{\thechapter}{26*}
-%\addtocounter{chapter}{-1}
-%\include{lec_26a_Shor_algorithm}
-%\let\thechapter\oldthechapter
-
-\part{Appendices}
 
 \include{appendix}
 

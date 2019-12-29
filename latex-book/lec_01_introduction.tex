@@ -1,995 +1,914 @@
-\chapter{Introduction}\label{chapintro}
+\chapter{Introduction}\label{Introduction}
 
-\begin{objectives} \label[objectives]{Introduce-and-motivate-th}
+\paragraph{Additional reading:} Sections 2.1 (Introduction) and 2.2
+(Shannon ciphers and perfect security) in the Boneh Shoup book. Chapters
+1 and 2 of Katz-Lindell book.\footnote{In the current state of these
+  lecture notes, almost all references and credits are omitted unless
+  the name has become standard in the literature, or I believe that the
+  story of some discovery can serve a pedagogical point. See the
+  Katz-Lindell book for historical notes and references. This lecture
+  shares a lot of text with (though is not identical to) my lecture on
+  cryptography in the \href{http://introtcs.org}{introduction to
+  theoretical computer science} lecture notes.}
 
-\begin{itemize}
-\tightlist
-\item
-  Introduce and motivate the study of computation for its own sake,
-  irrespective of particular implementations.
-\item
-  The notion of an \emph{algorithm} and some of its history.
-\item
-  Algorithms as not just \emph{tools}, but also \emph{ways of thinking
-  and understanding}.
-\item
-  Taste of Big-\(O\) analysis and the surprising creativity in the
-  design of efficient algorithms.
-\end{itemize}
+Ever since people started to communicate, there were some messages that
+they wanted kept secret. Thus cryptography has an old though arguably
+\emph{undistinguished} history. For a long time cryptography shared
+similar features with Alchemy as a domain in which many otherwise smart
+people would be drawn into making fatal mistakes.
 
-\end{objectives}
+The definitive text on the history of cryptography is David Kahn's ``The
+Codebreakers'', whose title already hints at the ultimate fate of most
+cryptosystems.\footnote{Traditionally, \emph{cryptography} was the name
+  for the activity of \emph{making} codes, while \emph{cryptoanalysis}
+  is the name for the activity of \emph{breaking} them, and
+  \emph{cryptology} is the name for the union of the two. These days
+  \emph{cryptography} is often used as the name for the broad science of
+  constructing and analyzing the security of not just encryptions but
+  many schemes and protocols for protecting the confidentiality and
+  integrity of communication and computation.} (See also ``The Code
+Book'' by Simon Singh.) We now recount just a few stories to get a feel
+for this field. But, before we do so, we should introduce the cast of
+characters. The basic setting of ``encryption'' or ``secret writing'' is
+the following: one person, whom we will call \textbf{Alice}, wishes to
+send another person, whom we will call \textbf{Bob}, a \textbf{secret}
+message. Since Alice and Bob are not in the same room (perhaps because
+Alice is imprisoned in a castle by her cousin the queen of England),
+they cannot communicate directly and need to send their message in
+writing. Alas, there is a third person, whom we will call \textbf{Eve},
+that can see their message. Therefore Alice needs to find a way to
+\emph{encode} or \emph{encrypt} the message so that only Bob (and not
+Eve) will be able to understand it.
 
-\begin{quote}
-\emph{``Computer Science is no more about computers than astronomy is
-about telescopes''}, attributed to Edsger Dijkstra.\footnote{This quote
-  is typically read as disparaging the importance of actual physical
-  computers in Computer Science, but note that telescopes are absolutely
-  essential to astronomy as they provide us with the means to connect
-  theoretical predictions with actual experimental observations.}
-\end{quote}
-
-\begin{quote}
-\emph{``Hackers need to understand the theory of computation about as
-much as painters need to understand paint chemistry.''}, Paul Graham
-2003.\footnote{To be fair, in the following sentence Graham says ``you
-  need to know how to calculate time and space complexity and about
-  Turing completeness''. This book includes these topics, as well as
-  others such as NP-hardness, randomization, cryptography, quantum
-  computing, and more.}
-\end{quote}
-
-\begin{quote}
-\emph{``The subject of my talk is perhaps most directly indicated by
-simply asking two questions: first, is it harder to multiply than to
-add? and second, why?\ldots I (would like to) show that there is no
-algorithm for multiplication computationally as simple as that for
-addition, and this proves something of a stumbling block.''}, Alan
-Cobham, 1964
-\end{quote}
-
-The origin of much of science and medicine can be traced back to the
-ancient Babylonians. However, the Babylonians' most significant
-contribution to humanity was arguably the invention of the
-\emph{place-value number system}. The place-value system represents any
-number using a collection of digits, whereby the \emph{position} of the
-digit is used to determine its value, as opposed to a system such as
-Roman numerals, where every symbol has a fixed numerical value
-regardless of position. For example, the average distance to the moon is
-approximately 238,900 of our miles or 259,956 Roman miles. The latter
-quantity, expressed in standard Roman numerals is
-
-\begin{code}
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
-MMMMMMMMMMMMMMMMMMMDCCCCLVI
-\end{code}
-
-Writing the distance to the sun in Roman numerals would require about
-100,000 symbols: a 50-page book just containing this single number!
-
-For someone who thinks of numbers in an additive system like Roman
-numerals, quantities like the distance to the moon or sun are not merely
-large---they are \emph{unspeakable}: cannot be expressed or even
-grasped. It's no wonder that Eratosthenes, who was the first person to
-calculate the earth's diameter (up to about ten percent error) and
-Hipparchus who was the first to calculate the distance to the moon, did
-not use a Roman-numeral type system but rather the Babylonian
-sexadecimal (i.e., base 60) place-value system.
-
-\section{Integer multiplication: an example of an
-algorithm}\label{Integer-multiplication-an}
-
-In the language of Computer Science, the place-value system for
-representing numbers is known as a \emph{data structure}: a set of
-instructions, or ``recipe'', for representing objects as symbols. An
-\emph{algorithm} is a set of instructions, or ``recipe'', for performing
-operations on such representations. Data structures and algorithms have
-enabled amazing applications that have transformed human society, but
-their importance goes beyond their practical utility. Structures from
-computer science, such as bits, strings, graphs, and even the notion of
-a program itself, as well as concepts such as universality and
-replication, have not just found (many) practical uses but contributed a
-new language and a new way to view the world.
-
-In addition to coming up with the place-value system, the Babylonians
-also invented the ``standard algorithms'' that we were all taught in
-elementary school for adding and multiplying numbers. These algorithms
-have been essential throughout the ages for people using abaci, papyrus,
-or pencil and paper, but in our computer age, do they still serve any
-purpose beyond torturing third graders? To see why these algorithms are
-still very much relevant, let us compare the Babylonian digit-by-digit
-multiplication algorithm (``grade-school multiplication'') with the
-naive algorithm that multiplies numbers through repeated addition. We
-start by formally describing both algorithms, see \cref{naivemultalg}
-and \cref{gradeschoolalg}.
-
-\begin{algorithm}[Multiplication via repeated addition]
-\label[algorithm]{naivemultalg} ~ \\ \noindent
-\begin{algorithmic}[1]
-\INPUT  Non-negative integers $x,y$
-\OUTPUT  Product  $x\cdot y$
-\STATE Let  $result \leftarrow 0$. 
-\FOR{$i=1,\ldots,y$}
-    \STATE $result \leftarrow result + x$ 
-\ENDFOR
-\RETURN $result$
-\end{algorithmic}
-\end{algorithm}
-
-\begin{algorithm}[Grade-school multiplication]
-\label[algorithm]{gradeschoolalg} ~ \\ \noindent
-\begin{algorithmic}[1]
-\INPUT  Non-negative integers $x,y$
-\OUTPUT  Product  $x\cdot y$
-\STATE Write $x=x_{n-1}x_{n-2}\cdots x_0$ and $y = y_{m-1}y_{m-2}\cdots y_0$ in decimal place-value notation. \COMMENT{ $x_0$ is the ones digit of $x$, $x_1$ is the tens digit, etc.}
-\STATE Let $result \leftarrow 0$
-\FOR{$i=0,\ldots,n-1$}
-    \FOR{$j=0,\ldots,m-1$}
-        \STATE $result \leftarrow result + 10^{i+j}\cdot x_i \cdot y_j$
-    \ENDFOR
-\ENDFOR
-\RETURN $result$
-\end{algorithmic}
-\end{algorithm}
-
-Both \cref{naivemultalg} and \cref{gradeschoolalg} assume that we
-already know how to add numbers, and \cref{gradeschoolalg} also assumes
-that we can multiply a number by a power of \(10\) (which is, after all,
-a simple shift). Suppose that \(x\) and \(y\) are two integers of
-\(n=20\) decimal digits each. (This roughly corresponds to 64 binary
-digits, which is a common size in many programming languages.) Computing
-\(x \cdot y\) using \cref{naivemultalg} entails adding \(x\) to itself
-\(y\) times which entails (since \(y\) is a \(20\)-digit number) at
-least \(10^{19}\) additions. In contrast, the grade-school algorithm
-(i.e., \cref{gradeschoolalg}) involves \(n^2\) shifts and single-digit
-products, and so at most \(2n^2 = 800\) single-digit operations. To
-understand the difference, consider that a grade-schooler can perform a
-single-digit operation in about 2 seconds, and so would require about
-\(1,600\) seconds (about half an hour) to compute \(x\cdot y\) using
-\cref{gradeschoolalg}. In contrast, even though it is more than a
-billion times faster than a human, if we used \cref{naivemultalg} to
-compute \(x\cdot y\) using a modern PC, it would take us
-\(10^{20}/10^9 = 10^{11}\) seconds (which is more than three millennia!)
-to compute the same result.
-
-Computers have not made algorithms obsolete. On the contrary, the vast
-increase in our ability to measure, store, and communicate data has led
-to much higher demand for developing better and more sophisticated
-algorithms that empower us to make better decisions based on these data.
-We also see that in no small extent the notion of \emph{algorithm} is
-independent of the actual computing device that executes it. The
-digit-by-digit multiplication algorithm is vastly better than iterated
-addition, regardless whether the technology we use to implement it is a
-silicon-based chip, or a third grader with pen and paper.
-
-Theoretical computer science is concerned with the \emph{inherent}
-properties of algorithms and computation; namely, those properties that
-are \emph{independent} of current technology. We ask some questions that
-were already pondered by the Babylonians, such as ``what is the best way
-to multiply two numbers?'', but also questions that rely on cutting-edge
-science such as ``could we use the effects of quantum entanglement to
-factor numbers faster?''.
-
-\hypertarget{implspecanarem}{}
-\begin{remark}[Specification, implementation and analysis of algorithms.] \label[remark]{implspecanarem}
-
-A full description of an algorithm has three components:
-
-\begin{itemize}
-\item
-  \textbf{Specification}: \textbf{What} is the task that the algorithm
-  performs (e.g., multiplication in the case of \cref{naivemultalg} and
-  \cref{gradeschoolalg}.)
-\item
-  \textbf{Implementation}: \textbf{How} is the task accomplished: what
-  is the sequence of instructions to be performed. Even though
-  \cref{naivemultalg} and \cref{gradeschoolalg} perform the same
-  computational task (i.e., they have the same \emph{specification}),
-  they do it in different ways (i.e., they have different
-  \emph{implementations}).
-\item
-  \textbf{Analysis:} \textbf{Why} does this sequence of instructions
-  achieve the desired task. A full description of \cref{naivemultalg}
-  and \cref{gradeschoolalg} will include a \emph{proof} for each one of
-  these algorithms that on input \(x,y\), the algorithm does indeed
-  output \(x\cdot y\).
-\end{itemize}
-
-Often as part of the analysis we show that the algorithm is not only
-\textbf{correct} but also \textbf{efficient}. That is, we want to show
-that not only will the algorithm compute the desired task, but will do
-so in prescribed number of operations. For example \cref{gradeschoolalg}
-computes the multiplication function on inputs of \(n\) digits using
-\(O(n^2)\) operations, while \cref{karatsubaalg} (described below)
-computes the same function using \(O(n^{1.6})\) operations. (We define
-the \(O\) notations used here in \cref{secbigohnotation}.)
-
-\end{remark}
-
-\section{Extended Example: A faster way to multiply
-(optional)}\label{karatsubasec}
-
-Once you think of the standard digit-by-digit multiplication algorithm,
-it seems like the ``obviously best'' way to multiply numbers. In 1960,
-the famous mathematician Andrey Kolmogorov organized a seminar at Moscow
-State University in which he conjectured that every algorithm for
-multiplying two \(n\) digit numbers would require a number of basic
-operations that is proportional to \(n^2\) (\(\Omega(n^2)\) operations,
-using \(O\)-notation as defined in \cref{chapmath}). In other words,
-Kolmogorov conjectured that in any multiplication algorithm, doubling
-the number of digits would \emph{quadruple} the number of basic
-operations required. A young student named Anatoly Karatsuba was in the
-audience, and within a week he disproved Kolmogorov's conjecture by
-discovering an algorithm that requires only about \(Cn^{1.6}\)
-operations for some constant \(C\). Such a number becomes much smaller
-than \(n^2\) as \(n\) grows and so for large \(n\) Karatsuba's algorithm
-is superior to the grade-school one. (For example,
-\href{https://svn.python.org/projects/python/trunk/Objects/longobject.c}{Python's
-implementation} switches from the grade-school algorithm to Karatsuba's
-algorithm for numbers that are 1000 bits or larger.) While the
-difference between an \(O(n^{1.6})\) and an \(O(n^2)\) algorithm can be
-sometimes crucial in practice (see \cref{algsbeyondarithmetic} below),
-in this book we will mostly ignore such distinctions. However, we
-describe Karatsuba's algorithm below since it is a good example of how
-algorithms can often be surprising, as well as a demonstration of the
-\emph{analysis of algorithms}, which is central to this book and to
-theoretical computer science at large.
-
-Karatsuba's algorithm is based on a faster way to multiply
-\emph{two-digit} numbers. Suppose that
-\(x,y \in [100]=\{0,\ldots, 99 \}\) are a pair of two-digit numbers.
-Let's write \(\overline{x}\) for the ``tens'' digit of \(x\), and
-\(\underline{x}\) for the ``ones'' digit, so that
-\(x = 10\overline{x} + \underline{x}\), and write similarly
-\(y = 10\overline{y} + \underline{y}\) for
-\(\overline{y},\underline{y} \in [10]\). The grade-school algorithm for
-multiplying \(x\) and \(y\) is illustrated in \cref{gradeschoolmult}.
-
-
-\begin{marginfigure}
-\centering
-\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/gradeschoolmult.png}
-\caption{The grade-school multiplication algorithm illustrated for
-multiplying \(x=10\overline{x}+\underline{x}\) and
-\(y=10\overline{y}+\underline{y}\). It uses the formula
-\((10\overline{x}+\underline{x}) \times (10 \overline{y}+\underline{y}) = 100\overline{x}\overline{y}+10(\overline{x}\underline{y} + \underline{x}\overline{y}) + \underline{x}\underline{y}\).}
-\label{gradeschoolmult}
-\end{marginfigure}
-
-The grade-school algorithm can be thought of as transforming the task of
-multiplying a pair of two-digit numbers into \emph{four} single-digit
-multiplications via the formula
-
-\[
-(10\overline{x}+\underline{x}) \times (10 \overline{y}+\underline{y}) = 100\overline{x}\overline{y}+10(\overline{x}\underline{y} + \underline{x}\overline{y}) + \underline{x}\underline{y} \label{eq:gradeschooltwodigit}
-\]
-
-Generally, in the grade-school algorithm \emph{doubling} the number of
-digits in the input results in \emph{quadrupling} the number of
-operations, leading to an \(O(n^2)\) times algorithm. In contrast,
-Karatsuba's algorithm is based on the observation that we can express
-\cref{eq:gradeschooltwodigit} also as
-
-\[
-(10\overline{x}+\underline{x}) \times (10 \overline{y}+\underline{y}) = (100-10)\overline{x}\overline{y}+10\left[(\overline{x}+\underline{x})(\overline{y}+\underline{y})\right]  -(10-1)\underline{x}\underline{y} \label{eq:karatsubatwodigit}
-\]
-
-which reduces multiplying the two-digit number \(x\) and \(y\) to
-computing the following three simpler products:
-\(\overline{x}\overline{y}\), \(\underline{x}\underline{y}\) and
-\((\overline{x}+\underline{x})(\overline{y}+\underline{y})\). By
-repeating the same strategy recursively, we can reduce the task of
-multiplying two \(n\)-digit numbers to the task of multiplying
-\emph{three} pairs of \(\floor{n/2}+1\) digit numbers.\footnote{If \(x\)
-  is a number then \(\floor{x}\) is the integer obtained by rounding it
-  down, see \cref{notationsec}.} Since every time we \emph{double} the
-number of digits we \emph{triple} the number of operations, we will be
-able to multiply numbers of \(n=2^\ell\) digits using about
-\(3^\ell = n^{\log_2 3} \sim n^{1.585}\) operations.
-
-The above is the intuitive idea behind Karatsuba's algorithm, but is not
-enough to fully specify it. A complete description of an algorithm
-entails a \emph{precise specification} of its operations together with
-its \emph{analysis}: proof that the algorithm does in fact do what it's
-supposed to do. The operations of Karatsuba's algorithm are detailed in
-\cref{karatsubaalg}, while the analysis is given in
-\cref{karatsubacorrect} and \cref{karatsubaefficient}.
-
-
-\begin{marginfigure}
-\centering
-\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/karatsubatwodigit.png}
-\caption{Karatsuba's multiplication algorithm illustrated for
-multiplying \(x=10\overline{x}+\underline{x}\) and
-\(y=10\overline{y}+\underline{y}\). We compute the three orange, green
-and purple products \(\underline{x}\underline{y}\),
-\(\overline{x}\overline{y}\) and
-\((\overline{x}+\underline{x})(\overline{y}+\underline{y})\) and then
-add and subtract them to obtain the result.}
-\label{karatsubafig}
-\end{marginfigure}
-
-
-\begin{marginfigure}
-\centering
-\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/karastubavsgschoolv2.png}
-\caption{Running time of Karatsuba's algorithm vs.~the grade-school
-algorithm. (Python implementation available
-\href{https://goo.gl/zwzpYe}{online}.) Note the existence of a
-``cutoff'' length, where for sufficiently large inputs Karatsuba becomes
-more efficient than the grade-school algorithm. The precise cutoff
-location varies by implementation and platform details, but will always
-occur eventually.}
-\label{karatsubaruntimefig}
-\end{marginfigure}
-
-\begin{algorithm}[Karatsuba multiplication]
-\label[algorithm]{karatsubaalg} ~ \\ \noindent
-\begin{algorithmic}[1]
-\INPUT  nonnegative integers $x,y$ each of at most $n$ digits
-\OUTPUT  $x\cdot y$
-\PROCEDURE{Karatsuba}{$x$,$y$}
-\IF {$n \leq 2$} \RETURN $x\cdot y$ \ENDIF
-\STATE Let $m = \lfloor n/2 \rfloor$
-\STATE Write $x= 10^{m}\overline{x} + \underline{x}$ and $y= 10^{m}\overline{y}+ \underline{y}$
-\STATE $A \leftarrow$ \CALL{Karatsuba}{$\overline{x},\overline{y}$} 
-\STATE $B \leftarrow$ \CALL{Karatsuba}{$\overline{x}+\underline{x},\overline{y}+\underline{y}$} 
-\STATE $C \leftarrow$ \CALL{Karatsuba}{$\underline{x},\underline{y}$} 
-\RETURN $(10^n-10^m)\cdot A  + 10^m \cdot B +(1-10^m)\cdot C$
-\ENDPROCEDURE
-\end{algorithmic}
-\end{algorithm}
-
-\cref{karatsubaalg} is only half of the full description of Karatsuba's
-algorithm. The other half is the \emph{analysis}, which entails proving
-that \textbf{(1)} \cref{karatsubaalg} indeed computes the multiplication
-operation and \textbf{(2)} it does so using \(O(n^{\log_2 3})\)
-operations. We now turn to showing both facts:
-
-\hypertarget{karatsubacorrect}{}
-\begin{lemma} \label[lemma]{karatsubacorrect}
-
-For every nonnegative integers \(x,y\), when given input \(x,y\)
-\cref{karatsubaalg} will output \(x\cdot y\).
-
-\end{lemma}
-
-\begin{proof} \label[proof]{Let-n-be-the-maximum-numb}
-
-Let \(n\) be the maximum number of digits of \(x\) and \(y\). We prove
-the lemma by induction on \(n\). The base case is \(n \leq 2\) where the
-algorithm returns \(x\cdot y\) by definition. Otherwise, if \(n>2\), we
-define \(m = \floor{n/2}\), and write
-\(x= 10^{m}\overline{x} + \underline{x}\) and
-\(y= 10^{m}\overline{y}+ \underline{y}\).
-
-Plugging this into \(x\cdot y\), we get
-
-\[
-x \cdot y = 10^{2m} \overline{x}\overline{y} + 10^{m}(\overline{x}\underline{y} +\underline{x}\overline{y}) + \underline{x}\underline{y}  \;. \label{eqkarastubaone}
-\]
-
-Rearranging the terms we see that
-
-\[
-x\cdot y =   10^{2m}\overline{x}\overline{y} + 10^{m}\left[ (\overline{x}+\underline{x})(\overline{y}+\underline{y}) - \underline{x}\underline{y}  - \overline{x}\overline{y} \right]  + \underline{x}\underline{y} \;.
- \label{eqkarastubatwo}
-\] since the numbers \(\underline{x}\),\(\overline{x}\),
-\(\underline{y}\),\(\overline{y}\),\(\overline{x}+\underline{x}\),\(\overline{y}+\underline{y}\)
-all have at most \(m+1<n\) digits, the induction hypothesis implies that
-the values \(A,B,C\) computed by the recursive calls will satisfy
-\(A=\overline{x}\overline{y}\),
-\(B=(\overline{x}+\underline{x})(\overline{y}+\underline{y})\) and
-\(C=\underline{x}\underline{y}\). Plugging this into
-\eqref{eqkarastubatwo} we see that \(x\cdot y\) equals the value
-\((10^{2m}-10^m)\cdot A + 10^m \cdot B +(1-10^m)\cdot C\) computed by
-\cref{karatsubaalg}.
-
-\end{proof}
-
-\hypertarget{karatsubaefficient}{}
-\begin{lemma} \label[lemma]{karatsubaefficient}
-
-If \(x,y\) are integers of at most \(n\) digits, \cref{karatsubaalg}
-will take \(O(n^{\log_2 3})\) operations on input \(x,y\).
-
-\end{lemma}
-
-\begin{proof} \label[proof]{crefkaratsubafig-illustra}
-
-\cref{karatsubafig} illustrates the idea behind the proof, which we only
-sketch here, leaving filling out the details as \cref{karatsuba-ex}. The
-proof is again by induction. We define \(T(n)\) to be the maximum number
-of steps that \cref{karatsubaalg} takes on inputs of length at most
-\(n\). Since in the base case \(n\leq 2\), \cref{karatsuba-ex} performs
-a constant number of computation, we know that \(T(2) \leq c\) for some
-constant \(c\) and for \(n>2\), it satisfies the recursive equation \[
-T(n) \leq 3T(\floor{n/2}+1) + c' n \label{eqkaratsubarecursion}
-\] for some constant \(c'\) (using the fact that addition can be done in
-\(O(n)\) operations).
-
-The recursive equation \eqref{eqkaratsubarecursion} solves to
-\(O(n^{\log_3 2})\). The intuition behind this is presented in
-\cref{karatsubafig}, and this is also a consequence of the so called
-\href{https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)}{``Master
-Theorem''} on recurrence relations that is covered in many discrete math
-texts. As mentioned above, we leave completing the proof to the reader
-as \cref{karatsuba-ex}.
-
-\end{proof}
+In 1587, Mary the queen of Scots, and the heir to the throne of England,
+wanted to arrange the assassination of her cousin, queen Elisabeth I of
+England, so that she could ascend to the throne and finally escape the
+house arrest under which she has been for the last 18 years. As part of
+this complicated plot, she sent a coded letter to Sir Anthony Babington.
+It is what's known as a \emph{substitution cipher} where each letter is
+transformed into a different symbol, and so the resulting letter looks
+something like the following (see \cref{figmaryletter}):
 
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/karatsuba_analysis2.png}
-\caption{Karatsuba's algorithm reduces an \(n\)-bit multiplication to
-three \(n/2\)-bit multiplications, which in turn are reduced to nine
-\(n/4\)-bit multiplications and so on. We can represent the
-computational cost of all these multiplications in a \(3\)-ary tree of
-depth \(\log_2 n\), where at the root the extra cost is \(cn\)
-operations, at the first level the extra cost is \(c(n/2)\) operations,
-and at each of the \(3^i\) nodes of level \(i\), the extra cost is
-\(c(n/2^i)\). The total cost is
-\(cn\sum_{i=0}^{\log_2 n} (3/2)^i \leq 10cn^{\log_2 3}\) by the formula
-for summing a geometric series.}
-\label{karatsuba-fig}
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/encrypted_letter.jpg}
+\caption{Snippet from encrypted communication between queen Mary and Sir
+Babington}
+\label{figmaryletter}
 \end{figure}
 
-Karatsuba's algorithm is by no means the end of the line for
-multiplication algorithms. In the 1960's, Toom and Cook extended
-Karatsuba's ideas to get an \(O(n^{\log_k (2k-1)})\) time multiplication
-algorithm for every constant \(k\). In 1971, Schönhage and Strassen got
-even better algorithms using the \emph{Fast Fourier Transform}; their
-idea was to somehow treat integers as ``signals'' and do the
-multiplication more efficiently by moving to the Fourier domain. (The
-\emph{Fourier transform} is a central tool in mathematics and
-engineering, used in a great many applications; if you have not seen it
-yet, you are likely encounter it at some point in your studies.) In the
-years that followed researchers kept improving the algorithm, and only
-very recently Harvey and Van Der Hoeven managed to obtain an
-\(O(n \log n)\) time algorithm for multiplication (though it only starts
-beating the Schönhage-Strassen algorithm for truly astronomical
-numbers). Yet, despite all this progress, we still don't know whether or
-not there is an \(O(n)\) time algorithm for multiplying two \(n\) digit
-numbers!
+At a first look, such a letter might seem rather inscrutable- a
+meaningless sequence of strange symbols. However, after some thought,
+one might recognize that these symbols \emph{repeat} several times and
+moreover that different symbols repeat with different frequencies. Now
+it doesn't take a large leap of faith to assume that perhaps each symbol
+corresponds to a different letter and the more frequent symbols
+correspond to letters that occur in the alphabet with higher frequency.
+From this observation, there is a short gap to completely breaking the
+cipher, which was in fact done by queen Elisabeth's spies who used the
+decoded letters to learn of all the co-conspirators and to convict queen
+Mary of treason, a crime for which she was executed.
 
-\hypertarget{matrixmult}{}
-\begin{remark}[Matrix Multiplication (advanced note)] \label[remark]{matrixmult}
-
-(This book contains many ``advanced'' or ``optional'' notes and
-sections. These may assume background that not every student has, and
-can be safely skipped over as none of the future parts depends on them.)
-
-Ideas similar to Karatsuba's can be used to speed up \emph{matrix}
-multiplications as well. Matrices are a powerful way to represent linear
-equations and operations, widely used in a great many applications of
-scientific computing, graphics, machine learning, and many many more.
-
-One of the basic operations one can do with two matrices is to
-\emph{multiply} them. For example, if
-\(x = \begin{pmatrix} x_{0,0} & x_{0,1}\\ x_{1,0}& x_{1,1} \end{pmatrix}\)
-and
-\(y = \begin{pmatrix} y_{0,0} & y_{0,1}\\ y_{1,0}& y_{1,1} \end{pmatrix}\)
-then the product of \(x\) and \(y\) is the matrix
-\(\begin{pmatrix} x_{0,0}y_{0,0} + x_{0,1}y_{1,0} & x_{0,0}y_{0,1} + x_{0,1}y_{1,1}\\ x_{1,0}y_{0,0}+x_{1,1}y_{1,0} & x_{1,0}y_{0,1}+x_{1,1}y_{1,1} \end{pmatrix}\).
-You can see that we can compute this matrix by \emph{eight} products of
-numbers.
-
-Now suppose that \(n\) is even and \(x\) and \(y\) are a pair of
-\(n\times n\) matrices which we can think of as each composed of four
-\((n/2)\times (n/2)\) blocks \(x_{0,0},x_{0,1},x_{1,0},x_{1,1}\) and
-\(y_{0,0},y_{0,1},y_{1,0},y_{1,1}\). Then the formula for the matrix
-product of \(x\) and \(y\) can be expressed in the same way as above,
-just replacing products \(x_{a,b}y_{c,d}\) with \emph{matrix} products,
-and addition with matrix addition. This means that we can use the
-formula above to give an algorithm that \emph{doubles} the dimension of
-the matrices at the expense of increasing the number of operation by a
-factor of \(8\), which for \(n=2^\ell\) results in \(8^\ell = n^3\)
-operations.
-
-In 1969 Volker Strassen noted that we can compute the product of a pair
-of two-by-two matrices using only \emph{seven} products of numbers by
-observing that each entry of the matrix \(xy\) can be computed by adding
-and subtracting the following seven terms:
-\(t_1 = (x_{0,0}+x_{1,1})(y_{0,0}+y_{1,1})\),
-\(t_2 = (x_{0,0}+x_{1,1})y_{0,0}\), \(t_3 = x_{0,0}(y_{0,1}-y_{1,1})\),
-\(t_4 = x_{1,1}(y_{0,1}-y_{0,0})\), \(t_5 = (x_{0,0}+x_{0,1})y_{1,1}\),
-\(t_6 = (x_{1,0}-x_{0,0})(y_{0,0}+y_{0,1})\),
-\(t_7 = (x_{0,1}-x_{1,1})(y_{1,0}+y_{1,1})\). Indeed, one can verify
-that
-\(xy = \begin{pmatrix} t_1 + t_4 - t_5 + t_7 & t_3 + t_5 \\ t_2 +t_4 & t_1 + t_3 - t_2 + t_6 \end{pmatrix}\).
-
-Using this observation, we can obtain an algorithm such that doubling
-the dimension of the matrices results in increasing the number of
-operations by a factor of \(7\), which means that for \(n=2^\ell\) the
-cost is \(7^\ell = n^{\log_2 7} \sim n^{2.807}\). A long sequence of
-work has since improved this algorithm, and the
-\href{https://en.wikipedia.org/wiki/Matrix_multiplication_algorithm\#Sub-cubic_algorithms}{current
-record} has running time about \(O(n^{2.373})\). However, unlike the
-case of integer multiplication, at the moment we don't know of any
-algorithm for matrix multiplication that runs in time linear or even
-close to linear in the size of the input matrices (e.g., an
-\(O(n^2 polylog(n))\) time algorithm). People have tried to use
-\href{https://en.wikipedia.org/wiki/Group_representation}{group
-representations}, which can be thought of as generalizations of the
-Fourier transform, to obtain faster algorithms, but this effort
-\href{http://discreteanalysisjournal.com/article/1245-on-cap-sets-and-the-group-theoretic-approach-to-matrix-multiplication}{has
-not yet succeeded}.
-
-\end{remark}
-
-\section{Algorithms beyond arithmetic}\label{algsbeyondarithmetic}
-
-The quest for better algorithms is by no means restricted to arithmetic
-tasks such as adding, multiplying or solving equations. Many \emph{graph
-algorithms}, including algorithms for finding paths, matchings, spanning
-trees, cuts, and flows, have been discovered in the last several
-decades, and this is still an intensive area of research. (For example,
-the last few years saw many advances in algorithms for the \emph{maximum
-flow} problem, borne out of unexpected connections with electrical
-circuits and linear equation solvers.) These algorithms are being used
-not just for the ``natural'' applications of routing network traffic or
-GPS-based navigation, but also for applications as varied as drug
-discovery through searching for structures in gene-interaction graphs to
-computing risks from correlations in financial investments.
-
-Google was founded based on the \emph{PageRank} algorithm, which is an
-efficient algorithm to approximate the ``principal eigenvector'' of (a
-dampened version of) the adjacency matrix of the web graph. The
-\emph{Akamai} company was founded based on a new data structure, known
-as \emph{consistent hashing}, for a hash table where buckets are stored
-at different servers. The \emph{backpropagation algorithm}, which
-computes partial derivatives of a neural network in \(O(n)\) instead of
-\(O(n^2)\) time, underlies many of the recent phenomenal successes of
-learning deep neural networks. Algorithms for solving linear equations
-under sparsity constraints, a concept known as \emph{compressed
-sensing}, have been used to drastically reduce the amount and quality of
-data needed to analyze MRI images. This made a critical difference for
-MRI imaging of cancer tumors in children, where previously doctors
-needed to use anesthesia to suspend breath during the MRI exam,
-sometimes with dire consequences.
-
-Even for classical questions, studied through the ages, new discoveries
-are still being made. For example, for the question of determining
-whether a given integer is prime or composite, which has been studied
-since the days of Pythagoras, efficient probabilistic algorithms were
-only discovered in the 1970s, while the first
-\href{https://en.wikipedia.org/wiki/AKS_primality_test}{deterministic
-polynomial-time algorithm} was only found in 2002. For the related
-problem of actually finding the factors of a composite number, new
-algorithms were found in the 1980s, and (as we'll see later in this
-course) discoveries in the 1990s raised the tantalizing prospect of
-obtaining faster algorithms through the use of quantum mechanical
-effects.
-
-Despite all this progress, there are still many more questions than
-answers in the world of algorithms. For almost all natural problems, we
-do not know whether the current algorithm is the ``best'', or whether a
-significantly better one is still waiting to be discovered. As alluded
-in Cobham's opening quote for this chapter, even for the basic problem
-of multiplying numbers we have not yet answered the question of whether
-there is a multiplication algorithm that is as efficient as our
-algorithms for addition. But at least we now know the right way to
-\emph{ask} it.
-
-\section{On the importance of negative
-results.}\label{On-the-importance-of-nega}
-
-Finding better algorithms for problems such as multiplication, solving
-equations, graph problems, or fitting neural networks to data, is
-undoubtedly a worthwhile endeavor. But why is it important to prove that
-such algorithms \emph{don't} exist? One motivation is pure intellectual
-curiosity. Another reason to study impossibility results is that they
-correspond to the fundamental limits of our world. In other words,
-impossibility results are \emph{laws of nature}.
-
-Here are some examples of impossibility results outside computer science
-(see \cref{bnotesintrosec} for more about these). In physics, the
-impossibility of building a \emph{perpetual motion machine} corresponds
-to the \emph{law of conservation of energy}. The impossibility of
-building a heat engine beating Carnot's bound corresponds to the second
-law of thermodynamics, while the impossibility of faster-than-light
-information transmission is a cornerstone of special relativity. In
-mathematics, while we all learned the formula for solving quadratic
-equations in high school, the impossibility of generalizing this formula
-to equations of degree five or more gave birth to \emph{group theory}.
-The impossibility of proving Euclid's fifth axiom from the first four
-gave rise to \emph{non-Euclidean geometries}, which ended up crucial for
-the theory of general relativity.
-
-In an analogous way, impossibility results for computation correspond to
-``computational laws of nature'' that tell us about the fundamental
-limits of any information processing apparatus, whether based on
-silicon, neurons, or quantum particles. Moreover, computer scientists
-found creative approaches to \emph{apply} computational limitations to
-achieve certain useful tasks. For example, much of modern Internet
-traffic is encrypted using the
-\href{https://en.wikipedia.org/wiki/RSA_(cryptosystem)}{RSA encryption
-scheme}, which relies on its security on the (conjectured) impossibility
-of efficiently factoring large integers. More recently, the
-\href{https://en.wikipedia.org/wiki/Bitcoin}{Bitcoin} system uses a
-digital analog of the ``gold standard'' where, instead of using a
-precious metal, new currency is obtained by ``mining'' solutions for
-computationally difficult problems.
-
-\begin{recap} \label[recap]{The-history-of-algorithms}
-
-\begin{itemize}
-\tightlist
-\item
-  The history of algorithms goes back thousands of years; they have been
-  essential much of human progress and these days form the basis of
-  multi-billion dollar industries, as well as life-saving technologies.
-\item
-  There is often more than one algorithm to achieve the same
-  computational task. Finding a faster algorithm can often make a much
-  bigger difference than improving computing hardware.
-\item
-  Better algorithms and data structures don't just speed up
-  calculations, but can yield new qualitative insights.
-\item
-  One question we will study is to find out what is the \emph{most
-  efficient} algorithm for a given problem.
-\item
-  To show that an algorithm is the most efficient one for a given
-  problem, we need to be able to \emph{prove} that it is
-  \emph{impossible} to solve the problem using a smaller amount of
-  computational resources.
-\end{itemize}
-
-\end{recap}
-
-\section{Roadmap to the rest of this book}\label{roadmapsec}
-
-Often, when we try to solve a computational problem, whether it is
-solving a system of linear equations, finding the top eigenvector of a
-matrix, or trying to rank Internet search results, it is enough to use
-the ``I know it when I see it'' standard for describing algorithms. As
-long as we find some way to solve the problem, we are happy and might
-not care much on the exact mathematical model for our algorithm. But
-when we want to answer a question such as ``does there \emph{exist} an
-algorithm to solve the problem \(P\)?'' we need to be much more precise.
-
-In particular, we will need to \textbf{(1)} define exactly what it means
-to solve \(P\), and \textbf{(2)} define exactly what an algorithm is.
-Even \textbf{(1)} can sometimes be non-trivial but \textbf{(2)} is
-particularly challenging; it is not at all clear how (and even whether)
-we can encompass all potential ways to design algorithms. We will
-consider several simple \emph{models of computation}, and argue that,
-despite their simplicity, they do capture all ``reasonable'' approaches
-to achieve computing, including all those that are currently used in
-modern computing devices.
-
-Once we have these formal models of computation, we can try to obtain
-\emph{impossibility results} for computational tasks, showing that some
-problems \emph{can not be solved} (or perhaps can not be solved within
-the resources of our universe). Archimedes once said that given a
-fulcrum and a long enough lever, he could move the world. We will see
-how \emph{reductions} allow us to leverage one hardness result into a
-slew of a great many others, illuminating the boundaries between the
-computable and uncomputable (or tractable and intractable) problems.
-
-Later in this book we will go back to examining our models of
-computation, and see how resources such as randomness or quantum
-entanglement could potentially change the power of our model. In the
-context of probabilistic algorithms, we will see a glimpse of how
-randomness has become an indispensable tool for understanding
-computation, information, and communication. We will also see how
-computational difficulty can be an asset rather than a hindrance, and be
-used for the ``derandomization'' of probabilistic algorithms. The same
-ideas also show up in \emph{cryptography}, which has undergone not just
-a technological but also an intellectual revolution in the last few
-decades, much of it building on the foundations that we explore in this
-course.
-
-Theoretical Computer Science is a vast topic, branching out and touching
-upon many scientific and engineering disciplines. This book provides a
-very partial (and biased) sample of this area. More than anything, I
-hope I will manage to ``infect'' you with at least some of my love for
-this field, which is inspired and enriched by the connection to
-practice, but is also deep and beautiful regardless of applications.
-
-\subsection{Dependencies between
-chapters}\label{Dependencies-between-chap}
-
-This book is divided into the following parts, see
-\cref{dependencystructurefig}.
-
-\begin{itemize}
-\item
-  \textbf{Preliminaries:} Introduction, mathematical background, and
-  representing objects as strings.
-\item
-  \textbf{Part I: Finite computation (Boolean circuits):} Equivalence of
-  circuits and straight-line programs. Universal gate sets. Existence of
-  a circuit for every function, representing circuits as strings,
-  universal circuit, lower bound on circuit size using the counting
-  argument.
-\item
-  \textbf{Part II: Uniform computation (Turing machines):} Equivalence
-  of Turing machines and programs with loops. Equivalence of models
-  (including RAM machines, \(\lambda\) calculus, and cellular automata),
-  configurations of Turing machines, existence of a universal Turing
-  machine, uncomputable functions (including the Halting problem and
-  Rice's Theorem), Gödel's incompleteness theorem, restricted
-  computational models models (regular and context free languages).
-\item
-  \textbf{Part III: Efficient computation:} Definition of running time,
-  time hierarchy theorem, \(\mathbf{P}\) and \(\mathbf{NP}\),
-  \(\mathbf{P_{/poly}}\), \(\mathbf{NP}\) completeness and the
-  Cook-Levin Theorem, space bounded computation.
-\item
-  \textbf{Part IV: Randomized computation:} Probability, randomized
-  algorithms, \(\mathbf{BPP}\), amplification,
-  \(\mathbf{BPP} \subseteq \mathbf{P}_{/poly}\), pseudorandom generators
-  and derandomization.
-\item
-  \textbf{Part V: Advanced topics:} Cryptography, proofs and algorithms
-  (interactive and zero knowledge proofs, Curry-Howard correspondence),
-  quantum computing.
-\end{itemize}
+Trusting in superficial security measures (such as using ``inscrutable''
+symbols) is a trap that users of cryptography have been falling into
+again and again over the years. As in many things, this is the subject
+of a great XKCD cartoon (see \cref{xkcdnavajofig}):
 
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/dependencystructure.png}
-\caption{The dependency structure of the different parts. Part I
-introduces the model of Boolean circuits to study \emph{finite
-functions} with an emphasis on \emph{quantitative} questions (how many
-gates to compute a function). Part II introduces the model of Turing
-machines to study functions that have \emph{unbounded input lengths}
-with an emphasis on \emph{qualitative} questions (is this function
-computable or not). Much of Part II does not depend on Part I, as Turing
-machines can be used as the first computational model. Part III depends
-on both parts as it introduces a \emph{quantitative} study of functions
-with unbounded input length. The more advancec parts IV (randomized
-computation) and V (advanced topics) rely on the material of Parts I, II
-and III.}
-\label{dependencystructurefig}
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/code_talkers.png}
+\caption{On the added security of using uncommon symbols}
+\label{xkcdnavajofig}
 \end{figure}
 
-The book largely proceeds in linear order, with each chapter building on
-the previous ones, with the following exceptions:
+The \href{https://en.wikipedia.org/wiki/Vigen\%C3\%A8re_cipher}{Vigenère
+cipher} is named after Blaise de Vigenère who described it in a book in
+1586 (though it was invented earlier by Bellaso). The idea is to use a
+collection of substitution cyphers - if there are \(n\) different
+ciphers then the first letter of the plaintext is encoded with the first
+cipher, the second with the second cipher, the \(n^{th}\) with the
+\(n^{th}\) cipher, and then the \(n+1^{st}\) letter is again encoded
+with the first cipher. The key is usually a word or a phrase of \(n\)
+letters, and the \(i^{th}\) substitution cipher is obtained by shifting
+each letter \(k_i\) positions in the alphabet. This ``flattens'' the
+frequencies and makes it much harder to do frequency analysis, which is
+why this cipher was considered ``unbreakable'' for 300+ years and got
+the nickname ``le chiffre indéchiffrable'' (``the unbreakable cipher'').
+Nevertheless, Charles Babbage cracked the Vigenère cipher in 1854
+(though he did not publish it). In 1863 Friedrich Kasiski broke the
+cipher and published the result. The idea is that once you guess the
+length of the cipher, you can reduce the task to breaking a simple
+substitution cipher which can be done via frequency analysis (can you
+see why?). Confederate generals used Vigenère regularly during the civil
+war, and their messages were routinely cryptanalzed by Union officers.
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/confederate_cipher_disk.jpg}
+\caption{Confederate Cipher Disk for implementing the Vigenère cipher}
+\label{tmplabelfig}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/confederate_message.jpg}
+\caption{Confederate encryption of the message ``Gen'l Pemberton: You
+can expect no help from this side of the river. Let Gen'l Johnston know,
+if possible, when you can attack the same point on the enemy's lines.
+Inform me also and I will endeavor to make a diversion. I have sent some
+caps. I subjoin a despatch from General Johnston.''}
+\label{tmplabelfig}
+\end{figure}
+
+The story of the \emph{Enigma} cipher had been told many times (see for
+example Kahn's book as well as Andrew Hodges' biography of Alan Turing).
+This was a mechanical cipher (looking like a typewriter) where each
+letter typed would get mapped into a different letter depending on the
+(rather complicated) key and current state of the machine which had
+several rotors that rotated at different paces. An identically wired
+machine at the other end could be used to decrypt. Just as many ciphers
+in history, this has also been believed by the Germans to be
+``impossible to break'' and even quite late in the war they refused to
+believe it was broken despite mounting evidence to that effect. (In
+fact, some German generals refused to believe it was broken even
+\emph{after} the war.) Breaking Enigma was an heroic effort which was
+initiated by the Poles and then completed by the British at Bletchley
+Park; as part of this effort they built arguably the world's first large
+scale mechanical computation devices (though they looked more similar to
+washing machines than to iPhones). They were also helped along the way
+by some quirks and errors of the german operators. For example, the fact
+that their messages ended with ``Heil Hitler'' turned out to be quite
+useful. Here is one entertaining anecdote: the Enigma machine would
+never map a letter to itself. In March 1941, Mavis Batey, a cryptanalyst
+at Bletchley Park received a very long message that she tried to
+decrypt. She then noticed a curious property--- the message did
+\emph{not} contain the letter ``L''.\footnote{Here is a nice exercise:
+  compute (up to an order of magnitude) the probability that a 50-letter
+  long message composed of random letters will end up not containing the
+  letter ``L''.} She realized that for such a long message not contain
+``L'' could not happen by chance, and hence surmised that the original
+message probably composed \emph{only} of L's. That is, it must have been
+the case that the operator, perhaps to test the machine, have simply
+sent out a message where he repeatedly pressed the letter ``L''. This
+observation helped her decode the next message, which helped inform of a
+planned Italian attack and secure a resounding British victory in what
+became known as ``the Battle of Cape Matapan''. Mavis also helped break
+another Enigma machine which helped in the effort of feeding the Germans
+with the false information that the main allied invasion would take
+place in Pas de Calais rather than on Normandy. See
+\href{http://www.cix.co.uk/~klockstone/hinsley.htm}{this inteview with
+Sir Harry Hinsley} for more on the effect of breaking the Enigma on the
+war. General Eisenhower said that the intelligence from Bletchley park
+was of ``priceless value'' and made a ``very decisive contribution to
+the Allied war effort''.
+
+\section{Defining encryptions}\label{Defining-encryptions}
+
+Many of the troubles that cryptosystem designers faced over history (and
+still face!) can be attributed to not properly defining or understanding
+what are the goals they want to achieve in the first place. We now turn
+to actually defining what is an encryption scheme. Clearly we can encode
+every message as a string of bits, i.e., an element of \(\{0,1\}^\ell\)
+for some \(\ell\). Similarly, we can encode the \emph{key} as a string
+of bits as well, i.e., an element of \(\{0,1\}^n\) for some \(n\). Thus,
+we can think of an encryption scheme as composed of two functions. The
+\emph{encryption function} \(E\) maps a secret key \(k \in \{0,1\}^n\)
+and a message (known also as \emph{plaintext}) \(m\in \{0,1\}^\ell\)
+into a \emph{ciphertext} \(c \in \{0,1\}^L\) for some \(L\). We write
+this as \(c = E_k(m)\). The \emph{decryption function} \(D\) does the
+reverse operation, mapping the secret key \(k\) and the cyphertext \(c\)
+back into the plaintext message \(m\), which we write as \(m = D_k(c)\).
+The basic equation is that if we use the same key for encryption and
+decryption, then we should get the same message back. That is, for every
+\(k \in \{0,1\}^n\) and \(m\in \{0,1\}^\ell\), \[ m = D_k(E_k(m)) \;.\]
+
+Formally, we make the following definition:
+
+\hypertarget{encryptiondef}{}
+\begin{definition}[Valid encryption scheme] \label[definition]{encryptiondef}
+
+A pair of functions \((E,D)\) mapping strings to strings is a
+\emph{valid private key encryption scheme} (or \emph{encryption scheme}
+for short) if there are some numbers \(n,\ell,L\) such that
+\(E:\{0,1\}^n \times \{0,1\}^\ell \rightarrow \{0,1\}^L\) and
+\(D:\{0,1\}^n \times \{0,1\}^L \rightarrow \{0,1\}^\ell\) and for every
+for every \(k\in \{0,1\}^n\) and \(x \in \{0,1\}^{\ell}\), \[
+D(k,E(k,x))=x \;. \label{eqvalidenc}
+\] We will typically write the first input (i.e., the key) to the
+encryption and decryption functions as a subscribt, and so write
+\eqref{eqvalidenc} as \(D_k(E_k(x))=x\).
+
+\end{definition}
+
+\begin{quote}
+\emph{A note on notation:} We will always use \(i,j,\ell,n\) to denote
+natural numbers. \(n\) will often denote the length of our secret key,
+and \(\ell\) the length of the message, sometimes also known as ``block
+length'' since longer messages are simply chopped into ``blocks'' of
+length \(\ell\) and also appropriately padded. We will use \(k\) to
+denote the secret key, \(m\) to denote the secret plaintext message, and
+\(c\) to denote the encrypted ciphertext. Note that \(c,m\) and \(k\)
+are bit strings of lengths \(o,\ell\) and \(n\) respectively. The length
+of the secret key is often known as the ``security parameter'' and in
+other texts it is often denoted by \(k\) or \(\kappa\). We use \(n\) to
+correspond with the standard algorithmic notation for input length (as
+in \(O(n)\) time algorithms).
+\end{quote}
+
+\cref{encryptiondef} says nothing about security and does not rule out
+trivial ``encryption'' schemes such as the scheme \(E_k(m) = m\) that
+simply outputs the plaintext as is. Defining security is tricky, and
+we'll take it one step at a time, but lets start by pondering what is
+secret and what is not. A priori we are thinking of an attacker Eve that
+simply sees the ciphertext \(y=E_k(x)\) and does not know anything on
+how it was generated. So, it does not know the details of \(E\) and
+\(D\), and certainly does not know the secret key \(k\). However, many
+of the troubles past cryptosystems went through was caused by them
+relying on ``security through obscurity''--- trusting that the fact
+their \emph{methods} are not known to their enemy will protect them from
+being broken. This is a faulty assumption - if you reuse a method again
+and again (even with a different key each time) then eventually your
+adversaries will figure out what you are doing. And if Alice and Bob
+meet frequently in a secure location to decide on a new method, they
+might as well take the opportunity to exchange their secrets.. These
+considerations led Kerchoffs to state the following principle:
+
+\begin{quote}
+\emph{A cryptosystem should be secure even if everything about the
+system, except the key, is public knowledge.} (Auguste Kerckhoffs, 1883)
+\end{quote}
+
+(The actual quote is ``Il faut qu'il n'exige pas le secret, et qu'il
+puisse sans inconvénient tomber entre les mains de l'ennemi'' loosely
+translated as ``The system must not require secrecy and can be stolen by
+the enemy without causing trouble''. According to Steve Bellovin the NSA
+version is ``assume that the first copy of any device we make is shipped
+to the Kremlin''.)
+
+Why is it OK to assume the key is secret and not the algorithm? Because
+we can always choose a fresh key. But of course if we choose our key to
+be ``1234'' or ``passw0rd!'' then that is not exactly secure. In fact,
+if you use any deterministic algorithm to choose the key then eventually
+your adversary will figure out. Therefore for security we must choose
+the key at \emph{random}. Thus following can be thought of as a
+restatement of Kerchkoffs's principle:
+
+\begin{quote}
+\emph{There is no secrecy without randomness}
+\end{quote}
+
+This is such a crucial point that is worth repeating:
+
+\begin{quote}
+\emph{There is no secrecy without randomness}
+\end{quote}
+
+At the heart of every cryptographic scheme there is a secret key, and
+the secret key is always chosen at random. A corollary of that is that
+to understand cryptography, you need to know some probability theory.
+Fortunately, we don't need much of probability- only probability over
+finite spaces, and basic notions such as expectation, variance,
+concentration and the union bound suffice for most of we need. In fact,
+understanding the following two statements will already get you much of
+what you need for cryptography:
 
 \begin{itemize}
 \item
-  The topics of \(\lambda\) calculus (\cref{lambdacalculussec} and
-  \cref{lambdacalculussec}), Gödel's incompleteness theorem
-  (\cref{godelchap}), Automata/regular expressions and context-free
-  grammars (\cref{restrictedchap}), and space-bounded computation
-  (\cref{spacechap}), are not used in the following chapters. Hence you
-  can choose whether to cover or skip any subset of them.
+  For every fixed string \(x\in\{0,1\}^n\), if you toss a coin \(n\)
+  times, the probability that the heads/tails pattern will be exactly
+  \(x\) is \(2^{-n}\).
 \item
-  Part II (Uniform Computation / Turing Machines) does not have a strong
-  dependency on Part I (Finite computation / Boolean circuits) and it
-  should be possible to teach them in the reverse order with minor
-  modification. Boolean circuits are used Part III (efficient
-  computation) for results such as
-  \(\mathbf{P} \subseteq \mathbf{P_{/poly}}\) and the Cook-Levin
-  Theorem, as well as in Part IV (for
-  \(\mathbf{BPP} \subseteq \mathbf{P_{/poly}}\) and derandomization) and
-  Part V (specifically in cryptography and quantum computing).
-\item
-  All chapters in \cref{advancedpart} (Advanced topics) are independent
-  of one another and can be covered in any order.
+  A probability of \(2^{-128}\) is really really small.
 \end{itemize}
 
-A course based on this book can use all of Parts I, II, and III
-(possibly skipping over some or all of the \(\lambda\) calculus,
-\cref{godelchap}, \cref{restrictedchap} or \cref{spacechap}), and then
-either cover all or some of Part IV (randomized computation), and add a
-``sprinkling'' of advanced topics from Part V based on student or
-instructor interest.
+\subsection{Generating randomness in actual cryptographic
+systems}\label{Generating-randomness-in-}
 
-\section{Exercises}\label{Exercises}
+How do we actually get random bits in actual systems? The main idea is
+to use a two stage approach. First we need to get some data that is
+\emph{unpredictable} from the point of view of an attacker on our
+system. Some sources for this could be measuring latency on the network
+or hard drives (getting harder with solid state disk), user keyboard and
+mouse movement patterns (problematic when you need fresh randomness at
+boot time ), clock drift and more, there are some other sources
+including audio, video, and network. All of these can be problematic,
+especially for servers or virtual machines, and so hardware based random
+number generators based on phenomena such as thermal noise or nuclear
+decay are becoming more popular. Once we have some data \(X\) that is
+unpredictable, we need to estimate the \emph{entropy} in it. You can
+roughly imagine that \(X\) has \(k\) bits of entropy if the probability
+that an attacker can guess \(X\) is at most \(2^{-k}\). People then use
+a \emph{hash function} (an object we'll talk about more later) to map
+\(X\) into a string of length \(k\) which is then hopefully distributed
+(close to) uniformly at random. All of this process, and especially
+understanding the amount of information an attacker may have on the
+entropy sources, is a bit of a dark art and indeed a number of attacks
+on cryptographic systems were actually enabled by weak generation of
+randomness. Here are a few examples.
 
-\begin{exercise} \label[exercise]{Rank-the-significance-of-}
+One of the first attacks was on the SSL implementation of Netscape
+(\emph{the} browser at the time). Netscape use the following
+``unpredicatable'' information--- the time of day and a process ID both
+of which turned out to be quite predictable (who knew attackers have
+clocks too?). Netscape tried to protect its security through ``security
+through obscurity'' by not releasing the source code for their
+pseudorandom generator, but it was reverse engineered by
+\href{https://www.cs.berkeley.edu/~daw/papers/ddj-netscape.html}{Ian
+Goldberg and David Wagner} (Ph.D students at the time) who demonstrated
+this attack.
 
-Rank the significance of the following inventions in speeding up
-multiplication of large (that is 100-digit or more) numbers. That is,
-use ``back of the envelope'' estimates to order them in terms of the
-speedup factor they offered over the previous state of affairs.
+In 2006 a programmer removed a line of code from the procedure to
+generate entropy in OpenSSL package distributed by Debian since it
+caused a warning in some automatic verification code. As a result for
+two years (until this was discovered) all the randomness generated by
+this procedure used only the process ID as an ``unpredictable'' source.
+This means that all communication done by users in that period is fairly
+easily breakable (and in particular, if some entities recorded that
+communication they could break it also retroactively). This caused a
+huge headache and a worldwide regeneration of keys, though it is
+believed that many of the weak keys are still used. See
+\href{http://www.xkcd.com/424/}{XKCD's take} on that incident.
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/random_number.png}
+\caption{XKCD Cartoon: Random number generator}
+\label{tmplabelfig}
+\end{figure}
+
+In 2012 two separate teams of researchers scanned a large number of RSA
+keys on the web and found out that about 4 percent of them are easy to
+break. The main issue were devices such as routers, internet-connected
+printers and such. These devices sometimes run variants of Linux- a
+desktop operating system- but without a hard drive, mouse or keyboard,
+they don't have access to many of the entropy sources that desktop have.
+Coupled with some good old fashioned ignorance of cryptography and
+software bugs, this led to many keys that are downright trivial to
+break, see
+\href{https://freedom-to-tinker.com/blog/nadiah/new-research-theres-no-need-panic-over-factorable-keys-just-mind-your-ps-and-qs/}{this
+blog post} and \href{https://factorable.net/}{this web page} for more
+details.
+
+After the entropy is collected and then ``purified'' or ``extracted'' to
+a uniformly random string that is, say, a few hundred bits long, we
+often need to ``expand'' it into a longer string that is also uniform
+(or at least looks like that for all practical purposes). We will
+discuss how to go about that in the next lecture. This step has its
+weaknesses too and in particular the Snowden documents, combined with
+observations of Shumow and Ferguson, strongly suggest that the NSA has
+deliberately inserted a \emph{trapdoor} in one of the pseudorandom
+generators published by the National Institute of Standards and
+Technologies (NIST). Fortunately, this generator wasn't widely adapted
+but apparently the NSA did pay 10 million dollars to RSA security so the
+latter would make this generator their default option in their products.
+
+\section{Defining the secrecy
+requirement.}\label{Defining-the-secrecy-requ}
+
+Defining the secrecy requirement for an encryption is not simple. Over
+the course of history, many smart people got it wrong and convinced
+themselves that ciphers were impossible to break. The first person to
+truly ask the question in a rigorous way was Claude Shannon in 1945
+(though a partial version of his manuscript was only declassified in
+1949). Simply by asking this question, he made an enormous contribution
+to the science of cryptography and practical security. We now will try
+to examine how one might answer it.
+
+Let me warn you ahead of time that we are going to insist on a
+\emph{mathematically precise definition} of security. That means that
+the definition must capture security in all cases, and the existence of
+a single counterexample, no matter how ``silly'', would make us rule out
+a candidate definition. This exercise of coming up with ``silly''
+counterexamples might seem, well, silly. But in fact it is this method
+that has led Shannon to formulate his theory of secrecy, which (after
+much followup work) eventually revolutionized cryptography, and brought
+this science to a new age where Edgar Allan Poe's maxim no longer holds,
+and we are able to design ciphers which human (or even nonhuman)
+ingenuity cannot break.
+
+The most natural way to attack an encryption is for Eve to guess all
+possible keys. In many encryption schemes this number is enormous and
+this attack is completely infeasible. For example, the theoretical
+number of possibilities in the Enigma cipher was about \(10^{113}\)
+which roughly means that even if we built a filled the milky way galaxy
+with computers operating at light speed, the sun would still die out
+before it finished examining all the possibilities.\footnote{There are
+  about \(10^{68}\) atoms in the galaxy, so even if we assumed that each
+  one of those atoms was a computer that can process say \(10^{21}\)
+  decryption attempts per second (as the speed of light is \(10^9\)
+  meters per second and the diameter of an atom is about \(10^{-12}\)
+  meters), then it would still take \(10^{113-89} = 10^{24}\) seconds,
+  which is about \(10^{17}\) years to exhaust all possibilities, while
+  the sun is estimated to burn out in about 5 billion years.} One can
+understand why the Germans thought it was impossible to break. (Note
+that despite the number of possibilities being so enormous, such a key
+can still be easily specified and shared between Alice and Bob by
+writing down \(113\) digits on a piece of paper.) Ray Miller of the NSA
+had calculated that, in the way the Germans used the machine, the number
+of possibilities was ``only'' \(10^{23}\), but this is still extremely
+difficult to pull off even today, and many orders of magnitudes above
+the computational powers during the WW-II era. Thus clearly, it is
+sometimes possible to break an encryption without trying all
+possibilities. A corollary is that having a huge number of key
+combinations does not guarantee security, as an attacker might find a
+shortcut (as the allies did for Enigma) and recover the key without
+trying all options.
+
+Since it is possible to recover the key with some tiny probability
+(e.g.~by guessing it at random), perhaps one way to define security of
+an encryption scheme is that an attacker can never recover the key with
+probability significantly higher than that. Here is an attempt at such a
+definition:
+
+\hypertarget{securefirstattemptdef}{}
+\begin{definition}[Security of encryption: first attempt] \label[definition]{securefirstattemptdef}
+
+An encyption scheme \((E,D)\) is \emph{\(n\)-secure} if no matter what
+method Eve employs, the probability that she can recover the true key
+\(k\) from the ciphertext \(c\) is at most \(2^{-n}\).
+
+\end{definition}
+
+\begin{pause} \label[pause]{When-you-see-a-mathematic}
+
+When you see a mathematical definition that attempts to model some
+real-life phenomenon such as security, you should pause and ask
+yourself:
 
 \begin{enumerate}
-\def\labelenumi{\alph{enumi}.}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
-  Discovery of the grade-school digit by digit algorithm (improving upon
-  repeated addition)
+  Do I understand mathematically what is the definition stating?\\
 \item
-  Discovery of Karatsuba's algorithm (improving upon the digit by digit
-  algorithm)
-\item
-  Invention of modern electronic computers (improving upon calculations
-  with pen and paper).
+  Is it a reasonable way to capture the real life phenomenon we are
+  discussing?
 \end{enumerate}
 
-\end{exercise}
+One way to answer question 2 is to try to think of both examples of
+objects that satisfy the definition and examples of objects that violate
+it, and see if this conforms to your intuition about whether these
+objects display the phenomenon we are trying to capture. Try to do this
+for \cref{securefirstattemptdef}
 
-\begin{exercise} \label[exercise]{The--Apple-II-personal-co}
+\end{pause}
 
-The 1977 Apple II personal computer had a processor speed of 1.023 Mhz
-or about \(10^6\) operations per seconds. At the time of this writing
-the world's fastest supercomputer performs 93 ``petaflops'' (\(10^{15}\)
-floating point operations per second) or about \(10^{18}\) basic steps
-per second. For each one of the following running times (as a function
-of the input length \(n\)), compute for both computers how large an
-input they could handle in a week of computation, if they run an
-algorithm that has this running time:
+You might wonder if \cref{securefirstattemptdef} is not \emph{too
+strong}. After all how are we going ever to prove that Eve cannot
+recover the secret key no matter what she does? Edgar Allan Poe would
+say that there can always be a method that we overlooked. However, in
+fact this definition is too \emph{weak}! Consider the following
+encryption: the secret key \(k\) is chosen at random in \(\{0,1\}^n\)
+but our encryption scheme simply ignores it and lets \(E_k(x)=x\) and
+\(D_k(y)=y\). This is a valid encryption, but of course completely
+insecure as we are simply outputting the plaintext in the clear. Yet, no
+matter what Eve does, if she only sees \(c\) and not \(k\), there is no
+way she can guess the true value of \(k\) with probability better than
+\(2^{-n}\), since it was chosen completely at random and she gets no
+information about it. Formally, one can prove the following result:
 
-\begin{enumerate}
-\def\labelenumi{\alph{enumi}.}
-\item
-  \(n\) operations.
-\item
-  \(n^2\) operations.
-\item
-  \(n\log n\) operations.
-\item
-  \(2^n\) operations.
-\item
-  \(n!\) operations.
-\end{enumerate}
+\hypertarget{trivialsec}{}
+\begin{lemma} \label[lemma]{trivialsec}
 
-\end{exercise}
+Let \((E,D)\) be the encryption scheme above. For every function
+\(Eve:\{0,1\}^\ell\rightarrow \{0,1\}^n\) and for every
+\(x\in \{0,1\}^\ell\), the probability that \(Eve(E_k(x))=k\) is exactly
+\(2^{-n}\).
 
-\begin{exercise}[Usefulness of algorithmic non-existence] \label[exercise]{In-this-chapter-we-mentio}
+\end{lemma}
 
-In this chapter we mentioned several companies that were founded based
-on the discovery of new algorithms. Can you give an example for a
-company that was founded based on the \emph{non existence} of an
-algorithm? See footnote for hint.\footnote{As we will see in Chapter
-  \cref{chapcryptography}, almost any company relying on cryptography
-  needs to assume the \emph{non existence} of certain algorithms. In
-  particular, \href{https://goo.gl/tMsAui}{RSA Security} was founded
-  based on the security of the RSA cryptosystem, which presumes the
-  \emph{non existence} of an efficient algorithm to compute the prime
-  factorization of large integers.}
+\begin{proof} \label[proof]{This-follows-because-Ekxx}
 
-\end{exercise}
+This follows because \(E_k(x)=x\) and hence \(Eve(E_k(x))=Eve(x)\) which
+is some fixed value \(k'\in\{0,1\}^n\) that is independent of \(k\).
+Hence the probability that \(k=k'\) is \(2^{-n}\). QED
 
-\hypertarget{karatsuba-ex}{}
-\begin{exercise}[Analysis of Karatsuba's Algorithm] \label[exercise]{karatsuba-ex}
+\end{proof}
 
-\begin{enumerate}
-\def\labelenumi{\alph{enumi}.}
-\item
-  Suppose that \(T_1,T_2,T_3,\ldots\) is a sequence of numbers such that
-  \(T_2 \leq 10\) and for every \(n\),
-  \(T_n \leq 3T_{\lfloor n/2 \rfloor+1} + Cn\) for some \(C \geq 1\).
-  Prove that \(T_n \leq 20Cn^{\log_2 3}\) for every \(n>2\).\footnote{\textbf{Hint:}
-    Use a proof by induction - suppose that this is true for all \(n\)'s
-    from \(1\) to \(m\) and prove that this is true also for \(m+1\).}\\
-\item
-  Prove that the number of single-digit operations that Karatsuba's
-  algorithm takes to multiply two \(n\) digit numbers is at most
-  \(1000n^{\log_2 3}\).
-\end{enumerate}
+The math behind the above argument is very simple, yet I urge you to
+read and re-read the last two paragraphs until you are sure that you
+completely understand why this encryption is in fact secure according to
+the above definition. This is a ``toy example'' of the kind of reasoning
+that we will be employing constantly throughout this course, and you
+want to make sure that you follow it.
 
-\end{exercise}
+So, \cref{trivialsec} is true, but one might question its meaning.
+Clearly this silly example was not what we meant when stating this
+definition. However, as mentioned above, we are not willing to ignore
+even silly examples and must amend the definition to rule them out. One
+obvious objection is that we don't care about hiding the key- it is the
+\emph{message} that we are trying to keep secret. This suggests the next
+attempt:
 
-\begin{exercise} \label[exercise]{Implement-in-the-programm}
+\hypertarget{securesecondattemptdef}{}
+\begin{definition}[Security of encryption: second attempt] \label[definition]{securesecondattemptdef}
 
-Implement in the programming language of your choice functions
-\texttt{Gradeschool\_multiply(x,y)} and
-\texttt{Karatsuba\_multiply(x,y)} that take two arrays of digits
-\texttt{x} and \texttt{y} and return an array representing the product
-of \texttt{x} and \texttt{y} (where \texttt{x} is identified with the
-number \texttt{x[0]+10*x[1]+100*x[2]+...} etc..) using the grade-school
-algorithm and the Karatsuba algorithm respectively. At what number of
-digits does the Karatsuba algorithm beat the grade-school one?
+An encryption scheme \((E,D)\) is \emph{\(n\)-secure} if for every
+message \(x\) no matter what method Eve employs, the probability that
+she can recover \(x\) from the ciphertext \(y=E_k(x)\) is at most
+\(2^{-n}\).
 
-\end{exercise}
+\end{definition}
 
-\hypertarget{matrixex}{}
-\begin{exercise}[Matrix Multiplication (optional, advanced)] \label[exercise]{matrixex}
+Now this seems like it captures our intended meaning. But remember that
+we are being anal, and truly insist that the definition holds as stated,
+namely that for every plaintext message \(x\) and every function
+\(Eve:\{0,1\}^L\rightarrow\{0,1\}^\ell\), the probability over the
+choice of \(k\) that \(Eve(E_k(x))=x\) is at most \(2^{-n}\). But now we
+see that this is clearly impossible. After all, this is supposed to work
+for \emph{every} message \(x\) and \emph{every} function \(Eve\), but
+clearly if \(x\) is the all-zeroes message \(0^\ell\) and \(Eve\) is the
+function that ignores its input and simply outputs \(0^\ell\), then it
+will hold that \(Eve(E_k(x))=x\) with probability one.
 
-In this exercise, we show that if for some \(\omega>2\), we can write
-the product of two \(k\times k\) real-valued matrices \(A,B\) using at
-most \(k^\omega\) multiplications, then we can multiply two
-\(n\times n\) matrices in roughly \(n^\omega\) time for every large
-enough \(n\).
+So, if before the definition was too weak, the new definition is too
+strong and is impossible to achieve. The problem is that of course we
+could guess a fixed message with probability one, so perhaps we could
+try to consider a definition with a \emph{random} message. That is:
 
-To make this precise, we need to make some notation that is
-unfortunately somewhat cumbersome. Assume that there is some \(k\in \N\)
-and \(m \leq k^\omega\) such that for every \(k\times k\) matrices
-\(A,B,C\) such that \(C=\ensuremath{\mathit{AB}}\), we can write for
-every \(i,j \in [k]\): \[
-C_{i,j} = \sum_{\ell=0}^m \alpha_{i,j}^\ell f_\ell(A)g_\ell(B)
-\] for some linear functions
-\(f_0,\ldots,f_{m-1},g_0,\ldots,g_{m-1}:\mathbb{R}^{n^2} \rightarrow \mathbb{R}\)
-and coefficients \(\{ \alpha_{i,j}^\ell \}_{i,j \in [k],\ell \in [m]}\).
-Prove that under this assumption for every \(\epsilon>0\), if \(n\) is
-sufficiently large, then there is an algorithm that computes the product
-of two \(n\times n\) matrices using at most \(O(n^{\omega+\epsilon})\)
-arithmetic operations. See footnote for hint.\footnote{Start by showing
-  this for the case that \(n=k^t\) for some natural number \(t\), in
-  which case you can do so recursively by breaking the matrices into
-  \(k\times k\) blocks.}
+\hypertarget{securethirdattemptdef}{}
+\begin{definition}[Security of encryption: third attempt] \label[definition]{securethirdattemptdef}
 
-\end{exercise}
+An encyption scheme \((E,D)\) is \emph{\(n\)-secure} if no matter what
+method Eve employs, if \(x\) is chosen at random from \(\{0,1\}^\ell\),
+the probability that she can recover \(x\) from the ciphertext
+\(c=E_k(x)\) is at most \(2^{-n}\).
 
-\section{Bibliographical notes}\label{bnotesintrosec}
+\end{definition}
 
-For a brief overview of what we'll see in this book, you could do far
-worse than read
-\href{https://www.cs.princeton.edu/~chazelle/pubs/algorithm.html}{Bernard
-Chazelle's wonderful essay on the Algorithm as an Idiom of modern
-science}. The book of Moore and Mertens \cite{MooreMertens11} gives a
-wonderful and comprehensive overview of the theory of computation,
-including much of the content discussed in this chapter and the rest of
-this book. Aaronson's book \cite{Aaronson13democritus} is another great
-read that touches upon many of the same themes.
+This weakened definition can in fact be achieved, but we have again
+weakened it too much. Consider an encryption that hides the last
+\(\ell/2\) bits of the message, but completely reveals the first
+\(\ell/2\) bits. The probability of guessing a random message is
+\(2^{-\ell/2}\), and so such a scheme would be ``\(\ell/2\) secure'' per
+\cref{securethirdattemptdef} but this is still a scheme that you would
+not want to use. The point is that in practice we don't encrypt random
+messages--- our messages might be in English, might have common headers,
+and might have even more structures based on the context. In fact, it
+may be that the message is either ``Yes'' or ``No'' (or perhaps either
+``Attack today'' or ``Attack tomorrow'') but we want to make sure Eve
+doesn't learn which one it is. So, using an encryption scheme that
+reveals the first half of the message (or frankly even only the first
+bit) is unacceptable.
 
-For more on the algorithms the Babylonians used, see
-\href{http://steiner.math.nthu.edu.tw/disk5/js/computer/1.pdf}{Knuth's
-paper} and Neugebauer's
-\href{https://www.amazon.com/Exact-Sciences-Antiquity-Neugebauer/dp/0486223329}{classic
-book}.
+\section{Perfect Secrecy}\label{Perfect-Secrecy}
 
-Many of the algorithms we mention in this chapter are covered in
-algorithms textbooks such as those by Cormen, Leiserson, Rivert, and
-Stein \cite{CLRS}, Kleinberg and Tardos \cite{KleinbergTardos06}, and
-Dasgupta, Papadimitriou and Vazirani \cite{DasguptaPV08}, as well as
-\href{http://jeffe.cs.illinois.edu/teaching/algorithms/}{Jeff Erickson's
-textbook}. Erickson's book is freely available online and contains a
-great exposition of recursive algorithms in general and Karatsuba's
-algorithm in particular.
+So far all of our attempts at definitions oscillated between being too
+strong (and hence impossible) or too weak (and hence not guaranteeing
+actual security). The key insight of Shannon was that in a secure
+encryption scheme the ciphtertext should not reveal \emph{any additional
+information} about the plaintext. So, if for example it was a priori
+possible for Eve to guess the plaintext with some probability \(1/k\)
+(e.g., because there were only \(k\) possibilities for it) then she
+should not be able to guess it with higher probability after seeing the
+ciphertext. This can be formalized as follows:
 
-The story of Karatsuba's discovery of his multiplication algorithm is
-recounted by him in \cite{Karatsuba95}. As mentioned above, further
-improvements were made by Toom and Cook \cite{Toom63, Cook66}, Schönhage
-and Strassen \cite{SchonhageStrassen71}, Fürer \cite{Furer07}, and
-recently by Harvey and Van Der Hoeven \cite{HarveyvdHoeven2019}, see
-\href{https://www.quantamagazine.org/mathematicians-discover-the-perfect-way-to-multiply-20190411/}{this
-article} for a nice overview. The last papers crucially rely on the
-\emph{Fast Fourier transform} algorithm. The fascinating story of the
-(re)discovery of this algorithm by John Tukey in the context of the cold
-war is recounted in \cite{Cooley87FFTdiscovery}. (We say re-discovery
-because it later turned out that the algorithm dates back to Gauss
-\cite{heideman1985gauss}.) The Fast Fourier Transform is covered in some
-of the books mentioned below, and there are also online available
-lectures such as
-\href{http://jeffe.cs.illinois.edu/teaching/algorithms/}{Jeff
-Erickson's}. See also this
-\href{http://www.ams.org/samplings/feature-column/fcarc-multiplication}{popular
-article by David Austin}. Fast \emph{matrix} multiplication was
-discovered by Strassen \cite{Strassen69}, and since then this has been
-an active area of research. \cite{Blaser13} is a recommended
-self-contained survey of this area.
+\hypertarget{perfectsecrecydef}{}
+\begin{definition}[Perfect secrecy] \label[definition]{perfectsecrecydef}
 
-The \emph{Backpropagation} algorithm for fast differentiation of neural
-networks was invented by Werbos \cite{Werbos74}. The \emph{Pagerank}
-algorithm was invented by Larry Page and Sergey Brin \cite{pagerank99}.
-It is closely related to the \emph{HITS} algorithm of Kleinberg
-\cite{Kleinber99}. The \emph{Akamai} company was founded based on the
-\emph{consistent hashing} data structure described in \cite{Akamai97}.
-\emph{Compressed sensing} has a long history but two foundational papers
-are \cite{CandesRombergTao06, Donoho2006compressed}.
-\cite{compressedmri08} gives a survey of applications of compressed
-sensing to MRI; see also this popular article by Ellenberg
-\cite{Ellenberg10wired}. The deterministic polynomial-time algorithm for
-testing primality was given by Agrawal, Kayal, and Saxena
-\cite{AgrawalKayalSaxena04}.
+An encryption scheme \((E,D)\) is \emph{perfectly secret} if there for
+every set \(M\subseteq\{0,1\}^\ell\) of plaintexts, and for every
+strategy used by Eve, if we choose at random \(x\in M\) and a random key
+\(k\in\{0,1\}^n\), then the probability that Eve guesses \(x\) after
+seeing \(E_k(x)\) is at most \(1/|M|\).
 
-We alluded briefly to classical impossibility results in mathematics,
-including the impossibility of proving Euclid's fifth postulate from the
-other four, impossibility of trisecting an angle with a straightedge and
-compass and the impossibility of solving a quintic equation via
-radicals. A geometric proof of the impossibility of angle trisection
-(one of the three
-\href{http://mathworld.wolfram.com/GeometricProblemsofAntiquity.html}{geometric
-problems of antiquity}, going back to the ancient Greeks) is given in
-this
-\href{https://terrytao.wordpress.com/2011/08/10/a-geometric-proof-of-the-impossibility-of-angle-trisection-by-straightedge-and-compass/}{blog
-post of Tao}. The book of Mario Livio \cite{Livio05} covers some of the
-background and ideas behind these impossibility results. Some
-\href{http://www.scottaaronson.com/barbados-2016.pdf}{exciting recent
-research} is focused on trying to use computational complexity to shed
-light on fundamental questions in physics such understanding black holes
-and reconciling general relativity with quantum mechanics
+\end{definition}
+
+In particular, if we encrypt either ``Yes'' or ``No'' with probability
+\(1/2\), then Eve won't be able to guess which one it is with
+probability better than half. In fact, that turns out to be the heart of
+the matter:
+
+\hypertarget{twotomanythm}{}
+\begin{theorem}[Two to many theorem] \label[theorem]{twotomanythm}
+
+An encryption scheme \((E,D)\) is perfectly secret if and only if for
+every two distinct plaintexts \(\{x_0,x_1\} \subseteq \{0,1\}^\ell\) and
+every strategy used by Eve, if we choose at random \(b\in\{0,1\}\) and a
+random key \(k\in\{0,1\}^n\), then the probability that Eve guesses
+\(x_b\) after seeing \(E_k(x_b)\) is at most \(1/2\).
+
+\end{theorem}
+
+\begin{proof} \label[proof]{The-only-if-direction-is-}
+
+The ``only if'' direction is obvious--- this condition is a special case
+of the perfect secrecy condition for a set \(M\) of size \(2\).
+
+The ``if'' direction is trickier. We need to show that if there is some
+set \(M\) (of size possibly much larger than \(2\)) and some strategy
+for Eve to guess (based on the ciphertext) a plaintext chosen from \(M\)
+with probability larger than \(1/|M|\), then there is also some set
+\(M'\) of size two and a strategy \(Eve'\) for Eve to guess a plaintext
+chosen from \(M'\) with probability larger than \(1/2\).
+
+Let's fix the message \(x_0\) to be the all zeroes message and pick
+\(x_1\) at random in \(M\). Under our assumption, it holds that for
+random key \(k\) and message \(x_1\in M\),
+\[\Pr_{k \leftarrow \{0,1\}^n, x_1 \leftarrow M}[Eve(E_k(x_1))=x_1]  > 1/|M|\;.\]
+On the other hand, for every choice of \(k\), \(x'= Eve(E_k(x_0))\) is a
+fixed string independent on the choice of \(x_1\), and so if we pick
+\(x_1\) at random in \(M\), then the probability that \(x_1=x'\) is at
+most \(1/|M|\), or in other words
+\[\Pr_{k \leftarrow \{0,1\}^n, x_1 \leftarrow M}[Eve(E_k(x_0))=x_1]  \leq  1/|M|\;.\]
+
+Thus in particular, due to linearity of expectation, there \emph{exists}
+some \(x_1\) satisfying
+\[ \Pr[Eve(E_k(x_1))=x_1]   > \Pr[Eve(E_k(x_0))=x_1] \;.\] (Can you see
+why? This is worthwhile stopping and reading again.) But this can be
+turned into an attacker \(Eve'\) such that for
+\(b \leftarrow_R \{0,1\}\). the probability that \(Eve'(E_k(x_b))=x_b\)
+is larger than \(1/2\). Indeed, we can define \(Eve'(y)\) to output
+\(x_1\) if \(Eve(y)=x_1\) and otherwise output a random message in
+\(\{ x_0 , x_1 \}\). The probability that \(Eve'(y)\) equals \(x_1\) is
+higher when \(y=E_k(x_1)\) than when \(y=E_k(x_0)\), and since \(Eve'\)
+outputs either \(x_0\) or \(x_1\), this means that the probability that
+\(Eve'(E_k(x_b))=x_b\) is larger than \(1/2\). (Can you see why?)
+
+\end{proof}
+
+\begin{pause} \label[pause]{The-proof-of-creftwotoman}
+
+The proof of \cref{twotomanythm} is not trivial, and is worth reading
+again and making sure you understand it. An excellent exercise, which I
+urge you to pause and do now is to prove the following: \((E,D)\) is
+perfectly secret if for every plaintexts \(x,x' \in \{0,1\}^\ell\), the
+two random variables \(\{ E_k(x) \}\) and \(\{ E_{k'}(x') \}\) (for
+randomly chosen keys \(k\) and \(k'\)) have precisely the same
+distribution.
+
+\end{pause}
+
+So, perfect secrecy is a natural condition, and does not seem to be too
+weak for applications, but can it actually be achieved? After all, the
+condition that two different plaintexts are mapped to the same
+distribution seems somewhat at odds with the condition that Bob would
+succeed in decrypting the ciphertexts and find out if the plaintext was
+in fact \(x\) or \(x'\). It turns out the answer is yes! For example,
+\cref{onetimepadtwofig} details a perfectly secret encryption for two
+bits.
+
+
+\begin{marginfigure}
+\centering
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/onetimepadtwobits.png}
+\caption{A perfectly secret encryption scheme for two-bit keys and
+messages. The blue vertices represent plaintexts and the red vertices
+represent ciphertexts, each edge mapping a plaintext \(x\) to a
+ciphertext \(y=E_k(x)\) is labeled with the corresponding key \(k\).
+Since there are four possible keys, the degree of the graph is four and
+it is in fact a complete bipartite graph. The encryption scheme is valid
+in the sense that for every \(k\in \{0,1\}^2\), the map
+\(x \mapsto E_k(x)\) is one-to-one, which in other words means that the
+set of edges labeled with \(k\) is a \emph{matching}.}
+\label{onetimepadtwofig}
+\end{marginfigure}
+
+
+\begin{marginfigure}
+\centering
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/perfectsecrecy.png}
+\caption{For any key length \(n\), we can visualize an encryption scheme
+\((E,D)\) as a graph with a vertex for every one of the \(2^{L(n)}\)
+possible plaintexts and for every one of the ciphertexts in
+\(\{0,1\}^*\) of the form \(E_k(x)\) for \(k\in \{0,1\}^n\) and
+\(x\in \{0,1\}^{L(n)}\). For every plaintext \(x\) and key \(k\), we add
+an edge labeled \(k\) between \(x\) and \(E_k(x)\). By the validity
+condition, if we pick any fixed key \(k\), the map \(x \mapsto E_k(x)\)
+must be one-to-one. The condition of perfect secrecy simply corresponds
+to requiring that every two plaintexts \(x\) and \(x'\) have exactly the
+same set of neighbors (or multi-set, if there are parallel edges).}
+\label{perfectsecfig}
+\end{marginfigure}
+
+In fact, this can be generalized to any number of bits:
+
+\hypertarget{onetimepad}{}
+\begin{theorem}[One Time Pad (Vernam 1917, Shannon 1949)] \label[theorem]{onetimepad}
+
+There is a perfectly secret valid encryption scheme \((E,D)\) with
+\(L(n)=n\).
+
+\end{theorem}
+
+\begin{proofidea} \label[proofidea]{Our-scheme-is-the-one-tim}
+
+Our scheme is the
+\href{https://en.wikipedia.org/wiki/One-time_pad}{one-time pad} also
+known as the ``Vernam Cipher'', see \cref{onetimepadfig}. The encryption
+is exceedingly simple: to encrypt a message \(x\in \{0,1\}^n\) with a
+key \(k \in \{0,1\}^n\) we simply output \(x \oplus k\) where \(\oplus\)
+is the bitwise XOR operation that outputs the string corresponding to
+XORing each coordinate of \(x\) and \(k\).
+
+\end{proofidea}
+
+\begin{proof}[Proof of \cref{onetimepad}] \label[proof]{For-two-binary-strings-a-}
+
+For two binary strings \(a\) and \(b\) of the same length \(n\), we
+define \(a \oplus b\) to be the string \(c \in \{0,1\}^n\) such that
+\(c_i = a_i + b_i \mod 2\) for every \(i\in [n]\). The encryption scheme
+\((E,D)\) is defined as follows: \(E_k(x) = x\oplus k\) and
+\(D_k(y)= y \oplus k\). By the associative law of addition (which works
+also modulo two),
+\(D_k(E_k(x))=(x\oplus k) \oplus k = x \oplus (k \oplus k) = x \oplus 0^n = x\),
+using the fact that for every bit \(\sigma \in \{0,1\}\),
+\(\sigma + \sigma \mod 2 = 0\) and \(\sigma + 0 = \sigma \mod 2\). Hence
+\((E,D)\) form a valid encryption.
+
+To analyze the perfect secrecy property, we claim that for every
+\(x\in \{0,1\}^n\), the distribution \(Y_x=E_k(x)\) where
+\(k \sim \{0,1\}^n\) is simply the uniform distribution over
+\(\{0,1\}^n\), and hence in particular the distributions \(Y_{x}\) and
+\(Y_{x'}\) are identical for every \(x,x' \in \{0,1\}^n\). Indeed, for
+every particular \(y\in \{0,1\}^n\), the value \(y\) is output by
+\(Y_x\) if and only if \(y = x \oplus k\) which holds if and only if
+\(k= x \oplus y\). Since \(k\) is chosen uniformly at random in
+\(\{0,1\}^n\), the probability that \(k\) happens to equal
+\(k \oplus y\) is exactly \(2^{-n}\), which means that every string
+\(y\) is output by \(Y_x\) with probability \(2^{-n}\).
+
+\end{proof}
+
+
+\begin{marginfigure}
+\centering
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/onetimepad.png}
+\caption{In the \emph{one time pad} encryption scheme we encrypt a
+plaintext \(x\in \{0,1\}^n\) with a key \(k\in \{0,1\}^n\) by the
+ciphertext \(x \oplus k\) where \(\oplus\) denotes the bitwise XOR
+operation.}
+\label{onetimepadfig}
+\end{marginfigure}
+
+\begin{pause} \label[pause]{The-argument-above-is-qui}
+
+The argument above is quite simple but is worth reading again. To
+understand why the one-time pad is perfectly secret, it is useful to
+envision it as a bipartite graph as we've done in
+\cref{onetimepadtwofig}. (In fact the encryption scheme of
+\cref{onetimepadtwofig} is precisely the one-time pad for \(n=2\).) For
+every \(n\), the one-time pad encryption scheme corresponds to a
+bipartite graph with \(2^n\) vertices on the ``left side'' corresponding
+to the plaintexts in \(\{0,1\}^n\) and \(2^n\) vertices on the ``right
+side'' corresponding to the ciphertexts \(\{0,1\}^n\). For every
+\(x\in \{0,1\}^n\) and \(k\in \{0,1\}^n\), we connect \(x\) to the
+vertex \(y=E_k(x)\) with an edge that we label with \(k\). One can see
+that this is the complete bipartite graph, where every vertex on the
+left is connected to \emph{all} vertices on the right. In particular
+this means that for every left vertex \(x\), the distribution on the
+ciphertexts obtained by taking a random \(k\in \{0,1\}^n\) and going to
+the neighbor of \(x\) on the edge labeled \(k\) is the uniform
+distribution over \(\{0,1\}^n\). This ensures the perfect secrecy
+condition.
+
+\end{pause}
+
+\section{Necessity of long keys}\label{Necessity-of-long-keys}
+
+So, does \cref{onetimepad} give the final word on cryptography, and
+means that we can all communicate with perfect secrecy and live happily
+ever after? No it doesn't. While the one-time pad is efficient, and
+gives perfect secrecy, it has one glaring disadvantage: to communicate
+\(n\) bits you need to store a key of length \(n\). In contrast,
+practically used cryptosystems such as AES-128 have a short key of
+\(128\) bits (i.e., \(16\) bytes) that can be used to protect terabytes
+or more of communication! Imagine that we all needed to use the one time
+pad. If that was the case, then if you had to communicate with \(m\)
+people, you would have to maintain (securely!) \(m\) huge files that are
+each as long as the length of the maximum total communication you expect
+with that person. Imagine that every time you opened an account with
+Amazon, Google, or any other service, they would need to send you in the
+mail (ideally with a secure courier) a DVD full of random numbers, and
+every time you suspected a virus, you'd need to ask all these services
+for a fresh DVD. This doesn't sound so appealing.
+
+This is not just a theoretical issue. The Soviets have used the one-time
+pad for their confidential communication since before the 1940's. In
+fact, even before Shannon's work, the U.S. intelligence already knew in
+1941 that the one-time pad is in principle ``unbreakable'' (see page 32
+in the \href{http://nsarchive.gwu.edu/NSAEBB/NSAEBB278/01.PDF}{Venona
+document}). However, it turned out that the hassle of manufacturing so
+many keys for all the communication took its toll on the Soviets and
+they ended up reusing the same keys for more than one message. They did
+try to use them for completely different receivers in the (false) hope
+that this wouldn't be detected. The
+\href{https://en.wikipedia.org/wiki/Venona_project}{Venona Project} of
+the U.S. Army was founded in February 1943 by Gene Grabeel (see
+\cref{genegrabeelfig}), a former home economics teacher from Madison
+Heights, Virgnia and Lt. Leonard Zubko. In October 1943, they had their
+breakthrough when it was discovered that the Russians were reusing their
+keys.\footnote{Credit to this discovery is shared by Lt. Richard
+  Hallock, Carrie Berry, Frank Lewis, and Lt. Karl Elmquist, and there
+  are others that have made important contribution to this project. See
+  pages 27 and 28 in the document.} In the 37 years of its existence,
+the project has resulted in a treasure chest of intelligence, exposing
+hundreds of KGB agents and Russian spies in the U.S. and other
+countries, including Julius Rosenberg, Harry Gold, Klaus Fuchs, Alger
+Hiss, Harry Dexter White and many others.
+
+
+\begin{marginfigure}
+\centering
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/genevenona.png}
+\caption{Gene Grabeel, who founded the U.S. Russian SigInt program on 1
+Feb 1943. Photo taken in 1942, see Page 7 in the Venona historical
+study.}
+\label{genegrabeelfig}
+\end{marginfigure}
+
+Unfortunately it turns out that (as shown by Shannon) that such long
+keys are \emph{necessary} for perfect secrecy:
+
+
+\begin{marginfigure}
+\centering
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/longkeygraph.png}
+\caption{An encryption scheme where the number of keys is smaller than
+the number of plaintexts corresponds to a bipartite graph where the
+degree is smaller than the number of vertices on the left side. Together
+with the validity condition this implies that there will be two left
+vertices \(x,x'\) with non-identical neighborhoods, and hence the scheme
+does \emph{not} satisfy perfect secrecy.}
+\label{longkeygraphfig}
+\end{marginfigure}
+
+\hypertarget{longkeysthm}{}
+\begin{theorem}[Perfect secrecy requires long keys] \label[theorem]{longkeysthm}
+
+For every perfectly secret encryption scheme \((E,D)\) the length
+function \(L\) satisfies \(L(n) \leq n\).
+
+\end{theorem}
+
+\begin{proofidea} \label[proofidea]{The-idea-behind-the-proof}
+
+The idea behind the proof is illustrated in \cref{longkeygraphfig}. If
+the number of keys is smaller than the number of messages then the
+neighborhoods of all vertices in the corresponding graphs cannot be
+identical.
+
+\end{proofidea}
+
+\begin{proof}[Proof of \cref{longkeysthm}] \label[proof]{Let-ED-be-a-valid-encrypt}
+
+Let \(E,D\) be a valid encryption scheme with messages of length \(L\)
+and key of length \(n<L\). We will show that \((E,D)\) is not perfectly
+secret by providing two plaintexts \(x_0,x_1 \in \{0,1\}^L\) such that
+the distributions \(Y_{x_0}\) and \(Y_{x_1}\) are not identical, where
+\(Y_x\) is the distribution obtained by picking \(k \sim \{0,1\}^n\) and
+outputting \(E_k(x)\). We choose \(x_0 = 0^L\). Let
+\(S_0 \subseteq \{0,1\}^*\) be the set of all ciphertexts that have
+nonzero probability of being output in \(Y_{x_0}\). That is,
+\(S=\{ y \;|\; \exists_{k\in \{0,1\}^n} y=E_k(x_0) \}\). Since there are
+only \(2^n\) keys, we know that \(|S_0| \leq 2^n\).
+
+We will show the following claim:
+
+\textbf{Claim I:} There exists some \(x_1 \in \{0,1\}^L\) and
+\(k\in \{0,1\}^n\) such that \(E_k(x_1) \not\in S_0\).
+
+Claim I implies that the string \(E_k(x_1)\) has positive probability of
+being output by \(Y_{x_1}\) and zero probability of being output by
+\(Y_{x_0}\) and hence in particular \(Y_{x_0}\) and \(Y_{x_1}\) are not
+identical. To prove Claim I, just choose a fixed \(k\in \{0,1\}^n\). By
+the validity condition, the map \(x \mapsto E_k(x)\) is a one to one map
+of \(\{0,1\}^L\) to \(\{0,1\}^*\) and hence in particular the
+\emph{image} of this map: the set
+\(I = \{ y \;|\; \exists_{x\in \{0,1\}^L} y=E_k(x) \}\) has size at
+least (in fact exactly) \(2^L\). Since \(|S_0| = 2^n < 2^L\), this means
+that \(|I|>|S_0|\) and so in particular there exists some string \(y\)
+in \(I \setminus S_0\). But by the definition of \(I\) this means that
+there is some \(x\in \{0,1\}^L\) such that \(E_k(x) \not\in S_0\) which
+concludes the proof of Claim I and hence of \cref{longkeysthm}.
+
+\end{proof}
+
+\subsection{Advanced comment: Adding probability into the
+picture}\label{Advanced-comment-Adding-p}
+
+There is a sense in which both our secrecy and our impossiblity results
+might not be fully convincing, and that is that we did not explicitly
+consider algorithms that use \emph{randomness} . For example, maybe Eve
+can break a perfectly secret encryption if she is not modeled as a
+deterministic function \(Eve:\{0,1\}^o\rightarrow\{0,1\}^\ell\) but
+rather a \emph{probabilistic} process. Similarly, maybe the encryption
+and decryption functions could be probabilistic processes as well. It
+turns out that none of those matter. For the former, note that a
+probabilistic process can be thought of as a \emph{distribution} over
+functions, in the sense that we have a collection of functions
+\(f_1,...,f_N\) mapping \(\{0,1\}^o\) to \(\{0,1\}^\ell\), and some
+probabilities \(p_1,\ldots,p_N\) (non-negative numbers summing to
+\(1\)), so we now think of Eve as selecting the function \(f_i\) with
+probability \(p_i\). But if none of those functions can give an
+advantage better than \(1/2\), then neither can this collection. A
+similar (though more involved) argument shows that the impossiblity
+result showing that the key must be at least as long as the message
+still holds even if the encryption and decryption algorithms are allowed
+to be probabilistic processes as well (working this out is a great
+exercise).

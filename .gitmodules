@@ -3,3 +3,7 @@
 	path = deploy
 	url = https://github.com/boazbk/cryptodeploy.git
 	branch = master
+[submodule "content"]
+	path = content
+	url = https://github.com/boazbk/crypto.git
+	branch = master
