@@ -1,7 +1,8 @@
 [submodule "content"]
-	path = crypto
+	path = content
 	url = https://github.com/boazbk/crypto.git
 	branch = master
+
 [submodule "deploy"]
 	path = deploy
 	url = https://github.com/boazbk/cryptodeploy.git
