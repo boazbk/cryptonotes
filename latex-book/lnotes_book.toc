@@ -10,57 +10,57 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {part}{I\hspace {1em}Preliminaries}{21}{part.25}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {0}Introduction}{23}{chapter.26}% 
+\contentsline {chapter}{\numberline {0}Mathematical Background}{23}{chapter.26}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Additional reading:}{23}{paragraph*.27}% 
+\contentsline {section}{\numberline {0.1}A quick overview of mathematical prerequisites}{23}{section.27}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.1}Defining encryptions}{26}{section.32}% 
+\contentsline {section}{\numberline {0.2}Mathematical Proofs}{25}{section.28}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {0.1.1}Generating randomness in actual cryptographic systems}{29}{subsection.36}% 
+\contentsline {subsection}{\numberline {0.2.1}Example: The existence of infinitely many primes.}{26}{subsection.32}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.2}Defining the secrecy requirement.}{30}{section.38}% 
+\contentsline {section}{\numberline {0.3}Probability and Sample spaces}{27}{section.36}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.3}Perfect Secrecy}{34}{section.45}% 
+\contentsline {subsection}{\numberline {0.3.1}Random variables}{30}{subsection.43}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {0.4}Necessity of long keys}{36}{section.55}% 
+\contentsline {subsection}{\numberline {0.3.2}Distributions over strings}{32}{subsection.50}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {0.4.1}Advanced comment: Adding probability into the picture}{38}{subsection.59}% 
+\contentsline {subsection}{\numberline {0.3.3}More general sample spaces.}{32}{subsection.51}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {1}Mathematical Background}{39}{chapter.60}% 
+\contentsline {section}{\numberline {0.4}Correlations and independence}{33}{section.52}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.1}A quick overview of mathematical prerequisites}{39}{section.61}% 
+\contentsline {paragraph}{Conditional probability:}{34}{paragraph*.57}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.2}Mathematical Proofs}{41}{section.62}% 
+\contentsline {paragraph}{More than two events:}{34}{paragraph*.58}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.2.1}Example: The existence of infinitely many primes.}{42}{subsection.66}% 
+\contentsline {subsection}{\numberline {0.4.1}Independent random variables}{34}{subsection.61}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.3}Probability and Sample spaces}{43}{section.70}% 
+\contentsline {subsection}{\numberline {0.4.2}Collections of independent random variables.}{36}{subsection.66}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.3.1}Random variables}{46}{subsection.77}% 
+\contentsline {section}{\numberline {0.5}Concentration}{36}{section.71}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.3.2}Distributions over strings}{48}{subsection.84}% 
+\contentsline {paragraph}{Going beyond Markov’s Inequality:}{37}{paragraph*.76}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.3.3}More general sample spaces.}{48}{subsection.85}% 
+\contentsline {subsection}{\numberline {0.5.1}Chebyshev's Inequality}{38}{subsection.77}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.4}Correlations and independence}{49}{section.86}% 
+\contentsline {subsection}{\numberline {0.5.2}The Chernoff bound}{39}{subsection.80}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Conditional probability:}{50}{paragraph*.91}% 
+\contentsline {section}{\numberline {0.6}Exercises}{39}{section.84}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{More than two events:}{50}{paragraph*.92}% 
+\contentsline {chapter}{\numberline {1}Introduction}{43}{chapter.108}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.4.1}Independent random variables}{50}{subsection.95}% 
+\contentsline {paragraph}{Additional reading:}{43}{paragraph*.109}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.4.2}Collections of independent random variables.}{52}{subsection.100}% 
+\contentsline {section}{\numberline {1.1}Defining encryptions}{46}{section.114}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.5}Concentration}{52}{section.105}% 
+\contentsline {subsection}{\numberline {1.1.1}Generating randomness in actual cryptographic systems}{49}{subsection.118}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Going beyond Markov’s Inequality:}{53}{paragraph*.110}% 
+\contentsline {section}{\numberline {1.2}Defining the secrecy requirement.}{50}{section.120}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.5.1}Chebyshev's Inequality}{54}{subsection.111}% 
+\contentsline {section}{\numberline {1.3}Perfect Secrecy}{54}{section.127}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.5.2}The Chernoff bound}{55}{subsection.114}% 
+\contentsline {section}{\numberline {1.4}Necessity of long keys}{56}{section.137}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1.6}Exercises}{55}{section.118}% 
+\contentsline {subsection}{\numberline {1.4.1}Advanced comment: Adding probability into the picture}{58}{subsection.141}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {part}{II\hspace {1em}Private key cryptography}{59}{part.142}% 
 \defcounter {refsection}{0}\relax 
