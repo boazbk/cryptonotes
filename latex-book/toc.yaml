@@ -208,23 +208,23 @@
 '19.3': {filename: lec_18_SFE_part2.html, href: bottom-line-a-two-party-honest-but-curious-two-party-secure-computation-protocol,
   title: 'Bottom line: A two party honest but curious two party secure computation
     protocol'}
-'2': {filename: lec_02_computational_security.html, href: '', title: Computational
+'2': {filename: lec_02_computational-security.html, href: '', title: Computational
     Security}
-2.0.1: {filename: lec_02_computational_security.html, href: proof-by-reduction, title: Proof
+2.0.1: {filename: lec_02_computational-security.html, href: proof-by-reduction, title: Proof
     by reduction}
-'2.1': {filename: lec_02_computational_security.html, href: the-asymptotic-approach,
+'2.1': {filename: lec_02_computational-security.html, href: the-asymptotic-approach,
   title: The asymptotic approach}
-2.1.1: {filename: lec_02_computational_security.html, href: counting-number-of-operations.,
+2.1.1: {filename: lec_02_computational-security.html, href: counting-number-of-operations.,
   title: Counting number of operations.}
-'2.2': {filename: lec_02_computational_security.html, href: our-first-conjecture,
+'2.2': {filename: lec_02_computational-security.html, href: our-first-conjecture,
   title: Our first conjecture}
-'2.3': {filename: lec_02_computational_security.html, href: why-care-about-the-cipher-conjecture,
+'2.3': {filename: lec_02_computational-security.html, href: why-care-about-the-cipher-conjecture,
   title: 'Why care about the cipher conjecture?'}
-'2.4': {filename: lec_02_computational_security.html, href: prelude-computational-indistinguishability,
+'2.4': {filename: lec_02_computational-security.html, href: prelude-computational-indistinguishability,
   title: 'Prelude: Computational Indistinguishability'}
-'2.5': {filename: lec_02_computational_security.html, href: the-length-extension-theorem,
+'2.5': {filename: lec_02_computational-security.html, href: the-length-extension-theorem,
   title: The Length Extension Theorem}
-2.5.1: {filename: lec_02_computational_security.html, href: appendix-the-computational-model,
+2.5.1: {filename: lec_02_computational-security.html, href: appendix-the-computational-model,
   title: 'Appendix: The computational model'}
 '20': {filename: lec_19_quantum.html, href: '', title: Quantum computing and cryptography
     I}
@@ -405,8 +405,8 @@
     extraction}
 8.4.1: {filename: lec_08_hash_functions_part2.html, href: forward-and-backward-secrecy,
   title: Forward and backward secrecy}
-'9': {filename: lec_00_0_foreword.html, href: '', title: Private key crypto recap}
-9.0.1: {filename: lec_00_0_foreword.html, href: attacks-on-private-key-cryptosystems,
+'9': {filename: lec_09_priv_recap.html, href: '', title: Private key crypto recap}
+9.0.1: {filename: lec_09_priv_recap.html, href: attacks-on-private-key-cryptosystems,
   title: Attacks on private key cryptosystems}
 p: {filename: lec_00_0_foreword.html, href: '', title: Foreword and Syllabus}
 p.1: {filename: lec_00_0_foreword.html, href: syllabus, title: Syllabus}
