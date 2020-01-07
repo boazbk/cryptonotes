@@ -2,9 +2,9 @@
 
 This is a brief review of some mathematical tools, and especially
 probability theory, that we will use in this course. See also the
-\href{http://www.introtcs.org/public/lec_00_1_math_background.pdf}{mathematical
+\href{http://www.introtcs.org/public/lec_00_1_math_background.html}{mathematical
 background} and
-\href{http://www.introtcs.org/public/lec_15_probability.pdf}{probability}
+\href{http://www.introtcs.org/public/lec_15_probability.html}{probability}
 lectures in my \href{http://www.introtcs.org/}{Notes on Introduction to
 Theoretical Computer Science}, which share much of the following text.
 
@@ -14,13 +14,13 @@ AM107 ``Graph Theory and Combinatorics''. Some good sources for this
 material are the lecture notes by Papadimitriou and Vazirani (see home
 page of Umesh Vaziarani), Lehman, Leighton and Meyer from MIT Course
 6.042 ``Mathematics For Computer Science'' (Chapters 1-2 and 14 to 19
-are particularly relevant). The mathematical tool we use most often is
-discrete probability. The ``Probabilistic Method'' book by Alon and
-Spencer is a great resource in this area. Also, the books of
-Mitzenmacher and Upfal and Prabhakar and Raghavan cover probability from
-a more algorithmic perspective. For an excellent popular discussion of
-some of the mathematical concepts we'll talk about, I can't recommend
-highly enough the book \emph{``How Not to Be Wrong''} by Jordan
+are particularly relevant), and the Berkeley course CS 70. The
+mathematical tool we use most often is discrete probability. The
+``Probabilistic Method'' book by Alon and Spencer is a great resource in
+this area. Also, the books of Mitzenmacher and Upfal and Prabhakar and
+Raghavan cover probability from a more algorithmic perspective. For an
+excellent popular discussion of some of the mathematical concepts we'll
+talk about see the book \emph{``How Not to Be Wrong''} by Jordan
 Ellenberg.
 
 Although knowledge of algorithms is not strictly necessary, it would be
@@ -83,6 +83,12 @@ The main notions we will use in this course are the following:
 \item
   \textbf{Basic combinatorics:} Notions such as \(\binom{n}{k}\) (the
   number of \(k\)-sized subset of a set of size \(n\)).
+\item
+  \textbf{Discrete probability:} We will extensively use
+  \emph{probability theory}, and specifically probability over
+  \emph{finite} samples spaces such as tossing \(n\) coins, including
+  notions such as \emph{random variables}, \emph{expectation}, and
+  \emph{concentration}.
 \item
   \textbf{Modular arithmetic:} We will use
   \href{https://en.wikipedia.org/wiki/Modular_arithmetic}{modular
@@ -284,7 +290,8 @@ additional resources to get up to speed.\footnote{Harvard's
   \href{http://projects.iq.harvard.edu/stat110/youtube}{youtube} ) is a
   highly recommended introduction to probability. See also these
   \href{http://www.boazbarak.org/cs121/LLM_probability.pdf}{lecture
-  notes} from MIT's ``Mathematics for Computer Science'' course.}
+  notes} from MIT's ``Mathematics for Computer Science'' course ,as well
+  as notes 12-17 of Berkeley's \href{https://www.eecs70.org/}{CS 70}.}
 
 The nature of randomness and probability is a topic of great
 philosophical, scientific and mathematical depth. Is there actual
@@ -344,12 +351,24 @@ will be contained in \(A\). Note that this is the same as \(|A|/2^n\)
 ones is \(\Pr[A]\) where
 \(A=\{ x : \sum_{i=0}^{n-1} x_i \;= 0 \mod 2 \}\). In the case \(n=3\),
 \(A=\{ 000,011,101,110 \}\), and hence
-\(\Pr[A]=\tfrac{4}{8}=\tfrac{1}{2}\). It turns out this is true for
-every \(n\):
+\(\Pr[A]=\tfrac{4}{8}=\tfrac{1}{2}\) (see \cref{eventhreecoinsfig}). It
+turns out this is true for every \(n\):
+
+
+\begin{marginfigure}
+\centering
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/even3coins.png}
+\caption{The event that if we toss three coins
+\(x_0,x_1,x_2 \in \{0,1\}\) then the sum of the \(x_i\)'s is even has
+probability \(1/2\) since it corresponds to exactly \(4\) out of the
+\(8\) possible strings of length \(3\).}
+\label{eventhreecoinsfig}
+\end{marginfigure}
 
 \hypertarget{evenprob}{}
-\begin{lemma}[Even one's] \label[lemma]{evenprob}
+\begin{lemma} \label[lemma]{evenprob}
 
+For every \(n>0\),
 \[\Pr_{x\sim \{0,1\}^n}[ \text{$\sum_{i=0}^{n-1} x_i$ is even }] = 1/2\]
 
 \end{lemma}
@@ -361,18 +380,32 @@ lemma on your own.
 
 \end{pause}
 
-\begin{proof}[Proof of \cref{evenprob}] \label[proof]{Let-A---x-in-n--sumin--xi}
+\begin{proof}[Proof of \cref{evenprob}] \label[proof]{We-prove-the-lemma-by-ind}
 
-Let \(A = \{ x \in \{0,1\}^n : \sum_{i=0}^{n-1} x_i = 0 \mod 2 \}\).
-Since every \(x\) is obtained with probability \(2^{-n}\), to show this
-we need to show that \(|A|=2^n/2=2^{n-1}\). For every
-\(x_0,\ldots,x_{n-2}\), if \(\sum_{i=0}^{n-2} x_i\) is even then
-\((x_0,\ldots,x_{n-1},0)\in A\) and
-\((x_0,\ldots,x_{n-1},1) \not\in A\). Similarly, if
-\(\sum_{i=0}^{n-2} x_i\) is odd then \((x_0,\ldots,x_{n-1},1) \in A\)
-and \((x_0,\ldots,x_{n-1},0)\not\in A\). Hence, for every one of the
-\(2^{n-1}\) prefixes \((x_0,\ldots,x_{n-2})\), there is exactly a single
-continuation of \((x_0,\ldots,x_{n-2})\) that places it in \(A\).
+We prove the lemma by induction on \(n\). For the case \(n=1\) it is
+clear since \(x=0\) is even and \(x=1\) is odd, and hence the
+probability that \(x\in \{0,1\}\) is even is \(1/2\). Let \(n>1\). We
+assume by induction that the lemma is true for \(n-1\) and we will prove
+it for \(n\). We split the set \(\{0,1\}^n\) into four disjoint sets
+\(E_0,E_1,O_0,O_1\), where for \(b\in \{0,1\}\), \(E_b\) is defined as
+the set of \(x\in \{0,1\}^n\) such that \(x_0\cdots x_{n-2}\) has even
+number of ones and \(x_{n-1}=b\) and similarly \(O_b\) is the set of
+\(x\in \{0,1\}^n\) such that \(x_0 \cdots x_{n-2}\) has odd number of
+ones and \(x_{n-1}=b\). Since \(E_0\) is obtained by simply extending
+\(n-1\)-length string with even number of ones by the digit \(0\), the
+size of \(E_0\) is simply the number of such \(n-1\)-length strings
+which by the induction hypothesis is \(2^{n-1}/2 = 2^{n-2}\). The same
+reasoning applies for \(E_1\), \(O_0\), and \(O_1\). Hence each one of
+the four sets \(E_0,E_1,O_0,O_1\) is of size \(2^{n-2}\). Since
+\(x\in \{0,1\}^n\) has an even number of ones if and only if
+\(x \in E_0 \cup O_1\) (i.e., either the first \(n-1\) coordinates sum
+up to an even number and the final coordinate is \(0\) or the first
+\(n-1\) coordinates sum up to an odd number and the final coordinate is
+\(1\)), we get that the probability that \(x\) satisfies this property
+is \[
+\tfrac{|E_0\cup O_1|}{2^n} = \frac{2^{n-2}+2^{n-2}}{2^n} = \frac{1}{2} \;,
+\] using the fact that \(E_0\) and \(O_1\) are disjoint and hence
+\(|E_0 \cup O_1| = |E_0|+|O_1|\).
 
 \end{proof}
 
@@ -384,8 +417,8 @@ We can also use the \emph{intersection} (\(\cap\)) and \emph{union}
 as \(\Pr[A\cap B]\) where
 \(A=\{ x\in \{0,1\}^n : \sum_{i=0}^{n-1} x_i =0 \mod 2 \}\) and
 \(B=\{ x\in \{0,1\}^n : x_0 = 1 \}\). This probability is equal to
-\(1/4\). (It is a great exercise for you to pause here and verify that
-you understand why this is the case.)
+\(1/4\) for \(n > 1\). (It is a great exercise for you to pause here and
+verify that you understand why this is the case.)
 
 Because intersection corresponds to considering the logical AND of the
 conditions that two events happen, while union corresponds to
@@ -440,16 +473,12 @@ analyze finer questions. For example, if we make a bet at the roulette
 wheel, we don't want to just analyze whether we won or lost, but also
 \emph{how much} we've gained. A (real valued) \emph{random variable} is
 simply a way to associate a number with the result of a probabilistic
-experiment. Formally, a random variable is simply a function
+experiment. Formally, a random variable is a function
 \(X:\{0,1\}^n \rightarrow \R\) that maps every outcome
-\(x\in \{0,1\}^n\) to a real number \(X(x)\).\footnote{In many
-  probability texts a random variable is always defined to have values
-  in the set \(\R\) of real numbers, and this will be our default option
-  as well. However, in some contexts in theoretical computer science we
-  can consider random variables mapping to other sets such as
-  \(\{0,1\}^*\).} For example, the function
-\(sum:\{0,1\}^n \rightarrow \R\) that maps \(x\) to the sum of its
-coordinates (i.e., to \(\sum_{i=0}^{n-1} x_i\)) is a random variable.
+\(x\in \{0,1\}^n\) to an element \(X(x) \in \R\). For example, the
+function \(sum:\{0,1\}^n \rightarrow \R\) that maps \(x\) to the sum of
+its coordinates (i.e., to \(\sum_{i=0}^{n-1} x_i\)) is a random
+variable.
 
 The \emph{expectation} of a random variable \(X\), denoted by \(\E[X]\),
 is the average value that that this number takes, taken over all draws
@@ -470,14 +499,14 @@ that it is \emph{linear}:
 
 \end{lemma}
 
-\begin{proof} \label[proof]{beginsplitE-XY--sumxin-n-}
+\begin{proof} \label[proof]{begingatheredE-XY--sumxin}
 
 \[
-\begin{split}
+\begin{gathered}
 \E [X+Y] = \sum_{x\in \{0,1\}^n}2^{-n}\left(X(x)+Y(x)\right) =  \\
 \sum_{x\in \{0,1\}^b} 2^{-n}X(x) + \sum_{x\in \{0,1\}^b} 2^{-n}Y(x) = \\
 \E[X] + \E[Y]
-\end{split}
+\end{gathered}
 \]
 
 \end{proof}
@@ -583,7 +612,7 @@ and the map \(G:\{0,1\}^2 \rightarrow \{0,1\}^2\) defined as
 \subsection{More general sample
 spaces.}\label{More-general-sample-space}
 
-While in this lecture we assume that the underlying probabilistic
+While in this chapter we assume that the underlying probabilistic
 experiment corresponds to tossing \(n\) independent coins, everything we
 say easily generalizes to sampling \(x\) from a more general finite or
 countable set \(S\) (and not-so-easily generalizes to uncountable sets
@@ -597,9 +626,6 @@ is \(\sum_{x\in A} \mu(x)\). A \emph{random variable} is a function
 \(X:S \rightarrow \R\), where the probability that \(X=y\) is equal to
 \(\sum_{x\in S \text{ s.t. } X(x)=y} \mu(x)\).
 
-\footnote{TODO: add exercise on simulating die tosses and choosing a
-  random number in \([m]\) by coin tosses}
-
 \section{Correlations and independence}\label{Correlations-and-independ}
 
 One of the most delicate but important concepts in probability is the
@@ -610,10 +636,10 @@ predictions have been blamed on miscalculating the correlations between,
 say, housing prices in Florida and Arizona, or voter preferences in Ohio
 and Michigan. See also Joe Blitzstein's aptly named talk
 \href{https://youtu.be/dzFf3r1yph8}{``Conditioning is the Soul of
-Statistics''}.\footnote{Another thorny issue is of course the difference
-  between \emph{correlation} and \emph{causation}. Luckily, this is
-  another point we don't need to worry about in our clean setting of
-  tossing \(n\) coins.}
+Statistics''}. (Another thorny issue is of course the difference between
+\emph{correlation} and \emph{causation}. Luckily, this is another point
+we don't need to worry about in our clean setting of tossing \(n\)
+coins.)
 
 Two events \(A\) and \(B\) are \emph{independent} if the fact that \(A\)
 happens makes \(B\) neither more nor less likely to happen. For example,
@@ -726,8 +752,8 @@ also \cref{independencecoinsfig}).
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/independencecoins.png}
 \caption{Consider the sample space \(\{0,1\}^n\) and the events
 \(A,B,C,D,E\) corresponding to \(A\): \(x_0=1\), \(B\): \(x_1=1\),
-\(C\): \(x_0+x_1+x_2 \geq 2\), \(D\): \(x_0+x_1+x_2 = 0 \mod 2\) and
-\(D\): \(x_0+x_1 = 0 \mod 2\). We can see that \(A\) and \(B\) are
+\(C\): \(x_0+x_1+x_2 \geq 2\), \(D\): \(x_0+x_1+x_2 = 0 mod 2\) and
+\(D\): \(x_0+x_1 = 0 mod 2\). We can see that \(A\) and \(B\) are
 independent, \(C\) is positively correlated with \(A\) and positively
 correlated with \(B\), the three events \(A,B,D\) are mutually
 independent, and while every pair out of \(A,B,E\) is independent, the
@@ -743,14 +769,14 @@ variables}\label{Independent-random-variab}
 We say that two random variables \(X:\{0,1\}^n \rightarrow \R\) and
 \(Y:\{0,1\}^n \rightarrow \R\) are independent if for every
 \(u,v \in \R\), the events \(\{ X=u \}\) and \(\{ Y=v \}\) are
-independent.\footnote{We use \(\{ X=u \}\) as shorthand for
-  \(\{ x \;|\; X(x)=u \}\).} In other words, \(X\) and \(Y\) are
+independent. (We use \(\{ X=u \}\) as shorthand for
+\(\{ x \;|\; X(x)=u \}\).) In other words, \(X\) and \(Y\) are
 independent if \(\Pr[ X=u \wedge Y=v]=\Pr[X=u]\Pr[Y=v]\) for every
 \(u,v \in \R\). For example, if two random variables depend on the
 result of tossing different coins then they are independent:
 
 \hypertarget{indcoins}{}
-\begin{lemma}[Independant random variables] \label[lemma]{indcoins}
+\begin{lemma} \label[lemma]{indcoins}
 
 Suppose that \(S=\{ s_0,\ldots, s_{k-1} \}\) and
 \(T=\{ t_0 ,\ldots, t_{m-1} \}\) are disjoint subsets of
@@ -776,10 +802,10 @@ coins), then they are independent.
 \begin{proof}[Proof of \cref{indcoins}] \label[proof]{Let-abin-R-and-let-A---x-}
 
 Let \(a,b\in \R\), and let \(A = \{ x \in \{0,1\}^k : F(x)=a \}\) and
-\(B=\{ x\in \{0,1\}^m : G(x)=b \}\). Since \(S\) and \(T\) are disjoint,
+\(B=\{ x\in \{0,1\}^m : F(x)=b \}\). Since \(S\) and \(T\) are disjoint,
 we can reorder the indices so that \(S = \{0,\ldots,k-1\}\) and
 \(T=\{k,\ldots,k+m-1\}\) without affecting any of the probabilities.
-Hence we can write \(\Pr[X=a \wedge Y=b] = |C|/2^n\) where
+Hence we can write \(\Pr[X=a \wedge X=b] = |C|/2^n\) where
 \(C= \{ x_0,\ldots,x_{n-1} : (x_0,\ldots,x_{k-1}) \in A \wedge (x_k,\ldots,x_{k+m-1}) \in B \}\).
 Another way to write this using string concatenation is that
 \(C = \{ xyz : x\in A, y\in B, z\in \{0,1\}^{n-k-m} \}\), and hence
@@ -792,11 +818,11 @@ Another way to write this using string concatenation is that
 Note that if \(X\) and \(Y\) are independent random variables then (if
 we let \(S_X,S_Y\) denote all the numbers that have positive probability
 of being the output of \(X\) and \(Y\), respectively) it holds that: \[
-\begin{split}
+\begin{gathered}
 \E[ \ensuremath{\mathit{XY}} ] = \sum_{a \in S_X,b \in S_Y} {\textstyle\Pr[X=a \wedge Y=b]}\cdot ab \; =^{(1)} \; \sum_{a \in S_X,b \in S_Y} {\textstyle \Pr[X=a]\Pr[Y=b]}\cdot ab =^{(2)} \\
 \left(\sum_{a \in S_X} {\textstyle \Pr[X=a]}\cdot a\right)\left(\sum_{b \in S_Y} {\textstyle \Pr[Y=b]}b\right) =^{(3)} \\
 \E[X] \E[Y]
-\end{split}
+\end{gathered}
 \] where the first equality (\(=^{(1)}\)) follows from the independence
 of \(X\) and \(Y\), the second equality (\(=^{(2)}\)) follows by
 ``opening the parentheses'' of the righthand side, and the third
@@ -812,12 +838,12 @@ variables, then so are \(F(X)\) and \(G(Y)\) for all functions
 Indeed, to prove this we can write for every \(a,b \in \R\):
 
 \[
-\begin{split}
+\begin{gathered}
 \Pr[ F(X)=a \wedge G(Y)=b ] = \sum_{x \text{ s.t.} F(x)=a, y \text{ s.t. } G(y)=b} \Pr[ X=x \wedge Y=y ] = \\
 \sum_{x \text{ s.t.} F(x)=a, y \text{ s.t. } G(y)=b} \Pr[ X=x ] \Pr[  Y=y ]  = \\
 \left( \sum_{x \text{ s.t.} F(x)=a } \Pr[X=x ] \right) \cdot \left( \sum_{y \text{ s.t.} G(y)=b } \Pr[Y=y ] \right) = \\
 \Pr[ F(X)=a] \Pr[G(Y)=b] .
-\end{split}
+\end{gathered}
 \]
 
 \subsection{Collections of independent random
@@ -825,7 +851,7 @@ variables.}\label{Collections-of-independen}
 
 We can extend the notions of independence to more than two random
 variables: we say that the random variables \(X_0,\ldots,X_{n-1}\) are
-\emph{mutually independent} if for every \(a_0,\ldots,a_{n-1} \in \E\),
+\emph{mutually independent} if for every \(a_0,\ldots,a_{n-1} \in \R\),
 \[
 \Pr\left[X_0=a_0 \wedge \cdots \wedge X_{n-1}=a_{n-1}\right]=\Pr[X_0=a_0]\cdots \Pr[X_{n-1}=a_{n-1}] .
 \] And similarly, we have that
@@ -858,7 +884,7 @@ independence, as we will use it heavily later on in this course.
 
 \end{pause}
 
-\section{Concentration}\label{Concentration}
+\section{Concentration and tail bounds}\label{Concentration-and-tail-bo}
 
 The name ``expectation'' is somewhat misleading. For example, suppose
 that you and I place a bet on the outcome of 10 coin tosses, where if
@@ -872,17 +898,17 @@ gain, then we see that
 \]
 
 But we don't really ``expect'' the result of this experiment to be for
-you to gain 90 dollars. Rather, 99.9 percent of the time you will pay me
-10 dollars, and you will hit the jackpot 0.01 percent of the times.
+you to gain 90 dollars. Rather, 99.9\% of the time you will pay me 10
+dollars, and you will hit the jackpot 0.01\% of the times.
 
 However, if we repeat this experiment again and again (with fresh and
 hence \emph{independent} coins), then in the long run we do expect your
-average earning to be 90 dollars, which is the reason why casinos can
-make money in a predictable way even though every individual bet is
-random. For example, if we toss \(n\) coins, then as \(n\) grows, the
-number of coins that come up ones will be more and more
-\emph{concentrated} around \(n/2\) according to the famous ``bell
-curve'' (see \cref{bellfig}).
+average earning to be close to 90 dollars, which is the reason why
+casinos can make money in a predictable way even though every individual
+bet is random. For example, if we toss \(n\) independent and unbiased
+coins, then as \(n\) grows, the number of coins that come up ones will
+be more and more \emph{concentrated} around \(n/2\) according to the
+famous ``bell curve'' (see \cref{bellfig}).
 
 
 \begin{marginfigure}
@@ -915,8 +941,8 @@ median!) household income in the US is 70,000 dollars, then in
 particular you can deduce that at most 25 percent of households make
 more than 280,000 dollars, since otherwise, even if the remaining 75
 percent had zero income, the top 25 percent alone would cause the
-average income to be larger than 70,000. From this example you can
-already see that in many situations, Markov's inequality will not be
+average income to be larger than 70,000 dollars. From this example you
+can already see that in many situations, Markov's inequality will not be
 \emph{tight} and the probability of deviating from expectation will be
 much smaller: see the Chebyshev and Chernoff inequalities below.
 
@@ -1026,11 +1052,11 @@ according to the \emph{bell curve} (see \cref{bellfig} and
 \cref{empiricalbellfig}). This distribution has the property of being
 \emph{very} concentrated in the sense that the probability of deviating
 \(k\) standard deviations from the mean is not merely \(1/k^2\) as is
-guaranteed by Chebyshev, but rather is roughly \(e^{-k^2}\).\footnote{Specifically,
-  for a normal random variable \(X\) of expectation \(\mu\) and standard
-  deviation \(\sigma\), the probability that \(|X-\mu| \geq k\sigma\) is
-  at most \(2e^{-k^2/2}\).} That is, we have an \emph{exponential decay}
-of the probability of deviation.
+guaranteed by Chebyshev, but rather is roughly \(e^{-k^2}\).
+Specifically, for a normal random variable \(X\) of expectation \(\mu\)
+and standard deviation \(\sigma\), the probability that
+\(|X-\mu| \geq k\sigma\) is at most \(2e^{-k^2/2}\). That is, we have an
+\emph{exponential decay} of the probability of deviation.
 
 
 \begin{marginfigure}
@@ -1074,147 +1100,386 @@ generalization.)
 
 \section{Exercises}\label{Exercises}
 
-The following exercises will be part of the first problem set in the
-course, so you can get a head start by working on them now.
+\begin{exercise} \label[exercise]{Prove-that-for-every-fini}
+
+Prove that for every finite \(S,T\), there are \((|T|+1)^{|S|}\) partial
+functions from \(S\) to \(T\).
+
+\end{exercise}
+
+\hypertarget{ohnotationex}{}
+\begin{exercise}[$O$-notation] \label[exercise]{ohnotationex}
+
+For every pair of functions \(F,G\) below, determine which of the
+following relations holds: \(F=O(G)\), \(F=\Omega(G)\), \(F=o(G)\) or
+\(F=\omega(G)\).
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  \(F(n)=n\), \(G(n)=100n\).
+\item
+  \(F(n)=n\), \(G(n)=\sqrt{n}\).
+\item
+  \(F(n)=n\log n\), \(G(n)=2^{(\log (n))^2}\).
+\item
+  \(F(n)=\sqrt{n}\), \(G(n)=2^{\sqrt{\log n}}\)
+\item
+  \(F(n) = \binom{n}{\ceil{0.2 n}}\) , \(G(n) = 2^{0.1 n}\) (where
+  \(\binom{n}{k}\) is the number of \(k\)-sized subsets of a set of size
+  \(n\)) and \(g(n) = 2^{0.1 n}\). See footnote for hint.\footnote{one
+    way to do this is to use \href{https://goo.gl/cqEmS2}{Stirling's
+    approximation for the factorial function.}.}
+\end{enumerate}
+
+\end{exercise}
+
+\begin{exercise} \label[exercise]{Give-an-example-of-a-pair}
+
+Give an example of a pair of functions \(F,G:\N \rightarrow \N\) such
+that neither \(F=O(G)\) nor \(G=O(F)\) holds.
+
+\end{exercise}
+
+\hypertarget{propexpecvariance}{}
+\begin{exercise}[Properties of expectation and variance] \label[exercise]{propexpecvariance}
+
+In the following exercise \(X,Y\) denote random variables over some
+sample space \(S\). You can assume that the probability on \(S\) is the
+uniform distribution--- every point \(s\) is output with probability
+\(1/|S|\). Thus \({\mathbb{E}}[X]= (1/|S|)\sum_{s\in S}X(s)\). We define
+the variance and standard deviation of \(X\) and \(Y\) as above (e.g.,
+\(Var[X] = {\mathbb{E}}[(X-{\mathbb{E}}[X])^2 ]\) and the standard
+deviation is the square root of the variance). You can reuse your
+answers to prior questions in the later ones.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  In the following exercise \(X,Y\) denote random variables over some
-  sample space \(S\). You can assume that the probability on \(S\) is
-  the uniform distribution--- every point \(s\) is output with
-  probability \(1/|S|\). Thus
-  \({\mathbb{E}}[X]= (1/|S|)\sum_{s\in S}X(s)\). We define the variance
-  and standard deviation of \(X\) and \(Y\) as above (e.g.,
-  \(Var[X] = {\mathbb{E}}[ (X-{\mathbb{E}}[X])^2 ]\) and the standard
-  deviation is the square root of the variance).
-
-  \begin{enumerate}
-  \def\labelenumii{\arabic{enumii}.}
-  \item
-    Prove that \(Var[X]\) is always non-negative.
-  \item
-    Prove that \(Var[X] = {\mathbb{E}}[X^2] - {\mathbb{E}}[X]^2\).
-  \item
-    Prove that always \({\mathbb{E}}[X^2] \geq {\mathbb{E}}[X]^2\).
-  \item
-    Give an example for a random variable \(X\) such that
-    \({\mathbb{E}}[X^2] \neq {\mathbb{E}}[X]^2\).
-  \item
-    Give an example for a random variable \(X\) such that its standard
-    deviation is \emph{not equal} to
-    \({\mathbb{E}}[ | X - {\mathbb{E}}[X] | ]\).
-  \item
-    Give an example for two random variables \(X,Y\) such that
-    \({\mathbb{E}}[\ensuremath{\mathit{XY}}] = {\mathbb{E}}[X]{\mathbb{E}}[Y]\).
-  \item
-    Give an example for two random variables \(X,Y\) such that
-    \({\mathbb{E}}[\ensuremath{\mathit{XY}}] \neq {\mathbb{E}}[X]{\mathbb{E}}[Y]\).
-  \item
-    Prove that if \(X\) and \(Y\) are independent random variables
-    (i.e., for every \(x,y\), \(\Pr[X=x \wedge Y=y]=\Pr[X=x]\Pr[Y=y]\))
-    then
-    \({\mathbb{E}}[\ensuremath{\mathit{XY}}]={\mathbb{E}}[X]{\mathbb{E}}[Y]\)
-    and \(Var[X+Y]=Var[X]+Var[Y]\).
-  \end{enumerate}
+  Prove that \(Var[X]\) is always non-negative.
 \item
-  Suppose that \(H\) is chosen to be a random function mapping the
-  numbers \(\{1,\ldots,n\}\) to the numbers \(\{1,..,m \}\). That is,
-  for every \(i\in \{1,\ldots,n\}\), \(H(i)\) is chosen to be a random
-  number in \(\{ 1,\ldots, m \}\) and that choice is done independently
-  for every \(i\). For every \(i<j \in \{1,\ldots,n\}\), define the
-  random variable \(X_{i,j}\) to equal \(1\) if there was a
-  \emph{collision} between \(H(i)\) and \(H(j)\) in the sense that
-  \(H(i)=H(j)\) and to equal \(0\) otherwise.
-
-  \begin{enumerate}
-  \def\labelenumii{\arabic{enumii}.}
-  \item
-    For every \(i<j\), compute \({\mathbb{E}}[ X_{i,j} ]\).
-  \item
-    Define \(Y = \sum_{i<j} X_{i,j}\) to be the total number of
-    collisions. Compute \({\mathbb{E}}[ Y ]\) as a function of \(n\) and
-    \(m\). In particular your answer should imply that if
-    \(m < n^2/1000\) then \({\mathbb{E}}[Y]>1\) and hence in expectation
-    there should be at least one collision and so the function \(H\)
-    will not be one to one.
-  \item
-    Prove that if \(m > 1000\cdot n^2\) then the probability that \(H\)
-    is one to one is at least \(0.9\).
-  \item
-    Give an example of a random variable \(Z\) (unrelated to the
-    function \(H\)) that is always equal to a non-negative integer, and
-    such that \({\mathbb{E}}[Z] \geq 1000\) but \(\Pr[ Z > 0] < 0.001\).
-  \item
-    Prove that if \(m < n^2/1000\) then the probability that \(H\) is
-    one to one is at most \(0.1\).
-  \end{enumerate}
+  Prove that \(Var[X] = {\mathbb{E}}[X^2] - {\mathbb{E}}[X]^2\).
 \item
-  In this exercise we we will work out an important special case of the
-  Chernoff bound. You can take as a given the following facts:
-
-  \begin{enumerate}
-  \def\labelenumii{\arabic{enumii}.}
-  \item
-    The number of \(x\in{\{0,1\}}^n\) such that \(\sum x_i = k\) is
-    \(\binom{n}{k} = \tfrac{n!}{k!(n-k)!}\).
-  \item
-    Stirling's approximation formula: for every \(n\geq 1\),
-
-    \[
-    \sqrt{2\pi n}\left(\tfrac{n}{e}\right)^n \leq n! \leq 2\sqrt{2\pi n}\left(\tfrac{n}{e}\right)^n
-    \]
-
-    where \(e=2.7182\ldots\) is the base of the natural logarithm.
-  \end{enumerate}
-
-  Do the following:
-
-  \begin{enumerate}
-  \def\labelenumii{\arabic{enumii}.}
-  \tightlist
-  \item
-    Prove that for every \(n\),
-    \(\Pr_{x{\leftarrow_{\tiny R}}{\{0,1\}}^n} [ \sum x_i \geq 0.6n ] < 2^{-n/1000}\)
-  \end{enumerate}
-
-  The above shows that if you were given a coin of bias at least
-  \(0.6\), you should only need some constant number of samples to be
-  able to reject the ``null hypothesis'' that the coin is completely
-  unbiased with extremely high confidence. In the following somewhat
-  more challenging questions (which can be considered as bonus exercise)
-  we try to show a converse to this:
-
-  \begin{enumerate}
-  \def\labelenumii{\arabic{enumii}.}
-  \item
-    Let \(P\) be the uniform distribution over \({\{0,1\}}^n\) and \(Q\)
-    be the \(1/2+\epsilon\)-biased distribution corresponding to tossing
-    \(n\) coins in which each one has a probability of \(1/2+\epsilon\)
-    of equalling \(1\) and probability \(1/2-\epsilon\) of equalling
-    \(0\). Namely the probability of \(x\in{\{0,1\}}^n\) according to
-    \(Q\) is equal to
-    \(\prod_{i=1}^n (1/2 - \epsilon + 2\epsilon x_i)\).
-
-    \begin{enumerate}
-    \def\labelenumiii{\arabic{enumiii}.}
-    \item
-      Prove that for every threshold \(\theta\) between \(0\) and \(n\),
-      if \(n < 1/(100\epsilon)^2\) then the probabilities that
-      \(\sum x_i \leq \theta\) under \(P\) and \(Q\) respectively differ
-      by at most \(0.1\). Therefore, one cannot use the test whether the
-      number of heads is above or below some threshold to reliably
-      distinguish between these two possibilities unless the number of
-      samples \(n\) of the coins is at least some constant times
-      \(1/\epsilon^2\).
-    \item
-      Prove that for \emph{every} function \(F\) mapping \({\{0,1\}}^n\)
-      to \({\{0,1\}}\), if \(n < 1/(100\epsilon)^2\) then the
-      probabilities that \(F(x)=1\) under \(P\) and \(Q\) respectively
-      differ by at most \(0.1\). Therefore, if the number of samples is
-      smaller than a constant times \(1/\epsilon^2\) then there is
-      simply \emph{no test} that can reliably distinguish between these
-      two possiblities.
-    \end{enumerate}
-  \end{enumerate}
+  Prove that always \({\mathbb{E}}[X^2] \geq {\mathbb{E}}[X]^2\).
+\item
+  Give an example for a random variable \(X\) such that
+  \({\mathbb{E}}[X^2] > {\mathbb{E}}[X]^2\).
+\item
+  Give an example for a random variable \(X\) such that its standard
+  deviation is \emph{not equal} to
+  \({\mathbb{E}}[ | X - {\mathbb{E}}[X] | ]\).
+\item
+  Give an example for a random variable \(X\) such that its standard
+  deviation is \emph{equal to} to
+  \({\mathbb{E}}[ | X - {\mathbb{E}}[X] | ]\).
+\item
+  Give an example for two random variables \(X,Y\) such that
+  \({\mathbb{E}}[\ensuremath{\mathit{XY}}] = {\mathbb{E}}[X]{\mathbb{E}}[Y]\).
+\item
+  Give an example for two random variables \(X,Y\) such that
+  \({\mathbb{E}}[\ensuremath{\mathit{XY}}] \neq {\mathbb{E}}[X]{\mathbb{E}}[Y]\).
+\item
+  Prove that if \(X\) and \(Y\) are independent random variables (i.e.,
+  for every \(x,y\), \(\Pr[X=x \wedge Y=y]=\Pr[X=x]\Pr[Y=y]\)) then
+  \({\mathbb{E}}[\ensuremath{\mathit{XY}}]={\mathbb{E}}[X]{\mathbb{E}}[Y]\)
+  and \(Var[X+Y]=Var[X]+Var[Y]\).
 \end{enumerate}
+
+\end{exercise}
+
+\hypertarget{randomfunction}{}
+\begin{exercise}[Random hash function] \label[exercise]{randomfunction}
+
+Suppose that \(H\) is chosen to be a random function mapping the numbers
+\(\{1,\ldots,n\}\) to the numbers \(\{1,..,m \}\). That is, for every
+\(i\in \{1,\ldots,n\}\), \(H(i)\) is chosen to be a random number in
+\(\{ 1,\ldots, m\}\) and that choice is done independently for every
+\(i\). For every \(i<j \in \{1,\ldots,n\}\), define the random variable
+\(X_{i,j}\) to equal \(1\) if there was a \emph{collision} between
+\(H(i)\) and \(H(j)\) in the sense that \(H(i)=H(j)\) and to equal \(0\)
+otherwise.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  For every \(i<j\), compute \({\mathbb{E}}[ X_{i,j} ]\).
+\item
+  Define \(Y = \sum_{i<j} X_{i,j}\) to be the total number of
+  collisions. Compute \({\mathbb{E}}[ Y ]\) as a function of \(n\) and
+  \(m\). In particular your answer should imply that if \(m < n^2/1000\)
+  then \({\mathbb{E}}[Y]>1\) and hence in expectation there should be at
+  least one collision and so the function \(H\) will not be one to one.
+\item
+  Prove that if \(m > 1000\cdot n^2\) then the probability that \(H\) is
+  one to one is at least \(0.9\).
+\item
+  Give an example of a random variable \(Z\) (unrelated to the function
+  \(H\)) that is always equal to a non-negative integer, and such that
+  \({\mathbb{E}}[Z] \geq 1000\) but \(\Pr[ Z > 0] < 0.001\).
+\item
+  Prove that if \(m < n^2/1000\) then the probability that \(H\) is one
+  to one is at most \(0.1\).
+\end{enumerate}
+
+\end{exercise}
+
+\section{Exercises}\label{Exercises}
+
+\begin{exercise} \label[exercise]{Suppose-that-we-toss-thre}
+
+Suppose that we toss three independent fair coins \(a,b,c \in \{0,1\}\).
+What is the probability that the XOR of \(a\),\(b\), and \(c\) is equal
+to \(1\)? What is the probability that the AND of these three values is
+equal to \(1\)? Are these two events independent?
+
+\end{exercise}
+
+\begin{exercise} \label[exercise]{Give-an-example-of-random}
+
+Give an example of random variables \(X,Y: \{0,1\}^3 \rightarrow \R\)
+such that \(\E[\ensuremath{\mathit{XY}}] \neq \E[X]\E[Y]\).
+
+\end{exercise}
+
+\hypertarget{noindnocorex}{}
+\begin{exercise} \label[exercise]{noindnocorex}
+
+Give an example of random variables \(X,Y: \{0,1\}^3 \rightarrow \R\)
+such that \(X\) and \(Y\) are \emph{not} independent but
+\(\E[\ensuremath{\mathit{XY}}] =\E[X]\E[Y]\).
+
+\end{exercise}
+
+\hypertarget{expprodex}{}
+\begin{exercise}[Product of expectations] \label[exercise]{expprodex}
+
+Prove \cref{expprod}
+
+\end{exercise}
+
+\hypertarget{indeplemex}{}
+\begin{exercise}[Transformations preserve independence] \label[exercise]{indeplemex}
+
+Prove \cref{indeplem}
+
+\end{exercise}
+
+\hypertarget{varianceex}{}
+\begin{exercise}[Variance of independent random variables] \label[exercise]{varianceex}
+
+Prove that if \(X_0,\ldots,X_{n-1}\) are independent random variables
+then
+\(\mathrm{Var}[X_0+\cdots+X_{n-1}]=\sum_{i=0}^{n-1} \mathrm{Var}[X_i]\).
+
+\end{exercise}
+
+\hypertarget{entropyex}{}
+\begin{exercise}[Entropy (challenge)] \label[exercise]{entropyex}
+
+Recall the definition of a distribution \(\mu\) over some finite set
+\(S\). Shannon defined the \emph{entropy} of a distribution \(\mu\),
+denoted by \(H(\mu)\), to be \(\sum_{x\in S} \mu(x)\log(1/\mu(x))\). The
+idea is that if \(\mu\) is a distribution of entropy \(k\), then
+encoding members of \(\mu\) will require \(k\) bits, in an amortized
+sense. In this exercise we justify this definition. Let \(\mu\) be such
+that \(H(\mu)=k\).\\
+1. Prove that for every one to one function
+\(F:S \rightarrow \{0,1\}^*\), \(\E_{x \sim \mu} |F(x)| \geq k\).\\
+2. Prove that for every \(\epsilon\), there is some \(n\) and a
+one-to-one function \(F:S^n \rightarrow \{0,1\}^*\), such that
+\(\E_{x\sim \mu^n} |F(x)| \leq n(k+\epsilon)\), where \(x \sim \mu\)
+denotes the experiments of choosing \(x_0,\ldots,x_{n-1}\) each
+independently from \(S\) using the distribution \(\mu\).
+
+\end{exercise}
+
+\hypertarget{entropybinomex}{}
+\begin{exercise}[Entropy approximation to binomial] \label[exercise]{entropybinomex}
+
+Let \(H(p) = p \log(1/p)+(1-p)\log(1/(1-p))\).\footnote{While you don't
+  need this to solve this exercise, this is the function that maps \(p\)
+  to the entropy (as defined in \cref{entropyex}) of the \(p\)-biased
+  coin distribution over \(\{0,1\}\), which is the function
+  \(\mu:\{0,1\}\rightarrow [0,1]\) s.y. \(\mu(0)=1-p\) and \(\mu(1)=p\).}
+
+Prove that for every \(p \in (0,1)\) and \(\epsilon>0\), if \(n\) is
+large enough then\footnote{\textbf{Hint:} Use Stirling's formula for
+  approximating the factorial function.} \[
+2^{(H(p)-\epsilon)n }\binom{n}{pn} \leq 2^{(H(p)+\epsilon)n}
+\] where \(\binom{n}{k}\) is the binomial coefficient
+\(\tfrac{n!}{k!(n-k)!}\) which is equal to the number of \(k\)-size
+subsets of \(\{0,\ldots,n-1\}\).
+
+\end{exercise}
+
+\hypertarget{chernoffstirlingex}{}
+\begin{exercise}[Chernoff using Stirling] \label[exercise]{chernoffstirlingex}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Prove that
+  \(\Pr_{x\sim \{0,1\}^n}[ \sum x_i = k ] = \binom{n}{k}2^{-n}\).\\
+\item
+  Use this and \cref{entropybinomex} to prove (an approximate version
+  of) the Chernoff bound for the case that \(X_0,\ldots,X_{n-1}\) are
+  i.i.d. random variables over \(\{0,1\}\) each equaling \(0\) and \(1\)
+  with probability \(1/2\). That is, prove that for every
+  \(\epsilon>0\), and \(X_0,\ldots,X_{n-1}\) as above,
+  \(\Pr[ |\sum_{i=0}^{n-1} - \tfrac{n/2}| > \epsilon n] < 2^{0.1 \cdot \epsilon^2 n}\).
+\end{enumerate}
+
+\end{exercise}
+
+\hypertarget{poorchernoff}{}
+\begin{exercise}[Poor man's Chernoff] \label[exercise]{poorchernoff}
+
+\cref{chernoffstirlingex} establishes the Chernoff bound for the case
+that \(X_0,\ldots,X_{n-1}\) are i.i.d variables over \(\{0,1\}\) with
+expectation \(1/2\). In this exercise we use a slightly different method
+(bounding the \emph{moments} of the random variables) to establish a
+version of Chernoff where the random variables range over \([0,1]\) and
+their expectation is some number \(p \in [0,1]\) that may be different
+than \(1/2\). Let \(X_0,\ldots,X_{n-1}\) be i.i.d random variables with
+\(\E X_i = p\) and \(\Pr [ 0 \leq X_i \leq 1 ]=1\). Define
+\(Y_i = X_i - p\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Prove that for every \(j_0,\ldots,j_{n-1} \in \N\), if there exists
+  one \(i\) such that \(j_i\) is odd then
+  \(\E [\prod_{i=0}^{n-1} Y_i^{j_i}] = 0\).\\
+\item
+  Prove that for every \(k\),
+  \(\E[ (\sum_{i=0}^{n-1} Y_i)^k ] \leq (10kn)^{k/2}\).\footnote{\textbf{Hint:}
+    Bound the number of tuples \(j_0,\ldots,j_{n-1}\) such that every
+    \(j_i\) is even and \(\sum j_i = k\) using the Binomial coefficient
+    and the fact that in any such tuple there are at most \(k/2\)
+    distinct indices.}\\
+\item
+  Prove that for every \(\epsilon>0\),
+  \(\Pr[ |\sum_i Y_i| \geq \epsilon n ] \geq 2^{-\epsilon^2 n / (10000\log 1/\epsilon)}\).\footnote{\textbf{Hint:}
+    Set \(k=2\lceil \epsilon^2 n /1000 \rceil\) and then show that if
+    the event \(|\sum Y_i | \geq \epsilon n\) happens then the random
+    variable \((\sum Y_i)^k\) is a factor of \(\epsilon^{-k}\) larger
+    than its expectation.}
+\end{enumerate}
+
+\end{exercise}
+
+\hypertarget{lowerboundcoins}{}
+\begin{exercise}[Lower bound for distinguishing coins] \label[exercise]{lowerboundcoins}
+
+The Chernoff bound can be used to show that if you were given a coin of
+bias at least \(\epsilon\), you should only need \(O(1/\epsilon^2)\)
+samples to be able to reject the ``null hypothesis'' that the coin is
+completely unbiased with extremely high confidence. In the following
+somewhat more challenging question, we try to show a converse to this,
+proving that distinguishing between a fair every coin and a coin that
+outputs ``heads'' with probability \(1/2 + \epsilon\) requires at least
+\(\Omega(1/\epsilon^2)\) samples.
+
+Let \(P\) be the uniform distribution over \({\{0,1\}}^n\) and \(Q\) be
+the \(1/2+\epsilon\)-biased distribution corresponding to tossing \(n\)
+coins in which each one has a probability of \(1/2+\epsilon\) of
+equalling \(1\) and probability \(1/2-\epsilon\) of equalling \(0\).
+Namely the probability of \(x\in{\{0,1\}}^n\) according to \(Q\) is
+equal to \(\prod_{i=1}^n (1/2 - \epsilon + 2\epsilon x_i)\).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Prove that for every threshold \(\theta\) between \(0\) and \(n\), if
+  \(n < 1/(100\epsilon)^2\) then the probabilities that
+  \(\sum x_i \leq \theta\) under \(P\) and \(Q\) respectively differ by
+  at most \(0.1\). Therefore, one cannot use the test whether the number
+  of heads is above or below some threshold to reliably distinguish
+  between these two possibilities unless the number of samples \(n\) of
+  the coins is at least some constant times \(1/\epsilon^2\).
+\item
+  Prove that for \emph{every} function \(F\) mapping \({\{0,1\}}^n\) to
+  \({\{0,1\}}\), if \(n < 1/(100\epsilon)^2\) then the probabilities
+  that \(F(x)=1\) under \(P\) and \(Q\) respectively differ by at most
+  \(0.1\). Therefore, if the number of samples is smaller than a
+  constant times \(1/\epsilon^2\) then there is simply \emph{no test}
+  that can reliably distinguish between these two possiblities.
+\end{enumerate}
+
+\end{exercise}
+
+\hypertarget{coindistex}{}
+\begin{exercise}[Simulating distributions using coins] \label[exercise]{coindistex}
+
+Our model for probability involves tossing \(n\) coins, but sometimes
+algorithms require sampling from other distributions, such as selecting
+a uniform number in \(\{0,\ldots,M-1\}\) for some \(M\). Fortunately, we
+can simulate this with an exponentially small probability of error:
+prove that for every \(M\), if \(n>k\lceil \log M \rceil\), then there
+is a function
+\(F:\{0,1\}^n \rightarrow \{0,\ldots,M-1\} \cup \{ \bot \}\) such that
+\textbf{(1)} The probability that \(F(x)=\bot\) is at most \(2^{-k}\)
+and \textbf{(2)} the distribution of \(F(x)\) conditioned on
+\(F(x) \neq \bot\) is equal to the uniform distribution over
+\(\{0,\ldots,M-1\}\).\footnote{\textbf{Hint:} Think of
+  \(x\in \{0,1\}^n\) as choosing \(k\) numbers
+  \(y_1,\ldots,y_k \in \{0,\ldots, 2^{\lceil \log M \rceil}-1 \}\).
+  Output the first such number that is in \(\{0,\ldots,M-1\}\). }
+
+\end{exercise}
+
+\hypertarget{samplingex}{}
+\begin{exercise}[Sampling] \label[exercise]{samplingex}
+
+Suppose that a country has 300,000,000 citizens, 52 percent of which
+prefer the color ``green'' and 48 percent of which prefer the color
+``orange''. Suppose we sample \(n\) random citizens and ask them their
+favorite color (assume they will answer truthfully). What is the
+smallest value \(n\) among the following choices so that the probability
+that the majority of the sample answers ``green'' is at most \(0.05\)?
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  1,000
+\item
+  10,000
+\item
+  100,000
+\item
+  1,000,000
+\end{enumerate}
+
+\end{exercise}
+
+\hypertarget{exid}{}
+\begin{exercise} \label[exercise]{exid}
+
+Would the answer to \cref{samplingex} change if the country had
+300,000,000,000 citizens?
+
+\end{exercise}
+
+\hypertarget{exidtwo}{}
+\begin{exercise}[Sampling (2)] \label[exercise]{exidtwo}
+
+Under the same assumptions as \cref{samplingex}, what is the smallest
+value \(n\) among the following choices so that the probability that the
+majority of the sample answers ``green'' is at most \(2^{-100}\)?
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  1,000
+\item
+  10,000
+\item
+  100,000
+\item
+  1,000,000
+\item
+  It is impossible to get such low probability since there are fewer
+  than \(2^{100}\) citizens.
+\end{enumerate}
+
+\end{exercise}

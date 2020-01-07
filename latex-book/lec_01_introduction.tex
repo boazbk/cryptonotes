@@ -15,8 +15,10 @@ Ever since people started to communicate, there were some messages that
 they wanted kept secret. Thus cryptography has an old though arguably
 \emph{undistinguished} history. For a long time cryptography shared
 similar features with Alchemy as a domain in which many otherwise smart
-people would be drawn into making fatal mistakes.
-
+people would be drawn into making fatal mistakes. Indeed, the history of
+cryptography is littered with the figurative corpses of cryptosystems
+believed secure and then broken, and sometimes with the actual corpses
+of those who have mistakenly placed their faith in these cryptosystems.
 The definitive text on the history of cryptography is David Kahn's ``The
 Codebreakers'', whose title already hints at the ultimate fate of most
 cryptosystems.\footnote{Traditionally, \emph{cryptography} was the name
@@ -27,11 +29,13 @@ cryptosystems.\footnote{Traditionally, \emph{cryptography} was the name
   constructing and analyzing the security of not just encryptions but
   many schemes and protocols for protecting the confidentiality and
   integrity of communication and computation.} (See also ``The Code
-Book'' by Simon Singh.) We now recount just a few stories to get a feel
-for this field. But, before we do so, we should introduce the cast of
-characters. The basic setting of ``encryption'' or ``secret writing'' is
-the following: one person, whom we will call \textbf{Alice}, wishes to
-send another person, whom we will call \textbf{Bob}, a \textbf{secret}
+Book'' by Simon Singh.)
+
+We recount below just a few stories to get a feel for this field. But
+before we do so, we should introduce the \textbf{cast of characters}.
+The basic setting of ``encryption'' or ``secret writing'' is the
+following: one person, whom we will call \textbf{Alice}, wishes to send
+another person, whom we will call \textbf{Bob}, a \textbf{secret}
 message. Since Alice and Bob are not in the same room (perhaps because
 Alice is imprisoned in a castle by her cousin the queen of England),
 they cannot communicate directly and need to send their message in
@@ -40,48 +44,48 @@ that can see their message. Therefore Alice needs to find a way to
 \emph{encode} or \emph{encrypt} the message so that only Bob (and not
 Eve) will be able to understand it.
 
-In 1587, Mary the queen of Scots, and the heir to the throne of England,
+\section{Some history}\label{Some-history}
+
+1587, Mary the queen of Scots, and the heir to the throne of England,
 wanted to arrange the assassination of her cousin, queen Elisabeth I of
 England, so that she could ascend to the throne and finally escape the
-house arrest under which she has been for the last 18 years. As part of
+house arrest under which she had been for the last 18 years. As part of
 this complicated plot, she sent a coded letter to Sir Anthony Babington.
-It is what's known as a \emph{substitution cipher} where each letter is
-transformed into a different symbol, and so the resulting letter looks
-something like the following (see \cref{figmaryletter}):
 
 
-\begin{figure}
+\begin{marginfigure}
 \centering
-\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/encrypted_letter.jpg}
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/encrypted_letter.jpg}
 \caption{Snippet from encrypted communication between queen Mary and Sir
 Babington}
-\label{figmaryletter}
-\end{figure}
+\label{maryscottletterfig}
+\end{marginfigure}
 
-At a first look, such a letter might seem rather inscrutable- a
-meaningless sequence of strange symbols. However, after some thought,
-one might recognize that these symbols \emph{repeat} several times and
-moreover that different symbols repeat with different frequencies. Now
-it doesn't take a large leap of faith to assume that perhaps each symbol
-corresponds to a different letter and the more frequent symbols
-correspond to letters that occur in the alphabet with higher frequency.
-From this observation, there is a short gap to completely breaking the
-cipher, which was in fact done by queen Elisabeth's spies who used the
-decoded letters to learn of all the co-conspirators and to convict queen
-Mary of treason, a crime for which she was executed.
+Mary used what's known as a \emph{substitution cipher} where each letter
+is transformed into a different obscure symbol (see
+\cref{maryscottletterfig}). At a first look, such a letter might seem
+rather inscrutable- a meaningless sequence of strange symbols. However,
+after some thought, one might recognize that these symbols \emph{repeat}
+several times and moreover that different symbols repeat with different
+frequencies. Now it doesn't take a large leap of faith to assume that
+perhaps each symbol corresponds to a different letter and the more
+frequent symbols correspond to letters that occur in the alphabet with
+higher frequency. From this observation, there is a short gap to
+completely breaking the cipher, which was in fact done by queen
+Elisabeth's spies who used the decoded letters to learn of all the
+co-conspirators and to convict queen Mary of treason, a crime for which
+she was executed. Trusting in superficial security measures (such as
+using ``inscrutable'' symbols) is a trap that users of cryptography have
+been falling into again and again over the years. (As in many things,
+this is the subject of a great XKCD cartoon, see \cref{XKCDnavajofig}.)
 
-Trusting in superficial security measures (such as using ``inscrutable''
-symbols) is a trap that users of cryptography have been falling into
-again and again over the years. As in many things, this is the subject
-of a great XKCD cartoon (see \cref{xkcdnavajofig}):
 
-
-\begin{figure}
+\begin{marginfigure}
 \centering
-\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/code_talkers.png}
-\caption{On the added security of using uncommon symbols}
-\label{xkcdnavajofig}
-\end{figure}
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/code_talkers.png}
+\caption{XKCD's take on the added security of using uncommon symbols}
+\label{XKCDnavajofig}
+\end{marginfigure}
 
 The \href{https://en.wikipedia.org/wiki/Vigen\%C3\%A8re_cipher}{Vigenère
 cipher} is named after Blaise de Vigenère who described it in a book in
@@ -105,66 +109,84 @@ see why?). Confederate generals used Vigenère regularly during the civil
 war, and their messages were routinely cryptanalzed by Union officers.
 
 
-\begin{figure}
+\begin{marginfigure}
 \centering
-\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/confederate_cipher_disk.jpg}
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/confederate_cipher_disk.jpg}
 \caption{Confederate Cipher Disk for implementing the Vigenère cipher}
 \label{tmplabelfig}
-\end{figure}
+\end{marginfigure}
 
 
-\begin{figure}
+\begin{marginfigure}
 \centering
-\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/confederate_message.jpg}
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/confederate_message.jpg}
 \caption{Confederate encryption of the message ``Gen'l Pemberton: You
 can expect no help from this side of the river. Let Gen'l Johnston know,
 if possible, when you can attack the same point on the enemy's lines.
 Inform me also and I will endeavor to make a diversion. I have sent some
 caps. I subjoin a despatch from General Johnston.''}
 \label{tmplabelfig}
-\end{figure}
+\end{marginfigure}
 
-The story of the \emph{Enigma} cipher had been told many times (see for
-example Kahn's book as well as Andrew Hodges' biography of Alan Turing).
-This was a mechanical cipher (looking like a typewriter) where each
-letter typed would get mapped into a different letter depending on the
-(rather complicated) key and current state of the machine which had
-several rotors that rotated at different paces. An identically wired
-machine at the other end could be used to decrypt. Just as many ciphers
-in history, this has also been believed by the Germans to be
-``impossible to break'' and even quite late in the war they refused to
-believe it was broken despite mounting evidence to that effect. (In
-fact, some German generals refused to believe it was broken even
-\emph{after} the war.) Breaking Enigma was an heroic effort which was
-initiated by the Poles and then completed by the British at Bletchley
-Park; as part of this effort they built arguably the world's first large
-scale mechanical computation devices (though they looked more similar to
-washing machines than to iPhones). They were also helped along the way
-by some quirks and errors of the german operators. For example, the fact
-that their messages ended with ``Heil Hitler'' turned out to be quite
-useful. Here is one entertaining anecdote: the Enigma machine would
-never map a letter to itself. In March 1941, Mavis Batey, a cryptanalyst
-at Bletchley Park received a very long message that she tried to
-decrypt. She then noticed a curious property--- the message did
-\emph{not} contain the letter ``L''.\footnote{Here is a nice exercise:
-  compute (up to an order of magnitude) the probability that a 50-letter
-  long message composed of random letters will end up not containing the
-  letter ``L''.} She realized that for such a long message not contain
-``L'' could not happen by chance, and hence surmised that the original
-message probably composed \emph{only} of L's. That is, it must have been
-the case that the operator, perhaps to test the machine, have simply
-sent out a message where he repeatedly pressed the letter ``L''. This
-observation helped her decode the next message, which helped inform of a
-planned Italian attack and secure a resounding British victory in what
-became known as ``the Battle of Cape Matapan''. Mavis also helped break
-another Enigma machine which helped in the effort of feeding the Germans
-with the false information that the main allied invasion would take
-place in Pas de Calais rather than on Normandy. See
-\href{http://www.cix.co.uk/~klockstone/hinsley.htm}{this inteview with
-Sir Harry Hinsley} for more on the effect of breaking the Enigma on the
-war. General Eisenhower said that the intelligence from Bletchley park
-was of ``priceless value'' and made a ``very decisive contribution to
-the Allied war effort''.
+The \emph{Enigma} cipher was a mechanical cipher (looking like a
+typewriter, see \cref{enigmafig}) where each letter typed would get
+mapped into a different letter depending on the (rather complicated) key
+and current state of the machine which had several rotors that rotated
+at different paces. An identically wired machine at the other end could
+be used to decrypt. Just as many ciphers in history, this has also been
+believed by the Germans to be ``impossible to break'' and even quite
+late in the war they refused to believe it was broken despite mounting
+evidence to that effect. (In fact, some German generals refused to
+believe it was broken even \emph{after} the war.) Breaking Enigma was an
+heroic effort which was initiated by the Poles and then completed by the
+British at Bletchley Park, with Alan Turing (of the Turing machines)
+playing a key role. As part of this effort the Brits built arguably the
+world's first large scale mechanical computation devices (though they
+looked more similar to washing machines than to iPhones). They were also
+helped along the way by some quirks and errors of the German operators.
+For example, the fact that their messages ended with ``Heil Hitler''
+turned out to be quite useful.
+
+
+\begin{marginfigure}
+\centering
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/enigma.jpg}
+\caption{In the \emph{Enigma} mechanical cipher the secret key would be
+the settings of the rotors and internal wires. As the operator types up
+their message, the encrypted version appeared in the display area above,
+and the internal state of the cipher was updated (and so typing the same
+letter twice would generally result in two different letters output).
+Decrypting follows the same process: if the sender and receiver are
+using the same key then typing the ciphertext would result in the
+plaintext appearing in the display.}
+\label{enigmafig}
+\end{marginfigure}
+
+Here is one entertaining anecdote: the Enigma machine would never map a
+letter to itself. In March 1941, Mavis Batey, a cryptanalyst at
+Bletchley Park received a very long message that she tried to decrypt.
+She then noticed a curious property--- the message did \emph{not}
+contain the letter ``L''.\footnote{Here is a nice exercise: compute (up
+  to an order of magnitude) the probability that a 50-letter long
+  message composed of random letters will end up not containing the
+  letter ``L''.} She realized that the probability that no ``L'''s
+appeared in the message is too small for this to happen by chance. Hence
+she surmised that the original message must have been composed
+\emph{only} of L's. That is, it must have been the case that the
+operator, perhaps to test the machine, have simply sent out a message
+where he repeatedly pressed the letter ``L''. This observation helped
+her decode the next message, which helped inform of a planned Italian
+attack and secure a resounding British victory in what became known as
+``the Battle of Cape Matapan''. Mavis also helped break another Enigma
+machine. Using the information she provided, the Brits were able to feed
+the Germans with the false information that the main allied invasion
+would take place in Pas de Calais rather than on Normandy.
+
+In the words of General Eisenhower, the intelligence from Bletchley park
+was of ``priceless value''. It made a huge difference for the Allied war
+effort, thereby shortening World War II and saving millions of lives.
+See also \href{http://www.cix.co.uk/~klockstone/hinsley.htm}{this
+interview with Sir Harry Hinsley}.
 
 \section{Defining encryptions}\label{Defining-encryptions}
 
@@ -184,40 +206,82 @@ reverse operation, mapping the secret key \(k\) and the cyphertext \(c\)
 back into the plaintext message \(m\), which we write as \(m = D_k(c)\).
 The basic equation is that if we use the same key for encryption and
 decryption, then we should get the same message back. That is, for every
-\(k \in \{0,1\}^n\) and \(m\in \{0,1\}^\ell\), \[ m = D_k(E_k(m)) \;.\]
+\(k \in \{0,1\}^n\) and \(m\in \{0,1\}^\ell\),
 
-Formally, we make the following definition:
+\[ m = D_k(E_k(m)) \;.\]
+
+This motivates the following definition which attempts to capture what
+it means for an encryption scheme to be \emph{valid} or ``make sense'',
+regardless of whether or not it is \emph{secure}:
 
 \hypertarget{encryptiondef}{}
 \begin{definition}[Valid encryption scheme] \label[definition]{encryptiondef}
 
-A pair of functions \((E,D)\) mapping strings to strings is a
+Let \(L:\N \rightarrow \N\) and \(C:\N \rightarrow \N\) be two functions
+mapping natural numbers to natural numbers. A pair of polynomial-time
+computable functions \((E,D)\) mapping strings to strings is a
 \emph{valid private key encryption scheme} (or \emph{encryption scheme}
-for short) if there are some numbers \(n,\ell,L\) such that
-\(E:\{0,1\}^n \times \{0,1\}^\ell \rightarrow \{0,1\}^L\) and
-\(D:\{0,1\}^n \times \{0,1\}^L \rightarrow \{0,1\}^\ell\) and for every
-for every \(k\in \{0,1\}^n\) and \(x \in \{0,1\}^{\ell}\), \[
+for short) with plaintext length function \(L(\cdot)\) and ciphertext
+length function \(C(\cdot)\) if for every \(n\in \N\),
+\(k\in \{0,1\}^n\) and \(x \in \{0,1\}^{L(n)}\), \(|E_k(x)|= C(n)\) and
+\[
 D(k,E(k,x))=x \;. \label{eqvalidenc}
-\] We will typically write the first input (i.e., the key) to the
-encryption and decryption functions as a subscribt, and so write
-\eqref{eqvalidenc} as \(D_k(E_k(x))=x\).
+\]
 
 \end{definition}
 
-\begin{quote}
+We will often write the first input (i.e., the key) to the encryption
+and decryption as a subscript and so can write \eqref{eqvalidenc} also
+as \(D_k(E_k(x))=x\).
+
+
+\begin{marginfigure}
+\centering
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/encryptionvalid.png}
+\caption{A private-key encryption scheme is a pair of algorithms \(E,D\)
+such that for every key \(k\in \{0,1\}^n\) and plaintext
+\(x\in \{0,1\}^{L(n)}\), \(y=E_k(x)\) is a ciphertext of length
+\(C(n)\). The encryption scheme is \emph{valid} if for every such \(y\),
+\(D_k(y)=x\). That is, the decryption of an encryption of \(x\) is
+\(x\), as long as both encryption and decryption use the same key.}
+\label{validencryption}
+\end{marginfigure}
+
+\hypertarget{notation}{}
+\begin{remark}[Notation] \label[remark]{notation}
+
 \emph{A note on notation:} We will always use \(i,j,\ell,n\) to denote
-natural numbers. \(n\) will often denote the length of our secret key,
-and \(\ell\) the length of the message, sometimes also known as ``block
-length'' since longer messages are simply chopped into ``blocks'' of
-length \(\ell\) and also appropriately padded. We will use \(k\) to
-denote the secret key, \(m\) to denote the secret plaintext message, and
-\(c\) to denote the encrypted ciphertext. Note that \(c,m\) and \(k\)
-are bit strings of lengths \(o,\ell\) and \(n\) respectively. The length
-of the secret key is often known as the ``security parameter'' and in
-other texts it is often denoted by \(k\) or \(\kappa\). We use \(n\) to
-correspond with the standard algorithmic notation for input length (as
-in \(O(n)\) time algorithms).
-\end{quote}
+natural numbers.
+
+The number \(n\) will often denote the length of our secret key. The
+length of the key (or another closely related number) is often known as
+the \emph{security parameter} in the literature. Katz-Lindell also uses
+\(n\) to denote this parameter, while Boneh-Shoup and Rosulek use
+\(\lambda\) for it. (Some texts also use the greek lettter \(\kappa\)
+for the same parameter.) We use \(n\) to correspond with the standard
+algorithmic notation for input length (as in \(O(n)\) time algorithms).
+
+We often use \(\ell\) to denote the length of the message, sometimes
+also known as ``block length'' since longer messages are simply chopped
+into ``blocks'' of length \(\ell\) and also appropriately padded.
+
+We will use \(k\) to denote the secret key, \(m\) to denote the secret
+plaintext message, and \(c\) to denote the encrypted ciphertext. Note
+that \(c,m\) and \(k\) are not numbers but rather bit strings of lengths
+\(o,\ell\) and \(n\) respectively.
+
+\end{remark}
+
+The validity condition implies that for any fixed \(k\), the map
+\(x \mapsto E_k(x)\) is one to one (can you see why?) and hence the
+ciphertext length is always at least the plaintext length. Thus we
+typically focus on the plaintext length as the quantity to optimize in
+an encryption scheme. The \emph{larger} \(L(n)\) is, the better the
+scheme, since it means we need a shorter secret key to protect messages
+of the same length.
+
+\section{Defining security of
+encryption}\label{Defining-security-of-encr}
 
 \cref{encryptiondef} says nothing about security and does not rule out
 trivial ``encryption'' schemes such as the scheme \(E_k(m) = m\) that
@@ -234,28 +298,28 @@ being broken. This is a faulty assumption - if you reuse a method again
 and again (even with a different key each time) then eventually your
 adversaries will figure out what you are doing. And if Alice and Bob
 meet frequently in a secure location to decide on a new method, they
-might as well take the opportunity to exchange their secrets.. These
-considerations led Kerchoffs to state the following principle:
+might as well take the opportunity to exchange their secret messages..
+
+These considerations led Auguste Kerckhoffs in 1883 to state the
+following principle:
 
 \begin{quote}
 \emph{A cryptosystem should be secure even if everything about the
-system, except the key, is public knowledge.} (Auguste Kerckhoffs, 1883)
+system, except the key, is public knowledge.}\footnote{The actual quote
+  is ``Il faut qu'il n'exige pas le secret, et qu'il puisse sans
+  inconvénient tomber entre les mains de l'ennemi'' loosely translated
+  as ``The system must not require secrecy and can be stolen by the
+  enemy without causing trouble''. According to Steve Bellovin the NSA
+  version is ``assume that the first copy of any device we make is
+  shipped to the Kremlin''.}
 \end{quote}
 
-(The actual quote is ``Il faut qu'il n'exige pas le secret, et qu'il
-puisse sans inconvénient tomber entre les mains de l'ennemi'' loosely
-translated as ``The system must not require secrecy and can be stolen by
-the enemy without causing trouble''. According to Steve Bellovin the NSA
-version is ``assume that the first copy of any device we make is shipped
-to the Kremlin''.)
-
 Why is it OK to assume the key is secret and not the algorithm? Because
-we can always choose a fresh key. But of course if we choose our key to
-be ``1234'' or ``passw0rd!'' then that is not exactly secure. In fact,
-if you use any deterministic algorithm to choose the key then eventually
-your adversary will figure out. Therefore for security we must choose
-the key at \emph{random}. Thus following can be thought of as a
-restatement of Kerchkoffs's principle:
+we can always choose a fresh key. But of course that won't help us much
+if our key is ``1234'' or ``passw0rd!''. In fact, if you use \emph{any}
+deterministic algorithm to choose the key then eventually your adversary
+will figure this out. Therefore for security we must choose the key at
+\emph{random} and can restate Kerckhoffs's principle as follows:
 
 \begin{quote}
 \emph{There is no secrecy without randomness}
@@ -442,7 +506,6 @@ yourself:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\tightlist
 \item
   Do I understand mathematically what is the definition stating?\\
 \item
@@ -644,6 +707,43 @@ distribution.
 
 \end{pause}
 
+\hypertarget{perfectsecrecyequiv}{}
+\begin{solvedexercise}[Perfect secrecy, equivalent definition] \label[solvedexercise]{perfectsecrecyequiv}
+
+Prove that a valid encryption scheme \((E,D)\) with plaintext length
+\(L(\cdot)\) is perfectly secret if and only if for every \(n\in \N\)
+and plaintexts \(x,x' \in \{0,1\}^{L(n)}\), the following two
+distributions \(Y\) and \(Y'\) over \(\{0,1\}^*\) are identical:
+
+\begin{itemize}
+\item
+  \(Y\) is obtained by sampling \(k\sim \{0,1\}^n\) and outputting
+  \(E_k(x)\).
+\item
+  \(Y'\) is obtained by sampling \(k\sim \{0,1\}^n\) and outputting
+  \(E_k(x')\).
+\end{itemize}
+
+\end{solvedexercise}
+
+\begin{solution} \label[solution]{We-only-sketch-the-proof-}
+
+We only sketch the proof. The condition in the exercise is equivalent to
+perfect secrecy with \(|M|=2\). For every \(M = \{ x,x' \}\), if \(Y\)
+and \(Y'\) are identical then clearly for every \(Eve\),
+\(\Pr[ Eve(E_k(x))=1] = \Pr[ Eve(E_k(x'))=1]\) since these correspond
+applying \(Eve\) on the same distribution \(Y=Y'\). On the other hand,
+if \(Y\) and \(Y'\) are not identical then there must exist some
+ciphertext \(c^*\) such that \(\Pr[ Y=c^*] > \Pr[ Y'=c^*]\) (or vice
+versa). The adversary that on input \(c\) will guess that \(c\) is an
+encryption of \(x\) if \(c=c^*\) and otherwise will toss a coin will
+have some advantage over \(1/2\) in distinguishing an encryption of
+\(x\) from an encryption of \(x'\).
+
+\end{solution}
+
+\subsection{Achieving perfect secrecy}\label{Achieving-perfect-secrecy}
+
 So, perfect secrecy is a natural condition, and does not seem to be too
 weak for applications, but can it actually be achieved? After all, the
 condition that two different plaintexts are mapped to the same
@@ -686,10 +786,18 @@ same set of neighbors (or multi-set, if there are parallel edges).}
 \label{perfectsecfig}
 \end{marginfigure}
 
-In fact, this can be generalized to any number of bits:
+In fact, this can be generalized to any number of bits:\footnote{The
+  one-time pad is typically credited to Gilbert Vernam of Bell and
+  Joseph Mauborgne of the U.S. Army Signal Corps, but Steve Bellovin
+  discovered an earlier inventor
+  \href{http://www.cs.columbia.edu/~CS4HS/talks/FrankMillerOneTimePad.pdf}{Frank
+  Miller} who published a description of the one-time pad in 1882.
+  However, it is unclear if Miller realized the fact that security of
+  this system can be mathematically proven, and so theorem below should
+  probably be still be credited to Vernam and Mauborgne.}
 
 \hypertarget{onetimepad}{}
-\begin{theorem}[One Time Pad (Vernam 1917, Shannon 1949)] \label[theorem]{onetimepad}
+\begin{theorem}[One Time Pad (Vernam 1917,  Shannon 1949)] \label[theorem]{onetimepad}
 
 There is a perfectly secret valid encryption scheme \((E,D)\) with
 \(L(n)=n\).
@@ -730,7 +838,7 @@ every particular \(y\in \{0,1\}^n\), the value \(y\) is output by
 \(Y_x\) if and only if \(y = x \oplus k\) which holds if and only if
 \(k= x \oplus y\). Since \(k\) is chosen uniformly at random in
 \(\{0,1\}^n\), the probability that \(k\) happens to equal
-\(k \oplus y\) is exactly \(2^{-n}\), which means that every string
+\(x \oplus y\) is exactly \(2^{-n}\), which means that every string
 \(y\) is output by \(Y_x\) with probability \(2^{-n}\).
 
 \end{proof}
@@ -803,14 +911,11 @@ the U.S. Army was founded in February 1943 by Gene Grabeel (see
 \cref{genegrabeelfig}), a former home economics teacher from Madison
 Heights, Virgnia and Lt. Leonard Zubko. In October 1943, they had their
 breakthrough when it was discovered that the Russians were reusing their
-keys.\footnote{Credit to this discovery is shared by Lt. Richard
-  Hallock, Carrie Berry, Frank Lewis, and Lt. Karl Elmquist, and there
-  are others that have made important contribution to this project. See
-  pages 27 and 28 in the document.} In the 37 years of its existence,
-the project has resulted in a treasure chest of intelligence, exposing
-hundreds of KGB agents and Russian spies in the U.S. and other
-countries, including Julius Rosenberg, Harry Gold, Klaus Fuchs, Alger
-Hiss, Harry Dexter White and many others.
+keys. In the 37 years of its existence, the project has resulted in a
+treasure chest of intelligence, exposing hundreds of KGB agents and
+Russian spies in the U.S. and other countries, including Julius
+Rosenberg, Harry Gold, Klaus Fuchs, Alger Hiss, Harry Dexter White and
+many others.
 
 
 \begin{marginfigure}
@@ -821,9 +926,6 @@ Feb 1943. Photo taken in 1942, see Page 7 in the Venona historical
 study.}
 \label{genegrabeelfig}
 \end{marginfigure}
-
-Unfortunately it turns out that (as shown by Shannon) that such long
-keys are \emph{necessary} for perfect secrecy:
 
 
 \begin{marginfigure}
@@ -838,6 +940,9 @@ does \emph{not} satisfy perfect secrecy.}
 \label{longkeygraphfig}
 \end{marginfigure}
 
+Unfortunately it turns out that that such long keys are \emph{necessary}
+for perfect secrecy:
+
 \hypertarget{longkeysthm}{}
 \begin{theorem}[Perfect secrecy requires long keys] \label[theorem]{longkeysthm}
 
@@ -848,10 +953,16 @@ function \(L\) satisfies \(L(n) \leq n\).
 
 \begin{proofidea} \label[proofidea]{The-idea-behind-the-proof}
 
-The idea behind the proof is illustrated in \cref{longkeygraphfig}. If
-the number of keys is smaller than the number of messages then the
-neighborhoods of all vertices in the corresponding graphs cannot be
-identical.
+The idea behind the proof is illustrated in \cref{longkeygraphfig}. We
+define a graph between the plaintexts and ciphertexts, where we put an
+edge between plaintext \(x\) and ciphertext \(y\) if there is some key
+\(k\) such that \(y=E_k(x)\). The \emph{degree} of this graph is at most
+the number of potential keys. The fact that the degree is smaller than
+the number of plaintexts (and hence of ciphertexts) implies that there
+would be two plaintexts \(x\) and \(x'\) with different sets of
+neighbors, and hence the distribution of a ciphertext corresponding to
+\(x\) (with a random key) will not be identical to the distribution of a
+ciphertext corresponding to \(x'\).
 
 \end{proofidea}
 
@@ -862,11 +973,13 @@ and key of length \(n<L\). We will show that \((E,D)\) is not perfectly
 secret by providing two plaintexts \(x_0,x_1 \in \{0,1\}^L\) such that
 the distributions \(Y_{x_0}\) and \(Y_{x_1}\) are not identical, where
 \(Y_x\) is the distribution obtained by picking \(k \sim \{0,1\}^n\) and
-outputting \(E_k(x)\). We choose \(x_0 = 0^L\). Let
-\(S_0 \subseteq \{0,1\}^*\) be the set of all ciphertexts that have
-nonzero probability of being output in \(Y_{x_0}\). That is,
-\(S=\{ y \;|\; \exists_{k\in \{0,1\}^n} y=E_k(x_0) \}\). Since there are
-only \(2^n\) keys, we know that \(|S_0| \leq 2^n\).
+outputting \(E_k(x)\).
+
+We choose \(x_0 = 0^L\). Let \(S_0 \subseteq \{0,1\}^*\) be the set of
+all ciphertexts that have nonzero probability of being output in
+\(Y_{x_0}\). That is,
+\(S_0=\{ y \;|\; \exists_{k\in \{0,1\}^n} y=E_k(x_0) \}\). Since there
+are only \(2^n\) keys, we know that \(|S_0| \leq 2^n\).
 
 We will show the following claim:
 
@@ -879,36 +992,84 @@ being output by \(Y_{x_1}\) and zero probability of being output by
 identical. To prove Claim I, just choose a fixed \(k\in \{0,1\}^n\). By
 the validity condition, the map \(x \mapsto E_k(x)\) is a one to one map
 of \(\{0,1\}^L\) to \(\{0,1\}^*\) and hence in particular the
-\emph{image} of this map: the set
-\(I = \{ y \;|\; \exists_{x\in \{0,1\}^L} y=E_k(x) \}\) has size at
-least (in fact exactly) \(2^L\). Since \(|S_0| = 2^n < 2^L\), this means
-that \(|I|>|S_0|\) and so in particular there exists some string \(y\)
-in \(I \setminus S_0\). But by the definition of \(I\) this means that
-there is some \(x\in \{0,1\}^L\) such that \(E_k(x) \not\in S_0\) which
-concludes the proof of Claim I and hence of \cref{longkeysthm}.
+\emph{image} of this map which is the set
+\(I_k = \{ y \;|\; \exists_{x\in \{0,1\}^L} y=E_k(x) \}\) has size at
+least (in fact exactly) \(2^L\). Since \(|S_0| \leq 2^n < 2^L\), this
+means that \(|I_k|>|S_0|\) and so in particular there exists some string
+\(y\) in \(I_k \setminus S_0\). But by the definition of \(I_k\) this
+means that there is some \(x\in \{0,1\}^L\) such that
+\(E_k(x) \not\in S_0\) which concludes the proof of Claim I and hence of
+\cref{longkeysthm}.
 
 \end{proof}
 
-\subsection{Advanced comment: Adding probability into the
-picture}\label{Advanced-comment-Adding-p}
+\hypertarget{addingprobrem}{}
+\begin{remark}[Adding probability into the picture] \label[remark]{addingprobrem}
 
-There is a sense in which both our secrecy and our impossiblity results
+There is a sense in which both our secrecy and our impossibility results
 might not be fully convincing, and that is that we did not explicitly
 consider algorithms that use \emph{randomness} . For example, maybe Eve
 can break a perfectly secret encryption if she is not modeled as a
 deterministic function \(Eve:\{0,1\}^o\rightarrow\{0,1\}^\ell\) but
 rather a \emph{probabilistic} process. Similarly, maybe the encryption
 and decryption functions could be probabilistic processes as well. It
-turns out that none of those matter. For the former, note that a
-probabilistic process can be thought of as a \emph{distribution} over
-functions, in the sense that we have a collection of functions
-\(f_1,...,f_N\) mapping \(\{0,1\}^o\) to \(\{0,1\}^\ell\), and some
-probabilities \(p_1,\ldots,p_N\) (non-negative numbers summing to
-\(1\)), so we now think of Eve as selecting the function \(f_i\) with
-probability \(p_i\). But if none of those functions can give an
-advantage better than \(1/2\), then neither can this collection. A
-similar (though more involved) argument shows that the impossiblity
+turns out that none of those matter.
+
+For the former, note that a probabilistic process can be thought of as a
+\emph{distribution} over functions, in the sense that we have a
+collection of functions \(f_1,...,f_N\) mapping \(\{0,1\}^o\) to
+\(\{0,1\}^\ell\), and some probabilities \(p_1,\ldots,p_N\)
+(non-negative numbers summing to \(1\)), so we now think of Eve as
+selecting the function \(f_i\) with probability \(p_i\). But if none of
+those functions can give an advantage better than \(1/2\), then neither
+can this collection (this is related to the \emph{averaging principle}
+in probability).
+
+A similar (though more involved) argument shows that the impossiblity
 result showing that the key must be at least as long as the message
 still holds even if the encryption and decryption algorithms are allowed
 to be probabilistic processes as well (working this out is a great
 exercise).
+
+\end{remark}
+
+\section{Bibliographical notes}\label{Bibliographical-notes}
+
+Much of this text is shared with \href{https://introtcs.org}{my
+Introduction to Theoretical Computer Science textbook}.
+
+Shannon's manuscript was written in 1945 but was classified, and a
+partial version was only published in 1949. Still it has revolutionized
+cryptography, and is the forerunner to much of what followed.
+
+The Venona project's history is described in
+\href{http://nsarchive.gwu.edu/NSAEBB/NSAEBB278/01.PDF}{this document}.
+Aside from Grabeel and Zubko, credit to the discovery that the Soviets
+were reusing keys is shared by Lt. Richard Hallock, Carrie Berry, Frank
+Lewis, and Lt. Karl Elmquist, and there are others that have made
+important contribution to this project. See pages 27 and 28 in the
+document.
+
+In a
+\href{https://www.nsa.gov/news-features/declassified-documents/nash-letters/assets/files/nash_letters1.pdf}{1955
+letter to the NSA} that only recently came forward, John Nash proposed
+an ``unbreakable'' encryption scheme. He wrote \emph{``I hope my
+handwriting, etc. do not give the impression I am just a crank or
+circle-squarer\ldots. The significance of this conjecture {[}that
+certain encryption schemes are exponentially secure against key recovery
+attacks{]} .. is that it is quite feasible to design ciphers that are
+effectively unbreakable.''}. John Nash made seminal contributions in
+mathematics and game theory, and was awarded both the Abel Prize in
+mathematics and the Nobel Memorial Prize in Economic Sciences. However,
+he has struggled with mental illness throughout his life. His biography,
+\href{https://en.wikipedia.org/wiki/A_Beautiful_Mind_(book)}{A Beautiful
+Mind} was made into a popular movie. It is natural to compare Nash's
+1955 letter to the NSA to the 1956 letter by
+\href{https://www.cs.cmu.edu/~aada/courses/15251s15/www/notes/godel-letter.pdf}{Kurt
+Gödel to John von Neumann}. From the theoretical computer science point
+of view, the crucial difference is that while Nash informally talks
+about exponential vs polynomial computation time, he does not mention
+the word ``Turing Machine'' or other models of computation, and it is
+not clear if he is aware or not that his conjecture can be made
+mathematically precise (assuming a formalization of ``sufficiently
+complex types of enciphering'').

@@ -1,415 +1,907 @@
-'0': {filename: lec_00_1_mathematical-background.html, href: '', title: Mathematical
-    Background}
-'0.1': {filename: lec_00_1_mathematical-background.html, href: a-quick-overview-of-mathematical-prerequisites,
-  title: A quick overview of mathematical prerequisites}
-'0.2': {filename: lec_00_1_mathematical-background.html, href: mathematical-proofs,
-  title: Mathematical Proofs}
-0.2.1: {filename: lec_00_1_mathematical-background.html, href: example-the-existence-of-infinitely-many-primes.,
-  title: 'Example: The existence of infinitely many primes.'}
-'0.3': {filename: lec_00_1_mathematical-background.html, href: probability-and-sample-spaces,
-  title: Probability and Sample spaces}
-0.3.1: {filename: lec_00_1_mathematical-background.html, href: random-variables, title: Random
-    variables}
-0.3.2: {filename: lec_00_1_mathematical-background.html, href: distributions-over-strings,
-  title: Distributions over strings}
-0.3.3: {filename: lec_00_1_mathematical-background.html, href: more-general-sample-spaces.,
-  title: More general sample spaces.}
-'0.4': {filename: lec_00_1_mathematical-background.html, href: correlations-and-independence,
-  title: Correlations and independence}
-0.4.1: {filename: lec_00_1_mathematical-background.html, href: independent-random-variables,
-  title: Independent random variables}
-0.4.2: {filename: lec_00_1_mathematical-background.html, href: collections-of-independent-random-variables.,
-  title: Collections of independent random variables.}
-'0.5': {filename: lec_00_1_mathematical-background.html, href: concentration, title: Concentration}
-0.5.1: {filename: lec_00_1_mathematical-background.html, href: chebyshevs-inequality,
-  title: "Chebyshev\u2019s Inequality"}
-0.5.2: {filename: lec_00_1_mathematical-background.html, href: the-chernoff-bound,
-  title: The Chernoff bound}
-'0.6': {filename: lec_00_1_mathematical-background.html, href: exercises, title: Exercises}
-'1': {filename: lec_01_introduction.html, href: '', title: Introduction}
-'1.1': {filename: lec_01_introduction.html, href: defining-encryptions, title: Defining
-    encryptions}
-1.1.1: {filename: lec_01_introduction.html, href: generating-randomness-in-actual-cryptographic-systems,
-  title: Generating randomness in actual cryptographic systems}
-'1.2': {filename: lec_01_introduction.html, href: defining-the-secrecy-requirement.,
-  title: Defining the secrecy requirement.}
-'1.3': {filename: lec_01_introduction.html, href: perfect-secrecy, title: Perfect
-    Secrecy}
-'1.4': {filename: lec_01_introduction.html, href: necessity-of-long-keys, title: Necessity
-    of long keys}
-1.4.1: {filename: lec_01_introduction.html, href: advanced-comment-adding-probability-into-the-picture,
-  title: 'Advanced comment: Adding probability into the picture'}
-'10': {filename: lec_10_public_key_intro.html, href: '', title: Public key cryptography}
-'10.1': {filename: lec_10_public_key_intro.html, href: private-key-crypto-recap, title: Private
-    key crypto recap}
-'10.2': {filename: lec_10_public_key_intro.html, href: public-key-encryptions-definition,
-  title: 'Public Key Encryptions: Definition'}
-10.2.1: {filename: lec_10_public_key_intro.html, href: the-obfuscation-paradigm, title: The
-    obfuscation paradigm}
-'10.3': {filename: lec_10_public_key_intro.html, href: some-concrete-candidates, title: 'Some
-    concrete candidates:'}
-10.3.1: {filename: lec_10_public_key_intro.html, href: diffie-hellman-encryption-aka-el-gamal,
-  title: Diffie-Hellman Encryption (aka El-Gamal)}
-10.3.2: {filename: lec_10_public_key_intro.html, href: sampling-random-primes, title: Sampling
-    random primes}
-10.3.3: {filename: lec_10_public_key_intro.html, href: a-little-bit-of-group-theory.,
-  title: A little bit of group theory.}
-10.3.4: {filename: lec_10_public_key_intro.html, href: digital-signatures, title: Digital
-    Signatures}
-10.3.5: {filename: lec_10_public_key_intro.html, href: the-digital-signature-algorithm-dsa,
-  title: The Digital Signature Algorithm (DSA)}
-'10.4': {filename: lec_10_public_key_intro.html, href: putting-everything-together---security-in-practice.,
-  title: Putting everything together - security in practice.}
-'10.5': {filename: lec_10_public_key_intro.html, href: appendix-an-alternative-proof-of-the-density-of-primes,
-  title: 'Appendix: An alternative proof of the density of primes'}
-'11': {filename: lec_11_concrete_pkc.html, href: '', title: Concrete candidates for
-    public key crypto}
-'11.1': {filename: lec_11_concrete_pkc.html, href: some-number-theory., title: Some
-    number theory.}
-11.1.1: {filename: lec_11_concrete_pkc.html, href: primaliy-testing, title: Primaliy
-    testing}
-11.1.2: {filename: lec_11_concrete_pkc.html, href: fields, title: Fields}
-11.1.3: {filename: lec_11_concrete_pkc.html, href: chinese-remainder-theorem, title: Chinese
-    remainder theorem}
-11.1.4: {filename: lec_11_concrete_pkc.html, href: the-rsa-and-rabin-functions, title: The
-    RSA and Rabin functions}
-11.1.5: {filename: lec_11_concrete_pkc.html, href: abstraction-trapdoor-permutations,
-  title: 'Abstraction: trapdoor permutations'}
-11.1.6: {filename: lec_11_concrete_pkc.html, href: public-key-encryption-from-trapdoor-permutations,
-  title: Public key encryption from trapdoor permutations}
-11.1.7: {filename: lec_11_concrete_pkc.html, href: digital-signatures-from-trapdoor-permutations,
-  title: Digital signatures from trapdoor permutations}
-'11.2': {filename: lec_11_concrete_pkc.html, href: hardcore-bits-and-security-without-random-oracles,
-  title: Hardcore bits and security without random oracles}
-'12': {filename: lec_12_lattices.html, href: '', title: Lattice based cryptography}
-'12.1': {filename: lec_12_lattices.html, href: a-world-without-gaussian-elimination,
-  title: A world without Gaussian elimination}
-'12.2': {filename: lec_12_lattices.html, href: security-in-the-real-world., title: Security
-    in the real world.}
-'12.3': {filename: lec_12_lattices.html, href: search-to-decision, title: Search to
-    decision}
-'12.4': {filename: lec_12_lattices.html, href: an-lwe-based-encryption-scheme, title: An
-    LWE based encryption scheme}
-'12.5': {filename: lec_12_lattices.html, href: but-what-are-lattices, title: 'But
-    what are lattices?'}
-'12.6': {filename: lec_12_lattices.html, href: ring-based-lattices, title: Ring based
-    lattices}
-'13': {filename: lec_12a_CCA_public_key.html, href: '', title: Chosen ciphertext security
-    for public key encryption}
-'14': {filename: lec_13_handshake.html, href: '', title: Establishing secure connections
-    over insecure channels}
-'14.1': {filename: lec_13_handshake.html, href: cryptographys-obsession-with-adjectives.,
-  title: "Cryptography\u2019s obsession with adjectives."}
-'14.2': {filename: lec_13_handshake.html, href: basic-key-exchange-protocol, title: Basic
-    Key Exchange protocol}
-'14.3': {filename: lec_13_handshake.html, href: authenticated-key-exchange, title: Authenticated
-    key exchange}
-14.3.1: {filename: lec_13_handshake.html, href: bleichenbachers-attack-on-rsa-pkcs-v1.5-and-ssl-v3.0,
-  title: "Bleichenbacher\u2019s attack on RSA PKCS V1.5 and SSL V3.0"}
-'14.4': {filename: lec_13_handshake.html, href: chosen-ciphertext-attack-security-for-public-key-cryptography,
-  title: Chosen ciphertext attack security for public key cryptography}
-'14.5': {filename: lec_13_handshake.html, href: cca-secure-public-key-encryption-in-the-random-oracle-model,
-  title: CCA secure public key encryption in the Random Oracle Model}
-14.5.1: {filename: lec_13_handshake.html, href: defining-secure-authenticated-key-exchange,
-  title: Defining secure authenticated key exchange}
-14.5.2: {filename: lec_13_handshake.html, href: the-compiler-approach-for-authenticated-key-exchange,
-  title: The compiler approach for authenticated key exchange}
-'14.6': {filename: lec_13_handshake.html, href: password-authenticated-key-exchange.,
-  title: Password authenticated key exchange.}
-'14.7': {filename: lec_13_handshake.html, href: client-to-client-key-exchange-for-secure-text-messaging---zrtp-otr-textsecure,
-  title: 'Client to client key exchange for secure text messaging - ZRTP, OTR, TextSecure'}
-'14.8': {filename: lec_13_handshake.html, href: heartbleed-and-logjam-attacks, title: Heartbleed
-    and logjam attacks}
-'15': {filename: lec_14_zero_knowledge.html, href: '', title: Zero knowledge proofs}
-'15.1': {filename: lec_14_zero_knowledge.html, href: applications-for-zero-knowledge-proofs.,
-  title: Applications for zero knowledge proofs.}
-15.1.1: {filename: lec_14_zero_knowledge.html, href: nuclear-disarmament, title: Nuclear
-    disarmament}
-15.1.2: {filename: lec_14_zero_knowledge.html, href: voting, title: Voting}
-15.1.3: {filename: lec_14_zero_knowledge.html, href: more-applications, title: More
-    applications}
-'15.2': {filename: lec_14_zero_knowledge.html, href: defining-and-constructing-zero-knowledge-proofs,
-  title: Defining and constructing zero knowledge proofs}
-'15.3': {filename: lec_14_zero_knowledge.html, href: defining-zero-knowledge, title: Defining
-    zero knowledge}
-'15.4': {filename: lec_14_zero_knowledge.html, href: zero-knowledge-proof-for-hamiltonicity.,
-  title: Zero knowledge proof for Hamiltonicity.}
-15.4.1: {filename: lec_14_zero_knowledge.html, href: why-is-this-interesting, title: 'Why
-    is this interesting?'}
-'15.5': {filename: lec_14_zero_knowledge.html, href: parallel-repetition-and-turning-zero-knowledge-proofs-to-signatures.,
-  title: Parallel repetition and turning zero knowledge proofs to signatures.}
-15.5.1: {filename: lec_14_zero_knowledge.html, href: bonus-features-of-zero-knowledge,
-  title: Bonus features of zero knowledge}
-'16': {filename: lec_15_FHE.html, href: '', title: 'Fully homomorphic encryption:
-    Introduction and bootstrapping'}
-'16.1': {filename: lec_15_FHE.html, href: defining-fully-homomorphic-encryption, title: Defining
-    fully homomorphic encryption}
-16.1.1: {filename: lec_15_FHE.html, href: another-application-fully-homomorphic-encryption-for-verifying-computation,
-  title: 'Another application: fully homomorphic encryption for verifying computation'}
-'16.2': {filename: lec_15_FHE.html, href: example-an-xor-homomorphic-encryption, title: 'Example:
-    An XOR homomorphic encryption'}
-16.2.1: {filename: lec_15_FHE.html, href: abstraction-a-trapdoor-pseudorandom-generator.,
-  title: 'Abstraction: A trapdoor pseudorandom generator.'}
-'16.3': {filename: lec_15_FHE.html, href: from-linear-homomorphism-to-full-homomorphism,
-  title: From linear homomorphism to full homomorphism}
-'16.4': {filename: lec_15_FHE.html, href: bootstrapping-fully-homomorphic-escape-velocity,
-  title: 'Bootstrapping: Fully Homomorphic escape velocity'}
-16.4.1: {filename: lec_15_FHE.html, href: radioactive-legos-analogy, title: Radioactive
-    legos analogy}
-16.4.2: {filename: lec_15_FHE.html, href: proving-the-bootstrapping-theorem, title: Proving
-    the bootstrapping theorem}
-'17': {filename: lec_16_FHE_part2.html, href: '', title: 'Fully homomorphic encryption
-    : Construction'}
-'17.1': {filename: lec_16_FHE_part2.html, href: prelude-from-vectors-to-matrices,
-  title: 'Prelude: from vectors to matrices'}
-'17.2': {filename: lec_16_FHE_part2.html, href: real-world-partially-homomorphic-encryption,
-  title: Real world partially homomorphic encryption}
-'17.3': {filename: lec_16_FHE_part2.html, href: noise-management-via-encoding, title: Noise
-    management via encoding}
-'17.4': {filename: lec_16_FHE_part2.html, href: putting-it-all-together, title: Putting
-    it all together}
-'17.5': {filename: lec_16_FHE_part2.html, href: analysis-of-our-scheme, title: Analysis
-    of our scheme}
-17.5.1: {filename: lec_16_FHE_part2.html, href: correctness, title: Correctness}
-17.5.2: {filename: lec_16_FHE_part2.html, href: cpa-security, title: CPA Security}
-17.5.3: {filename: lec_16_FHE_part2.html, href: homomorphism, title: Homomorphism}
-17.5.4: {filename: lec_16_FHE_part2.html, href: shallow-decryption-circuit, title: Shallow
-    decryption circuit}
-'17.6': {filename: lec_16_FHE_part2.html, href: example-application-private-information-retrieval,
-  title: 'Example application: Private information retrieval'}
-'18': {filename: lec_17_SFE.html, href: '', title: 'Multiparty secure computation
-    I: Definition and Honest-But-Curious to Malicious complier'}
-'18.1': {filename: lec_17_SFE.html, href: ideal-vs.-real-model-security., title: "Ideal\
-    \ vs.\_Real Model Security."}
-'18.2': {filename: lec_17_SFE.html, href: formally-defining-secure-multiparty-computation,
-  title: Formally defining secure multiparty computation}
-18.2.1: {filename: lec_17_SFE.html, href: first-attempt-a-slightly-too-ideal-definition,
-  title: 'First attempt: a slightly too ideal definition'}
-18.2.2: {filename: lec_17_SFE.html, href: allowing-for-aborts, title: Allowing for
-    aborts}
-18.2.3: {filename: lec_17_SFE.html, href: some-comments, title: 'Some comments:'}
-'18.3': {filename: lec_17_SFE.html, href: example-second-price-auction-using-bitcoin,
-  title: 'Example: Second price auction using bitcoin'}
-18.3.1: {filename: lec_17_SFE.html, href: another-example-distributed-and-threshold-cryptography,
-  title: 'Another example: distributed and threshold cryptography'}
-'18.4': {filename: lec_17_SFE.html, href: proving-the-fundamental-theorem, title: 'Proving
-    the fundamental theorem:'}
-'18.5': {filename: lec_17_SFE.html, href: malicious-to-honest-but-curious-reduction,
-  title: Malicious to honest but curious reduction}
-18.5.1: {filename: lec_17_SFE.html, href: handling-probabilistic-strategies, title: 'Handling
-    probabilistic strategies:'}
-'19': {filename: lec_18_SFE_part2.html, href: '', title: 'Multiparty secure computation:
-    Construction using Fully Homomorphic Encryption'}
-'19.1': {filename: lec_18_SFE_part2.html, href: constructing-2-party-honest-but-curious-computation-from-fully-homomorphic-encryption,
+'0':
+  filename: lec_00_1_mathematical-background.html
+  href: ''
+  title: Mathematical Background
+'0.1':
+  filename: lec_00_1_mathematical-background.html
+  href: a-quick-overview-of-mathematical-prerequisites
+  title: A quick overview of mathematical prerequisites
+'0.2':
+  filename: lec_00_1_mathematical-background.html
+  href: mathematical-proofs
+  title: Mathematical Proofs
+0.2.1:
+  filename: lec_00_1_mathematical-background.html
+  href: example-the-existence-of-infinitely-many-primes.
+  title: 'Example: The existence of infinitely many primes.'
+'0.3':
+  filename: lec_00_1_mathematical-background.html
+  href: probability-and-sample-spaces
+  title: Probability and Sample spaces
+0.3.1:
+  filename: lec_00_1_mathematical-background.html
+  href: random-variables
+  title: Random variables
+0.3.2:
+  filename: lec_00_1_mathematical-background.html
+  href: distributions-over-strings
+  title: Distributions over strings
+0.3.3:
+  filename: lec_00_1_mathematical-background.html
+  href: more-general-sample-spaces.
+  title: More general sample spaces.
+'0.4':
+  filename: lec_00_1_mathematical-background.html
+  href: correlations-and-independence
+  title: Correlations and independence
+0.4.1:
+  filename: lec_00_1_mathematical-background.html
+  href: independent-random-variables
+  title: Independent random variables
+0.4.2:
+  filename: lec_00_1_mathematical-background.html
+  href: collections-of-independent-random-variables.
+  title: Collections of independent random variables.
+'0.5':
+  filename: lec_00_1_mathematical-background.html
+  href: concentration-and-tail-bounds
+  title: Concentration and tail bounds
+0.5.1:
+  filename: lec_00_1_mathematical-background.html
+  href: chebyshevs-inequality
+  title: "Chebyshev\u2019s Inequality"
+0.5.2:
+  filename: lec_00_1_mathematical-background.html
+  href: the-chernoff-bound
+  title: The Chernoff bound
+'0.6':
+  filename: lec_00_1_mathematical-background.html
+  href: exercises
+  title: Exercises
+'0.7':
+  filename: lec_00_1_mathematical-background.html
+  href: exercises-1
+  title: Exercises
+'1':
+  filename: lec_01_introduction.html
+  href: ''
+  title: Introduction
+'1.1':
+  filename: lec_01_introduction.html
+  href: some-history
+  title: Some history
+'1.2':
+  filename: lec_01_introduction.html
+  href: defining-encryptions
+  title: Defining encryptions
+'1.3':
+  filename: lec_01_introduction.html
+  href: defining-security-of-encryption
+  title: Defining security of encryption
+1.3.1:
+  filename: lec_01_introduction.html
+  href: generating-randomness-in-actual-cryptographic-systems
+  title: Generating randomness in actual cryptographic systems
+'1.4':
+  filename: lec_01_introduction.html
+  href: defining-the-secrecy-requirement.
+  title: Defining the secrecy requirement.
+'1.5':
+  filename: lec_01_introduction.html
+  href: perfect-secrecy
+  title: Perfect Secrecy
+1.5.1:
+  filename: lec_01_introduction.html
+  href: achieving-perfect-secrecy
+  title: Achieving perfect secrecy
+'1.6':
+  filename: lec_01_introduction.html
+  href: necessity-of-long-keys
+  title: Necessity of long keys
+'1.7':
+  filename: lec_01_introduction.html
+  href: bibliographical-notes
+  title: Bibliographical notes
+'10':
+  filename: lec_10_public_key_intro.html
+  href: ''
+  title: Public key cryptography
+'10.1':
+  filename: lec_10_public_key_intro.html
+  href: private-key-crypto-recap
+  title: Private key crypto recap
+'10.2':
+  filename: lec_10_public_key_intro.html
+  href: public-key-encryptions-definition
+  title: 'Public Key Encryptions: Definition'
+10.2.1:
+  filename: lec_10_public_key_intro.html
+  href: the-obfuscation-paradigm
+  title: The obfuscation paradigm
+'10.3':
+  filename: lec_10_public_key_intro.html
+  href: some-concrete-candidates
+  title: 'Some concrete candidates:'
+10.3.1:
+  filename: lec_10_public_key_intro.html
+  href: diffie-hellman-encryption-aka-el-gamal
+  title: Diffie-Hellman Encryption (aka El-Gamal)
+10.3.2:
+  filename: lec_10_public_key_intro.html
+  href: sampling-random-primes
+  title: Sampling random primes
+10.3.3:
+  filename: lec_10_public_key_intro.html
+  href: a-little-bit-of-group-theory.
+  title: A little bit of group theory.
+10.3.4:
+  filename: lec_10_public_key_intro.html
+  href: digital-signatures
+  title: Digital Signatures
+10.3.5:
+  filename: lec_10_public_key_intro.html
+  href: the-digital-signature-algorithm-dsa
+  title: The Digital Signature Algorithm (DSA)
+'10.4':
+  filename: lec_10_public_key_intro.html
+  href: putting-everything-together---security-in-practice.
+  title: Putting everything together - security in practice.
+'10.5':
+  filename: lec_10_public_key_intro.html
+  href: appendix-an-alternative-proof-of-the-density-of-primes
+  title: 'Appendix: An alternative proof of the density of primes'
+'11':
+  filename: lec_11_concrete_pkc.html
+  href: ''
+  title: Concrete candidates for public key crypto
+'11.1':
+  filename: lec_11_concrete_pkc.html
+  href: some-number-theory.
+  title: Some number theory.
+11.1.1:
+  filename: lec_11_concrete_pkc.html
+  href: primaliy-testing
+  title: Primaliy testing
+11.1.2:
+  filename: lec_11_concrete_pkc.html
+  href: fields
+  title: Fields
+11.1.3:
+  filename: lec_11_concrete_pkc.html
+  href: chinese-remainder-theorem
+  title: Chinese remainder theorem
+11.1.4:
+  filename: lec_11_concrete_pkc.html
+  href: the-rsa-and-rabin-functions
+  title: The RSA and Rabin functions
+11.1.5:
+  filename: lec_11_concrete_pkc.html
+  href: abstraction-trapdoor-permutations
+  title: 'Abstraction: trapdoor permutations'
+11.1.6:
+  filename: lec_11_concrete_pkc.html
+  href: public-key-encryption-from-trapdoor-permutations
+  title: Public key encryption from trapdoor permutations
+11.1.7:
+  filename: lec_11_concrete_pkc.html
+  href: digital-signatures-from-trapdoor-permutations
+  title: Digital signatures from trapdoor permutations
+'11.2':
+  filename: lec_11_concrete_pkc.html
+  href: hardcore-bits-and-security-without-random-oracles
+  title: Hardcore bits and security without random oracles
+'12':
+  filename: lec_12_lattices.html
+  href: ''
+  title: Lattice based cryptography
+'12.1':
+  filename: lec_12_lattices.html
+  href: a-world-without-gaussian-elimination
+  title: A world without Gaussian elimination
+'12.2':
+  filename: lec_12_lattices.html
+  href: security-in-the-real-world.
+  title: Security in the real world.
+'12.3':
+  filename: lec_12_lattices.html
+  href: search-to-decision
+  title: Search to decision
+'12.4':
+  filename: lec_12_lattices.html
+  href: an-lwe-based-encryption-scheme
+  title: An LWE based encryption scheme
+'12.5':
+  filename: lec_12_lattices.html
+  href: but-what-are-lattices
+  title: But what are lattices?
+'12.6':
+  filename: lec_12_lattices.html
+  href: ring-based-lattices
+  title: Ring based lattices
+'13':
+  filename: lec_12a_CCA_public_key.html
+  href: ''
+  title: Chosen ciphertext security for public key encryption
+'14':
+  filename: lec_13_handshake.html
+  href: ''
+  title: Establishing secure connections over insecure channels
+'14.1':
+  filename: lec_13_handshake.html
+  href: cryptographys-obsession-with-adjectives.
+  title: "Cryptography\u2019s obsession with adjectives."
+'14.2':
+  filename: lec_13_handshake.html
+  href: basic-key-exchange-protocol
+  title: Basic Key Exchange protocol
+'14.3':
+  filename: lec_13_handshake.html
+  href: authenticated-key-exchange
+  title: Authenticated key exchange
+14.3.1:
+  filename: lec_13_handshake.html
+  href: bleichenbachers-attack-on-rsa-pkcs-v1.5-and-ssl-v3.0
+  title: "Bleichenbacher\u2019s attack on RSA PKCS V1.5 and SSL V3.0"
+'14.4':
+  filename: lec_13_handshake.html
+  href: chosen-ciphertext-attack-security-for-public-key-cryptography
+  title: Chosen ciphertext attack security for public key cryptography
+'14.5':
+  filename: lec_13_handshake.html
+  href: cca-secure-public-key-encryption-in-the-random-oracle-model
+  title: CCA secure public key encryption in the Random Oracle Model
+14.5.1:
+  filename: lec_13_handshake.html
+  href: defining-secure-authenticated-key-exchange
+  title: Defining secure authenticated key exchange
+14.5.2:
+  filename: lec_13_handshake.html
+  href: the-compiler-approach-for-authenticated-key-exchange
+  title: The compiler approach for authenticated key exchange
+'14.6':
+  filename: lec_13_handshake.html
+  href: password-authenticated-key-exchange.
+  title: Password authenticated key exchange.
+'14.7':
+  filename: lec_13_handshake.html
+  href: client-to-client-key-exchange-for-secure-text-messaging---zrtp-otr-textsecure
+  title: Client to client key exchange for secure text messaging - ZRTP, OTR, TextSecure
+'14.8':
+  filename: lec_13_handshake.html
+  href: heartbleed-and-logjam-attacks
+  title: Heartbleed and logjam attacks
+'15':
+  filename: lec_14_zero_knowledge.html
+  href: ''
+  title: Zero knowledge proofs
+'15.1':
+  filename: lec_14_zero_knowledge.html
+  href: applications-for-zero-knowledge-proofs.
+  title: Applications for zero knowledge proofs.
+15.1.1:
+  filename: lec_14_zero_knowledge.html
+  href: nuclear-disarmament
+  title: Nuclear disarmament
+15.1.2:
+  filename: lec_14_zero_knowledge.html
+  href: voting
+  title: Voting
+15.1.3:
+  filename: lec_14_zero_knowledge.html
+  href: more-applications
+  title: More applications
+'15.2':
+  filename: lec_14_zero_knowledge.html
+  href: defining-and-constructing-zero-knowledge-proofs
+  title: Defining and constructing zero knowledge proofs
+'15.3':
+  filename: lec_14_zero_knowledge.html
+  href: defining-zero-knowledge
+  title: Defining zero knowledge
+'15.4':
+  filename: lec_14_zero_knowledge.html
+  href: zero-knowledge-proof-for-hamiltonicity.
+  title: Zero knowledge proof for Hamiltonicity.
+15.4.1:
+  filename: lec_14_zero_knowledge.html
+  href: why-is-this-interesting
+  title: Why is this interesting?
+'15.5':
+  filename: lec_14_zero_knowledge.html
+  href: parallel-repetition-and-turning-zero-knowledge-proofs-to-signatures.
+  title: Parallel repetition and turning zero knowledge proofs to signatures.
+15.5.1:
+  filename: lec_14_zero_knowledge.html
+  href: bonus-features-of-zero-knowledge
+  title: '"Bonus features" of zero knowledge'
+'16':
+  filename: lec_15_FHE.html
+  href: ''
+  title: 'Fully homomorphic encryption: Introduction and bootstrapping'
+'16.1':
+  filename: lec_15_FHE.html
+  href: defining-fully-homomorphic-encryption
+  title: Defining fully homomorphic encryption
+16.1.1:
+  filename: lec_15_FHE.html
+  href: another-application-fully-homomorphic-encryption-for-verifying-computation
+  title: 'Another application: fully homomorphic encryption for verifying computation'
+'16.2':
+  filename: lec_15_FHE.html
+  href: example-an-xor-homomorphic-encryption
+  title: 'Example: An XOR homomorphic encryption'
+16.2.1:
+  filename: lec_15_FHE.html
+  href: abstraction-a-trapdoor-pseudorandom-generator.
+  title: 'Abstraction: A trapdoor pseudorandom generator.'
+'16.3':
+  filename: lec_15_FHE.html
+  href: from-linear-homomorphism-to-full-homomorphism
+  title: From linear homomorphism to full homomorphism
+'16.4':
+  filename: lec_15_FHE.html
+  href: bootstrapping-fully-homomorphic-escape-velocity
+  title: 'Bootstrapping: Fully Homomorphic "escape velocity"'
+16.4.1:
+  filename: lec_15_FHE.html
+  href: radioactive-legos-analogy
+  title: Radioactive legos analogy
+16.4.2:
+  filename: lec_15_FHE.html
+  href: proving-the-bootstrapping-theorem
+  title: Proving the bootstrapping theorem
+'17':
+  filename: lec_16_FHE_part2.html
+  href: ''
+  title: 'Fully homomorphic encryption : Construction'
+'17.1':
+  filename: lec_16_FHE_part2.html
+  href: prelude-from-vectors-to-matrices
+  title: 'Prelude: from vectors to matrices'
+'17.2':
+  filename: lec_16_FHE_part2.html
+  href: real-world-partially-homomorphic-encryption
+  title: Real world partially homomorphic encryption
+'17.3':
+  filename: lec_16_FHE_part2.html
+  href: noise-management-via-encoding
+  title: Noise management via encoding
+'17.4':
+  filename: lec_16_FHE_part2.html
+  href: putting-it-all-together
+  title: Putting it all together
+'17.5':
+  filename: lec_16_FHE_part2.html
+  href: analysis-of-our-scheme
+  title: Analysis of our scheme
+17.5.1:
+  filename: lec_16_FHE_part2.html
+  href: correctness
+  title: Correctness
+17.5.2:
+  filename: lec_16_FHE_part2.html
+  href: cpa-security
+  title: CPA Security
+17.5.3:
+  filename: lec_16_FHE_part2.html
+  href: homomorphism
+  title: Homomorphism
+17.5.4:
+  filename: lec_16_FHE_part2.html
+  href: shallow-decryption-circuit
+  title: Shallow decryption circuit
+'17.6':
+  filename: lec_16_FHE_part2.html
+  href: example-application-private-information-retrieval
+  title: 'Example application: Private information retrieval'
+'18':
+  filename: lec_17_SFE.html
+  href: ''
+  title: 'Multiparty secure computation I: Definition and Honest-But-Curious to Malicious
+    complier'
+'18.1':
+  filename: lec_17_SFE.html
+  href: ideal-vs.-real-model-security.
+  title: "Ideal vs.\_Real Model Security."
+'18.2':
+  filename: lec_17_SFE.html
+  href: formally-defining-secure-multiparty-computation
+  title: Formally defining secure multiparty computation
+18.2.1:
+  filename: lec_17_SFE.html
+  href: first-attempt-a-slightly-too-ideal-definition
+  title: 'First attempt: a slightly "too ideal" definition'
+18.2.2:
+  filename: lec_17_SFE.html
+  href: allowing-for-aborts
+  title: Allowing for aborts
+18.2.3:
+  filename: lec_17_SFE.html
+  href: some-comments
+  title: 'Some comments:'
+'18.3':
+  filename: lec_17_SFE.html
+  href: example-second-price-auction-using-bitcoin
+  title: 'Example: Second price auction using bitcoin'
+18.3.1:
+  filename: lec_17_SFE.html
+  href: another-example-distributed-and-threshold-cryptography
+  title: 'Another example: distributed and threshold cryptography'
+'18.4':
+  filename: lec_17_SFE.html
+  href: proving-the-fundamental-theorem
+  title: 'Proving the fundamental theorem:'
+'18.5':
+  filename: lec_17_SFE.html
+  href: malicious-to-honest-but-curious-reduction
+  title: Malicious to honest but curious reduction
+18.5.1:
+  filename: lec_17_SFE.html
+  href: handling-probabilistic-strategies
+  title: 'Handling probabilistic strategies:'
+'19':
+  filename: lec_18_SFE_part2.html
+  href: ''
+  title: 'Multiparty secure computation: Construction using Fully Homomorphic Encryption'
+'19.1':
+  filename: lec_18_SFE_part2.html
+  href: constructing-2-party-honest-but-curious-computation-from-fully-homomorphic-encryption
   title: Constructing 2 party honest but curious computation from fully homomorphic
-    encryption}
-'19.2': {filename: lec_18_SFE_part2.html, href: achieving-circuit-privacy-in-a-fully-homomorphic-encryption,
-  title: Achieving circuit privacy in a fully homomorphic encryption}
-'19.3': {filename: lec_18_SFE_part2.html, href: bottom-line-a-two-party-honest-but-curious-two-party-secure-computation-protocol,
+    encryption
+'19.2':
+  filename: lec_18_SFE_part2.html
+  href: achieving-circuit-privacy-in-a-fully-homomorphic-encryption
+  title: Achieving circuit privacy in a fully homomorphic encryption
+'19.3':
+  filename: lec_18_SFE_part2.html
+  href: bottom-line-a-two-party-honest-but-curious-two-party-secure-computation-protocol
   title: 'Bottom line: A two party honest but curious two party secure computation
-    protocol'}
-'2': {filename: lec_02_computational-security.html, href: '', title: Computational
-    Security}
-2.0.1: {filename: lec_02_computational-security.html, href: proof-by-reduction, title: Proof
-    by reduction}
-'2.1': {filename: lec_02_computational-security.html, href: the-asymptotic-approach,
-  title: The asymptotic approach}
-2.1.1: {filename: lec_02_computational-security.html, href: counting-number-of-operations.,
-  title: Counting number of operations.}
-'2.2': {filename: lec_02_computational-security.html, href: our-first-conjecture,
-  title: Our first conjecture}
-'2.3': {filename: lec_02_computational-security.html, href: why-care-about-the-cipher-conjecture,
-  title: 'Why care about the cipher conjecture?'}
-'2.4': {filename: lec_02_computational-security.html, href: prelude-computational-indistinguishability,
-  title: 'Prelude: Computational Indistinguishability'}
-'2.5': {filename: lec_02_computational-security.html, href: the-length-extension-theorem,
-  title: The Length Extension Theorem}
-2.5.1: {filename: lec_02_computational-security.html, href: appendix-the-computational-model,
-  title: 'Appendix: The computational model'}
-'20': {filename: lec_19_quantum.html, href: '', title: Quantum computing and cryptography
-    I}
-20.0.1: {filename: lec_19_quantum.html, href: quantum-computing-and-computation---an-executive-summary.,
-  title: Quantum computing and computation - an executive summary.}
-'20.1': {filename: lec_19_quantum.html, href: quantum-101, title: Quantum 101}
-20.1.1: {filename: lec_19_quantum.html, href: physically-realizing-quantum-computation,
-  title: Physically realizing quantum computation}
-20.1.2: {filename: lec_19_quantum.html, href: bra-ket-notation, title: Bra-ket notation}
-20.1.3: {filename: lec_19_quantum.html, href: bells-inequality, title: "Bell\u2019\
-    s Inequality"}
-'20.2': {filename: lec_19_quantum.html, href: grovers-algorithm, title: "Grover\u2019\
-    s Algorithm"}
-'21': {filename: lec_20_quantum_part2.html, href: '', title: Quantum computing and
-    cryptography II}
-'21.1': {filename: lec_20_quantum_part2.html, href: from-order-finding-to-factoring-and-discrete-log,
-  title: From order finding to factoring and discrete log}
-'21.2': {filename: lec_20_quantum_part2.html, href: finding-periods-of-a-function-simons-algorithm,
-  title: "Finding periods of a function: Simon\u2019s Algorithm"}
-'21.3': {filename: lec_20_quantum_part2.html, href: from-simon-to-shor, title: From
-    Simon to Shor}
-21.3.1: {filename: lec_20_quantum_part2.html, href: the-fourier-transform-over-z_m,
-  title: The Fourier transform over \Z_m}
-21.3.1.1: {filename: lec_20_quantum_part2.html, href: fast-fourier-transform., title: Fast
-    Fourier Transform.}
-21.3.2: {filename: lec_20_quantum_part2.html, href: quantum-fourier-transform-over-z_m,
-  title: Quantum Fourier Transform over \Z_m}
-'21.4': {filename: lec_20_quantum_part2.html, href: shors-order-finding-algorithm.,
-  title: "Shor\u2019s Order-Finding Algorithm."}
-21.4.1: {filename: lec_20_quantum_part2.html, href: analysis-the-case-that-rm, title: 'Analysis:
-    the case that r|m'}
-21.4.1.1: {filename: lec_20_quantum_part2.html, href: the-general-case, title: The
-    general case}
-'21.5': {filename: lec_20_quantum_part2.html, href: rational-approximation-of-real-numbers,
-  title: Rational approximation of real numbers}
-21.5.1: {filename: lec_20_quantum_part2.html, href: quantum-cryptography, title: Quantum
-    cryptography}
-'22': {filename: lec_21_obfuscation.html, href: '', title: Software Obfuscation}
-'22.1': {filename: lec_21_obfuscation.html, href: witness-encryption, title: Witness
-    encryption}
-'22.2': {filename: lec_21_obfuscation.html, href: deniable-encryption, title: Deniable
-    encryption}
-'22.3': {filename: lec_21_obfuscation.html, href: functional-encryption, title: Functional
-    encryption}
-'22.4': {filename: lec_21_obfuscation.html, href: the-software-patch-problem, title: The
-    software patch problem}
-'22.5': {filename: lec_21_obfuscation.html, href: software-obfuscation-1, title: Software
-    obfuscation}
-'22.6': {filename: lec_21_obfuscation.html, href: applications-of-obfuscation, title: Applications
-    of obfuscation}
-'22.7': {filename: lec_21_obfuscation.html, href: impossibility-of-obfuscation, title: Impossibility
-    of obfuscation}
-22.7.1: {filename: lec_21_obfuscation.html, href: proof-of-impossibility-of-vbb-obfuscation,
-  title: Proof of impossibility of VBB obfuscation}
-'22.8': {filename: lec_21_obfuscation.html, href: indistinguishability-obfuscation,
-  title: Indistinguishability obfuscation}
-'23': {filename: lec_22_obfuscation_part2.html, href: '', title: 'More obfuscation,
-    exotic encryptions'}
-'23.1': {filename: lec_22_obfuscation_part2.html, href: slower-weaker-less-securer,
-  title: 'Slower, weaker, less securer'}
-'23.2': {filename: lec_22_obfuscation_part2.html, href: how-to-get-ibe-from-pairing-based-assumptions.,
-  title: How to get IBE from pairing based assumptions.}
-'23.3': {filename: lec_22_obfuscation_part2.html, href: beyond-pairing-based-cryptography,
-  title: Beyond pairing based cryptography}
-'24': {filename: lec_23_anonymous.html, href: '', title: Anonymous communication}
-'24.1': {filename: lec_23_anonymous.html, href: steganography, title: Steganography}
-'24.2': {filename: lec_23_anonymous.html, href: anonymous-routing, title: Anonymous
-    routing}
-'24.3': {filename: lec_23_anonymous.html, href: tor, title: Tor}
-'24.4': {filename: lec_23_anonymous.html, href: telex, title: Telex}
-'24.5': {filename: lec_23_anonymous.html, href: riposte, title: Riposte}
-'25': {filename: lec_24_policy.html, href: '', title: 'Ethical, moral, and policy
-    dimensions to cryptography'}
-'25.1': {filename: lec_24_policy.html, href: reading-prior-to-lecture, title: 'Reading
-    prior to lecture:'}
-'25.2': {filename: lec_24_policy.html, href: case-studies., title: Case studies.}
-25.2.1: {filename: lec_24_policy.html, href: the-snowden-revelations, title: The Snowden
-    revelations}
-25.2.2: {filename: lec_24_policy.html, href: fbi-vs-apple-case, title: FBI vs Apple
-    case}
-25.2.3: {filename: lec_24_policy.html, href: juniper-backdoor-case-and-the-opm-break-in,
-  title: Juniper backdoor case and the OPM break-in}
-'26': {filename: lec_25_course_recap.html, href: '', title: Course recap}
-'26.1': {filename: lec_25_course_recap.html, href: some-things-we-did-not-cover, title: Some
-    things we did not cover}
-'26.2': {filename: lec_25_course_recap.html, href: what-i-hope-you-learned, title: What
-    I hope you learned}
-'3': {filename: lec_03_pseudorandom-generators.html, href: '', title: Pseudorandomness}
-'3.1': {filename: lec_03_pseudorandom-generators.html, href: stream-ciphers, title: Stream
-    ciphers}
-'3.2': {filename: lec_03_pseudorandom-generators.html, href: what-do-pseudorandom-generators-actually-look-like,
-  title: 'What do pseudorandom generators actually look like?'}
-3.2.1: {filename: lec_03_pseudorandom-generators.html, href: attempt-0-the-counter-generator,
-  title: 'Attempt 0: The counter generator'}
-3.2.2: {filename: lec_03_pseudorandom-generators.html, href: attempt-1-the-linear-checksum-linear-feedback-shift-register-lfsr,
-  title: 'Attempt 1: The linear checksum / linear feedback shift register (LFSR)'}
-3.2.3: {filename: lec_03_pseudorandom-generators.html, href: from-insecurity-to-security,
-  title: From insecurity to security}
-3.2.4: {filename: lec_03_pseudorandom-generators.html, href: attempt-2-linear-congruential-generators-with-dropped-bits,
-  title: 'Attempt 2: Linear Congruential Generators with dropped bits'}
-'3.3': {filename: lec_03_pseudorandom-generators.html, href: successful-examples,
-  title: Successful examples}
-3.3.1: {filename: lec_03_pseudorandom-generators.html, href: case-study-1-subset-sum-generator,
-  title: 'Case Study 1: Subset Sum Generator'}
-3.3.2: {filename: lec_03_pseudorandom-generators.html, href: case-study-2-rc4, title: 'Case
-    Study 2: RC4'}
-'3.4': {filename: lec_03_pseudorandom-generators.html, href: non-constructive-existence-of-pseudorandom-generators,
-  title: Non-constructive existence of pseudorandom generators}
-'4': {filename: lec_04_pseudorandom-functions.html, href: '', title: Pseudorandom
-    functions}
-'4.1': {filename: lec_04_pseudorandom-functions.html, href: one-time-passwords-e.g.-google-authenticator-rsa-id-etc.,
-  title: "One time passwords (e.g.\_Google Authenticator, RSA ID, etc.)"}
-4.1.1: {filename: lec_04_pseudorandom-functions.html, href: how-do-pseudorandom-functions-help-in-the-login-problem,
-  title: 'How do pseudorandom functions help in the login problem?'}
-'4.2': {filename: lec_04_pseudorandom-functions.html, href: message-authentication-codes,
-  title: Message Authentication Codes}
-'4.3': {filename: lec_04_pseudorandom-functions.html, href: macs-from-prfs, title: MACs
-    from PRFs}
-'4.4': {filename: lec_04_pseudorandom-functions.html, href: input-length-extension-for-macs-and-prfs,
-  title: Input length extension for MACs and PRFs}
-'4.5': {filename: lec_04_pseudorandom-functions.html, href: aside-natural-proofs,
-  title: 'Aside: natural proofs'}
-'5': {filename: lec_05_prf-from-prg.html, href: '', title: Pseudorandom functions
-    from pseudorandom generators}
-'5.1': {filename: lec_05_prf-from-prg.html, href: securely-encrypting-many-messages---chosen-plaintext-security,
-  title: Securely encrypting many messages - chosen plaintext security}
-'5.2': {filename: lec_05_prf-from-prg.html, href: pseudorandom-permutations-block-ciphers,
-  title: Pseudorandom permutations / block ciphers}
-'5.3': {filename: lec_05_prf-from-prg.html, href: encryption-modes, title: Encryption
-    modes}
-'6': {filename: lec_06_CCA.html, href: '', title: Chosen Ciphertext Security}
-'6.1': {filename: lec_06_CCA.html, href: short-recap, title: Short recap}
-'6.2': {filename: lec_06_CCA.html, href: going-beyond-cpa, title: Going beyond CPA}
-6.2.1: {filename: lec_06_CCA.html, href: example-the-wired-equivalence-protocol-wep,
-  title: 'Example: The Wired Equivalence Protocol (WEP)'}
-6.2.2: {filename: lec_06_CCA.html, href: chosen-ciphertext-security-1, title: Chosen
-    ciphertext security}
-'6.3': {filename: lec_06_CCA.html, href: constructing-cca-secure-encryption, title: Constructing
-    CCA secure encryption}
-'6.4': {filename: lec_06_CCA.html, href: simplified-gcm-encryption, title: (Simplified)
-    GCM encryption}
-'6.5': {filename: lec_06_CCA.html, href: padding-chopping-and-their-pitfalls-the-buffer-overflow-of-cryptography,
-  title: 'Padding, chopping, and their pitfalls: the buffer overflow of cryptography'}
-'6.6': {filename: lec_06_CCA.html, href: chosen-ciphertext-attack-as-implementing-metaphors,
-  title: Chosen ciphertext attack as implementing metaphors}
-'7': {filename: lec_07_hash_functions.html, href: '', title: Hash functions and random
-    oracles}
-'7.1': {filename: lec_07_hash_functions.html, href: the-bitcoin-problem, title: The
-    bitcoin problem}
-7.1.1: {filename: lec_07_hash_functions.html, href: the-currency-problem, title: The
-    currency problem}
-7.1.2: {filename: lec_07_hash_functions.html, href: bitcoin-architecture, title: Bitcoin
-    architecture}
-'7.2': {filename: lec_07_hash_functions.html, href: the-bitcoin-ledger, title: The
-    bitcoin ledger}
-7.2.1: {filename: lec_07_hash_functions.html, href: from-proof-of-work-to-consensus-on-ledger,
-  title: From proof of work to consensus on ledger}
-'7.3': {filename: lec_07_hash_functions.html, href: collision-resistance-hash-functions-and-creating-short-unique-identifiers,
-  title: Collision resistance hash functions and creating short unique identifiers}
-'7.4': {filename: lec_07_hash_functions.html, href: practical-constructions-of-cryptographic-hash-functions,
-  title: Practical constructions of cryptographic hash functions}
-7.4.1: {filename: lec_07_hash_functions.html, href: practical-random-ish-functions,
-  title: Practical random-ish functions}
-7.4.2: {filename: lec_07_hash_functions.html, href: some-history, title: Some history}
-7.4.3: {filename: lec_07_hash_functions.html, href: the-nsa-and-hash-functions., title: The
-    NSA and hash functions.}
-7.4.4: {filename: lec_07_hash_functions.html, href: cryptographic-vs-non-cryptographic-hash-functions,
-  title: 'Cryptographic vs non-cryptographic hash functions:'}
-'8': {filename: lec_08_hash_functions_part2.html, href: '', title: 'Key derivation,
-    protecting passwords, slow hashes, Merkle trees'}
-'8.1': {filename: lec_08_hash_functions_part2.html, href: keys-from-passwords, title: Keys
-    from passwords}
-'8.2': {filename: lec_08_hash_functions_part2.html, href: merkle-trees-and-verifying-storage.,
-  title: Merkle trees and verifying storage.}
-'8.3': {filename: lec_08_hash_functions_part2.html, href: proofs-of-retrievability,
-  title: Proofs of Retrievability}
-'8.4': {filename: lec_08_hash_functions_part2.html, href: entropy-extraction, title: Entropy
-    extraction}
-8.4.1: {filename: lec_08_hash_functions_part2.html, href: forward-and-backward-secrecy,
-  title: Forward and backward secrecy}
-'9': {filename: lec_09_priv_recap.html, href: '', title: Private key crypto recap}
-9.0.1: {filename: lec_09_priv_recap.html, href: attacks-on-private-key-cryptosystems,
-  title: Attacks on private key cryptosystems}
-p: {filename: lec_00_0_foreword.html, href: '', title: Foreword and Syllabus}
-p.1: {filename: lec_00_0_foreword.html, href: syllabus, title: Syllabus}
-p.1.1: {filename: lec_00_0_foreword.html, href: prerequisites, title: Prerequisites}
-p.2: {filename: lec_00_0_foreword.html, href: why-is-cryptography-hard, title: 'Why
-    is cryptography hard?'}
+    protocol'
+'2':
+  filename: lec_02_computational-security.html
+  href: ''
+  title: Computational Security
+2.0.1:
+  filename: lec_02_computational-security.html
+  href: proof-by-reduction
+  title: Proof by reduction
+'2.1':
+  filename: lec_02_computational-security.html
+  href: the-asymptotic-approach
+  title: The asymptotic approach
+2.1.1:
+  filename: lec_02_computational-security.html
+  href: counting-number-of-operations.
+  title: Counting number of operations.
+'2.2':
+  filename: lec_02_computational-security.html
+  href: our-first-conjecture
+  title: Our first conjecture
+'2.3':
+  filename: lec_02_computational-security.html
+  href: why-care-about-the-cipher-conjecture
+  title: Why care about the cipher conjecture?
+'2.4':
+  filename: lec_02_computational-security.html
+  href: prelude-computational-indistinguishability
+  title: 'Prelude: Computational Indistinguishability'
+'2.5':
+  filename: lec_02_computational-security.html
+  href: the-length-extension-theorem
+  title: The Length Extension Theorem
+2.5.1:
+  filename: lec_02_computational-security.html
+  href: appendix-the-computational-model
+  title: 'Appendix: The computational model'
+'20':
+  filename: lec_19_quantum.html
+  href: ''
+  title: Quantum computing and cryptography I
+20.0.1:
+  filename: lec_19_quantum.html
+  href: quantum-computing-and-computation---an-executive-summary.
+  title: Quantum computing and computation - an executive summary.
+'20.1':
+  filename: lec_19_quantum.html
+  href: quantum-101
+  title: Quantum 101
+20.1.1:
+  filename: lec_19_quantum.html
+  href: physically-realizing-quantum-computation
+  title: Physically realizing quantum computation
+20.1.2:
+  filename: lec_19_quantum.html
+  href: bra-ket-notation
+  title: Bra-ket notation
+20.1.3:
+  filename: lec_19_quantum.html
+  href: bells-inequality
+  title: "Bell\u2019s Inequality"
+'20.2':
+  filename: lec_19_quantum.html
+  href: grovers-algorithm
+  title: "Grover\u2019s Algorithm"
+'21':
+  filename: lec_20_quantum_part2.html
+  href: ''
+  title: Quantum computing and cryptography II
+'21.1':
+  filename: lec_20_quantum_part2.html
+  href: from-order-finding-to-factoring-and-discrete-log
+  title: From order finding to factoring and discrete log
+'21.2':
+  filename: lec_20_quantum_part2.html
+  href: finding-periods-of-a-function-simons-algorithm
+  title: "Finding periods of a function: Simon\u2019s Algorithm"
+'21.3':
+  filename: lec_20_quantum_part2.html
+  href: from-simon-to-shor
+  title: From Simon to Shor
+21.3.1:
+  filename: lec_20_quantum_part2.html
+  href: the-fourier-transform-over-z_m
+  title: The Fourier transform over \Z_m
+21.3.1.1:
+  filename: lec_20_quantum_part2.html
+  href: fast-fourier-transform.
+  title: Fast Fourier Transform.
+21.3.2:
+  filename: lec_20_quantum_part2.html
+  href: quantum-fourier-transform-over-z_m
+  title: Quantum Fourier Transform over \Z_m
+'21.4':
+  filename: lec_20_quantum_part2.html
+  href: shors-order-finding-algorithm.
+  title: "Shor\u2019s Order-Finding Algorithm."
+21.4.1:
+  filename: lec_20_quantum_part2.html
+  href: analysis-the-case-that-rm
+  title: 'Analysis: the case that r|m'
+21.4.1.1:
+  filename: lec_20_quantum_part2.html
+  href: the-general-case
+  title: The general case
+'21.5':
+  filename: lec_20_quantum_part2.html
+  href: rational-approximation-of-real-numbers
+  title: Rational approximation of real numbers
+21.5.1:
+  filename: lec_20_quantum_part2.html
+  href: quantum-cryptography
+  title: Quantum cryptography
+'22':
+  filename: lec_21_obfuscation.html
+  href: ''
+  title: Software Obfuscation
+'22.1':
+  filename: lec_21_obfuscation.html
+  href: witness-encryption
+  title: Witness encryption
+'22.2':
+  filename: lec_21_obfuscation.html
+  href: deniable-encryption
+  title: Deniable encryption
+'22.3':
+  filename: lec_21_obfuscation.html
+  href: functional-encryption
+  title: Functional encryption
+'22.4':
+  filename: lec_21_obfuscation.html
+  href: the-software-patch-problem
+  title: The software patch problem
+'22.5':
+  filename: lec_21_obfuscation.html
+  href: software-obfuscation-1
+  title: Software obfuscation
+'22.6':
+  filename: lec_21_obfuscation.html
+  href: applications-of-obfuscation
+  title: Applications of obfuscation
+'22.7':
+  filename: lec_21_obfuscation.html
+  href: impossibility-of-obfuscation
+  title: Impossibility of obfuscation
+22.7.1:
+  filename: lec_21_obfuscation.html
+  href: proof-of-impossibility-of-vbb-obfuscation
+  title: Proof of impossibility of VBB obfuscation
+'22.8':
+  filename: lec_21_obfuscation.html
+  href: indistinguishability-obfuscation
+  title: Indistinguishability obfuscation
+'23':
+  filename: lec_22_obfuscation_part2.html
+  href: ''
+  title: More obfuscation, exotic encryptions
+'23.1':
+  filename: lec_22_obfuscation_part2.html
+  href: slower-weaker-less-securer
+  title: Slower, weaker, less securer
+'23.2':
+  filename: lec_22_obfuscation_part2.html
+  href: how-to-get-ibe-from-pairing-based-assumptions.
+  title: How to get IBE from pairing based assumptions.
+'23.3':
+  filename: lec_22_obfuscation_part2.html
+  href: beyond-pairing-based-cryptography
+  title: Beyond pairing based cryptography
+'24':
+  filename: lec_23_anonymous.html
+  href: ''
+  title: Anonymous communication
+'24.1':
+  filename: lec_23_anonymous.html
+  href: steganography
+  title: Steganography
+'24.2':
+  filename: lec_23_anonymous.html
+  href: anonymous-routing
+  title: Anonymous routing
+'24.3':
+  filename: lec_23_anonymous.html
+  href: tor
+  title: Tor
+'24.4':
+  filename: lec_23_anonymous.html
+  href: telex
+  title: Telex
+'24.5':
+  filename: lec_23_anonymous.html
+  href: riposte
+  title: Riposte
+'25':
+  filename: lec_24_policy.html
+  href: ''
+  title: Ethical, moral, and policy dimensions to cryptography
+'25.1':
+  filename: lec_24_policy.html
+  href: reading-prior-to-lecture
+  title: 'Reading prior to lecture:'
+'25.2':
+  filename: lec_24_policy.html
+  href: case-studies.
+  title: Case studies.
+25.2.1:
+  filename: lec_24_policy.html
+  href: the-snowden-revelations
+  title: The Snowden revelations
+25.2.2:
+  filename: lec_24_policy.html
+  href: fbi-vs-apple-case
+  title: FBI vs Apple case
+25.2.3:
+  filename: lec_24_policy.html
+  href: juniper-backdoor-case-and-the-opm-break-in
+  title: Juniper backdoor case and the OPM break-in
+'26':
+  filename: lec_25_course_recap.html
+  href: ''
+  title: Course recap
+'26.1':
+  filename: lec_25_course_recap.html
+  href: some-things-we-did-not-cover
+  title: Some things we did not cover
+'26.2':
+  filename: lec_25_course_recap.html
+  href: what-i-hope-you-learned
+  title: What I hope you learned
+'3':
+  filename: lec_03_pseudorandom-generators.html
+  href: ''
+  title: Pseudorandomness
+'3.1':
+  filename: lec_03_pseudorandom-generators.html
+  href: stream-ciphers
+  title: Stream ciphers
+'3.2':
+  filename: lec_03_pseudorandom-generators.html
+  href: what-do-pseudorandom-generators-actually-look-like
+  title: What do pseudorandom generators actually look like?
+3.2.1:
+  filename: lec_03_pseudorandom-generators.html
+  href: attempt-0-the-counter-generator
+  title: 'Attempt 0: The counter generator'
+3.2.2:
+  filename: lec_03_pseudorandom-generators.html
+  href: attempt-1-the-linear-checksum-linear-feedback-shift-register-lfsr
+  title: 'Attempt 1: The linear checksum / linear feedback shift register (LFSR)'
+3.2.3:
+  filename: lec_03_pseudorandom-generators.html
+  href: from-insecurity-to-security
+  title: From insecurity to security
+3.2.4:
+  filename: lec_03_pseudorandom-generators.html
+  href: attempt-2-linear-congruential-generators-with-dropped-bits
+  title: 'Attempt 2: Linear Congruential Generators with dropped bits'
+'3.3':
+  filename: lec_03_pseudorandom-generators.html
+  href: successful-examples
+  title: Successful examples
+3.3.1:
+  filename: lec_03_pseudorandom-generators.html
+  href: case-study-1-subset-sum-generator
+  title: 'Case Study 1: Subset Sum Generator'
+3.3.2:
+  filename: lec_03_pseudorandom-generators.html
+  href: case-study-2-rc4
+  title: 'Case Study 2: RC4'
+'3.4':
+  filename: lec_03_pseudorandom-generators.html
+  href: non-constructive-existence-of-pseudorandom-generators
+  title: Non-constructive existence of pseudorandom generators
+'4':
+  filename: lec_04_pseudorandom-functions.html
+  href: ''
+  title: Pseudorandom functions
+'4.1':
+  filename: lec_04_pseudorandom-functions.html
+  href: one-time-passwords-e.g.-google-authenticator-rsa-id-etc.
+  title: "One time passwords (e.g.\_Google Authenticator, RSA ID, etc.)"
+4.1.1:
+  filename: lec_04_pseudorandom-functions.html
+  href: how-do-pseudorandom-functions-help-in-the-login-problem
+  title: How do pseudorandom functions help in the login problem?
+'4.2':
+  filename: lec_04_pseudorandom-functions.html
+  href: message-authentication-codes
+  title: Message Authentication Codes
+'4.3':
+  filename: lec_04_pseudorandom-functions.html
+  href: macs-from-prfs
+  title: MACs from PRFs
+'4.4':
+  filename: lec_04_pseudorandom-functions.html
+  href: input-length-extension-for-macs-and-prfs
+  title: Input length extension for MACs and PRFs
+'4.5':
+  filename: lec_04_pseudorandom-functions.html
+  href: aside-natural-proofs
+  title: 'Aside: natural proofs'
+'5':
+  filename: lec_05_prf-from-prg.html
+  href: ''
+  title: Pseudorandom functions from pseudorandom generators
+'5.1':
+  filename: lec_05_prf-from-prg.html
+  href: securely-encrypting-many-messages---chosen-plaintext-security
+  title: Securely encrypting many messages - chosen plaintext security
+'5.2':
+  filename: lec_05_prf-from-prg.html
+  href: pseudorandom-permutations-block-ciphers
+  title: Pseudorandom permutations / block ciphers
+'5.3':
+  filename: lec_05_prf-from-prg.html
+  href: encryption-modes
+  title: Encryption modes
+'6':
+  filename: lec_06_CCA.html
+  href: ''
+  title: Chosen Ciphertext Security
+'6.1':
+  filename: lec_06_CCA.html
+  href: short-recap
+  title: Short recap
+'6.2':
+  filename: lec_06_CCA.html
+  href: going-beyond-cpa
+  title: Going beyond CPA
+6.2.1:
+  filename: lec_06_CCA.html
+  href: example-the-wired-equivalence-protocol-wep
+  title: 'Example: The Wired Equivalence Protocol (WEP)'
+6.2.2:
+  filename: lec_06_CCA.html
+  href: chosen-ciphertext-security-1
+  title: Chosen ciphertext security
+'6.3':
+  filename: lec_06_CCA.html
+  href: constructing-cca-secure-encryption
+  title: Constructing CCA secure encryption
+'6.4':
+  filename: lec_06_CCA.html
+  href: simplified-gcm-encryption
+  title: (Simplified) GCM encryption
+'6.5':
+  filename: lec_06_CCA.html
+  href: padding-chopping-and-their-pitfalls-the-buffer-overflow-of-cryptography
+  title: 'Padding, chopping, and their pitfalls: the "buffer overflow" of cryptography'
+'6.6':
+  filename: lec_06_CCA.html
+  href: chosen-ciphertext-attack-as-implementing-metaphors
+  title: Chosen ciphertext attack as implementing metaphors
+'7':
+  filename: lec_07_hash_functions.html
+  href: ''
+  title: Hash functions and random oracles
+'7.1':
+  filename: lec_07_hash_functions.html
+  href: the-bitcoin-problem
+  title: The "bitcoin" problem
+7.1.1:
+  filename: lec_07_hash_functions.html
+  href: the-currency-problem
+  title: The currency problem
+7.1.2:
+  filename: lec_07_hash_functions.html
+  href: bitcoin-architecture
+  title: Bitcoin architecture
+'7.2':
+  filename: lec_07_hash_functions.html
+  href: the-bitcoin-ledger
+  title: The bitcoin ledger
+7.2.1:
+  filename: lec_07_hash_functions.html
+  href: from-proof-of-work-to-consensus-on-ledger
+  title: From proof of work to consensus on ledger
+'7.3':
+  filename: lec_07_hash_functions.html
+  href: collision-resistance-hash-functions-and-creating-short-unique-identifiers
+  title: Collision resistance hash functions and creating short "unique" identifiers
+'7.4':
+  filename: lec_07_hash_functions.html
+  href: practical-constructions-of-cryptographic-hash-functions
+  title: Practical constructions of cryptographic hash functions
+7.4.1:
+  filename: lec_07_hash_functions.html
+  href: practical-random-ish-functions
+  title: Practical random-ish functions
+7.4.2:
+  filename: lec_07_hash_functions.html
+  href: some-history
+  title: Some history
+7.4.3:
+  filename: lec_07_hash_functions.html
+  href: the-nsa-and-hash-functions.
+  title: The NSA and hash functions.
+7.4.4:
+  filename: lec_07_hash_functions.html
+  href: cryptographic-vs-non-cryptographic-hash-functions
+  title: 'Cryptographic vs non-cryptographic hash functions:'
+'8':
+  filename: lec_08_hash_functions_part2.html
+  href: ''
+  title: Key derivation, protecting passwords, slow hashes, Merkle trees
+'8.1':
+  filename: lec_08_hash_functions_part2.html
+  href: keys-from-passwords
+  title: Keys from passwords
+'8.2':
+  filename: lec_08_hash_functions_part2.html
+  href: merkle-trees-and-verifying-storage.
+  title: Merkle trees and verifying storage.
+'8.3':
+  filename: lec_08_hash_functions_part2.html
+  href: proofs-of-retrievability
+  title: Proofs of Retrievability
+'8.4':
+  filename: lec_08_hash_functions_part2.html
+  href: entropy-extraction
+  title: Entropy extraction
+8.4.1:
+  filename: lec_08_hash_functions_part2.html
+  href: forward-and-backward-secrecy
+  title: Forward and backward secrecy
+'9':
+  filename: lec_09_priv_recap.html
+  href: ''
+  title: Private key crypto recap
+9.0.1:
+  filename: lec_09_priv_recap.html
+  href: attacks-on-private-key-cryptosystems
+  title: Attacks on private key cryptosystems
+p:
+  filename: lec_00_0_foreword.html
+  href: ''
+  title: Foreword and Syllabus
+p.1:
+  filename: lec_00_0_foreword.html
+  href: syllabus
+  title: Syllabus
+p.1.1:
+  filename: lec_00_0_foreword.html
+  href: prerequisites
+  title: Prerequisites
+p.2:
+  filename: lec_00_0_foreword.html
+  href: why-is-cryptography-hard
+  title: Why is cryptography hard?
