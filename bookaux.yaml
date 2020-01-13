@@ -805,7 +805,7 @@ PKCfig:
 PNPcipherthm:
   class: theorem
   file: lec_02_computational-security
-  number: '2.6'
+  number: '2.7'
 PRFfromPRGfig:
   class: figure
   file: lec_05_prf-from-prg
@@ -1485,7 +1485,7 @@ Zero-knowledge-proofs:
 addingprobrem:
   class: remark
   file: lec_01_introduction
-  number: '1.11'
+  number: '1.12'
 alternativelengthextendrem:
   class: remark
   file: lec_03_pseudorandom-generators
@@ -1493,7 +1493,7 @@ alternativelengthextendrem:
 asymptotic:
   class: remark
   file: lec_02_computational-security
-  number: '2.4'
+  number: '2.5'
 begingatheredE-XY--sumxin:
   class: proof
   file: lec_00_1_mathematical-background
@@ -1573,15 +1573,15 @@ commitmentdef:
 compindef:
   class: definition
   file: lec_02_computational-security
-  number: '2.7'
+  number: '2.8'
 compindrepthm:
   class: theorem
   file: lec_02_computational-security
-  number: '2.10'
+  number: '2.11'
 compindsecthm:
   class: theorem
   file: lec_02_computational-security
-  number: '2.8'
+  number: '2.9'
 compsecconcdef:
   class: definition
   file: lec_02_computational-security
@@ -1589,7 +1589,7 @@ compsecconcdef:
 compsecdef:
   class: definition
   file: lec_02_computational-security
-  number: '2.5'
+  number: '2.6'
 cpafromprfthm:
   class: theorem
   file: lec_05_prf-from-prg
@@ -1805,7 +1805,7 @@ hiddengroupthm:
 hybridrem:
   class: remark
   file: lec_02_computational-security
-  number: '2.11'
+  number: '2.12'
 indcoins:
   class: lemma
   file: lec_00_1_mathematical-background
@@ -1849,7 +1849,7 @@ ledgerfig:
 lengthextendclaimeq:
   class: equation
   file: lec_02_computational-security
-  number: '2.14'
+  number: '2.16'
 lengthextendhybridfig:
   class: figure
   file: lec_03_pseudorandom-generators
@@ -1865,7 +1865,7 @@ lengthextendprgthm:
 lengthextendthm:
   class: theorem
   file: lec_02_computational-security
-  number: '2.13'
+  number: '2.14'
 linearityexp:
   class: lemma
   file: lec_00_1_mathematical-background
@@ -1881,7 +1881,7 @@ longkeygraphfig:
 longkeysthm:
   class: theorem
   file: lec_01_introduction
-  number: '1.10'
+  number: '1.11'
 lowerboundcoins:
   class: exercise
   file: lec_00_1_mathematical-background
@@ -1922,6 +1922,14 @@ naivegswfig:
   class: figure
   file: lec_16_FHE_part2
   number: '17.1'
+negligible:
+  class: exercise
+  file: lec_02_computational-security
+  number: '2.1'
+negligibledef:
+  class: definition
+  file: lec_02_computational-security
+  number: '2.4'
 nocryptoprgs:
   class: remark
   file: lec_03_pseudorandom-generators
@@ -1969,7 +1977,7 @@ ohnotationex:
 onetimepad:
   class: theorem
   file: lec_01_introduction
-  number: '1.9'
+  number: '1.10'
 onetimepadfig:
   class: figure
   file: lec_01_introduction
@@ -2018,6 +2026,10 @@ perfectsecrecyequiv:
   class: solvedexercise
   file: lec_01_introduction
   number: '1.1'
+perfectsecrecythm:
+  class: theorem
+  file: lec_01_introduction
+  number: '1.9'
 permutationsovergroups:
   class: remark
   file: lec_11_concrete_pkc
@@ -2137,11 +2149,7 @@ randomfunction:
 randprogdef:
   class: definition
   file: lec_02_computational-security
-  number: '2.14'
-reductiongenfig:
-  class: figure
-  file: lec_02_computational-security
-  number: '2.1'
+  number: '2.15'
 reductionlengthextendfig:
   class: figure
   file: lec_03_pseudorandom-generators
@@ -2169,7 +2177,7 @@ samplingex:
 secrepthm:
   class: theorem
   file: lec_02_computational-security
-  number: '2.12'
+  number: '2.13'
 secretsharinglem:
   class: lemma
   file: lec_17_SFE
@@ -2253,7 +2261,7 @@ tmplabelfig:
 triangleeqthm:
   class: theorem
   file: lec_02_computational-security
-  number: '2.9'
+  number: '2.10'
 trivialsec:
   class: lemma
   file: lec_01_introduction

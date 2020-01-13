@@ -45,6 +45,7 @@ except ImportError:
     # as textwrap.dedent.
     from matplotlib.cbook import dedent
 
+from pylatexenc.latex2text import LatexNodes2Text
 
 
 class MyTable(pf.Table):
@@ -145,7 +146,7 @@ def prepare(doc):
     doc.latex_headers = {int(k): D[k] for k in D}
     logstring("Latex Headers: " + str(doc.latex_headers), doc)
     doc.label_classes = doc.get_metadata(
-        "latexsectionheaders", {"solvedex": "Solved Exercise", "bigidea": "Big Idea"}
+        "labelclasses", {"solvedex": "Solved Exercise", "solvedexercise": "Solved Exercise", "bigidea": "Big Idea"}
     )
 
     # These do all the work
@@ -714,6 +715,15 @@ def h_paragraph(e, doc):
     return None
 
 
+def math2unicode(str):
+    pattern = r'\$([^\$]+)\$'
+    def temp(matchobj):
+        s = matchobj.group(1)
+        return LatexNodes2Text().latex_to_text("\("+s+"\)")
+
+    return re.sub(pattern,temp,str)
+
+
 def h_math(e, doc):
     r"""Make multiletter identifiers mathit{..}
     For now just handle uppercase identifiers.
@@ -873,7 +883,7 @@ def h_latex_headers(e, doc):
     label = labelref(e, doc)
 
     if label and e.level in doc.latex_headers:
-        doc.label_descriptions[label] = doc.latex_headers[e.level].capitalize
+        doc.label_descriptions[label] = doc.latex_headers[e.level].capitalize()
     if doc.format != "latex":
         return None
     labeltext = f"\\label{{{label}}}" if label else ""
@@ -888,6 +898,7 @@ def h_latex_headers(e, doc):
     )
 
 
+
 def h_latex_div(e, doc):
     r"""make every div with class=foo to begin{foo} ... end{foo}
     if there is title then it is begin{foo}[title] instead
@@ -899,6 +910,10 @@ def h_latex_div(e, doc):
 
     c = e.classes[0]
     title = e.attributes.get("title", "")
+    if title and doc.format != "latex":
+        title = math2unicode(title)
+        e.attributes["title"] = title
+
     label = labelref(e, doc)
     if label in doc.labels:
         name = getlabel(label, doc)[0]
@@ -909,11 +924,11 @@ def h_latex_div(e, doc):
     e.attributes["name"] = name
 
     if e.identifier:
-        doc.label_descriptions[e.identifier] = c.capitalize()
+        doc.label_descriptions[e.identifier] = doc.label_classes.get(c, c.capitalize())
     if doc.format == "html" and c == "quote":
         return pf.BlockQuote(e)
     if doc.format != "latex":
-        return None
+        return e
     dref = e.attributes.get("data-ref", None)
     if not title and c == "proof" and dref and dref != doc.lastlabel:
         title = fr"Proof of \cref{{{dref}}}"
@@ -951,7 +966,7 @@ def expand_commands(tex):
     Expand out latex commands. Currently hardwired into few macros, eventually should
     get it from the configuration file.
     """
-    with_args = {r"\floor": r"\lfloor #1 \rfloor"}
+    with_args = {r"\floor": r"\lfloor #1 \rfloor" , r"\ceil": r"\lceil #1 \rceil" }
     no_args = {r"\N": r"\mathbb{N}", r"\Z": r"\mathbb{Z}"}
     for c, rep in with_args.items():
         c = c.replace("\\", "\\\\")
@@ -1054,7 +1069,7 @@ def htmlpseudocode(id,number,title,code):
         <div class="ps-root">
         <div class="ps-algorithm with-caption" id = {id}>
         <p class="ps-line" style="text-indent:-1.2em;padding-left:1.2em;">
-        <span class="ps-keyword">Algorithm {number} </span>{title}</p>
+        <span class="ps-keyword">Algorithm {number} </span>{math2unicode(title)}</p>
         <div class="ps-algorithmic">
     ''') # dropped with-linenum
     postfix = dedent('''

@@ -247,8 +247,16 @@ such that for every key \(k\in \{0,1\}^n\) and plaintext
 \label{validencryption}
 \end{marginfigure}
 
+The validity condition implies that for any fixed \(k\), the map
+\(x \mapsto E_k(x)\) is one to one (can you see why?) and hence the
+ciphertext length is always at least the plaintext length. Thus we
+typically focus on the plaintext length as the quantity to optimize in
+an encryption scheme. The \emph{larger} \(L(n)\) is, the better the
+scheme, since it means we need a shorter secret key to protect messages
+of the same length.
+
 \hypertarget{notation}{}
-\begin{remark}[Notation] \label[remark]{notation}
+\begin{remark}[A note on notation, and comparison with Katz-Lindell, Boneh-Shoup, and other texts.] \label[remark]{notation}
 
 \emph{A note on notation:} We will always use \(i,j,\ell,n\) to denote
 natural numbers.
@@ -258,8 +266,9 @@ length of the key (or another closely related number) is often known as
 the \emph{security parameter} in the literature. Katz-Lindell also uses
 \(n\) to denote this parameter, while Boneh-Shoup and Rosulek use
 \(\lambda\) for it. (Some texts also use the greek lettter \(\kappa\)
-for the same parameter.) We use \(n\) to correspond with the standard
-algorithmic notation for input length (as in \(O(n)\) time algorithms).
+for the same parameter.) We chose to denote the security parameter by
+\(n\) as to correspond with the standard algorithmic notation for input
+length (as in \(O(n)\) or \(O(n^2)\) time algorithms).
 
 We often use \(\ell\) to denote the length of the message, sometimes
 also known as ``block length'' since longer messages are simply chopped
@@ -270,15 +279,19 @@ plaintext message, and \(c\) to denote the encrypted ciphertext. Note
 that \(c,m\) and \(k\) are not numbers but rather bit strings of lengths
 \(o,\ell\) and \(n\) respectively.
 
-\end{remark}
+For simplicity, we denote the space of possible keys as \(\{0,1\}^n\)
+and the space of possible messages as \(\{0,1\}^\ell\) for
+\(\ell=L(n)\). Boneh-Shoup uses a more general notation of
+\(\mathcal{K}\) for the space of all possible keys and \(\mathcal{M}\)
+for the space of all possible messages. This does not make much
+difference since we can represent every discrete object such as a key or
+message as a binary string. (One difference is that in principle the
+space of all possible messages could include messages of unbounded
+length, though in such a case what is done in both theory and practice
+is to break these up into finite-size blocks and encrypt one block at a
+time.)
 
-The validity condition implies that for any fixed \(k\), the map
-\(x \mapsto E_k(x)\) is one to one (can you see why?) and hence the
-ciphertext length is always at least the plaintext length. Thus we
-typically focus on the plaintext length as the quantity to optimize in
-an encryption scheme. The \emph{larger} \(L(n)\) is, the better the
-scheme, since it means we need a shorter secret key to protect messages
-of the same length.
+\end{remark}
 
 \section{Defining security of
 encryption}\label{Defining-security-of-encr}
@@ -741,6 +754,53 @@ have some advantage over \(1/2\) in distinguishing an encryption of
 \(x\) from an encryption of \(x'\).
 
 \end{solution}
+
+We summarize the equivalent definitions of perfect secrecy in the
+following theorem, whose (omitted) proof follows from
+\cref{twotomanythm} and \cref{perfectsecrecyequiv} as well as similar
+proof ideas.
+
+\hypertarget{perfectsecrecythm}{}
+\begin{theorem}[Perfect secrecy equivalent conditions] \label[theorem]{perfectsecrecythm}
+
+Let \((E,D)\) be a valid encryption scheme with message length \(L(n)\).
+Then the following conditions are equivalent:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \((E,D)\) is perfectly secret as per \cref{perfectsecrecydef}.
+\item
+  For every pair of messages \(x_0,x_1 \in \{0,1\}^{L(n)}\), the
+  distributions \(\{ E_k(x_0) \}_{k \sim \{0,1\}^n}\) and
+  \(\{ E_k(x_1) \}_{k \sim \{0,1\}^n}\) are identical.
+\item
+  (Two-message security: Eve can't guess which of one of two messages
+  was encrypted with success better than half.) For every function
+  \(Eve:\{0,1\}^{C(n)} \rightarrow \{0,1\}^{L(n)}\) and pair of messages
+  \(x_0,x_1 \in \{0,1\}^{L(n)}\),
+\end{enumerate}
+
+\[\Pr_{b \sim \{0,1\}, k \sim \{0,1\}^n} [ Eve(E_k(x_b))=x_b ] \leq 1/2\]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  (Arbitrary prior security: Eve can't guess which message was encrypted
+  with success better than her prior information.) For every
+  distribution \(\mathcal{D}\) over \(\{0,1\}^{L(n)}\), and
+  \(Eve:\{0,1\}^{C(n)} \rightarrow \{0,1\}^{L(n)}\),
+\end{enumerate}
+
+\[\Pr_{x \sim \mathcal{D}, k \sim \{0,1\}^n}[ Eve(E_k(x))=x ] \leq max(\mathcal{D})\]
+
+where we denote
+\(max(\mathcal{D}) = \max_{x^*\in \{0,1\}^{L(n)}} \Pr_{x \sim \mathcal{D}}[x=x^*]\)
+to be the largest probability of any element under \(\mathcal{D}\).
+
+\end{theorem}
 
 \subsection{Achieving perfect secrecy}\label{Achieving-perfect-secrecy}
 
