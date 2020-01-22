@@ -34,6 +34,10 @@ Allowing-for-aborts:
   class: subsection
   file: lec_17_SFE
   number: 18.2.2
+Amplifying-success-probab:
+  class: subsection
+  file: lec_01_introduction
+  number: 1.6.1
 An-LWE-based-encryption-s:
   class: section
   file: lec_12_lattices
@@ -78,6 +82,10 @@ Applications-of-obfuscati:
   class: section
   file: lec_21_obfuscation
   number: '22.6'
+As-in-the-proof-of-creflo:
+  class: proof
+  file: lec_01_introduction
+  number: 1.6.1
 Aside-natural-proofs:
   class: section
   file: lec_04_pseudorandom-functions
@@ -1694,6 +1702,10 @@ eqhommult:
   class: equation
   file: lec_16_FHE_part2
   number: '17.4'
+eqlongkeyprobproof:
+  class: equation
+  file: lec_01_introduction
+  number: '1.9'
 eqnoisebound:
   class: equation
   file: lec_16_FHE_part2
@@ -1878,6 +1890,10 @@ longkeygraphfig:
   class: figure
   file: lec_01_introduction
   number: '1.12'
+longkeyhighprob:
+  class: theorem
+  file: lec_01_introduction
+  number: '1.13'
 longkeysthm:
   class: theorem
   file: lec_01_introduction
