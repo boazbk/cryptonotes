@@ -1,6 +1,6 @@
 \chapter{Computational Security}\label{Computational-Security}
 
-\paragraph{Additional reading:} Sections 2.3 and 2.4 in Boneh-Shoup
+\paragraph{Additional reading:} Sections 2.2 and 2.3 in Boneh-Shoup
 book. Chapter 3 up to and including Section 3.3 in Katz-Lindell book.
 
 Recall our cast of characters- Alice and Bob want to communicate
@@ -97,9 +97,10 @@ to achieve if the key is shorter than the message.
 \begin{pause} \label[pause]{Before-reading-further-yo}
 
 Before reading further, you might want to stop and think if you can
-\emph{prove} that there is no, say, \(\sqrt{n}\) secure encryption
-scheme satisfying \cref{firstcompdef} with \(\ell = n+1\) and where the
-time to compute the encryption is polynomial.
+\emph{prove} that there is no, say, encryption scheme with \(\sqrt{n}\)
+bits of computational security satisfying \cref{firstcompdef} with
+\(\ell = n+1\) and where the time to compute the encryption is
+polynomial.
 
 \end{pause}
 
@@ -159,12 +160,15 @@ seeing \(E_k(m_b)\) is at most \(1/|M|+2^{-t+1}\).
 Before proving this theorem note that it gives us a pretty strong
 guarantee. In the exercises we will strengthen it even further showing
 that no matter what prior information Eve had on the message before, she
-will never get any non-negligible new information on it. One way to
-phrase it is that if the sender used a \(256\)-bit secure encryption to
-encrypt a message, then your chances of getting to learn any additional
-information about it before the universe collapses are more or less the
-same as the chances that a fairy will materialize and whisper it in your
-ear.
+will never get any non-negligible new information on it.\footnote{The
+  latter property is known as ``semantic security'', see also section
+  3.2.2 of Katz Lindell on ``semantic security'' and Section 2 of
+  Boneh-Shoup ``computational ciphers and semantic security''.} One way
+to phrase it is that if the sender used a \(256\)-bit secure encryption
+to encrypt a message, then your chances of getting to learn any
+additional information about it before the universe collapses are more
+or less the same as the chances that a fairy will materialize and
+whisper it in your ear.
 
 \begin{pause} \label[pause]{Before-reading-the-proof-}
 
@@ -191,14 +195,13 @@ be careful in keeping track of Eve's running time. In the proof of
 and
 
 \begin{itemize}
-\tightlist
 \item
   An adversary \(Eve:{\{0,1\}}^o\rightarrow{\{0,1\}}^\ell\) such that
-\end{itemize}
 
-\[
-\Pr_{m{\leftarrow_{\tiny R}}M, k{\leftarrow_{\tiny R}}{\{0,1\}}^n}[ Eve(E_k(m))=m ] > 1/|M|
-\]
+  \[
+  \Pr_{m{\leftarrow_{\tiny R}}M, k{\leftarrow_{\tiny R}}{\{0,1\}}^n}[ Eve(E_k(m))=m ] > 1/|M|
+  \]
+\end{itemize}
 
 Then there exist two messages \(m_0,m_1\) and an adversary
 \(Eve':{\{0,1\}}^0\rightarrow{\{0,1\}}^\ell\) such that
@@ -227,12 +230,13 @@ The first item can be shown by simply doing the same proof more
 carefully, keeping track how the advantage over \(\tfrac{1}{|M|}\) for
 \(Eve\) translates into an advantage over \(\tfrac{1}{2}\) for \(Eve'\).
 As the world's most annoying saying goes, doing this is an excellent
-exercise for the reader. The item point is obtained by looking at the
-definition of \(Eve'\) from that proof. On input \(c\), \(Eve'\)
-computed \(m=Eve(c)\) (which costs \(T\) operations), checked if
-\(m=m_0\) (which costs, say, at most \(5\ell\) operations), and then
-outputted either \(1\) or a random bit (which is a constant, say at most
-\(100\) operations).
+exercise for the reader.
+
+The second item is obtained by looking at the definition of \(Eve'\)
+from that proof. On input \(c\), \(Eve'\) computed \(m=Eve(c)\) (which
+costs \(T\) operations), checked if \(m=m_0\) (which costs, say, at most
+\(5\ell\) operations), and then outputted either \(1\) or a random bit
+(which is a constant, say at most \(100\) operations).
 
 \end{proof}
 
@@ -469,8 +473,7 @@ is at most \(1/2+\mu(n)\) for some negligible function \(\mu(\cdot)\).
 
 \end{definition}
 
-\subsection{Counting number of
-operations.}\label{Counting-number-of-operat}
+\subsection{Counting number of operations.}\label{countoperation}
 
 One more detail that we've so far ignored is what does it mean exactly
 for a function to be computable using at most \(T\) operations.
@@ -513,15 +516,20 @@ circuits, which are a non-uniform model, is that:
 One can build the theory of cryptography using Turing machines as well,
 but it is more cumbersome.
 
-\paragraph{Computing beyond functions.} Later on in the course, both our
-cryptographic schemes and the adversaries will extend beyond simple
-functions that map an input to an output, and we will consider
-\emph{interactive algorithms} that exchange messages with one another.
-Such an algorithm can be implemented using circuits or Turing machines
-that take as input the prior state and the history of messages up to a
-certain point in the interaction, and output the next message in the
-interaction. The number of operations used in such a strategy is the
-total number of gates used in computing all the messages.
+\hypertarget{computebeyondfunctions}{}
+\begin{remark}[Computing beyond functions] \label[remark]{computebeyondfunctions}
+
+Later on in the course, both our cryptographic schemes and the
+adversaries will extend beyond simple functions that map an input to an
+output, and we will consider \emph{interactive algorithms} that exchange
+messages with one another. Such an algorithm can be implemented using
+circuits or Turing machines that take as input the prior state and the
+history of messages up to a certain point in the interaction, and output
+the next message in the interaction. The number of operations used in
+such a strategy is the total number of gates used in computing all the
+messages.
+
+\end{remark}
 
 \section{Our first conjecture}\label{Our-first-conjecture}
 
@@ -669,17 +677,18 @@ every function \(Eve\) computable with at most \(T\) operations,
 | \Pr[ Eve(X) = 1 ] - \Pr[ Eve(Y) = 1 ] | \leq \epsilon \;.
 \]
 
-We say that \(X\) and \(Y\) are simply \emph{computationally
-indistinguishable}, denoted by \(X\approx Y\), if they are
-\((T,\epsilon)\) indistinguishable for every polynomial \(T(o)\) and
-inverse polynomial \(\epsilon(o)\).\footnote{This definition implicitly
-  assumes that \(X\) and \(Y\) are actually \emph{parameterized} by some
-  number \(n\) (that is polynomially related to \(o\)) so for every
-  polynomial \(T(o)\) and inverse polynomial \(\epsilon(o)\) we can take
-  \(n\) to be large enough so that \(X\) and \(Y\) will be
-  \((T,\epsilon)\) indistinguishable. In all the cases we will consider,
-  the choice of the parameter \(n\) (which is usually the length of the
-  key) will be clear from the context.}
+We say that \(X\) and \(Y\) over \(\{0,1\}^o\) are simply
+\emph{computationally indistinguishable}, denoted by \(X\approx Y\), if
+they are \((T,\epsilon)\) indistinguishable for every polynomial
+\(T(o)\) and inverse polynomial \(\epsilon(o)\).\footnote{This
+  definition implicitly assumes that \(X\) and \(Y\) are actually
+  \emph{parameterized} by some number \(n\) (that is polynomially
+  related to \(o\)) so for every polynomial \(T(o)\) and inverse
+  polynomial \(\epsilon(o)\) we can take \(n\) to be large enough so
+  that \(X\) and \(Y\) will be \((T,\epsilon)\) indistinguishable. In
+  all the cases we will consider, the choice of the parameter \(n\)
+  (which is usually the length of the key) will be clear from the
+  context.}
 
 \end{definition}
 

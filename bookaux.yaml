@@ -286,10 +286,6 @@ Correlations-and-independ:
   class: section
   file: lec_00_1_mathematical-background
   number: '0.4'
-Counting-number-of-operat:
-  class: subsection
-  file: lec_02_computational-security
-  number: 2.1.1
 Course-recap:
   class: chapter
   file: lec_25_course_recap
@@ -813,7 +809,7 @@ PKCfig:
 PNPcipherthm:
   class: theorem
   file: lec_02_computational-security
-  number: '2.7'
+  number: '2.8'
 PRFfromPRGfig:
   class: figure
   file: lec_05_prf-from-prg
@@ -1581,15 +1577,15 @@ commitmentdef:
 compindef:
   class: definition
   file: lec_02_computational-security
-  number: '2.8'
+  number: '2.9'
 compindrepthm:
   class: theorem
   file: lec_02_computational-security
-  number: '2.11'
+  number: '2.12'
 compindsecthm:
   class: theorem
   file: lec_02_computational-security
-  number: '2.9'
+  number: '2.10'
 compsecconcdef:
   class: definition
   file: lec_02_computational-security
@@ -1598,6 +1594,14 @@ compsecdef:
   class: definition
   file: lec_02_computational-security
   number: '2.6'
+computebeyondfunctions:
+  class: remark
+  file: lec_02_computational-security
+  number: '2.7'
+countoperation:
+  class: subsection
+  file: lec_02_computational-security
+  number: 2.1.1
 cpafromprfthm:
   class: theorem
   file: lec_05_prf-from-prg
@@ -1694,6 +1698,10 @@ eqfheaddfinal:
   class: equation
   file: lec_16_FHE_part2
   number: '17.6'
+eqhitcipher:
+  class: equation
+  file: lec_01_introduction
+  number: '1.4'
 eqhomadd:
   class: equation
   file: lec_16_FHE_part2
@@ -1705,7 +1713,7 @@ eqhommult:
 eqlongkeyprobproof:
   class: equation
   file: lec_01_introduction
-  number: '1.9'
+  number: '1.10'
 eqnoisebound:
   class: equation
   file: lec_16_FHE_part2
@@ -1817,7 +1825,7 @@ hiddengroupthm:
 hybridrem:
   class: remark
   file: lec_02_computational-security
-  number: '2.12'
+  number: '2.13'
 indcoins:
   class: lemma
   file: lec_00_1_mathematical-background
@@ -1877,7 +1885,7 @@ lengthextendprgthm:
 lengthextendthm:
   class: theorem
   file: lec_02_computational-security
-  number: '2.14'
+  number: '2.15'
 linearityexp:
   class: lemma
   file: lec_00_1_mathematical-background
@@ -2165,7 +2173,7 @@ randomfunction:
 randprogdef:
   class: definition
   file: lec_02_computational-security
-  number: '2.15'
+  number: '2.16'
 reductionlengthextendfig:
   class: figure
   file: lec_03_pseudorandom-generators
@@ -2193,7 +2201,7 @@ samplingex:
 secrepthm:
   class: theorem
   file: lec_02_computational-security
-  number: '2.13'
+  number: '2.14'
 secretsharinglem:
   class: lemma
   file: lec_17_SFE
@@ -2277,7 +2285,7 @@ tmplabelfig:
 triangleeqthm:
   class: theorem
   file: lec_02_computational-security
-  number: '2.10'
+  number: '2.11'
 trivialsec:
   class: lemma
   file: lec_01_introduction

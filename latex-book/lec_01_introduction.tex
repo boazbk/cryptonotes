@@ -388,7 +388,7 @@ on cryptographic systems were actually enabled by weak generation of
 randomness. Here are a few examples.
 
 One of the first attacks was on the SSL implementation of Netscape
-(\emph{the} browser at the time). Netscape use the following
+(\emph{the} browser at the time). Netscape used the following
 ``unpredicatable'' information--- the time of day and a process ID both
 of which turned out to be quite predictable (who knew attackers have
 clocks too?). Netscape tried to protect its security through ``security
@@ -472,11 +472,11 @@ The most natural way to attack an encryption is for Eve to guess all
 possible keys. In many encryption schemes this number is enormous and
 this attack is completely infeasible. For example, the theoretical
 number of possibilities in the Enigma cipher was about \(10^{113}\)
-which roughly means that even if we built a filled the milky way galaxy
-with computers operating at light speed, the sun would still die out
-before it finished examining all the possibilities.\footnote{There are
-  about \(10^{68}\) atoms in the galaxy, so even if we assumed that each
-  one of those atoms was a computer that can process say \(10^{21}\)
+which roughly means that even if we filled the milky way galaxy with
+computers operating at light speed, the sun would still die out before
+it finished examining all the possibilities.\footnote{There are about
+  \(10^{68}\) atoms in the galaxy, so even if we assumed that each one
+  of those atoms was a computer that can process say \(10^{21}\)
   decryption attempts per second (as the speed of light is \(10^9\)
   meters per second and the diameter of an atom is about \(10^{-12}\)
   meters), then it would still take \(10^{113-89} = 10^{24}\) seconds,
@@ -686,15 +686,18 @@ chosen from \(M'\) with probability larger than \(1/2\).
 Let's fix the message \(x_0\) to be the all zeroes message and pick
 \(x_1\) at random in \(M\). Under our assumption, it holds that for
 random key \(k\) and message \(x_1\in M\),
-\[\Pr_{k \leftarrow \{0,1\}^n, x_1 \leftarrow M}[Eve(E_k(x_1))=x_1]  > 1/|M|\;.\]
+\[\Pr_{k \leftarrow_R \{0,1\}^n, x_1 \leftarrow_R M}[Eve(E_k(x_1))=x_1]  > 1/|M|\;.\]
 On the other hand, for every choice of \(k\), \(x'= Eve(E_k(x_0))\) is a
 fixed string independent on the choice of \(x_1\), and so if we pick
 \(x_1\) at random in \(M\), then the probability that \(x_1=x'\) is at
 most \(1/|M|\), or in other words
-\[\Pr_{k \leftarrow \{0,1\}^n, x_1 \leftarrow M}[Eve(E_k(x_0))=x_1]  \leq  1/|M|\;.\]
 
-Thus in particular, due to linearity of expectation, there \emph{exists}
-some \(x_1\) satisfying
+\[\Pr_{k \leftarrow_R \{0,1\}^n, x_1 \leftarrow_R M}[Eve(E_k(x_0))=x_1]  \leq  1/|M|\;. \label{eqhitcipher}\]
+
+We can also write \eqref{eqhitcipher} as \[
+\E_{x_1 \leftarrow_R \{0,1\}^n} \Pr[ Eve(E_k(x_0))=x_1] \leq 1/|M| 
+\] and so in particular, due to linearity of expectation, there
+\emph{exists} some \(x_1\) satisfying
 \[ \Pr[Eve(E_k(x_1))=x_1]   > \Pr[Eve(E_k(x_0))=x_1] \;.\] (Can you see
 why? This is worthwhile stopping and reading again.) But this can be
 turned into an attacker \(Eve'\) such that for
