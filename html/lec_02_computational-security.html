@@ -238,14 +238,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb1-5" title="5"><span class="co"># negative means second is more likely,</span></a>
 <a class="sourceLine" id="cb1-6" title="6"><span class="co"># 0 means both have same likelihood.</span></a>
 <a class="sourceLine" id="cb1-7" title="7"><span class="co">#</span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="co"># We assume we have access to the function Decrypt(key,ciphertext)</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="co"># We assume we have access to the function Encrypt(key,ciphertext)</span></a>
 <a class="sourceLine" id="cb1-9" title="9"><span class="kw">def</span> Distinguish(ciphertext,plaintext1,plaintext2):</a>
-<a class="sourceLine" id="cb1-10" title="10">    bias <span class="op">=</span> <span class="dv">0</span></a>
-<a class="sourceLine" id="cb1-11" title="11">    <span class="cf">for</span> key <span class="kw">in</span> product([<span class="dv">0</span>,<span class="dv">1</span>], repeat <span class="op">=</span> <span class="dv">128</span>): <span class="co"># Iterate over all possible keys of lenght 128</span></a>
-<a class="sourceLine" id="cb1-12" title="12">        p <span class="op">=</span> Decrypt(key, ciphertext)</a>
-<a class="sourceLine" id="cb1-13" title="13">        <span class="cf">if</span> p <span class="op">==</span> plaintext1: bias <span class="op">+=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb1-14" title="14">        <span class="cf">if</span> p <span class="op">==</span> plaintext2: bias <span class="op">-=</span> <span class="dv">1</span></a>
-<a class="sourceLine" id="cb1-15" title="15">    <span class="cf">return</span> bias</a></code></pre></div>
+<a class="sourceLine" id="cb1-10" title="10">    <span class="cf">for</span> key <span class="kw">in</span> product([<span class="dv">0</span>,<span class="dv">1</span>], repeat <span class="op">=</span> <span class="dv">128</span>): <span class="co"># Iterate over all possible keys of lenght 128</span></a>
+<a class="sourceLine" id="cb1-11" title="11">        <span class="cf">if</span> Encrypt(key, plaintext1)<span class="op">==</span>ciphertext:</a>
+<a class="sourceLine" id="cb1-12" title="12">            <span class="cf">return</span> plaintext1</a>
+<a class="sourceLine" id="cb1-13" title="13">    <span class="cf">return</span> plaintext2</a></code></pre></div>
 <p>Now, generating, distributing, and protecting huge keys causes immense logistical problems, which is why almost all encryption schemes used in practice do in fact utilize short keys (e.g., <span><span class="math inline">\(128\)</span></span> bits long) with messages that can be much longer (sometimes even terabytes or more of data).</p>
 <p>So, why can’t we use the above Python program to break all encryptions in the Internet and win infamy and fortune? We can in fact, but we’ll have to wait a <em>really</em> long time, since the loop in <code>Distinguish</code> will run <span><span class="math inline">\(2^{128}\)</span></span> times, which will take much more than the lifetime of the universe to complete, even if we used all the computers on the planet.</p>
 <p>However, the fact that <em>this</em> particular program is not a feasible attack, does not mean there does not exist a different attack. But this still suggests a tantalizing possibility: if we consider a relaxed version of perfect secrecy that restricts Eve to performing computations that can be done in this universe (e.g., less than <span><span class="math inline">\(2^{256}\)</span></span> steps should be safe not just for human but for all potential alien civilizations) then can we bypass the impossibility result and allow the key to be much shorter than the message?</p>
@@ -619,7 +617,7 @@ crossorigin="anonymous" async>
 
 <!-- end of comments -->
 
-<p>Compiled on 01/28/2020 19:01:02</p>
+<p>Compiled on 01/31/2020 13:28:39</p>
 
 <p>Copyright 2019, Boaz Barak.
 

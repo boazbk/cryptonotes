@@ -102,11 +102,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Reading:}{87}{paragraph*.257}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Stream ciphers}{91}{section.267}% 
+\contentsline {section}{\numberline {3.1}Stream ciphers}{92}{section.267}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.2}What do pseudorandom generators actually look like?}{93}{section.273}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2.1}Attempt 0: The counter generator}{93}{subsection.274}% 
+\contentsline {subsection}{\numberline {3.2.1}Attempt 0: The counter generator}{94}{subsection.274}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.2.2}Attempt 1: The linear checksum / linear feedback shift register (LFSR)}{94}{subsection.275}% 
 \defcounter {refsection}{0}\relax 
@@ -120,7 +120,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.3.2}Case Study 2: RC4}{99}{subsection.284}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Non-constructive existence of pseudorandom generators}{99}{section.285}% 
+\contentsline {section}{\numberline {3.4}Non-constructive existence of pseudorandom generators}{100}{section.285}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}Pseudorandom functions}{103}{chapter.289}% 
 \defcounter {refsection}{0}\relax 

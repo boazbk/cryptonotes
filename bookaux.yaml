@@ -817,7 +817,7 @@ PRFfromPRGfig:
 PRGandcipherthm:
   class: theorem
   file: lec_03_pseudorandom-generators
-  number: '3.5'
+  number: '3.6'
 PRPdef:
   class: definition
   file: lec_05_prf-from-prg
@@ -1493,7 +1493,7 @@ addingprobrem:
 alternativelengthextendrem:
   class: remark
   file: lec_03_pseudorandom-generators
-  number: '3.4'
+  number: '3.5'
 asymptotic:
   class: remark
   file: lec_02_computational-security
@@ -1525,7 +1525,7 @@ bootstrapthm:
 breakprglem:
   class: lemma
   file: lec_03_pseudorandom-generators
-  number: '3.2'
+  number: '3.3'
 cbcmodefig:
   class: figure
   file: lec_05_prf-from-prg
@@ -1569,7 +1569,7 @@ coinexperimentfig:
 cointossingphonerm:
   class: remark
   file: lec_03_pseudorandom-generators
-  number: '3.6'
+  number: '3.7'
 commitmentdef:
   class: definition
   file: lec_17_SFE
@@ -1685,7 +1685,7 @@ entropyextfig:
 eq:eventdefine:
   class: equation
   file: lec_03_pseudorandom-generators
-  number: '3.7'
+  number: '3.6'
 eqbinaryencoding:
   class: equation
   file: lec_16_FHE_part2
@@ -1805,7 +1805,7 @@ funclangrem:
 gaussianelimthm:
   class: theorem
   file: lec_03_pseudorandom-generators
-  number: '3.7'
+  number: '3.8'
 genegrabeelfig:
   class: figure
   file: lec_01_introduction
@@ -1881,7 +1881,7 @@ lengthextendprgfig:
 lengthextendprgthm:
   class: theorem
   file: lec_03_pseudorandom-generators
-  number: '3.3'
+  number: '3.4'
 lengthextendthm:
   class: theorem
   file: lec_02_computational-security
@@ -1957,7 +1957,7 @@ negligibledef:
 nocryptoprgs:
   class: remark
   file: lec_03_pseudorandom-generators
-  number: '3.8'
+  number: '3.9'
 noindnocorex:
   class: exercise
   file: lec_00_1_mathematical-background
@@ -2089,19 +2089,23 @@ prfthm:
 prgdef:
   class: definition
   file: lec_03_pseudorandom-generators
+  number: '3.2'
+prgdefconcrete:
+  class: definition
+  file: lec_03_pseudorandom-generators
   number: '3.1'
 prgdefeq:
   class: equation
   file: lec_03_pseudorandom-generators
-  number: '3.2'
+  number: '3.1'
 prgdefeqchernoff:
   class: equation
   file: lec_03_pseudorandom-generators
-  number: '3.8'
+  number: '3.7'
 prgexist:
   class: lemma
   file: lec_03_pseudorandom-generators
-  number: '3.9'
+  number: '3.10'
 primalitytesting:
   class: theorem
   file: lec_11_concrete_pkc
