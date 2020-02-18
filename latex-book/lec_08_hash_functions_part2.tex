@@ -351,9 +351,12 @@ and let us assume they are rounded so that for every \(i\),
 whenever \(Y\in S_i\). Therefore, by the principles above we know that
 \(H_{Shannon}(X,Y)=n\) (since \(X\) is completely determined \(Y\) and
 hence \((X,Y)\) is uniform over a set of \(2^n\) elements), and
-\(H(Y|X)=\log k_i\). Thus the chain rule tells us that
-\(H_{Shannon}(X) = n - \E[Y|X] = n - \sum_{i=1}^m p_i k_i = \sum_{i=1}^m p_i \log(p_i)\)
-since \(p_i = k_i/2^n\) and hence \(\log(p_i)=\log(k_i)-n\).
+\(H(Y|X)= \E \log k_i\). Thus the chain rule tells us that
+\(H_{Shannon}(X) = n - \E[Y|X] = n - \sum_{i=1}^m p_i k_i = n - \sum_{i=1}^m p_i \log(2^n p_i)\)
+since \(p_i = k_i/2^n\). Since \(\log(2^n p_i) = n + \log(p_i)\) we see
+that this means that \[
+H_{Shannon}(X) =  n - \sum_i p_i \cdot n  - \sum_i p_i \log(p_i) = - \sum_i p_i \log (p_i)
+\] using the fact that \(\sum_i p_i = 1\).
 
 The Shannon entropy has many attractive properties, but it turns out
 that for cryptographic applications, the notion of \emph{min entropy} is
@@ -364,7 +367,7 @@ simply defined as \(H_{\infty}(X)= \min_x \log(1/\Pr[X=x])\).\footnote{The
   entropy like functions, containing a function for every non-negative
   number \(p\) based on the \(p\)-norm of the probability distribution.
   That is, the Rényi entropy of order \(p\) is defined as
-  \(H_p(X)=(1-p)^{-1}\log(\sum_x \Pr[X=x]^p)\). The min entropy can be
+  \(H_p(X)=(1-p)^{-1}-\log(\sum_x \Pr[X=x]^p)\). The min entropy can be
   thought of as the limit of \(H_p\) when \(p\) tends to infinity while
   the Shannon entropy is the limit as \(p\) tends to \(1\). The entropy
   \(H_2(\cdot)\) is related to the \emph{collision probability} of \(X\)
