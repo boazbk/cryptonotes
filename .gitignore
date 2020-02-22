@@ -24,6 +24,6 @@
 
 # ignore ipython nb checkpoints
 /figure/.ipynb_checkpoints/
-
+/pngquant/*.*
 
 .DS_Store
