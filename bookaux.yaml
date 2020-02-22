@@ -1513,7 +1513,7 @@ bezout:
 blockcipherfig:
   class: figure
   file: lec_05_prf-from-prg
-  number: '5.7'
+  number: '5.10'
 bootstrapfig:
   class: figure
   file: lec_15_FHE
@@ -1529,7 +1529,7 @@ breakprglem:
 cbcmodefig:
   class: figure
   file: lec_05_prf-from-prg
-  number: '5.10'
+  number: '5.13'
 ccaweplem:
   class: lemma
   file: lec_06_CCA
@@ -1609,7 +1609,7 @@ cpafromprfthm:
 cpasecgamefig:
   class: figure
   file: lec_05_prf-from-prg
-  number: '5.4'
+  number: '5.7'
 cpasecuredef:
   class: definition
   file: lec_05_prf-from-prg
@@ -1642,14 +1642,18 @@ disjoint:
   class: remark
   file: lec_00_1_mathematical-background
   number: '0.8'
+distinguisherd:
+  class: figure
+  file: lec_05_prf-from-prg
+  number: '5.6'
 ecbonefig:
   class: figure
   file: lec_05_prf-from-prg
-  number: '5.8'
+  number: '5.11'
 ecbtwofig:
   class: figure
   file: lec_05_prf-from-prg
-  number: '5.9'
+  number: '5.12'
 empiricalbellfig:
   class: figure
   file: lec_00_1_mathematical-background
@@ -1761,7 +1765,7 @@ extractordef:
 feistelfig:
   class: figure
   file: lec_05_prf-from-prg
-  number: '5.6'
+  number: '5.9'
 fhecorrectlem:
   class: lemma
   file: lec_16_FHE_part2
@@ -1822,6 +1826,14 @@ hiddengroupthm:
   class: theorem
   file: lec_20_quantum_part2
   number: '21.2'
+hybridj:
+  class: figure
+  file: lec_05_prf-from-prg
+  number: '5.4'
+hybridj1:
+  class: figure
+  file: lec_05_prf-from-prg
+  number: '5.5'
 hybridrem:
   class: remark
   file: lec_02_computational-security
@@ -2353,7 +2365,7 @@ verifyinglessonrem:
 xkcdnavajotwofig:
   class: figure
   file: lec_05_prf-from-prg
-  number: '5.5'
+  number: '5.8'
 ziplocbagfig:
   class: figure
   file: lec_15_FHE
