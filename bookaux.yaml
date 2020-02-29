@@ -1,3 +1,7 @@
+-and--Recall-that-a-gener:
+  class: solution
+  file: lec_10_public_key_intro
+  number: 10.6.1
 A-little-bit-of-group-the:
   class: subsection
   file: lec_10_public_key_intro
@@ -30,6 +34,10 @@ Achieving-perfect-secrecy:
   class: subsection
   file: lec_01_introduction
   number: 1.5.1
+Additional-Group-Theory-E:
+  class: section
+  file: lec_10_public_key_intro
+  number: '10.6'
 Allowing-for-aborts:
   class: subsection
   file: lec_17_SFE
@@ -618,14 +626,18 @@ Keys-from-passwords:
   class: section
   file: lec_08_hash_functions_part2
   number: '8.1'
+LWE-based-encryption-LWEE:
+  class: quote
+  file: lec_12_lattices
+  number: '13.4'
 LWEENClem:
   class: lemma
   file: lec_12_lattices
-  number: '13.4'
+  number: '13.5'
 LWEENCthm:
   class: theorem
   file: lec_12_lattices
-  number: '13.3'
+  number: '13.4'
 LWEFHEthm:
   class: theorem
   file: lec_16_FHE_part2
@@ -633,7 +645,7 @@ LWEFHEthm:
 LWEcorrectlem:
   class: lemma
   file: lec_12_lattices
-  number: '13.2'
+  number: '13.3'
 LWEdef:
   class: definition
   file: lec_15_FHE
@@ -641,7 +653,7 @@ LWEdef:
 LWEsearchtodecthm:
   class: theorem
   file: lec_12_lattices
-  number: '13.1'
+  number: '13.2'
 Lattice-based-cryptograph:
   class: chapter
   file: lec_12_lattices
@@ -705,11 +717,11 @@ Let-us-think-of-H-in-the-:
 MACdef:
   class: definition
   file: lec_04_pseudorandom-functions
-  number: '4.5'
+  number: '4.6'
 MACfromPRFthm:
   class: theorem
   file: lec_04_pseudorandom-functions
-  number: '4.8'
+  number: '4.9'
 MACs-from-PRFs:
   class: section
   file: lec_04_pseudorandom-functions
@@ -774,6 +786,10 @@ Non-constructive-existenc:
   class: section
   file: lec_03_pseudorandom-generators
   number: '3.4'
+Now-would-be-a-fantastic-:
+  class: pause
+  file: lec_04_pseudorandom-functions
+  number: '4'
 Now-would-be-a-good-point:
   class: pause
   file: lec_16_FHE_part2
@@ -1002,6 +1018,10 @@ Quantum-cryptography:
   class: subsection
   file: lec_20_quantum_part2
   number: 21.5.1
+Quick-linear-algebra-reca:
+  class: subsection
+  file: lec_12_lattices
+  number: 13.0.1
 RSAfuncdef:
   class: definition
   file: lec_11_concrete_pkc
@@ -1054,6 +1074,10 @@ Sampling-random-primes:
   class: subsection
   file: lec_10_public_key_intro
   number: 10.3.2
+Scheme-LwoE-ENC-Public-ke:
+  class: quote
+  file: lec_12_lattices
+  number: '13.1'
 Search-to-decision:
   class: section
   file: lec_12_lattices
@@ -1094,6 +1118,10 @@ Software-obfuscation:
   class: section
   file: lec_21_obfuscation
   number: '22.5'
+Solved-exercises:
+  class: subsection
+  file: lec_10_public_key_intro
+  number: 10.6.1
 Some-comments:
   class: subsection
   file: lec_17_SFE
@@ -1134,6 +1162,14 @@ Suppose-for-the-sake-of-c:
   class: proof
   file: lec_06_CCA
   number: '6.3'
+Suppose-that-a-in-mathbbG:
+  class: solution
+  file: lec_10_public_key_intro
+  number: 10.6.1
+Suppose-that-ca--c-for-al:
+  class: solution
+  file: lec_10_public_key_intro
+  number: 10.6.1
 Suppose-that-ensuremathma:
   class: proof
   file: lec_11_concrete_pkc
@@ -1150,6 +1186,10 @@ Suppose-that-we-had-a-dec:
   class: proof
   file: lec_12_lattices
   number: '13.3'
+Suppose-that-we-recieve-s:
+  class: solution
+  file: lec_10_public_key_intro
+  number: 10.6.1
 Suppose-that-we-toss-thre:
   class: exercise
   file: lec_00_1_mathematical-background
@@ -1274,6 +1314,10 @@ The-only-if-direction-is-:
   class: proof
   file: lec_01_introduction
   number: '1.5'
+The-orders-of--are------r:
+  class: solution
+  file: lec_10_public_key_intro
+  number: 10.6.1
 The-proof-above-is-rather:
   class: pause
   file: lec_06_CCA
@@ -1370,6 +1414,10 @@ This-would-be-a-good-time:
   class: pause
   file: lec_04_pseudorandom-functions
   number: '4.1'
+To-be-a-subgroup-we-need-:
+  class: solution
+  file: lec_10_public_key_intro
+  number: 10.6.1
 To-test-your-intuition-on:
   class: pause
   file: lec_00_1_mathematical-background
@@ -1462,6 +1510,10 @@ XKCDnavajofig:
   class: figure
   file: lec_01_introduction
   number: '1.2'
+Yes-if-multiplication-and:
+  class: solution
+  file: lec_10_public_key_intro
+  number: 10.6.1
 You-should-make-sure-you-:
   class: pause
   file: lec_16_FHE_part2
@@ -1549,7 +1601,7 @@ chernoffthm:
 choosemessages:
   class: remark
   file: lec_04_pseudorandom-functions
-  number: '4.6'
+  number: '4.7'
 circprivacylem:
   class: lemma
   file: lec_18_SFE_part2
@@ -1638,6 +1690,10 @@ dhinseclem:
   class: lemma
   file: lec_10_public_key_intro
   number: '10.6'
+dimensionsrem:
+  class: remark
+  file: lec_12_lattices
+  number: '13.1'
 disjoint:
   class: remark
   file: lec_00_1_mathematical-background
@@ -1814,6 +1870,26 @@ genegrabeelfig:
   class: figure
   file: lec_01_introduction
   number: '1.11'
+groupex3:
+  class: solvedexercise
+  file: lec_10_public_key_intro
+  number: '10.3'
+groupex4:
+  class: solvedexercise
+  file: lec_10_public_key_intro
+  number: '10.4'
+groupex5:
+  class: solvedexercise
+  file: lec_10_public_key_intro
+  number: '10.5'
+grouptheoryex1:
+  class: solvedexercise
+  file: lec_10_public_key_intro
+  number: '10.1'
+grouptheoryex2:
+  class: solvedexercise
+  file: lec_10_public_key_intro
+  number: '10.2'
 hardwarefhe:
   class: remark
   file: lec_15_FHE
@@ -1905,7 +1981,7 @@ linearityexp:
 loginprfthm:
   class: theorem
   file: lec_04_pseudorandom-functions
-  number: '4.3'
+  number: '4.4'
 longkeygraphfig:
   class: figure
   file: lec_01_introduction
@@ -2033,7 +2109,7 @@ orderdinfindrestatethm:
 outputincprfrem:
   class: remark
   file: lec_04_pseudorandom-functions
-  number: '4.4'
+  number: '4.5'
 owfdef:
   class: definition
   file: lec_10_public_key_intro
@@ -2085,7 +2161,7 @@ prfdef:
 prffromprgthmone:
   class: theorem
   file: lec_04_pseudorandom-functions
-  number: '4.2'
+  number: '4.3'
 prfmodelfig:
   class: figure
   file: lec_04_pseudorandom-functions
@@ -2166,10 +2242,22 @@ pubkeydef:
   class: definition
   file: lec_10_public_key_intro
   number: '10.5'
+quadresidueex1:
+  class: solvedexercise
+  file: lec_10_public_key_intro
+  number: '10.6'
+quadresidueex2:
+  class: solvedexercise
+  file: lec_10_public_key_intro
+  number: '10.7'
 quantumftthm:
   class: theorem
   file: lec_20_quantum_part2
   number: '21.5'
+randfuncs:
+  class: remark
+  file: lec_04_pseudorandom-functions
+  number: '4.2'
 randomcrhlem:
   class: lemma
   file: lec_07_hash_functions
@@ -2281,7 +2369,7 @@ strategies:
 strongunforgability:
   class: remark
   file: lec_04_pseudorandom-functions
-  number: '4.7'
+  number: '4.8'
 strongunforgabilitysigrem:
   class: remark
   file: lec_10_public_key_intro

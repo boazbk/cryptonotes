@@ -154,6 +154,14 @@
   filename: lec_10_public_key_intro.html
   href: appendix-an-alternative-proof-of-the-density-of-primes
   title: 'Appendix: An alternative proof of the density of primes'
+'10.6':
+  filename: lec_10_public_key_intro.html
+  href: additional-group-theory-exercises-and-proofs
+  title: Additional Group Theory Exercises and Proofs
+10.6.1:
+  filename: lec_10_public_key_intro.html
+  href: solved-exercises
+  title: 'Solved exercises:'
 '11':
   filename: lec_11_concrete_pkc.html
   href: ''
@@ -198,6 +206,10 @@
   filename: lec_12_lattices.html
   href: ''
   title: Lattice based cryptography
+12.0.1:
+  filename: lec_12_lattices.html
+  href: quick-linear-algebra-recap
+  title: Quick linear algebra recap
 '12.1':
   filename: lec_12_lattices.html
   href: a-world-without-gaussian-elimination
