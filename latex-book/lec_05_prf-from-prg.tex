@@ -322,6 +322,9 @@ probability at most \(1/2+negl(n)\) in the game defined below:
   Then Eve chooses two messages \(m_0,m_1\), and gets \(c^* = E_k(m_b)\)
   for \(b\leftarrow_R\{0,1\}\).\\
 \item
+  Eve continues to interact with \(E\) for another \(poly(n)\) rounds,
+  as in Step 3.\\
+\item
   Eve \emph{wins} if she outputs \(b\).\\
 \end{enumerate}
 
@@ -339,8 +342,8 @@ outputs \(b'\). She \emph{wins} if \(b'=b\)}
 
 \cref{cpasecuredef} is illustrated in \cref{cpasecgamefig}. Our previous
 notion of computational secrecy (i.e., \cref{compsecdef}) corresponds to
-the case that we skip Step 3 above. Since Step 3 only gives the
-adversary more power (and hence is only more likely to win), CPA
+the case that we skip Steps 3 and 5 above. Since Steps 3 and 5 only give
+the adversary more power (and hence is only more likely to win), CPA
 security (\cref{cpasecuredef}) is \emph{stronger} than computational
 secrecy (\cref{compsecdef}), in the sense that every CPA secure
 encryption \((E,D)\) is also computationally secure. It turns out that
@@ -397,8 +400,8 @@ functions come to the rescue:
 
 Suppose that \(\{ f_s \}\) is a PRF collection where
 \(f_s:\{0,1\}^n\rightarrow\{0,1\}^\ell\), then the following is a CPA
-secure encryption scheme: \(E_s(m)=(r,f_s(r)\oplus m)\) and
-\(D_s(r,z)=f_s(r)\oplus z\).
+secure encryption scheme: \(E_s(m)=(r,f_s(r)\oplus m)\) where
+\(r \leftarrow_R \{0,1\}^n\), and \(D_s(r,z)=f_s(r)\oplus z\).
 
 \end{theorem}
 
@@ -601,13 +604,22 @@ use it as a PRF in the construction above, but in practice people use
 other ways.\footnote{Partially this is because in the above construction
   we had to encode a plaintext of length \(n\) with a ciphertext of
   length \(2n\) meaning an overhead of 100 percent in the communication.}
+
 The most natural approach would be that to encrypt a message \(m\), we
 simply use \(p_s(m)\) where \(\{ p_s \}\) is the PRP/block cipher. This
 is known as the \emph{electronic code book (ECB) mode} of a block cipher
 (see \cref{ecbonefig}). Note that we can easily decrypt since we can
-compute \(p_s^{-1}(m)\). However, this is a \emph{deterministic}
-encryption and hence cannot be CPA secure. Moreover, this is actually a
-real problem of security on realistic inputs (see \cref{ecbtwofig}).
+compute \(p_s^{-1}(m)\). If the PRP \(\{p_s\}\) only accepts inputs of a
+fixed length \(\ell\), we can use ECB mode to encrypt a message \(m\)
+whose length is a multiple of \(\ell\) by writing
+\(m = (m_1, m_2, \ldots, m_t)\), where each block \(m_i\) has length
+\(\ell\), and then encrypting each block \(m_i\) separately. The
+ciphertext output by this encryption scheme is
+\((p_s(m_1), \ldots, p_s(m_t))\). A major drawback of ECB mode is that
+it is a \emph{deterministic} encryption scheme and hence cannot be CPA
+secure. Moreover, this is actually a real problem of security on
+realistic inputs (see \cref{ecbtwofig}), so ECB mode should never be
+used.
 
 
 \begin{marginfigure}
@@ -630,13 +642,30 @@ Wikipedia.}
 \end{marginfigure}
 
 A more secure way to use a block cipher to encrypt is the \emph{cipher
-block chaining mode} where we XOR every message with the previous
-ciphertext (\cref{cbcmodefig}). For the first message we XOR a string
-known as the \emph{initialization vector} or IV. Note that if we lose a
-block to traffic in the CBC mode then we are unable to decrypt the next
-block, but can recover from that point onwards. It turns out that using
-this mode with a random IV can yield CPA security, though one has to be
-careful in how you go about it, see the exercises.
+block chaining (CBC) mode}. The idea of cipher block chaining is to
+encrypt the blocks of a message \(m = (m_1, \ldots, m_t)\) sequentially.
+To encrypt the first block \(m_1\), we XOR \(m_1\) with a random string
+known as the \emph{initialization vector}, or
+\(\ensuremath{\mathit{IV}}\), before applying the block cipher \(p_s\).
+To encrypt one of the later blocks \(m_i\), where \(i > 1\), we XOR
+\(m_i\) with the \emph{encryption} of \(m_{i-1}\) before applying the
+block cipher \(p_s\). Formally, the ciphertext consists of the tuple
+\((\ensuremath{\mathit{IV}}, c_1, \ldots, c_t)\), where
+\(\ensuremath{\mathit{IV}}\) is chosen uniformly at random and
+\(c_i = p_s(c_{i-1} \oplus m_i)\) for \(1 \le i \le t\) (we use the
+convention that \(c_0 = \ensuremath{\mathit{IV}}\)). This encryption
+process is depicted in \cref{cbcmodefig}. In order to decrypt
+\((\ensuremath{\mathit{IV}}, c_1, \ldots, c_t)\), we simply calculate
+\(m_i = p_s^{-1}(c_i) \oplus c_{i-1}\) for \(1 \le i \le t\). Note that
+if we lose the block \(c_i\) to traffic in the CBC mode, then we are
+unable to decrypt the next block \(c_{i+1}\), but we can recover from
+that point onwards.
+
+On the one hand, CBC mode is vastly superior to a simple electronic
+codebook since CBC mode with a random \(\ensuremath{\mathit{IV}}\) is
+CPA secure (see the exercises). On the other hand, CBC mode suffers from
+the drawback that the encryption process cannot be parallelized: the
+ciphertext block \(c_i\) \emph{must} be computed before \(c_{i+1}\).
 
 
 \begin{marginfigure}
@@ -649,16 +678,38 @@ that if chosen randomly, ensures CPA security.}
 \label{cbcmodefig}
 \end{marginfigure}
 
-In the \emph{output feedback mode (OFB)} we encrypt the all zero string
-using CBC mode to get a sequence \((y_1,y_2,\ldots)\) of pseudorandom
-outputs that we can use as a stream cipher. Perhaps the simplest mode is
-\emph{counter mode} where we convert a block cipher to a stream cipher
-by using the stream
+In the \emph{output feedback (OFB) mode} we first encrypt the all zero
+string using CBC mode to get a sequence \((y_1,y_2,\ldots)\) of
+pseudorandom outputs that we can use as a stream cipher. To transmit a
+message \(m \in \{0,1\}^*\), we send the XOR of \(m\) with the bits
+output by this stream cipher, along with the
+\(\ensuremath{\mathit{IV}}\) used to generate the sequence. The receiver
+can decrypt a ciphertext \((\ensuremath{\mathit{IV}}, c)\) by first
+using \(\ensuremath{\mathit{IV}}\) to recover \((y_1, y_2, \ldots)\),
+and then taking the XOR of \(c\) with the appropriate number of bits
+from this sequence. Like CBC mode, OFB mode is CPA secure when
+\(\ensuremath{\mathit{IV}}\) is chosen at random. Some advantages of OFB
+mode over CBC mode include the ability for the sender to precompute the
+sequence \((y_1, y_2, \ldots)\) well before the message to be encrypted
+is known, as well as the fact that the underlying function \(p_s\) used
+to generate \((y_1, y_2, \ldots)\) only needs to be a PRF (not
+necessarily a PRP).
+
+Perhaps the simplest mode of operation is \emph{counter (CTR) mode}
+where we convert a block cipher to a stream cipher by using the stream
 \(p_k(\ensuremath{\mathit{IV}}),p_k(\ensuremath{\mathit{IV}}+1),p_k(\ensuremath{\mathit{IV}}+2),\ldots\)
 where \(\ensuremath{\mathit{IV}}\) is a random string in \(\{0,1\}^n\)
-which we identify with \([2^n]\) (and perform addition modulo \(2^n\)) .
-For a modern block cipher this should be no less secure than CBC or OFB
-and has advantages that we can easily compute it in parallel.
+which we identify with \([2^n]\) (and perform addition modulo \(2^n\)).
+That is, to encrypt a message \(m = (m_1, \ldots, m_t)\), we choose
+\(\ensuremath{\mathit{IV}}\) at random, and output
+\((\ensuremath{\mathit{IV}}, c_1, \ldots, c_t)\), where
+\(c_i = p_s(\ensuremath{\mathit{IV}} + i) \oplus m_i\) for
+\(1 \le i \le t\). Decryption is performed similarly. For a modern block
+cipher, CTR mode is no less secure than CBC or OFB, and in fact offers
+several advantages. For example, CTR mode can easily encrypt and decrypt
+blocks in parallel, unlike CBC mode. In addition, CTR mode only needs to
+evaluate \(p_s\) once to decrypt any single block of the ciphertext,
+unlike OFB mode.
 
 A fairly comprehensive study of the different modes of block ciphers is
 in \href{http://web.cs.ucdavis.edu/~rogaway/papers/modes.pdf}{this
