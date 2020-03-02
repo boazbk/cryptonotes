@@ -278,6 +278,10 @@ Concrete-candidates-for-p:
   class: chapter
   file: lec_11_concrete_pkc
   number: '11'
+Conjecture-Learning-with-:
+  class: quote
+  file: lec_12_lattices
+  number: '13.2'
 Constructing--party-hones:
   class: section
   file: lec_18_SFE_part2

@@ -183,9 +183,13 @@ You should be comfortable with the following notions:
 \item
   The \emph{rank} of an \(m\times n\) matrix \(A\) is the minimum number
   \(r\) such that we can write \(A\) as \(\sum_{i=1}^r u_i(v_i)^\top\)
-  where \(u_i \in \mathbb{F}^m\) and \(v_i \in \mathbb{F}^n\). It can be
-  shown that an \(n\times n\) matrix is full rank if and only if it has
-  an inverse.
+  where \(u_i \in \mathbb{F}^m\) and \(v_i \in \mathbb{F}^n\). We can
+  think of the \(u_i\)'s as the columns of an \(m\times r\) matrix \(U\)
+  and the \(v_i\)'s as the rows of an \(r\times n\) matrix \(V\), and
+  hence the rank of \(A\) is the minimum \(r\) such that
+  \(A=\ensuremath{\mathit{UV}}\) where \(U\) is \(m\times r\) and \(V\)
+  is \(r\times n\). It can be shown that an \(n\times n\) matrix is full
+  rank if and only if it has an inverse.
 \item
   Solving \emph{linear equations} can be thought of as the task of given
   an \(m \times n\) matrix \(A\) and \(m\)-dimensional vector \(y\),
@@ -391,30 +395,48 @@ or rationals disappears), the resulting equations have the form
 The \emph{Learning With Errors (LWE)} conjecture is that this is
 \emph{inherent}:
 
-\begin{quote}
+\begin{quote} \label[quote]{Conjecture-Learning-with-}
+
 \textbf{Conjecture (Learning with Errors, Regev 2005):} Let \(q=q(n)\)
 and \(\delta=\delta(n)\) be some functions. The \emph{Learning with
-Error (LWE) conjecture with respect to \(q,\delta\)}, is that for every
-polynomial-time adversary \(E\) and \(m=poly(n)\), the probability that
-\(E(A,Ax+e)=x\) is negligible, where \(A\) is a random \(m\times n\)
-matrix in \(\Z_q\), \(x\) is random in \(\Z_q^n,\) and \(e \in \Z_q^m\)
-is a random noise vector with magnitude \(\delta q\).\footnote{One can
-  think of \(e\) as chosen by simply letting every coordinate be chosen
-  at random in \(\{ -\delta q, -\delta q + 1 , \ldots, +\delta q \}\).
-  For technical reasons, we sometimes consider other distributions and
-  in particular the \emph{discrete Gaussian} distribution which is
-  obtained by letting every coordinate of \(e\) be an independent
-  Gaussian random variable with standard deviation \(\delta q\),
-  conditioned on it being an integer. (A closely related distribution is
-  obtained by picking such a Gaussian random variable and then rounding
-  it to the nearest integer.)}
+Error (LWE) conjecture with respect to \(q,\delta\)},denoted as
+\(\ensuremath{\mathit{LWE}}_{q,\delta}\), is the following conjecture:
+for every polynomial \(m(n)\) and polynomial-time adversary \(R\),
 
-The \emph{LWE conjecture} is that for every polynomial \(p(n)\) there is
-some polynomial \(q(n)\) such that LWE holds with respect to \(q(n)\)
-and \(\delta(n)=1/p(n)\).\footnote{People sometimes also consider
-  variants where both \(p(n)\) and \(q(n)\) can be as large as
-  exponential.}
+\[\Pr[ R(A,Ax+e) = x ] < negl(n)\] where for \(q=q(n)\) and
+\(\delta = \delta(n)\), this probability is taken over \(A\) a random
+\(m\times n\) matrix in \(\Z_q\), \(x\) a random vector in \(\Z_q^n,\)
+and \(e\) a random ``noise vector'' in \(\Z_q^m\) where
+\(|e_i| < \delta q\) for every \(i \in [m]\).\footnote{One can think of
+  \(e\) as chosen by simply letting every coordinate be chosen at random
+  in \(\{ -\delta q, -\delta q + 1 , \ldots, +\delta q \}\). For
+  technical reasons, we sometimes consider other distributions and in
+  particular the \emph{discrete Gaussian} distribution which is obtained
+  by letting every coordinate of \(e\) be an independent Gaussian random
+  variable with standard deviation \(\delta q\), conditioned on it being
+  an integer. (A closely related distribution is obtained by picking
+  such a Gaussian random variable and then rounding it to the nearest
+  integer.)}
+
+The \emph{LWE conjecture} (without any parameters) is that there is some
+absolute constant \(c\) such that for every polynomial \(p(n)\) there,
+if \(q(n) > p(n)^c\) then LWE holds with respect to \(q(n)\) and
+\(\delta(n)=1/p(n)\).\footnote{People sometimes also consider variants
+  where both \(p(n)\) and \(q(n)\) can be as large as exponential.}
+
 \end{quote}
+
+It is important to note the order of quantifiers in the learning with
+error conjecture. If we want to handle a noise of low enough magnitude
+(say \(\delta(n) = 1/n^2\)) then we need to choose the modulos \(q\) to
+be large enough (for example it is believed that \(q > n^4\) will be
+good enough for this case) and then the adversary can choose \(m(n)\) to
+be as big a polynomial as they like, and of course run in time which is
+an arbitrary polynomial in \(n\). Therefore we can think of such an
+adversary \(R\) as getting access to a ``magic box'' that they can use
+\(m=poly(n)\) number of times to get ``noisy equations on \(x\)'' of the
+form \((a_i,y_i)\) with \(a_i\in \Z_q^n\), \(y_i \in \Z_q\) where
+\(y_i = \langle a_i, x \rangle + e_i\)).
 
 \section{Search to decision}\label{Search-to-decision}
 

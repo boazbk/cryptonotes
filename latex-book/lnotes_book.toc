@@ -276,295 +276,295 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {13.2}Security in the real world.}{219}{section.495}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {13.3}Search to decision}{220}{section.496}% 
+\contentsline {section}{\numberline {13.3}Search to decision}{220}{section.497}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {13.4}An LWE based encryption scheme}{221}{section.499}% 
+\contentsline {section}{\numberline {13.4}An LWE based encryption scheme}{221}{section.500}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {13.5}But what are lattices?}{224}{section.504}% 
+\contentsline {section}{\numberline {13.5}But what are lattices?}{224}{section.505}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {13.6}Ring based lattices}{225}{section.506}% 
+\contentsline {section}{\numberline {13.6}Ring based lattices}{225}{section.507}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {14}Establishing secure connections over insecure channels}{227}{chapter.507}% 
+\contentsline {chapter}{\numberline {14}Establishing secure connections over insecure channels}{227}{chapter.508}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {14.1}Cryptography's obsession with adjectives.}{227}{section.508}% 
+\contentsline {section}{\numberline {14.1}Cryptography's obsession with adjectives.}{227}{section.509}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {14.2}Basic Key Exchange protocol}{229}{section.509}% 
+\contentsline {section}{\numberline {14.2}Basic Key Exchange protocol}{229}{section.510}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {14.3}Authenticated key exchange}{230}{section.516}% 
+\contentsline {section}{\numberline {14.3}Authenticated key exchange}{230}{section.517}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {14.3.1}Bleichenbacher's attack on RSA PKCS V1.5 and SSL V3.0}{230}{subsection.517}% 
+\contentsline {subsection}{\numberline {14.3.1}Bleichenbacher's attack on RSA PKCS V1.5 and SSL V3.0}{230}{subsection.518}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {14.4}Chosen ciphertext attack security for public key cryptography}{231}{section.518}% 
+\contentsline {section}{\numberline {14.4}Chosen ciphertext attack security for public key cryptography}{231}{section.519}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Why CCA security matters.}{232}{paragraph*.520}% 
+\contentsline {paragraph}{Why CCA security matters.}{232}{paragraph*.521}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {14.5}CCA secure public key encryption in the Random Oracle Model}{233}{section.521}% 
+\contentsline {section}{\numberline {14.5}CCA secure public key encryption in the Random Oracle Model}{233}{section.522}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {14.5.1}Defining secure authenticated key exchange}{234}{subsection.523}% 
+\contentsline {subsection}{\numberline {14.5.1}Defining secure authenticated key exchange}{234}{subsection.524}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {14.5.2}The compiler approach for authenticated key exchange}{235}{subsection.524}% 
+\contentsline {subsection}{\numberline {14.5.2}The compiler approach for authenticated key exchange}{235}{subsection.525}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {14.6}Password authenticated key exchange.}{236}{section.525}% 
+\contentsline {section}{\numberline {14.6}Password authenticated key exchange.}{236}{section.526}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {14.7}Client to client key exchange for secure text messaging - ZRTP, OTR, TextSecure}{236}{section.526}% 
+\contentsline {section}{\numberline {14.7}Client to client key exchange for secure text messaging - ZRTP, OTR, TextSecure}{236}{section.527}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {14.8}Heartbleed and logjam attacks}{236}{section.527}% 
+\contentsline {section}{\numberline {14.8}Heartbleed and logjam attacks}{236}{section.528}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{IV\hspace {1em}Advanced topics}{237}{part.529}% 
+\contentsline {part}{IV\hspace {1em}Advanced topics}{237}{part.530}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {15}Zero knowledge proofs}{239}{chapter.530}% 
+\contentsline {chapter}{\numberline {15}Zero knowledge proofs}{239}{chapter.531}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {15.1}Applications for zero knowledge proofs.}{240}{section.531}% 
+\contentsline {section}{\numberline {15.1}Applications for zero knowledge proofs.}{240}{section.532}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {15.1.1}Nuclear disarmament}{240}{subsection.532}% 
+\contentsline {subsection}{\numberline {15.1.1}Nuclear disarmament}{240}{subsection.533}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {15.1.2}Voting}{241}{subsection.533}% 
+\contentsline {subsection}{\numberline {15.1.2}Voting}{241}{subsection.534}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {15.1.3}More applications}{241}{subsection.534}% 
+\contentsline {subsection}{\numberline {15.1.3}More applications}{241}{subsection.535}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {15.2}Defining and constructing zero knowledge proofs}{241}{section.535}% 
+\contentsline {section}{\numberline {15.2}Defining and constructing zero knowledge proofs}{241}{section.536}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {15.3}Defining zero knowledge}{245}{section.542}% 
+\contentsline {section}{\numberline {15.3}Defining zero knowledge}{245}{section.543}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Protocol ZK-QR:}{245}{paragraph*.543}% 
+\contentsline {paragraph}{Protocol ZK-QR:}{245}{paragraph*.544}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {15.4}Zero knowledge proof for Hamiltonicity.}{248}{section.555}% 
+\contentsline {section}{\numberline {15.4}Zero knowledge proof for Hamiltonicity.}{248}{section.556}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Protocol ZK-Ham:}{248}{paragraph*.556}% 
+\contentsline {paragraph}{Protocol ZK-Ham:}{248}{paragraph*.557}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {15.4.1}Why is this interesting?}{251}{subsection.570}% 
+\contentsline {subsection}{\numberline {15.4.1}Why is this interesting?}{251}{subsection.571}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {15.5}Parallel repetition and turning zero knowledge proofs to signatures.}{251}{section.572}% 
+\contentsline {section}{\numberline {15.5}Parallel repetition and turning zero knowledge proofs to signatures.}{251}{section.573}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {15.5.1}``Bonus features'' of zero knowledge}{252}{subsection.573}% 
+\contentsline {subsection}{\numberline {15.5.1}``Bonus features'' of zero knowledge}{252}{subsection.574}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {16}Fully homomorphic encryption: Introduction and bootstrapping}{253}{chapter.574}% 
+\contentsline {chapter}{\numberline {16}Fully homomorphic encryption: Introduction and bootstrapping}{253}{chapter.575}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {16.1}Defining fully homomorphic encryption}{256}{section.578}% 
+\contentsline {section}{\numberline {16.1}Defining fully homomorphic encryption}{256}{section.579}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {16.1.1}Another application: fully homomorphic encryption for verifying computation}{257}{subsection.581}% 
+\contentsline {subsection}{\numberline {16.1.1}Another application: fully homomorphic encryption for verifying computation}{257}{subsection.582}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {16.2}Example: An XOR homomorphic encryption}{258}{section.582}% 
+\contentsline {section}{\numberline {16.2}Example: An XOR homomorphic encryption}{258}{section.583}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {16.2.1}Abstraction: A trapdoor pseudorandom generator.}{260}{subsection.587}% 
+\contentsline {subsection}{\numberline {16.2.1}Abstraction: A trapdoor pseudorandom generator.}{260}{subsection.588}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {16.3}From linear homomorphism to full homomorphism}{262}{section.590}% 
+\contentsline {section}{\numberline {16.3}From linear homomorphism to full homomorphism}{262}{section.591}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {16.4}Bootstrapping: Fully Homomorphic ``escape velocity''}{262}{section.591}% 
+\contentsline {section}{\numberline {16.4}Bootstrapping: Fully Homomorphic ``escape velocity''}{262}{section.592}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {16.4.1}Radioactive legos analogy}{263}{subsection.594}% 
+\contentsline {subsection}{\numberline {16.4.1}Radioactive legos analogy}{263}{subsection.595}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {16.4.2}Proving the bootstrapping theorem}{263}{subsection.596}% 
+\contentsline {subsection}{\numberline {16.4.2}Proving the bootstrapping theorem}{263}{subsection.597}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {17}Fully homomorphic encryption : Construction}{265}{chapter.598}% 
+\contentsline {chapter}{\numberline {17}Fully homomorphic encryption : Construction}{265}{chapter.599}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {17.1}Prelude: from vectors to matrices}{265}{section.600}% 
+\contentsline {section}{\numberline {17.1}Prelude: from vectors to matrices}{265}{section.601}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {17.2}Real world partially homomorphic encryption}{267}{section.605}% 
+\contentsline {section}{\numberline {17.2}Real world partially homomorphic encryption}{267}{section.606}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {17.3}Noise management via encoding}{268}{section.608}% 
+\contentsline {section}{\numberline {17.3}Noise management via encoding}{268}{section.609}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {17.4}Putting it all together}{269}{section.616}% 
+\contentsline {section}{\numberline {17.4}Putting it all together}{269}{section.617}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {17.5}Analysis of our scheme}{270}{section.619}% 
+\contentsline {section}{\numberline {17.5}Analysis of our scheme}{270}{section.620}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {17.5.1}Correctness}{271}{subsection.624}% 
+\contentsline {subsection}{\numberline {17.5.1}Correctness}{271}{subsection.625}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {17.5.2}CPA Security}{271}{subsection.628}% 
+\contentsline {subsection}{\numberline {17.5.2}CPA Security}{271}{subsection.629}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {17.5.3}Homomorphism}{272}{subsection.629}% 
+\contentsline {subsection}{\numberline {17.5.3}Homomorphism}{272}{subsection.630}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {17.5.4}Shallow decryption circuit}{272}{subsection.633}% 
+\contentsline {subsection}{\numberline {17.5.4}Shallow decryption circuit}{272}{subsection.634}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {17.6}Example application: Private information retrieval}{275}{section.636}% 
+\contentsline {section}{\numberline {17.6}Example application: Private information retrieval}{275}{section.637}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {18}Multiparty secure computation I: Definition and Honest-But-Curious to Malicious complier}{277}{chapter.637}% 
+\contentsline {chapter}{\numberline {18}Multiparty secure computation I: Definition and Honest-But-Curious to Malicious complier}{277}{chapter.638}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {18.1}Ideal vs.\nobreakspace {}Real Model Security.}{278}{section.638}% 
+\contentsline {section}{\numberline {18.1}Ideal vs.\nobreakspace {}Real Model Security.}{278}{section.639}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {18.2}Formally defining secure multiparty computation}{279}{section.639}% 
+\contentsline {section}{\numberline {18.2}Formally defining secure multiparty computation}{279}{section.640}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {18.2.1}First attempt: a slightly ``too ideal'' definition}{279}{subsection.640}% 
+\contentsline {subsection}{\numberline {18.2.1}First attempt: a slightly ``too ideal'' definition}{279}{subsection.641}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {18.2.2}Allowing for aborts}{280}{subsection.644}% 
+\contentsline {subsection}{\numberline {18.2.2}Allowing for aborts}{280}{subsection.645}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {18.2.3}Some comments:}{282}{subsection.651}% 
+\contentsline {subsection}{\numberline {18.2.3}Some comments:}{282}{subsection.652}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Is multiparty secure computation the end of crypto?}{283}{paragraph*.652}% 
+\contentsline {paragraph}{Is multiparty secure computation the end of crypto?}{283}{paragraph*.653}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Further reading:}{284}{paragraph*.653}% 
+\contentsline {paragraph}{Further reading:}{284}{paragraph*.654}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {18.3}Example: Second price auction using bitcoin}{284}{section.654}% 
+\contentsline {section}{\numberline {18.3}Example: Second price auction using bitcoin}{284}{section.655}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {18.3.1}Another example: distributed and threshold cryptography}{285}{subsection.655}% 
+\contentsline {subsection}{\numberline {18.3.1}Another example: distributed and threshold cryptography}{285}{subsection.656}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {18.4}Proving the fundamental theorem:}{286}{section.657}% 
+\contentsline {section}{\numberline {18.4}Proving the fundamental theorem:}{286}{section.658}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {18.5}Malicious to honest but curious reduction}{287}{section.660}% 
+\contentsline {section}{\numberline {18.5}Malicious to honest but curious reduction}{287}{section.661}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {18.5.1}Handling probabilistic strategies:}{291}{subsection.662}% 
+\contentsline {subsection}{\numberline {18.5.1}Handling probabilistic strategies:}{291}{subsection.663}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {19}Multiparty secure computation: Construction using Fully Homomorphic Encryption}{293}{chapter.663}% 
+\contentsline {chapter}{\numberline {19}Multiparty secure computation: Construction using Fully Homomorphic Encryption}{293}{chapter.664}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {19.1}Constructing 2 party honest but curious computation from fully homomorphic encryption}{294}{section.666}% 
+\contentsline {section}{\numberline {19.1}Constructing 2 party honest but curious computation from fully homomorphic encryption}{294}{section.667}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Claim B:}{294}{paragraph*.668}% 
+\contentsline {paragraph}{Claim B:}{294}{paragraph*.669}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Proof:}{294}{paragraph*.669}% 
+\contentsline {paragraph}{Proof:}{294}{paragraph*.670}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Claim A:}{295}{paragraph*.670}% 
+\contentsline {paragraph}{Claim A:}{295}{paragraph*.671}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {19.2}Achieving circuit privacy in a fully homomorphic encryption}{297}{section.676}% 
+\contentsline {section}{\numberline {19.2}Achieving circuit privacy in a fully homomorphic encryption}{297}{section.677}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {19.3}Bottom line: A two party honest but curious two party secure computation protocol}{299}{section.681}% 
+\contentsline {section}{\numberline {19.3}Bottom line: A two party honest but curious two party secure computation protocol}{299}{section.682}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {20}Quantum computing and cryptography I}{301}{chapter.683}% 
+\contentsline {chapter}{\numberline {20}Quantum computing and cryptography I}{301}{chapter.684}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {20.0.1}Quantum computing and computation - an executive summary.}{303}{subsection.686}% 
+\contentsline {subsection}{\numberline {20.0.1}Quantum computing and computation - an executive summary.}{303}{subsection.687}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {20.1}Quantum 101}{304}{section.687}% 
+\contentsline {section}{\numberline {20.1}Quantum 101}{304}{section.688}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{States:}{304}{paragraph*.688}% 
+\contentsline {paragraph}{States:}{304}{paragraph*.689}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Measurement:}{305}{paragraph*.689}% 
+\contentsline {paragraph}{Measurement:}{305}{paragraph*.690}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Operations:}{305}{paragraph*.690}% 
+\contentsline {paragraph}{Operations:}{305}{paragraph*.691}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Elementary operations:}{305}{paragraph*.691}% 
+\contentsline {paragraph}{Elementary operations:}{305}{paragraph*.692}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Complexity:}{306}{paragraph*.692}% 
+\contentsline {paragraph}{Complexity:}{306}{paragraph*.693}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Computing functions:}{306}{paragraph*.693}% 
+\contentsline {paragraph}{Computing functions:}{306}{paragraph*.694}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Quantum and classical computation:}{307}{paragraph*.694}% 
+\contentsline {paragraph}{Quantum and classical computation:}{307}{paragraph*.695}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{The "obviously exponential" fallacy:}{307}{paragraph*.695}% 
+\contentsline {paragraph}{The "obviously exponential" fallacy:}{307}{paragraph*.696}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {20.1.1}Physically realizing quantum computation}{308}{subsection.696}% 
+\contentsline {subsection}{\numberline {20.1.1}Physically realizing quantum computation}{308}{subsection.697}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {20.1.2}Bra-ket notation}{309}{subsection.697}% 
+\contentsline {subsection}{\numberline {20.1.2}Bra-ket notation}{309}{subsection.698}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {20.1.3}Bell's Inequality}{309}{subsection.698}% 
+\contentsline {subsection}{\numberline {20.1.3}Bell's Inequality}{309}{subsection.699}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Claim:}{310}{paragraph*.699}% 
+\contentsline {paragraph}{Claim:}{310}{paragraph*.700}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Proof:}{310}{paragraph*.700}% 
+\contentsline {paragraph}{Proof:}{310}{paragraph*.701}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Claim:}{310}{paragraph*.701}% 
+\contentsline {paragraph}{Claim:}{310}{paragraph*.702}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Proof:}{310}{paragraph*.702}% 
+\contentsline {paragraph}{Proof:}{310}{paragraph*.703}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {20.2}Grover's Algorithm}{311}{section.703}% 
+\contentsline {section}{\numberline {20.2}Grover's Algorithm}{311}{section.704}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Theorem (Grover search , 1996):}{312}{paragraph*.704}% 
+\contentsline {paragraph}{Theorem (Grover search , 1996):}{312}{paragraph*.705}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Proof sketch:}{312}{paragraph*.705}% 
+\contentsline {paragraph}{Proof sketch:}{312}{paragraph*.706}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {21}Quantum computing and cryptography II}{313}{chapter.706}% 
+\contentsline {chapter}{\numberline {21}Quantum computing and cryptography II}{313}{chapter.707}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {21.1}From order finding to factoring and discrete log}{313}{section.709}% 
+\contentsline {section}{\numberline {21.1}From order finding to factoring and discrete log}{313}{section.710}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {21.2}Finding periods of a function: Simon's Algorithm}{314}{section.710}% 
+\contentsline {section}{\numberline {21.2}Finding periods of a function: Simon's Algorithm}{314}{section.711}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {21.3}From Simon to Shor}{316}{section.713}% 
+\contentsline {section}{\numberline {21.3}From Simon to Shor}{316}{section.714}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {21.3.1}The Fourier transform over \({\symbb {Z}}_m\)}{316}{subsection.715}% 
+\contentsline {subsection}{\numberline {21.3.1}The Fourier transform over \({\symbb {Z}}_m\)}{316}{subsection.716}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {21.3.2}Fast Fourier Transform.}{317}{subsection.717}% 
+\contentsline {subsection}{\numberline {21.3.2}Fast Fourier Transform.}{317}{subsection.718}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {21.3.3}Quantum Fourier Transform over \({\symbb {Z}}_m\)}{318}{subsection.718}% 
+\contentsline {subsection}{\numberline {21.3.3}Quantum Fourier Transform over \({\symbb {Z}}_m\)}{318}{subsection.719}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {21.4}Shor's Order-Finding Algorithm.}{319}{section.725}% 
+\contentsline {section}{\numberline {21.4}Shor's Order-Finding Algorithm.}{319}{section.726}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {21.4.1}Analysis: the case that \(r|m\)}{320}{subsection.731}% 
+\contentsline {subsection}{\numberline {21.4.1}Analysis: the case that \(r|m\)}{320}{subsection.732}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Claim:}{320}{paragraph*.732}% 
+\contentsline {paragraph}{Claim:}{320}{paragraph*.733}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {21.4.2}The general case}{320}{subsection.733}% 
+\contentsline {subsection}{\numberline {21.4.2}The general case}{320}{subsection.734}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Lemma 1:}{320}{paragraph*.734}% 
+\contentsline {paragraph}{Lemma 1:}{320}{paragraph*.735}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Lemma 2:}{321}{paragraph*.737}% 
+\contentsline {paragraph}{Lemma 2:}{321}{paragraph*.738}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Proof of Lemma 1}{321}{paragraph*.738}% 
+\contentsline {paragraph}{Proof of Lemma 1}{321}{paragraph*.739}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Proof of Lemma 2:}{321}{paragraph*.739}% 
+\contentsline {paragraph}{Proof of Lemma 2:}{321}{paragraph*.740}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {21.5}Rational approximation of real numbers}{321}{section.741}% 
+\contentsline {section}{\numberline {21.5}Rational approximation of real numbers}{321}{section.742}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {21.5.1}Quantum cryptography}{322}{subsection.743}% 
+\contentsline {subsection}{\numberline {21.5.1}Quantum cryptography}{322}{subsection.744}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {22}Software Obfuscation}{323}{chapter.744}% 
+\contentsline {chapter}{\numberline {22}Software Obfuscation}{323}{chapter.745}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {22.1}Witness encryption}{324}{section.745}% 
+\contentsline {section}{\numberline {22.1}Witness encryption}{324}{section.746}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {22.2}Deniable encryption}{325}{section.746}% 
+\contentsline {section}{\numberline {22.2}Deniable encryption}{325}{section.747}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {22.3}Functional encryption}{325}{section.747}% 
+\contentsline {section}{\numberline {22.3}Functional encryption}{325}{section.748}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {22.4}The software patch problem}{326}{section.754}% 
+\contentsline {section}{\numberline {22.4}The software patch problem}{326}{section.755}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {22.5}Software obfuscation}{327}{section.755}% 
+\contentsline {section}{\numberline {22.5}Software obfuscation}{327}{section.756}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {22.6}Applications of obfuscation}{327}{section.757}% 
+\contentsline {section}{\numberline {22.6}Applications of obfuscation}{327}{section.758}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {22.7}Impossibility of obfuscation}{328}{section.758}% 
+\contentsline {section}{\numberline {22.7}Impossibility of obfuscation}{328}{section.759}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {22.7.1}Proof of impossibility of VBB obfuscation}{328}{subsection.760}% 
+\contentsline {subsection}{\numberline {22.7.1}Proof of impossibility of VBB obfuscation}{328}{subsection.761}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {22.8}Indistinguishability obfuscation}{331}{section.764}% 
+\contentsline {section}{\numberline {22.8}Indistinguishability obfuscation}{331}{section.765}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {23}More obfuscation, exotic encryptions}{333}{chapter.768}% 
+\contentsline {chapter}{\numberline {23}More obfuscation, exotic encryptions}{333}{chapter.769}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {23.1}Slower, weaker, less securer}{333}{section.769}% 
+\contentsline {section}{\numberline {23.1}Slower, weaker, less securer}{333}{section.770}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {23.2}How to get IBE from pairing based assumptions.}{334}{section.770}% 
+\contentsline {section}{\numberline {23.2}How to get IBE from pairing based assumptions.}{334}{section.771}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Correctness:}{335}{paragraph*.771}% 
+\contentsline {paragraph}{Correctness:}{335}{paragraph*.772}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Security:}{335}{paragraph*.772}% 
+\contentsline {paragraph}{Security:}{335}{paragraph*.773}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Definition:}{336}{paragraph*.773}% 
+\contentsline {paragraph}{Definition:}{336}{paragraph*.774}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Theorem:}{336}{paragraph*.774}% 
+\contentsline {paragraph}{Theorem:}{336}{paragraph*.775}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Proof:}{336}{paragraph*.775}% 
+\contentsline {paragraph}{Proof:}{336}{paragraph*.776}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Claim:}{337}{paragraph*.776}% 
+\contentsline {paragraph}{Claim:}{337}{paragraph*.777}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Proof:}{337}{paragraph*.777}% 
+\contentsline {paragraph}{Proof:}{337}{paragraph*.778}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {23.3}Beyond pairing based cryptography}{337}{section.778}% 
+\contentsline {section}{\numberline {23.3}Beyond pairing based cryptography}{337}{section.779}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {24}Anonymous communication}{339}{chapter.779}% 
+\contentsline {chapter}{\numberline {24}Anonymous communication}{339}{chapter.780}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {24.1}Steganography}{339}{section.780}% 
+\contentsline {section}{\numberline {24.1}Steganography}{339}{section.781}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {24.2}Anonymous routing}{340}{section.781}% 
+\contentsline {section}{\numberline {24.2}Anonymous routing}{340}{section.782}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {24.3}Tor}{340}{section.782}% 
+\contentsline {section}{\numberline {24.3}Tor}{340}{section.783}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {24.4}Telex}{340}{section.783}% 
+\contentsline {section}{\numberline {24.4}Telex}{340}{section.784}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {24.5}Riposte}{340}{section.784}% 
+\contentsline {section}{\numberline {24.5}Riposte}{340}{section.785}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {part}{V\hspace {1em}Conclusions}{341}{part.785}% 
+\contentsline {part}{V\hspace {1em}Conclusions}{341}{part.786}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {25}Ethical, moral, and policy dimensions to cryptography}{343}{chapter.786}% 
+\contentsline {chapter}{\numberline {25}Ethical, moral, and policy dimensions to cryptography}{343}{chapter.787}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {25.1}Reading prior to lecture:}{345}{section.787}% 
+\contentsline {section}{\numberline {25.1}Reading prior to lecture:}{345}{section.788}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {25.2}Case studies.}{345}{section.788}% 
+\contentsline {section}{\numberline {25.2}Case studies.}{345}{section.789}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {25.2.1}The Snowden revelations}{345}{subsection.789}% 
+\contentsline {subsection}{\numberline {25.2.1}The Snowden revelations}{345}{subsection.790}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {25.2.2}FBI vs Apple case}{346}{subsection.790}% 
+\contentsline {subsection}{\numberline {25.2.2}FBI vs Apple case}{346}{subsection.791}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {25.2.3}Juniper backdoor case and the OPM break-in}{347}{subsection.791}% 
+\contentsline {subsection}{\numberline {25.2.3}Juniper backdoor case and the OPM break-in}{347}{subsection.792}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {26}Course recap}{349}{chapter.792}% 
+\contentsline {chapter}{\numberline {26}Course recap}{349}{chapter.793}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {26.1}Some things we did not cover}{351}{section.793}% 
+\contentsline {section}{\numberline {26.1}Some things we did not cover}{351}{section.794}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {26.2}What I hope you learned}{352}{section.794}% 
+\contentsline {section}{\numberline {26.2}What I hope you learned}{352}{section.795}% 
 \contentsfinish 
