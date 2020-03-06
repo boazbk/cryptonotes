@@ -331,7 +331,8 @@ RSA and Rabin schemes, but also directly with Diffie-Hellman and Lattice
 based schemes (though there are direct and more efficient variants for
 these as well).
 
-\begin{quote}
+\begin{quote} \label[quote]{CCA-ROM-ENC-SchemeIngredi}
+
 \textbf{CCA-ROM-ENC Scheme:}
 
 \begin{itemize}
@@ -349,16 +350,17 @@ these as well).
   \textbf{Encryption:} To encrypt a message \(m\in\{0,1\}^\ell\), we
   select randomness \(r\leftarrow_R\{0,1\}^\ell\) for the underlying
   encryption algorithm \(E'\) and output
-  \(E'_e(r;H(m\|r))\|(r \oplus m)\|H'(m\|r)\), where by \(E'_e(m';r')\)
-  we denote the result of encrypting \(m'\) using the key \(e\) and the
+  \(E'_e(r;H(m\|r))\|(H'(r) \oplus m)\), where by \(E'_e(m';r')\) we
+  denote the result of encrypting \(m'\) using the key \(e\) and the
   randomness \(r'\) (we assume the scheme takes \(n\) bits of randomness
   as input; otherwise modify the output length of \(H\) accordingly).
 \item
-  \textbf{Decryption:} To decrypt a ciphertext \(c\|y\|z\) first let
-  \(r=D_d(c)\), \(m=r \oplus y\) and then check that
-  \(c=E_e(m;H(m\|r))\) and \(z=H'(m\|r)\). If any of the checks fail we
-  output \texttt{error}; otherwise we output \(m\).
+  \textbf{Decryption:} To decrypt a ciphertext \(c\|y\) first let
+  \(r=D_d(c)\), \(m=H'(r) \oplus y\) and then check that
+  \(c=E_e(m;H(m\|r))\). If the check fails we output \texttt{error};
+  otherwise we output \(m\).
 \end{itemize}
+
 \end{quote}
 
 \hypertarget{CCAPKCthm}{}
@@ -368,7 +370,11 @@ The above CCA-ROM-ENC scheme is CCA secure.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{Suppose-towards-a-contrad}
+\begin{proof} \label[proof]{Note-The-proof-here-refer}
+
+\textbf{Note:} The proof here refers to the original scheme in the notes
+(which was not secure) - should be updated by the scribes to the correct
+proof as presented in lecture.
 
 Suppose towards a contradiction that there exists an adversary \(M\)
 that wins the CCA game with probability at least \(1/2+\epsilon\) where

@@ -207,10 +207,9 @@ for every \((e,d)=G(1^n)\), \(\ell=poly(n)\),
 description size \(|f|\) at most \(poly(\ell)\) it holds that:
 
 \begin{itemize}
-\tightlist
 \item
   \(c=\ensuremath{\mathit{EVAL}}_e(f,E_e(x_1),\ldots,E_e(x_\ell))\) has
-  length at most \(n\).\\
+  length at most \(n\).
 \item
   \(D_d(c)=f(x_1,\ldots,x_\ell)\).
 \end{itemize}
@@ -354,7 +353,7 @@ that:
 
 The \emph{LWE conjecture} is that \(q(n)\)-dLWE holds for every \(q(n)\)
 that is at most \(poly(n)\). This is not exactly the same phrasing we
-used before, but can be shown to be essentially equivalent to it.
+used before, but as we sketch below, it is essentially equivalent to it.
 
 \begin{pause} \label[pause]{It-is-a-good-idea-for-you}
 
@@ -363,10 +362,11 @@ on your own.
 
 \end{pause}
 
-The reason the two conjectures are equivalent are the following. Before
-we phrased the conjecture as recovering \(s\) from a pair \((A',y)\)
-where \(y=A's'+e\) and \(|e_i|\leq \delta q\) for every \(i\). We then
-showed a \emph{search to decision} reduction (\cref{LWEsearchtodecthm})
+\paragraph{Equivalence between LWE and DLWE:} The reason the two
+conjectures are equivalent are the following. Before we phrased the
+conjecture as recovering \(s\) from a pair \((A',y)\) where \(y=A's'+e\)
+and \(|e_i|\leq \delta q\) for every \(i\). We then showed a
+\emph{search to decision} reduction (\cref{LWEsearchtodecthm})
 demonstrating that this is equivalent to the task of distinguishing
 between this case and the case that \(y\) is a random vector. If we now
 let \(\alpha = \floor{\tfrac{q}{2}}\) and
@@ -378,22 +378,28 @@ follows from the previous one. (To reduce the number of free parameters,
 we fixed \(\delta\) to equal \(1/\sqrt{q}\); in this form the conjecture
 becomes stronger as \(q\) grows.)
 
-\begin{quote}
-\textbf{A linearly-homomorphic encryption scheme:} We can describe the
-encryption scheme LWEENC presented in class as:
+\paragraph{A linearly-homomorphic encryption scheme:} The following
+variant of the LWE-ENC described in \cref{lweencsec} turns out to be
+linearly homomorphic:
+
+\begin{quote} \label[quote]{LWE-ENC-encryptionKey-gen}
+
+\textbf{LWE-ENC' encryption:}
 
 \begin{itemize}
 \item
-  Key generation: Choose \((A,s)\) from \(\ensuremath{\mathit{LWE}}_q\)
-  where \(m\) satisfies \(q^{1/4} \gg m \log q \gg n\).
+  \emph{Key generation:} Choose \((A,s)\) from
+  \(\ensuremath{\mathit{LWE}}_q\) where \(m\) satisfies
+  \(q^{1/4} \gg m \log q \gg n\).
 \item
-  To encrypt \(b\in\{0,1\}\), choose \(w\in\{0,1\}^m\) and output
-  \(w^\top A + (b,0,\ldots,0)\)
+  To \emph{encrypt} \(b\in\{0,1\}\), choose \(w\in\{0,1\}^m\) and output
+  \(w^\top A + \floor{\tfrac{q}{2}}(b,0,\ldots,0)\)
 \item
-  To decrypt \(c\in\Z_q^n\), output \(0\) iff
+  To \emph{decrypt} \(c\in\Z_q^n\), output \(0\) iff
   \(|\langle c,s \rangle| \leq q/10\), where for \(x\in\Z_q\) we defined
   \(|x| = \min \{ x , q-x \}\).
 \end{itemize}
+
 \end{quote}
 
 The decryption algorithm recovers the original plaintext since
@@ -415,7 +421,7 @@ ciphertext \(c\) encrypting \(b_1 \oplus \cdots \oplus b_\ell\).
 \begin{pause} \label[pause]{This-claim-is-not-hard-to}
 
 This claim is not hard to prove, but working it out for yourself can be
-a good way to get more familiarity with LWEENC and the kind of
+a good way to get more familiarity with LWE-ENC' and the kind of
 manipulations we'll be making time and again in the constructions of
 many lattice based cryptographic primitives. Try to show that
 \(c = c_1 + \cdots +c_\ell\) (where addition is done as vectors in
@@ -442,10 +448,10 @@ this case \(|\langle c,s \rangle| = q/2 \pm o(q) > q/10\).
 \end{proof}
 
 Several other encryption schemes are also homomorphic with respect to
-linear functions, and even before Gentry's construction people have
-managed to achieve homomorphism with respect to slightly larger classes
-(e.g., quadratic functions by Boneh, Goh and Nissim) but not
-significantly so.
+linear functions. Even before Gentry's construction there were
+constructions of encryption schemes that are homomorphic with respect to
+somewhat larger classes (e.g., quadratic functions by Boneh, Goh and
+Nissim) but not significantly so.
 
 \subsection{Abstraction: A trapdoor pseudorandom
 generator.}\label{Abstraction-A-trapdoor-ps}
@@ -514,26 +520,25 @@ A \emph{trapdoor generator} is a pair of randomized algorithms
 the following:
 
 \begin{itemize}
-\tightlist
 \item
   On input \(1^n\), \(\ensuremath{\mathit{GEN}}\) outputs a pair
   \((G_s,s)\) where \(G_s\) is a string describing a \emph{randomized}
   circuit that itself takes \(1^n\) as input and outputs a string of
-  length \(t\) where \(t=t(n)\) is some polynomial.\\
+  length \(t\) where \(t=t(n)\) is some polynomial.
 \item
   On input \(1^n\), \(\ensuremath{\mathit{GEN}}'\) outputs \(G'\) where
   \(G'\) is a string describing a randomized circuit that itself takes
-  \(1^n\) as input.\\
+  \(1^n\) as input.
 \item
   The distributions \(\ensuremath{\mathit{GEN}}(1^n)_1\) (i.e., the
   first output of \(\ensuremath{\mathit{GEN}}(1^n)\) and
   \(\ensuremath{\mathit{GEN}}'(1^n)\) are computationally
-  indistinguishable\\
+  indistinguishable
 \item
   With probability \(1-negl(n)\) over the choice of \(G'\) output by
   \(\ensuremath{\mathit{GEN}}'\), the distribution \(G'(1^n)\) is
   \emph{statistically indistinguishable} (i.e., within \(negl(n)\) total
-  variation distance) from \(U_t\).\\
+  variation distance) from \(U_t\).
 \item
   There is an efficient algorithm \(T\) such that for every pair
   \((G_s,s)\) output by \(\ensuremath{\mathit{GEN}}\),
@@ -554,24 +559,25 @@ gives rise to a trapdoor generator satisfying all the conditions of
 
 \end{pause}
 
-\begin{quote}
-\textbf{Aside: trapdoor generators in real life:} In the above we use
-the notion of a ``trapdoor'' in the pseudorandom generator as a
-mathematical abstraction, but generators with actual trapdoors have
-arisen in practice. In 2007 the National Institute of Standards (NIST)
-released standards for pseudorandom generators. Pseudorandom generators
-are the quintessential private key primitive, typically built out of
-hash functions, block ciphers, and such and so it was surprising that
-NIST included in the list a pseudorandom generator based on public key
-tools - the \href{https://en.wikipedia.org/wiki/Dual_EC_DRBG}{Dual EC
-DRBG} generator based on elliptic curve cryptography. This was already
-strange but became even more worrying when Microsoft researchers Dan
-Shumow and Niels Ferguson
-\href{http://rump2007.cr.yp.to/15-shumow.pdf}{showed} that this
-generator \emph{could} have a trapdoor in the sense that it contained
-some hardwired constants that if generated in a particular way, there
-would be some information that (just like in \(G_s\) above) allows to
-distinguish the generator from random (see here for a
+\hypertarget{trapdoorgenreal}{}
+\begin{remark}[Trapdoor generators in real life] \label[remark]{trapdoorgenreal}
+
+In the above we use the notion of a ``trapdoor'' in the pseudorandom
+generator as a mathematical abstraction, but generators with actual
+trapdoors have arisen in practice. In 2007 the National Institute of
+Standards (NIST) released standards for pseudorandom generators.
+Pseudorandom generators are the quintessential private key primitive,
+typically built out of hash functions, block ciphers, and such and so it
+was surprising that NIST included in the list a pseudorandom generator
+based on public key tools - the
+\href{https://en.wikipedia.org/wiki/Dual_EC_DRBG}{Dual EC DRBG}
+generator based on elliptic curve cryptography. This was already strange
+but became even more worrying when Microsoft researchers Dan Shumow and
+Niels Ferguson \href{http://rump2007.cr.yp.to/15-shumow.pdf}{showed}
+that this generator \emph{could} have a trapdoor in the sense that it
+contained some hardwired constants that if generated in a particular
+way, there would be some information that (just like in \(G_s\) above)
+allows to distinguish the generator from random (see here for a
 \href{https://www.schneier.com/blog/archives/2007/11/the_strange_sto.html}{2007
 blog post} on this issue). We learned more about this when leaks from
 the Snowden document
@@ -596,7 +602,8 @@ looking at the code to see that one arbitrary looking constant has been
 replaced by another). Apparently, even though this is very surprising to
 many people in law enforcement and government, inserting back doors into
 cryptographic primitives might end up making them less secure.
-\end{quote}
+
+\end{remark}
 
 \section{From linear homomorphism to full
 homomorphism}\label{From-linear-homomorphism-}

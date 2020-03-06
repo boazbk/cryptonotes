@@ -46,10 +46,6 @@ Amplifying-success-probab:
   class: subsection
   file: lec_01_introduction
   number: 1.6.1
-An-LWE-based-encryption-s:
-  class: section
-  file: lec_12_lattices
-  number: '13.4'
 Analysis-of-our-scheme:
   class: section
   file: lec_16_FHE_part2
@@ -158,7 +154,7 @@ Bibliographical-notes:
   class: section
   file: lec_01_introduction
   number: '1.7'
-Bitcoin-architecture:
+Bitcoin-Architecture:
   class: subsection
   file: lec_07_hash_functions
   number: 7.1.2
@@ -186,6 +182,10 @@ But-what-are-lattices:
   class: section
   file: lec_12_lattices
   number: '13.5'
+CCA-ROM-ENC-SchemeIngredi:
+  class: quote
+  file: lec_13_handshake
+  number: '14.5'
 CCA-secure-public-key-enc:
   class: section
   file: lec_13_handshake
@@ -262,7 +262,7 @@ Collections-of-independen:
   class: subsection
   file: lec_00_1_mathematical-background
   number: 0.4.2
-Collision-resistance-hash:
+Collision-Resistance-Hash:
   class: section
   file: lec_07_hash_functions
   number: '7.3'
@@ -302,7 +302,7 @@ Course-recap:
   class: chapter
   file: lec_25_course_recap
   number: '26'
-Cryptographic-vs-non-cryp:
+Cryptographic-vs-Non-Cryp:
   class: subsection
   file: lec_07_hash_functions
   number: 7.4.4
@@ -482,6 +482,10 @@ Forward-and-backward-secr:
   class: subsection
   file: lec_08_hash_functions_part2
   number: 8.4.1
+From-Proof-of-Work-to-Con:
+  class: subsection
+  file: lec_07_hash_functions
+  number: 7.2.1
 From-Simon-to-Shor:
   class: section
   file: lec_20_quantum_part2
@@ -498,10 +502,6 @@ From-order-finding-to-fac:
   class: section
   file: lec_20_quantum_part2
   number: '21.1'
-From-proof-of-work-to-con:
-  class: subsection
-  file: lec_07_hash_functions
-  number: 7.2.1
 Fully-homomorphic-encrypt:
   class: chapter
   file: lec_16_FHE_part2
@@ -538,7 +538,7 @@ Hardcore-bits-and-securit:
   class: section
   file: lec_11_concrete_pkc
   number: '11.2'
-Hash-functions-and-random:
+Hash-Functions-and-Random:
   class: chapter
   file: lec_07_hash_functions
   number: '7'
@@ -630,7 +630,11 @@ Keys-from-passwords:
   class: section
   file: lec_08_hash_functions_part2
   number: '8.1'
-LWE-based-encryption-LWEE:
+LWE-ENC-encryptionKey-gen:
+  class: quote
+  file: lec_15_FHE
+  number: '16.2'
+LWE-based-encryption-LWE-:
   class: quote
   file: lec_12_lattices
   number: '13.4'
@@ -790,6 +794,10 @@ Non-constructive-existenc:
   class: section
   file: lec_03_pseudorandom-generators
   number: '3.4'
+Note-The-proof-here-refer:
+  class: proof
+  file: lec_13_handshake
+  number: '14.5'
 Now-would-be-a-fantastic-:
   class: pause
   file: lec_04_pseudorandom-functions
@@ -814,6 +822,10 @@ One-time-passwords-egGoog:
   class: section
   file: lec_04_pseudorandom-functions
   number: '4.1'
+Optional-Aside-Broadcast-:
+  class: section
+  file: lec_05_prf-from-prg
+  number: '5.4'
 Our-first-conjecture:
   class: section
   file: lec_02_computational-security
@@ -910,11 +922,11 @@ Please-verify-that-you-un:
   class: pause
   file: lec_11_concrete_pkc
   number: 11.1.6
-Practical-constructions-o:
+Practical-Constructions-o:
   class: section
   file: lec_07_hash_functions
   number: '7.4'
-Practical-random-ish-func:
+Practical-Random-ish-Func:
   class: subsection
   file: lec_07_hash_functions
   number: 7.4.1
@@ -1126,6 +1138,10 @@ Solved-exercises:
   class: subsection
   file: lec_10_public_key_intro
   number: 10.6.1
+Some-History:
+  class: subsection
+  file: lec_07_hash_functions
+  number: 7.4.2
 Some-comments:
   class: subsection
   file: lec_17_SFE
@@ -1135,9 +1151,9 @@ Some-concrete-candidates:
   file: lec_10_public_key_intro
   number: '10.3'
 Some-history:
-  class: subsection
-  file: lec_07_hash_functions
-  number: 7.4.2
+  class: section
+  file: lec_01_introduction
+  number: '1.1'
 Some-number-theory:
   class: section
   file: lec_11_concrete_pkc
@@ -1230,10 +1246,22 @@ Telex:
   class: section
   file: lec_23_anonymous
   number: '24.4'
+The-Bitcoin-Ledger:
+  class: section
+  file: lec_07_hash_functions
+  number: '7.2'
+The-Bitcoin-Problem:
+  class: section
+  file: lec_07_hash_functions
+  number: '7.1'
 The-Chernoff-bound:
   class: subsection
   file: lec_00_1_mathematical-background
   number: 0.5.2
+The-Currency-Problem:
+  class: subsection
+  file: lec_07_hash_functions
+  number: 7.1.1
 The-Digital-Signature-Alg:
   class: subsection
   file: lec_10_public_key_intro
@@ -1246,7 +1274,7 @@ The-Length-Extension-Theo:
   class: section
   file: lec_02_computational-security
   number: '2.5'
-The-NSA-and-hash-function:
+The-NSA-and-Hash-Function:
   class: subsection
   file: lec_07_hash_functions
   number: 7.4.3
@@ -1270,14 +1298,6 @@ The-asymptotic-approach:
   class: section
   file: lec_02_computational-security
   number: '2.1'
-The-bitcoin-ledger:
-  class: section
-  file: lec_07_hash_functions
-  number: '7.2'
-The-bitcoin-problem:
-  class: section
-  file: lec_07_hash_functions
-  number: '7.1'
 The-certificate-pi-consis:
   class: proof
   file: lec_08_hash_functions_part2
@@ -1290,10 +1310,6 @@ The-construction-is-actua:
   class: proof
   file: lec_03_pseudorandom-generators
   number: '3.1'
-The-currency-problem:
-  class: subsection
-  file: lec_07_hash_functions
-  number: 7.1.1
 The-general-case:
   class: subsection
   file: lec_20_quantum_part2
@@ -1577,11 +1593,23 @@ bootstrapfig:
 bootstrapthm:
   class: theorem
   file: lec_15_FHE
-  number: '16.7'
+  number: '16.8'
+brdcastencfig:
+  class: figure
+  file: lec_05_prf-from-prg
+  number: '5.14'
+brdcasttreefig:
+  class: figure
+  file: lec_05_prf-from-prg
+  number: '5.15'
 breakprglem:
   class: lemma
   file: lec_03_pseudorandom-generators
   number: '3.3'
+broadcastdef:
+  class: definition
+  file: lec_05_prf-from-prg
+  number: '5.9'
 cbcmodefig:
   class: figure
   file: lec_05_prf-from-prg
@@ -1670,6 +1698,10 @@ cpasecuredef:
   class: definition
   file: lec_05_prf-from-prg
   number: '5.3'
+creffeistelfig-illustrate:
+  class: proof
+  file: lec_05_prf-from-prg
+  number: '5.2'
 crhdef:
   class: definition
   file: lec_07_hash_functions
@@ -1826,6 +1858,10 @@ feistelfig:
   class: figure
   file: lec_05_prf-from-prg
   number: '5.9'
+feistelrounds:
+  class: remark
+  file: lec_05_prf-from-prg
+  number: '5.8'
 fhecorrectlem:
   class: lemma
   file: lec_16_FHE_part2
@@ -2006,6 +2042,10 @@ lweencdescfig:
   class: figure
   file: lec_12_lattices
   number: '13.2'
+lweencsec:
+  class: section
+  file: lec_12_lattices
+  number: '13.4'
 markovfig:
   class: figure
   file: lec_00_1_mathematical-background
@@ -2390,6 +2430,10 @@ tmplabelfig:
   class: figure
   file: lec_20_quantum_part2
   number: '21.1'
+trapdoorgenreal:
+  class: remark
+  file: lec_15_FHE
+  number: '16.7'
 triangleeqthm:
   class: theorem
   file: lec_02_computational-security

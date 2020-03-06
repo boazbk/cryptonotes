@@ -224,7 +224,7 @@
   title: Search to decision
 '12.4':
   filename: lec_12_lattices.html
-  href: an-lwe-based-encryption-scheme
+  href: lweencsec
   title: An LWE based encryption scheme
 '12.5':
   filename: lec_12_lattices.html
@@ -789,6 +789,10 @@
   filename: lec_05_prf-from-prg.html
   href: encryption-modes
   title: Encryption modes
+'5.4':
+  filename: lec_05_prf-from-prg.html
+  href: optional-aside-broadcast-encryption
+  title: 'Optional, Aside: Broadcast Encryption'
 '6':
   filename: lec_06_CCA.html
   href: ''
@@ -828,51 +832,51 @@
 '7':
   filename: lec_07_hash_functions.html
   href: ''
-  title: Hash functions and random oracles
+  title: Hash Functions and Random Oracles
 '7.1':
   filename: lec_07_hash_functions.html
   href: the-bitcoin-problem
-  title: The "bitcoin" problem
+  title: The "Bitcoin" Problem
 7.1.1:
   filename: lec_07_hash_functions.html
   href: the-currency-problem
-  title: The currency problem
+  title: The Currency Problem
 7.1.2:
   filename: lec_07_hash_functions.html
   href: bitcoin-architecture
-  title: Bitcoin architecture
+  title: Bitcoin Architecture
 '7.2':
   filename: lec_07_hash_functions.html
   href: the-bitcoin-ledger
-  title: The bitcoin ledger
+  title: The Bitcoin Ledger
 7.2.1:
   filename: lec_07_hash_functions.html
   href: from-proof-of-work-to-consensus-on-ledger
-  title: From proof of work to consensus on ledger
+  title: From Proof of Work to Consensus on Ledger
 '7.3':
   filename: lec_07_hash_functions.html
   href: collision-resistance-hash-functions-and-creating-short-unique-identifiers
-  title: Collision resistance hash functions and creating short "unique" identifiers
+  title: Collision Resistance Hash Functions and Creating Short "Unique" Identifiers
 '7.4':
   filename: lec_07_hash_functions.html
   href: practical-constructions-of-cryptographic-hash-functions
-  title: Practical constructions of cryptographic hash functions
+  title: Practical Constructions of Cryptographic Hash Functions
 7.4.1:
   filename: lec_07_hash_functions.html
   href: practical-random-ish-functions
-  title: Practical random-ish functions
+  title: Practical Random-ish Functions
 7.4.2:
   filename: lec_07_hash_functions.html
   href: some-history
-  title: Some history
+  title: Some History
 7.4.3:
   filename: lec_07_hash_functions.html
-  href: the-nsa-and-hash-functions.
-  title: The NSA and hash functions.
+  href: the-nsa-and-hash-functions
+  title: The NSA and Hash Functions
 7.4.4:
   filename: lec_07_hash_functions.html
   href: cryptographic-vs-non-cryptographic-hash-functions
-  title: 'Cryptographic vs non-cryptographic hash functions:'
+  title: Cryptographic vs Non-Cryptographic Hash Functions
 '8':
   filename: lec_08_hash_functions_part2.html
   href: ''

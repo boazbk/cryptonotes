@@ -1,25 +1,25 @@
-\chapter{Hash functions and random
-oracles}\label{Hash-functions-and-random}
+\chapter{Hash Functions and Random
+Oracles}\label{Hash-Functions-and-Random}
 
 We have seen pseudorandom generators, functions and permutations, as
 well as Message Authentication codes, CPA and CCA secure encryptions.
 This week we will talk about cryptographic hash functions and some of
-their magical properties. We motivate this by the \emph{bitcoin}
+their magical properties. We motivate this by the \emph{Bitcoin}
 cryptocurrency. As usual our discussion will be highly abstract and
 idealized, and any resemblance to real cryptocurrencies, living or dead,
 is purely coincidental.
 
-\section{The ``bitcoin'' problem}\label{The-bitcoin-problem}
+\section{The ``Bitcoin'' Problem}\label{The-Bitcoin-Problem}
 
 Using cryptography to create a \emph{centralized} digital-currency is
 fairly straightforward, and indeed this is what is done by Visa,
-Mastercard etc.. The main challenge with bitcoin is that it is
+Mastercard etc.. The main challenge with Bitcoin is that it is
 \emph{decentralized}. There is no trusted server, there are no ``user
 accounts'', no central authority to adjudicate claims. Rather we have a
 collection of anonymous and autonomous parties that somehow need to
 agree on what is a valid payment.
 
-\subsection{The currency problem}\label{The-currency-problem}
+\subsection{The Currency Problem}\label{The-Currency-Problem}
 
 Before talking about cryptocurrencies, let's talk about currencies in
 general.\footnote{I am not an economist by any stretch of the
@@ -35,12 +35,11 @@ general.\footnote{I am not an economist by any stretch of the
   certain quantities of this resource.
 \end{itemize}
 
-The original currencies were based on
-\href{https://goo.gl/K7awAW}{commodity money}. The scarce resource was
-some commodity having intrinsic value, such as gold or silver, or even
-salt or tea, and ownership based on physical possession. However, as
-commerce increased, carrying around (and protecting) the large quantity
-of the commodities became impractical, and societies shifted to
+Some currencies are/were based on \href{https://goo.gl/K7awAW}{commodity
+money}. The scarce resource was some commodity having intrinsic value,
+such as gold or silver, or even salt or tea, and ownership based on
+physical possession. However, for various financial and political
+reasons, some societies shifted to
 \href{https://goo.gl/K6c4qP}{representative money}, where the currency
 is not the commodity itself but rather a certificate that provides the
 right to the commodity. Representative money requires trust in some
@@ -57,7 +56,7 @@ two percent of it.) One advantage (sometimes disadvantage) of a fiat
 currency is that it allows for more flexible monetary policy on parts of
 the central authority.
 
-\subsection{Bitcoin architecture}\label{Bitcoin-architecture}
+\subsection{Bitcoin Architecture}\label{Bitcoin-Architecture}
 
 Bitcoin is a fiat currency without a central authority. A priori this
 seems like a contradiction in terms. If there is no trusted central
@@ -66,21 +65,21 @@ ownership? and who sets monetary policy? Bitcoin (and other
 cryptocurrencies) is about the solution for these problems via
 cryptographic means.
 
-The basic unit in the bitcoin system is a \emph{coin}. Each coin has a
+The basic unit in the Bitcoin system is a \emph{coin}. Each coin has a
 unique identifier, and a current \emph{owner} .\footnote{This is one of
   the places where we simplify and deviate from the actual Bitcoin
   system. In the actual Bitcoin system, the atomic unit is known as a
-  \emph{satoshi} and one bitcoin (abbreviated BTC) is \(10^8\) satoshis.
+  \emph{Satoshi} and one Bitcoin (abbreviated BTC) is \(10^8\) Satoshis.
   For reasons of efficiency, there is no individual identifier per
-  satoshi and transactions can involve transfer and creation of multiple
-  satoshis. However, conceptually we can think of atomic coins each of
+  Satoshi and transactions can involve transfer and creation of multiple
+  Satoshis. However, conceptually we can think of atomic coins each of
   which has a unique identifier.} Transactions in the system have either
 the form of ``mint coin with identifier \(\ensuremath{\mathit{ID}}\) and
 owner \(P\)'' or ``transfer the coin \(\ensuremath{\mathit{ID}}\) from
 \(P\) to \(Q\)''. All of these transactions are recorded in a public
 \emph{ledger}.
 
-Since there are no user accounts in bitcoin, the ``entities'' \(P\) and
+Since there are no user accounts in Bitcoin, the ``entities'' \(P\) and
 \(Q\) are not identifiers of any person or account. Rather \(P\) and
 \(Q\) are ``computational puzzles''. A \emph{computational puzzle} can
 be thought of as a string \(\alpha\) that specifies some ``problem''
@@ -127,12 +126,12 @@ by \(P\).\footnote{There are reasons why Bitcoin uses digital signatures
 solution to the puzzle then you have no access to the coin, and if
 someone stole the solution from you, then you have no recourse or way to
 get your coin back. People have managed to
-\href{http://readwrite.com/2014/01/13/what-happens-to-lost-bitcoins}{lose
+\href{http://readwrite.com/2014/01/13/what-happens-to-lost-Bitcoins}{lose
 millions of dollars} in this way.
 
-\section{The bitcoin ledger}\label{The-bitcoin-ledger}
+\section{The Bitcoin Ledger}\label{The-Bitcoin-Ledger}
 
-The main idea behind bitcoin is that there is a public \emph{ledger}
+The main idea behind Bitcoin is that there is a public \emph{ledger}
 that contains an ordered list of all the transactions that were ever
 performed and are considered as valid in the system. Given such a
 ledger, it is easy to answer the question of who owns any particular
@@ -145,8 +144,8 @@ problem; for example the famous
 Lynch Patterson (FLP) result} showed that if there is even one party
 that has a \emph{benign} failure (i.e., it halts and stop responding)
 then it is impossible to guarantee consensus in an asynchronous network.
-Things are better if we assume synchronicity (i.e., a global clock and
-some bounds on the latency of messages) as well as that a majority or
+Things are better if we assume synchrony (i.e., a global clock and some
+bounds on the latency of messages) as well as that a majority or
 supermajority of the parties behave correctly. The central clock
 assumption is typically approximately maintained on the Internet, but
 the honest majority assumption seems quite suspicious. What does it mean
@@ -160,19 +159,19 @@ cheat, wouldn't they?
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/bitcoin_ledger.jpg}
-\caption{The bitcoin ledger consists of an ordered list of transactions.
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/Bitcoin_ledger.jpg}
+\caption{The Bitcoin ledger consists of an ordered list of transactions.
 At any given point in time there might be several ``forks'' that
 continue the ledger, and different parties do not necessarily have to
-agree on them. However, the bitcoin architecture is designed to ensure
+agree on them. However, the Bitcoin architecture is designed to ensure
 that the parties corresponding to a majority of the computing power will
 reach consensus on a single ledger.}
 \label{ledgerfig}
 \end{figure}
 
-Perhaps the main idea behind bitcoin is that ``majority'' will
+Perhaps the main idea behind Bitcoin is that ``majority'' will
 correspond to a ``majority of computing power'', or as the
-\href{https://bitcoin.org/bitcoin.pdf}{original bitcoin paper} says,
+\href{https://Bitcoin.org/Bitcoin.pdf}{original Bitcoin paper} says,
 ``one CPU one vote'' (or perhaps more accurately, ``one cycle one
 vote''). It might not be immediately clear how to implement this, but at
 least it means that creating fictitious new entities (sometimes known as
@@ -201,7 +200,7 @@ an input \(x\) such that \(f_k(x)=0^\ell\) using much fewer than
 The main question in using PRF's for proofs of work is who is holding
 the key \(k\) for the pseudorandom function. If there is a trusted
 server holding the key, then sure, finding such an input \(x\) would
-take on average \(2^\ell\) queries, but the whole point of bitcoin is to
+take on average \(2^\ell\) queries, but the whole point of Bitcoin is to
 \emph{not} have a trusted server. If we give \(k\) to a party Alice,
 then can we guarantee that she can't find a ``shortcut'' to find such an
 input without running \(2^\ell\) queries? The answer, in general, is
@@ -251,7 +250,7 @@ We don't have a good characterization as to what makes a protocol
 ``natural'' and we do have fairly strong counterexamples to this
 heuristic (though they are arguably ``unnatural''). That said, it still
 seems useful as a way to get intuition for security, and in particular
-to analyze bitcoin (and many other practical protocols) we do need to
+to analyze Bitcoin (and many other practical protocols) we do need to
 assume it, at least given current knowledge.
 
 \hypertarget{romcaveatrem}{}
@@ -267,22 +266,22 @@ homework exercises).
 
 \end{remark}
 
-We can now specify the ``proof of work'' protocol for bitcoin. Given
+We can now specify the ``proof of work'' protocol for Bitcoin. Given
 some identifier \(\ensuremath{\mathit{ID}}\in\{0,1\}^n\), an integer
 \(T \ll 2^n\), and a hash function
 \(H:\{0,1\}^{2n}\rightarrow\{0,1\}^n\), the proof of work corresponding
 to \(\ensuremath{\mathit{ID}}\) and \(T\) will be some \(x\in\{0,1\}^*\)
 such that the first \(\lceil \log T \rceil\) bits of
 \(H(\ensuremath{\mathit{ID}}\| x)\) are zero.\footnote{The actual
-  bitcoin protocol is slightly more general, where the proof is some
+  Bitcoin protocol is slightly more general, where the proof is some
   \(x\) such that \(H(\ensuremath{\mathit{ID}}\|x)\), when interpreted
   as a number in \([2^n]\), is at most \(T\). There are also other
   issues about how exactly \(x\) is placed and
   \(\ensuremath{\mathit{ID}}\) is computed from past history that we
   ignore here.}
 
-\subsection{From proof of work to consensus on
-ledger}\label{From-proof-of-work-to-con}
+\subsection{From Proof of Work to Consensus on
+Ledger}\label{From-Proof-of-Work-to-Con}
 
 How does proof of work help us in achieving consensus? The idea is that
 every transaction \(t_i\) comes up with a proof of work of some \(T_i\)
@@ -291,7 +290,7 @@ time with respect to some identifier that is unique to \(t_i\). The
 corresponding \(T_i\)'s which correspond to the total number of cycles
 invested in creating this ledger.
 
-An honest party in the bitcoin network will accept the longest valid
+An honest party in the Bitcoin network will accept the longest valid
 ledger it is aware of. (A ledger is \emph{valid} if every transaction in
 it of the form ``transfer the coin \(\ensuremath{\mathit{ID}}\) from
 \(P\) to \(Q\)'' is self-certified by a solution of \(P\), and the last
@@ -343,17 +342,17 @@ that they spent \(C\) cycles and they can send it to the pool management
 so they get an appropriate share of the reward.
 
 \begin{quote}
-\textbf{The real bitcoin:} There are several aspects in which the
-protocol described above differs from the real bitcoin protocol. Some of
+\textbf{The real Bitcoin:} There are several aspects in which the
+protocol described above differs from the real Bitcoin protocol. Some of
 them were already discussed above: Bitcoin typically uses digital
 signatures for puzzles (though it has a more general scripting language
-to specify them), and transactions involve a number of satoshis (and the
+to specify them), and transactions involve a number of Satoshis (and the
 user interface typically displays currency is in units of BTC which are
-\(10^8\) satoshis). The Bitcoin protocol also has a formula designed to
-factor in the decrease in dollar cost per cycle so that bitcoins become
+\(10^8\) Satoshis). The Bitcoin protocol also has a formula designed to
+factor in the decrease in dollar cost per cycle so that Bitcoins become
 more expensive to mine with time. There is also a fee mechanism apart
 from the mining to incentivize parties to add to the ledger. (The issue
-of incentives in bitcoin is quite subtle and not fully resolved, and it
+of incentives in Bitcoin is quite subtle and not fully resolved, and it
 is possible that parties' behavior will change with time.) The ledger
 does not grow by a single transaction at a time but rather by a
 \emph{block} of transactions, and there is also some timing
@@ -364,10 +363,10 @@ the \href{https://eprint.iacr.org/2015/464}{Tschorsch and Scheuermann
 survey} for more.
 \end{quote}
 
-\section{Collision resistance hash functions and creating short
-``unique'' identifiers}\label{Collision-resistance-hash}
+\section{Collision Resistance Hash Functions and Creating Short
+``Unique'' Identifiers}\label{Collision-Resistance-Hash}
 
-Another issue we ``brushed under the carpet'' is how do we come up with
+Another issue we ``swept under the carpet'' is how do we come up with
 these unique identifiers per transaction. We want each transaction
 \(t_i\) to be \emph{bound} to the ledger state \((t_1,\ldots,t_{i-1})\),
 and so the ID of \(t_i\) should contain also the ID's all the prior
@@ -475,8 +474,8 @@ and recommended exercise.)
 
 \end{remark}
 
-\section{Practical constructions of cryptographic hash
-functions}\label{Practical-constructions-o}
+\section{Practical Constructions of Cryptographic Hash
+Functions}\label{Practical-Constructions-o}
 
 While we discussed hash functions as \emph{keyed} collections, in
 practice people often think of a hash function as being a \emph{fixed
@@ -532,8 +531,8 @@ must be such a block). This block will yield a collision for \(h\).
 
 \end{proof}
 
-\subsection{Practical random-ish
-functions}\label{Practical-random-ish-func}
+\subsection{Practical Random-ish
+Functions}\label{Practical-Random-ish-Func}
 
 In practice we want much more than collision resistance from our hash
 functions. In particular we often would like them to be PRF's as well.
@@ -567,7 +566,7 @@ output with \(x_{n+1},\ldots x_{2n}\). In practice people often use
 \emph{tailor made} block ciphers that are designed for some efficiency
 or security concerns.
 
-\subsection{Some history}\label{Some-history}
+\subsection{Some History}\label{Some-History}
 
 Almost all practically used hash functions are based on the
 Merkle-Damgard paradigm. Hash functions are designed to be extremely
@@ -605,8 +604,7 @@ unbroken but it seems too close for comfort to those other systems.) The
 hash function Keccak was selected as the new standard
 \href{https://goo.gl/Bx1bu2}{SHA-3} in August of 2015.
 
-\subsection{The NSA and hash
-functions.}\label{The-NSA-and-hash-function}
+\subsection{The NSA and Hash Functions}\label{The-NSA-and-Hash-Function}
 
 The NSA is the world's largest employer of mathematicians, and is very
 heavily invested in cryptographic research. It seems quite possible that
@@ -640,8 +638,8 @@ conference are unlikely to be extended to the full version, which
 suggests that the NSA (or at least the author) was not aware of the MD5
 collisions at the time.
 
-\subsection{Cryptographic vs non-cryptographic hash
-functions:}\label{Cryptographic-vs-non-cryp}
+\subsection{Cryptographic vs Non-Cryptographic Hash
+Functions}\label{Cryptographic-vs-Non-Cryp}
 
 Hash functions are of course also widely used for
 \emph{non-cryptographic} applications such as building hash tables and
