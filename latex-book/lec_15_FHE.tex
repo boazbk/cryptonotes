@@ -351,9 +351,16 @@ that:
 
 \end{definition}
 
-The \emph{LWE conjecture} is that \(q(n)\)-dLWE holds for every \(q(n)\)
-that is at most \(poly(n)\). This is not exactly the same phrasing we
-used before, but as we sketch below, it is essentially equivalent to it.
+The \emph{dLWE conjecture} is that \(q(n)\)-dLWE holds for every
+\(q(n)\) that is at most \(poly(n)\). This is not exactly the same
+phrasing we used before, but as we sketch below, it is essentially
+equivalent to it. One can also make the stronger conjecture that
+\(q(n)\)-dLWE holds even for \(q(n)\) that is \emph{super polynomial} in
+\(n\) (e.g., \(q(n)\) magnitude roughly \(2^n\) - note that such a
+number can still be described in \(n\) bits and we can still efficiently
+perform operations such as addition and multiplication modulo \(q\)).
+This stronger conjecture also seems well supported by evidence and we
+will use it in future lectures.
 
 \begin{pause} \label[pause]{It-is-a-good-idea-for-you}
 
@@ -393,11 +400,12 @@ linearly homomorphic:
   \(q^{1/4} \gg m \log q \gg n\).
 \item
   To \emph{encrypt} \(b\in\{0,1\}\), choose \(w\in\{0,1\}^m\) and output
-  \(w^\top A + \floor{\tfrac{q}{2}}(b,0,\ldots,0)\)
+  \(w^\top A + (b,0,\ldots,0)\).
 \item
   To \emph{decrypt} \(c\in\Z_q^n\), output \(0\) iff
   \(|\langle c,s \rangle| \leq q/10\), where for \(x\in\Z_q\) we defined
-  \(|x| = \min \{ x , q-x \}\).
+  \(|x| = \min \{ x , q-x \}\). (Recall that the first coordinate of
+  \(s\) is \(\floor{q/2}\).
 \end{itemize}
 
 \end{quote}
@@ -414,7 +422,7 @@ homomorphic with respect to the class of \emph{linear functions} modulo
 For every \(\ell \ll q^{1/4}\), there is an algorithm
 \(\ensuremath{\mathit{EVAL}}_\ell\) that on input \(c_1,\ldots,c_\ell\)
 encrypting via LWEENC bits \(b_1,\ldots,b_\ell \in \{0,1\}\), outputs a
-ciphertext \(c\) encrypting \(b_1 \oplus \cdots \oplus b_\ell\).
+ciphertext \(c\) whose decryption \(b_1 \oplus \cdots \oplus b_\ell\).
 
 \end{lemma}
 
@@ -426,6 +434,8 @@ manipulations we'll be making time and again in the constructions of
 many lattice based cryptographic primitives. Try to show that
 \(c = c_1 + \cdots +c_\ell\) (where addition is done as vectors in
 \(\Z_q\)) will be the encryption \(b_1 \oplus \cdots \oplus b_\ell\).
+Note that if \(q\) is \emph{super polynomial} in \(n\) then \(\ell\) can
+be an arbitrarily large polynomial in \(n\).
 
 \end{pause}
 

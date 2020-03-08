@@ -350,7 +350,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Equivalence between LWE and DLWE:}{264}{paragraph*.590}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{A linearly-homomorphic encryption scheme:}{264}{paragraph*.591}% 
+\contentsline {paragraph}{A linearly-homomorphic encryption scheme:}{265}{paragraph*.591}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {16.2.1}Abstraction: A trapdoor pseudorandom generator.}{266}{subsection.595}% 
 \defcounter {refsection}{0}\relax 

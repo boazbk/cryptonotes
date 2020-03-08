@@ -220,7 +220,7 @@ An <em><span><span class="math inline">\(\mathcal{F}\)</span></span>-homomorphic
 <li><p>The distribution <span><span class="math inline">\(A\)</span></span> where <span><span class="math inline">\((A,s)\)</span></span> is sampled from <span><span class="math inline">\(\ensuremath{\mathit{LWE}}_q\)</span></span> is computationally indistinguishable from the uniform distribution of <span><span class="math inline">\(m\times n\)</span></span> matrices over <span><span class="math inline">\(\Z_q\)</span></span>.</p></li>
 </ul>
 </div>
-<p>The <em>LWE conjecture</em> is that <span><span class="math inline">\(q(n)\)</span></span>-dLWE holds for every <span><span class="math inline">\(q(n)\)</span></span> that is at most <span><span class="math inline">\(poly(n)\)</span></span>. This is not exactly the same phrasing we used before, but as we sketch below, it is essentially equivalent to it.</p>
+<p>The <em>dLWE conjecture</em> is that <span><span class="math inline">\(q(n)\)</span></span>-dLWE holds for every <span><span class="math inline">\(q(n)\)</span></span> that is at most <span><span class="math inline">\(poly(n)\)</span></span>. This is not exactly the same phrasing we used before, but as we sketch below, it is essentially equivalent to it. One can also make the stronger conjecture that <span><span class="math inline">\(q(n)\)</span></span>-dLWE holds even for <span><span class="math inline">\(q(n)\)</span></span> that is <em>super polynomial</em> in <span><span class="math inline">\(n\)</span></span> (e.g., <span><span class="math inline">\(q(n)\)</span></span> magnitude roughly <span><span class="math inline">\(2^n\)</span></span> - note that such a number can still be described in <span><span class="math inline">\(n\)</span></span> bits and we can still efficiently perform operations such as addition and multiplication modulo <span><span class="math inline">\(q\)</span></span>). This stronger conjecture also seems well supported by evidence and we will use it in future lectures.</p>
 <div id="section-1" class="pause" data-number="16.2" name="Pause">
 <p>It is a good idea for you to pause here and try to show the equivalence on your own.</p>
 </div>
@@ -231,17 +231,17 @@ An <em><span><span class="math inline">\(\mathcal{F}\)</span></span>-homomorphic
 <p><strong>LWE-ENC’ encryption:</strong></p>
 <ul>
 <li><p><em>Key generation:</em> Choose <span><span class="math inline">\((A,s)\)</span></span> from <span><span class="math inline">\(\ensuremath{\mathit{LWE}}_q\)</span></span> where <span><span class="math inline">\(m\)</span></span> satisfies <span><span class="math inline">\(q^{1/4} \gg m \log q \gg n\)</span></span>.</p></li>
-<li><p>To <em>encrypt</em> <span><span class="math inline">\(b\in\{0,1\}\)</span></span>, choose <span><span class="math inline">\(w\in\{0,1\}^m\)</span></span> and output <span><span class="math inline">\(w^\top A + \floor{\tfrac{q}{2}}(b,0,\ldots,0)\)</span></span></p></li>
-<li><p>To <em>decrypt</em> <span><span class="math inline">\(c\in\Z_q^n\)</span></span>, output <span><span class="math inline">\(0\)</span></span> iff <span><span class="math inline">\(|\langle c,s \rangle| \leq q/10\)</span></span>, where for <span><span class="math inline">\(x\in\Z_q\)</span></span> we defined <span><span class="math inline">\(|x| = \min \{ x , q-x \}\)</span></span>.</p></li>
+<li><p>To <em>encrypt</em> <span><span class="math inline">\(b\in\{0,1\}\)</span></span>, choose <span><span class="math inline">\(w\in\{0,1\}^m\)</span></span> and output <span><span class="math inline">\(w^\top A + (b,0,\ldots,0)\)</span></span>.</p></li>
+<li><p>To <em>decrypt</em> <span><span class="math inline">\(c\in\Z_q^n\)</span></span>, output <span><span class="math inline">\(0\)</span></span> iff <span><span class="math inline">\(|\langle c,s \rangle| \leq q/10\)</span></span>, where for <span><span class="math inline">\(x\in\Z_q\)</span></span> we defined <span><span class="math inline">\(|x| = \min \{ x , q-x \}\)</span></span>. (Recall that the first coordinate of <span><span class="math inline">\(s\)</span></span> is <span><span class="math inline">\(\floor{q/2}\)</span></span>.</p></li>
 </ul>
 </div>
 </blockquote>
 <p>The decryption algorithm recovers the original plaintext since <span><span class="math inline">\(\langle c,s \rangle= w^\top A s + s_1 b\)</span></span> and <span><span class="math inline">\(|w^\top A s| \leq m\sqrt{q} \ll q\)</span></span>. It turns out that this scheme is homomorphic with respect to the class of <em>linear functions</em> modulo <span><span class="math inline">\(2\)</span></span>. Specifically we make the following claim:</p>
 <div id="parityhomlem" class="lemma" data-number="16.2" name="Lemma 16.5">
-<p>For every <span><span class="math inline">\(\ell \ll q^{1/4}\)</span></span>, there is an algorithm <span><span class="math inline">\(\ensuremath{\mathit{EVAL}}_\ell\)</span></span> that on input <span><span class="math inline">\(c_1,\ldots,c_\ell\)</span></span> encrypting via LWEENC bits <span><span class="math inline">\(b_1,\ldots,b_\ell \in \{0,1\}\)</span></span>, outputs a ciphertext <span><span class="math inline">\(c\)</span></span> encrypting <span><span class="math inline">\(b_1 \oplus \cdots \oplus b_\ell\)</span></span>.</p>
+<p>For every <span><span class="math inline">\(\ell \ll q^{1/4}\)</span></span>, there is an algorithm <span><span class="math inline">\(\ensuremath{\mathit{EVAL}}_\ell\)</span></span> that on input <span><span class="math inline">\(c_1,\ldots,c_\ell\)</span></span> encrypting via LWEENC bits <span><span class="math inline">\(b_1,\ldots,b_\ell \in \{0,1\}\)</span></span>, outputs a ciphertext <span><span class="math inline">\(c\)</span></span> whose decryption <span><span class="math inline">\(b_1 \oplus \cdots \oplus b_\ell\)</span></span>.</p>
 </div>
 <div id="section-2" class="pause" data-number="16.2" name="Pause">
-<p>This claim is not hard to prove, but working it out for yourself can be a good way to get more familiarity with LWE-ENC’ and the kind of manipulations we’ll be making time and again in the constructions of many lattice based cryptographic primitives. Try to show that <span><span class="math inline">\(c = c_1 + \cdots +c_\ell\)</span></span> (where addition is done as vectors in <span><span class="math inline">\(\Z_q\)</span></span>) will be the encryption <span><span class="math inline">\(b_1 \oplus \cdots \oplus b_\ell\)</span></span>.</p>
+<p>This claim is not hard to prove, but working it out for yourself can be a good way to get more familiarity with LWE-ENC’ and the kind of manipulations we’ll be making time and again in the constructions of many lattice based cryptographic primitives. Try to show that <span><span class="math inline">\(c = c_1 + \cdots +c_\ell\)</span></span> (where addition is done as vectors in <span><span class="math inline">\(\Z_q\)</span></span>) will be the encryption <span><span class="math inline">\(b_1 \oplus \cdots \oplus b_\ell\)</span></span>. Note that if <span><span class="math inline">\(q\)</span></span> is <em>super polynomial</em> in <span><span class="math inline">\(n\)</span></span> then <span><span class="math inline">\(\ell\)</span></span> can be an arbitrarily large polynomial in <span><span class="math inline">\(n\)</span></span>.</p>
 </div>
 <div id="section-3" class="proof" data-ref="parityhomlem" data-number="16.2" name="Proof">
 <p>The proof is quite simple. <span><span class="math inline">\(\ensuremath{\mathit{EVAL}}\)</span></span> will simply add the ciphertexts as vectors in <span><span class="math inline">\(\Z_q\)</span></span>. If <span><span class="math inline">\(c = \sum c_i\)</span></span> then <span>
@@ -374,7 +374,7 @@ crossorigin="anonymous" async>
 
 <!-- end of comments -->
 
-<p>Compiled on 03/06/2020 09:06:38</p>
+<p>Compiled on 03/06/2020 20:02:42</p>
 
 <p>Copyright 2019, Boaz Barak.
 
