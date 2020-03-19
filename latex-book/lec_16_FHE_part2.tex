@@ -1,5 +1,5 @@
-\chapter{Fully homomorphic encryption :
-Construction}\label{Fully-homomorphic-encrypt}
+\chapter{Fully homomorphic encryption: Construction \{chapfhetwo
+\}}\label{Fully-homomorphic-encrypt}
 
 In the last lecture we defined fully homomorphic encryption, and showed
 the ``bootstrapping theorem'' that transforms a partially homomorphic
@@ -283,7 +283,7 @@ Since we have \(Cv = bv + e\) and \(C'v = b'v + e'\) we get that
 
 and
 
-\[(C\otimes C')v = \widehat{(\ensuremath{\mathit{CQ}}^\top)}C'v = \widehat{(\ensuremath{\mathit{CQ}}^\top)}(bv+e') \;. \label{fhemultfinaleqfirst}\]
+\[(C\otimes C')v = \widehat{(\ensuremath{\mathit{CQ}}^\top)}C'v = \widehat{(\ensuremath{\mathit{CQ}}^\top)}(b'v+e') \;. \label{fhemultfinaleqfirst}\]
 
 But since \(v=Q^\top s\) and \(\hat{A}Q^\top = A\) for every matrix
 \(A\), the righthand side of \eqref{fhemultfinaleqfirst} equals
@@ -651,7 +651,16 @@ homomorphic encryption scheme.
 
 \end{pause}
 
-\section{Example application: Private information
-retrieval}\label{Example-application-Priva}
+\section{Advanced topics:}\label{Advanced-topics}
 
-To be completed
+\begin{itemize}
+\item
+  Fully homomorphic encryption for approximate computation over the real
+  numbers: \href{https://eprint.iacr.org/2016/421.pdf}{CKKS}
+\item
+  Bandwidth efficient fully homomorphic encryption
+  \href{https://eprint.iacr.org/2019/733.pdf}{GH}
+\item
+  Using fully homomorphic encryption to achieve private information
+  retrieval.
+\end{itemize}

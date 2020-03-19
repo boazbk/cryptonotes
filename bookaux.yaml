@@ -38,6 +38,10 @@ Additional-Group-Theory-E:
   class: section
   file: lec_10_public_key_intro
   number: '10.6'
+Advanced-topics:
+  class: section
+  file: lec_16_FHE_part2
+  number: '17.6'
 Allowing-for-aborts:
   class: subsection
   file: lec_17_SFE
@@ -418,10 +422,6 @@ Example-The-existence-of-:
   class: subsection
   file: lec_00_1_mathematical-background
   number: 0.2.1
-Example-application-Priva:
-  class: section
-  file: lec_16_FHE_part2
-  number: '17.6'
 Exercises:
   class: section
   file: lec_00_1_mathematical-background
@@ -1618,6 +1618,10 @@ ccaweplem:
   class: lemma
   file: lec_06_CCA
   number: '6.2'
+chapfheone:
+  class: chapter
+  file: lec_15_FHE
+  number: '16'
 chebychevthm:
   class: theorem
   file: lec_00_1_mathematical-background

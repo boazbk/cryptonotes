@@ -362,7 +362,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {16.4.2}Proving the bootstrapping theorem}{269}{subsection.605}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {17}Fully homomorphic encryption : Construction}{271}{chapter.607}% 
+\contentsline {chapter}{\numberline {17}Fully homomorphic encryption: Construction \{chapfhetwo \}}{271}{chapter.607}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {17.1}Prelude: from vectors to matrices}{271}{section.609}% 
 \defcounter {refsection}{0}\relax 
@@ -382,7 +382,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {17.5.4}Shallow decryption circuit}{278}{subsection.642}% 
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {17.6}Example application: Private information retrieval}{281}{section.645}% 
+\contentsline {section}{\numberline {17.6}Advanced topics:}{281}{section.645}% 
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {18}Multiparty secure computation I: Definition and Honest-But-Curious to Malicious complier}{283}{chapter.646}% 
 \defcounter {refsection}{0}\relax 

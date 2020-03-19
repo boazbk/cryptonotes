@@ -369,7 +369,7 @@
 '17':
   filename: lec_16_FHE_part2.html
   href: ''
-  title: 'Fully homomorphic encryption : Construction'
+  title: 'Fully homomorphic encryption: Construction {chapfhetwo }'
 '17.1':
   filename: lec_16_FHE_part2.html
   href: prelude-from-vectors-to-matrices
@@ -408,8 +408,8 @@
   title: Shallow decryption circuit
 '17.6':
   filename: lec_16_FHE_part2.html
-  href: example-application-private-information-retrieval
-  title: 'Example application: Private information retrieval'
+  href: advanced-topics
+  title: 'Advanced topics:'
 '18':
   filename: lec_17_SFE.html
   href: ''
