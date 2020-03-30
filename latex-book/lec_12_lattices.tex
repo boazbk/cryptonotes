@@ -1,4 +1,4 @@
-\chapter{Lattice based cryptography}\label{Lattice-based-cryptograph}
+\chapter{Lattice based cryptography}\label{Lattice-based-cryptography}
 
 Lattice based public key encryption (and its cousins known as knapsack
 and coding based encryption) have almost as long a history as discrete
@@ -90,7 +90,8 @@ course we only touch on few aspects of it. I highly recommend
 \href{https://web.eecs.umich.edu/~cpeikert/pubs/lattice-survey.pdf}{Chris
 Peikert's Survey} for a much more in depth treatment of this area.
 
-\subsection{Quick linear algebra recap}\label{Quick-linear-algebra-reca}
+\subsection{Quick linear algebra
+recap}\label{Quick-linear-algebra-recap}
 
 A \emph{field} \(\mathbb{F}\) is a set that supports the operations
 \(+,\cdot\) and contains the numbers \(0\) and \(1\) (more formally the
@@ -235,7 +236,7 @@ see a symbol such as \(v,A,x,y\) ask yourself:
 \end{remark}
 
 \section{A world without Gaussian
-elimination}\label{A-world-without-Gaussian-}
+elimination}\label{A-world-without-Gaussian-elimi}
 
 The general approach people used to get a public key encryption is to
 obtain a hard computational problem with some mathematical
@@ -271,7 +272,7 @@ linear equations, we can still combine several equations to get new
 ones. To keep things simple, let's consider the case of encrypting a
 single bit.
 
-\begin{pause} \label[pause]{If-you-have-a-CPA-secure-}
+\begin{pause} \label[pause]{If-you-have-a-CPA-secure-publi}
 
 If you have a CPA secure public key encryption scheme for single bit
 messages then you can extend it to a CPA secure encryption scheme for
@@ -318,7 +319,7 @@ Thus, at least intuitively, the following encryption scheme would be
 ``secure'' in the Gaussian-elimination free world of attackers that
 haven't taken freshman linear algebra:
 
-\begin{quote} \label[quote]{Scheme-LwoE-ENC-Public-ke}
+\begin{quote} \label[quote]{Scheme-LwoE-ENC-Public-key-enc}
 
 \textbf{Scheme ``LwoE-ENC'':} Public key encryption under the hardness
 of ``learning linear equations without errors''.
@@ -339,7 +340,7 @@ of ``learning linear equations without errors''.
 
 \end{quote}
 
-\begin{pause} \label[pause]{Please-stop-here-and-make}
+\begin{pause} \label[pause]{Please-stop-here-and-make-sure}
 
 Please stop here and make sure that you see why this is a valid
 encryption (not in the sense that it is secure - it's not - but in the
@@ -349,7 +350,7 @@ calculations are done modulo \(q\).
 
 \end{pause}
 
-\section{Security in the real world.}\label{Security-in-the-real-worl}
+\section{Security in the real world.}\label{Security-in-the-real-world}
 
 Like it or not (and cryptographers typically don't) Gaussian elimination
 \emph{is} possible in the real world and the scheme above is completely
@@ -395,7 +396,7 @@ or rationals disappears), the resulting equations have the form
 The \emph{Learning With Errors (LWE)} conjecture is that this is
 \emph{inherent}:
 
-\begin{quote} \label[quote]{Conjecture-Learning-with-}
+\begin{quote} \label[quote]{Conjecture-Learning-with-Error}
 
 \textbf{Conjecture (Learning with Errors, Regev 2005):} Let \(q=q(n)\)
 and \(\delta=\delta(n)\) be some functions. The \emph{Learning with
@@ -476,7 +477,7 @@ are computationally indistinguishable:
 
 \end{theorem}
 
-\begin{proof} \label[proof]{Suppose-that-we-had-a-dec}
+\begin{proof} \label[proof]{Suppose-that-we-had-a-decision}
 
 Suppose that we had a decisional adversary \(D\) that succeeds in
 distinguishing the two distributions above with bias \(\epsilon\). For
@@ -533,7 +534,7 @@ recover \(x\).
 
 We can now show the secure variant of our original encryption scheme:
 
-\begin{quote} \label[quote]{LWE-based-encryption-LWE-}
+\begin{quote} \label[quote]{LWE-based-encryption-LWE-ENC--}
 
 \textbf{LWE-based encryption LWE-ENC:} * \emph{Parameters:} Let
 \(\delta(n)=1/n^4\) and let \(q=poly(n)\) be a prime such that LWE holds
@@ -556,7 +557,7 @@ w.r.t. \(q,\delta\). We let \(m = n^2\log q\).
 
 \end{quote}
 
-\begin{pause} \label[pause]{The-scheme-LWEENC-is-also}
+\begin{pause} \label[pause]{The-scheme-LWEENC-is-also-desc}
 
 The scheme LWEENC is also described in \cref{lweencdescfig} with
 slightly different notation. I highly recommend you stop and verify you
@@ -590,7 +591,7 @@ With high probability, the decryption of the encryption of \(b\) equals
 
 \end{lemma}
 
-\begin{proof} \label[proof]{langle-wtop-Ax-rangle--la}
+\begin{proof} \label[proof]{langle-wtop-Ax-rangle--langle-}
 
 \(\langle w^\top A,x \rangle = \langle w,Ax \rangle\). Hence, if
 \(y=Ax+e\) then
@@ -646,7 +647,7 @@ indistinguishable:
 
 \end{lemma}
 
-\begin{pause} \label[pause]{You-should-stop-here-and-}
+\begin{pause} \label[pause]{You-should-stop-here-and-verif}
 
 You should stop here and verify that \textbf{(i)} You understand the
 statement of \cref{LWEENClem} and \textbf{(ii)} you understand why this
@@ -662,7 +663,7 @@ the hybrid argument.
 We now prove \cref{LWEENClem}, which will complete the proof of
 \cref{LWEENCthm}.
 
-\begin{proof}[Proof of \cref{LWEENClem}] \label[proof]{Define-D-to-be-the-distri}
+\begin{proof}[Proof of \cref{LWEENClem}] \label[proof]{Define-D-to-be-the-distributio}
 
 Define \(D\) to be the distribution
 \((A,y,w^\top A,\langle w,y \rangle)\) as in the lemma's statement
@@ -731,7 +732,7 @@ completely uniform, and this is what's shown by the leftover hash lemma.
 
 \end{proof}
 
-\begin{pause} \label[pause]{The-proof-of-crefLWEENCth}
+\begin{pause} \label[pause]{The-proof-of-crefLWEENCthm-is-}
 
 The proof of \cref{LWEENCthm} is quite subtle and requires some
 re-reading and thought. To read more about this, you can look at the

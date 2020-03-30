@@ -83,7 +83,7 @@ Equivalently, \(G\) as above is a pseudorandom generator if the two
 distributions \(G(U_n)\) and \(U_{\ell(n)}\) are \emph{computationally
 indistinguishable}.
 
-\begin{pause} \label[pause]{This-definition-as-is-oft}
+\begin{pause} \label[pause]{This-definition-as-is-often-th}
 
 This definition (as is often the case in cryptography) is a bit long, so
 you want to take your time parsing it. In particular you should verify
@@ -116,7 +116,7 @@ exists an (inefficient) algorithm
 
 \end{lemma}
 
-\begin{proof} \label[proof]{On-input-yinn-consider-th}
+\begin{proof} \label[proof]{On-input-yinn-consider-the-alg}
 
 On input \(y\in{\{0,1\}}^{n+1}\), consider the algorithm \(Eve\) that
 goes over all possible \(x\in{\{0,1\}}^n\) and will output \(1\) if and
@@ -177,7 +177,7 @@ Suppose that the PRG conjecture is true. Then for every polynomial
 \label{lengthextendprgfig}
 \end{figure}
 
-\begin{proof} \label[proof]{The-proof-of-this-theorem}
+\begin{proof} \label[proof]{The-proof-of-this-theorem-is-v}
 
 The proof of this theorem is very similar to the length extension
 theorem for ciphers, and in fact this theorem can be used to give an
@@ -285,7 +285,7 @@ two conjectures are \emph{equivalent}, though we will probably not show
 the (quite non-trivial) proof of this fact in this course. (We might
 show some weaker version of this harder direction.)
 
-\begin{proof} \label[proof]{The-construction-is-actua}
+\begin{proof} \label[proof]{The-construction-is-actually-q}
 
 The construction is actually quite simple, recall that the \emph{one
 time pad} is a perfectly secure cipher but its only problem was that to
@@ -379,7 +379,7 @@ prove it is an excellent exercise.)
 \end{remark}
 
 \section{What do pseudorandom generators actually look
-like?}\label{What-do-pseudorandom-gene}
+like?}\label{What-do-pseudorandom-generator}
 
 So far we have made the conjectures that objects such as ciphers and
 pseudorandom generators \emph{exist}, without giving any hint as to how
@@ -402,7 +402,7 @@ in Katz-Lindell and (for greater depth) Sections 3.6-3.9 in the
 Boneh-Shoup book.
 
 \subsection{Attempt 0: The counter
-generator}\label{Attempt--The-counter-gene}
+generator}\label{Attempt--The-counter-generator}
 
 Just to get started, let's show an example of an obviously bogus
 pseudorandom generator. We define the ``counter pseudorandom generator''
@@ -412,7 +412,7 @@ where \(s' = s + 1 \mod 2^n\) (treating \(s\) and \(s'\) as numbers in
 \(s'\). It's a great exercise to work out why this is \emph{not} a
 secure pseudorandom generator.
 
-\begin{pause} \label[pause]{You-should-really-pause-h}
+\begin{pause} \label[pause]{You-should-really-pause-here-a}
 
 You should really pause here and make sure you see why the ``counter
 pseudorandom generator'' is not a secure pseudorandom generator. Show
@@ -422,7 +422,7 @@ that this is true even if we replace the least significant digit by the
 \end{pause}
 
 \subsection{Attempt 1: The linear checksum / linear feedback shift
-register (LFSR)}\label{Attempt--The-linear-check}
+register (LFSR)}\label{Attempt--The-linear-checksum--}
 
 LFSR can be thought of as the ``mother'' (or maybe more like the sick
 great-uncle) of all psuedorandom generators. One of the simplest ways to
@@ -535,7 +535,7 @@ not their actual running time.)
 \end{remark}
 
 \subsection{From insecurity to
-security}\label{From-insecurity-to-securi}
+security}\label{From-insecurity-to-security}
 
 It is often the case that we want to ``fix'' a broken cryptographic
 primitive, such as a pseudorandom generator, to make it secure. At the
@@ -585,7 +585,7 @@ trying to recover some of the structure (e.g., by embedding modular
 arithmetic in the real line or ``linearizing'' non linear equations).
 
 \subsection{Attempt 2: Linear Congruential Generators with dropped
-bits}\label{Attempt--Linear-Congruent}
+bits}\label{Attempt--Linear-Congruential-G}
 
 One approach that is widely used in implementations of pseudorandom
 generators is to take a linear generator such as the linear congruential
@@ -607,7 +607,7 @@ Let's now describe some \emph{successful} (at least per current
 knowledge) pseudorandom generators:
 
 \subsection{Case Study 1: Subset Sum
-Generator}\label{Case-Study--Subset-Sum-Ge}
+Generator}\label{Case-Study--Subset-Sum-Generat}
 
 Here is an extremely simple generator that is yet still secure\footnote{Actually
   modern computers will be able to break this generator via brute force,
@@ -652,7 +652,7 @@ To get some intuition for its security, we can work out why (given that
 it seems to be linear) we cannot break it by simply using Gaussian
 elimination.
 
-\begin{pause} \label[pause]{This-is-an-excellent-poin}
+\begin{pause} \label[pause]{This-is-an-excellent-point-for}
 
 This is an excellent point for you to stop and try to answer this
 question on your own.
@@ -727,7 +727,7 @@ considered secure and deployed in several standard protocols such as
 TLS, SSH and QUIC, see Section 3.6 in Boneh-Shoup.
 
 \section{Non-constructive existence of pseudorandom
-generators}\label{Non-constructive-existenc}
+generators}\label{Non-constructive-existence-of-}
 
 We now show that, if we don't insist on \emph{constructivity} of
 pseudorandom generators, then we can show that there exists pseudorandom
@@ -744,7 +744,7 @@ There is some absolute constant \(C\) such that for every
 
 \end{lemma}
 
-\begin{proofidea} \label[proofidea]{The-proof-uses-an-extreme}
+\begin{proofidea} \label[proofidea]{The-proof-uses-an-extremely-us}
 
 The proof uses an extremely useful technique known as the
 ``probabilistic method'' which is not too hard mathematically but can be
@@ -766,7 +766,7 @@ conditions of a \((T, \epsilon)\) PRG.
 The above discussion might be rather abstract at this point, but would
 become clearer after seeing the proof.
 
-\begin{proof}[Proof of \cref{prgexist}] \label[proof]{Let-epsilonTellm-be-as-in}
+\begin{proof}[Proof of \cref{prgexist}] \label[proof]{Let-epsilonTellm-be-as-in-the-}
 
 Let \(\epsilon,T,\ell,m\) be as in the lemma's statement. We need to
 show that there exists a function

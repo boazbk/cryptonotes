@@ -294,7 +294,7 @@ time.)
 \end{remark}
 
 \section{Defining security of
-encryption}\label{Defining-security-of-encr}
+encryption}\label{Defining-security-of-encryptio}
 
 \cref{encryptiondef} says nothing about security and does not rule out
 trivial ``encryption'' schemes such as the scheme \(E_k(m) = m\) that
@@ -363,7 +363,7 @@ what you need for cryptography:
 \end{itemize}
 
 \subsection{Generating randomness in actual cryptographic
-systems}\label{Generating-randomness-in-}
+systems}\label{Generating-randomness-in-actua}
 
 How do we actually get random bits in actual systems? The main idea is
 to use a two stage approach. First we need to get some data that is
@@ -445,7 +445,7 @@ but apparently the NSA did pay 10 million dollars to RSA security so the
 latter would make this generator their default option in their products.
 
 \section{Defining the secrecy
-requirement.}\label{Defining-the-secrecy-requ}
+requirement.}\label{Defining-the-secrecy-requireme}
 
 Defining the secrecy requirement for an encryption is not simple. Over
 the course of history, many smart people got it wrong and convinced
@@ -511,7 +511,7 @@ method Eve employs, the probability that she can recover the true key
 
 \end{definition}
 
-\begin{pause} \label[pause]{When-you-see-a-mathematic}
+\begin{pause} \label[pause]{When-you-see-a-mathematical-de}
 
 When you see a mathematical definition that attempts to model some
 real-life phenomenon such as security, you should pause and ask
@@ -558,7 +558,7 @@ Let \((E,D)\) be the encryption scheme above. For every function
 
 \end{lemma}
 
-\begin{proof} \label[proof]{This-follows-because-Ekxx}
+\begin{proof} \label[proof]{This-follows-because-Ekxx-and-}
 
 This follows because \(E_k(x)=x\) and hence \(Eve(E_k(x))=Eve(x)\) which
 is some fixed value \(k'\in\{0,1\}^n\) that is independent of \(k\).
@@ -671,7 +671,7 @@ random key \(k\in\{0,1\}^n\), then the probability that Eve guesses
 
 \end{theorem}
 
-\begin{proof} \label[proof]{The-only-if-direction-is-}
+\begin{proof} \label[proof]{The-only-if-direction-is-obvio}
 
 The ``only if'' direction is obvious--- this condition is a special case
 of the perfect secrecy condition for a set \(M\) of size \(2\).
@@ -711,7 +711,7 @@ outputs either \(x_0\) or \(x_1\), this means that the probability that
 
 \end{proof}
 
-\begin{pause} \label[pause]{The-proof-of-creftwotoman}
+\begin{pause} \label[pause]{The-proof-of-creftwotomanythm-}
 
 The proof of \cref{twotomanythm} is not trivial, and is worth reading
 again and making sure you understand it. An excellent exercise, which I
@@ -742,7 +742,7 @@ distributions \(Y\) and \(Y'\) over \(\{0,1\}^*\) are identical:
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{We-only-sketch-the-proof-}
+\begin{solution} \label[solution]{We-only-sketch-the-proof-The-c}
 
 We only sketch the proof. The condition in the exercise is equivalent to
 perfect secrecy with \(|M|=2\). For every \(M = \{ x,x' \}\), if \(Y\)
@@ -867,7 +867,7 @@ There is a perfectly secret valid encryption scheme \((E,D)\) with
 
 \end{theorem}
 
-\begin{proofidea} \label[proofidea]{Our-scheme-is-the-one-tim}
+\begin{proofidea} \label[proofidea]{Our-scheme-is-the-one-time-pad}
 
 Our scheme is the
 \href{https://en.wikipedia.org/wiki/One-time_pad}{one-time pad} also
@@ -879,7 +879,7 @@ XORing each coordinate of \(x\) and \(k\).
 
 \end{proofidea}
 
-\begin{proof}[Proof of \cref{onetimepad}] \label[proof]{For-two-binary-strings-a-}
+\begin{proof}[Proof of \cref{onetimepad}] \label[proof]{For-two-binary-strings-a-and-b}
 
 For two binary strings \(a\) and \(b\) of the same length \(n\), we
 define \(a \oplus b\) to be the string \(c \in \{0,1\}^n\) such that
@@ -917,7 +917,7 @@ operation.}
 \label{onetimepadfig}
 \end{marginfigure}
 
-\begin{pause} \label[pause]{The-argument-above-is-qui}
+\begin{pause} \label[pause]{The-argument-above-is-quite-si}
 
 The argument above is quite simple but is worth reading again. To
 understand why the one-time pad is perfectly secret, it is useful to
@@ -1014,7 +1014,7 @@ function \(L\) satisfies \(L(n) \leq n\).
 
 \end{theorem}
 
-\begin{proofidea} \label[proofidea]{The-idea-behind-the-proof}
+\begin{proofidea} \label[proofidea]{The-idea-behind-the-proof-is-i}
 
 The idea behind the proof is illustrated in \cref{longkeygraphfig}. We
 define a graph between the plaintexts and ciphertexts, where we put an
@@ -1029,7 +1029,7 @@ ciphertext corresponding to \(x'\).
 
 \end{proofidea}
 
-\begin{proof}[Proof of \cref{longkeysthm}] \label[proof]{Let-ED-be-a-valid-encrypt}
+\begin{proof}[Proof of \cref{longkeysthm}] \label[proof]{Let-ED-be-a-valid-encryption-s}
 
 Let \(E,D\) be a valid encryption scheme with messages of length \(L\)
 and key of length \(n<L\). We will show that \((E,D)\) is not perfectly
@@ -1097,7 +1097,7 @@ exercise).
 \end{remark}
 
 \subsection{Amplifying success
-probability}\label{Amplifying-success-probab}
+probability}\label{Amplifying-success-probability}
 
 \cref{longkeysthm} implies that for every encryption scheme \((E,D)\)
 with \(L(n)>n\), there is a pair of messages \(x_0,x_1\) and an attacker
@@ -1116,7 +1116,7 @@ function \(Eve\) and pair of messages \(x_0,x_1\) such that
 
 \end{theorem}
 
-\begin{proof} \label[proof]{As-in-the-proof-of-creflo}
+\begin{proof} \label[proof]{As-in-the-proof-of-creflongkey}
 
 As in the proof of \cref{longkeysthm}, let \(L=L(n)\) and let
 \(x_0 = 0^L\) and \(S_0 = \{ E_k(x) : x\in \{0,1\}^n \}\) be the set of

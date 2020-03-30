@@ -102,7 +102,7 @@ model).
 
 \end{remark}
 
-\begin{pause} \label[pause]{Now-would-be-a-fantastic-}
+\begin{pause} \label[pause]{Now-would-be-a-fantastic-time-}
 
 Now would be a fantastic time to stop and think deeply about the three
 constructions in the remark above, and in particular why they are all
@@ -161,7 +161,7 @@ But before we see the proof of \cref{prffromprgthmone}, let us see why
 pseudorandom functions could be useful.
 
 \section{One time passwords (e.g.~Google Authenticator, RSA ID,
-etc.)}\label{One-time-passwords-egGoog}
+etc.)}\label{One-time-passwords-egGoogle-Au}
 
 Until now we have talked about the task of \emph{encryption}, or
 protecting the \emph{secrecy} of messages. But the task of
@@ -205,7 +205,7 @@ the login problem be for Alice to send to Bob an encryption of the
 password \(p\)? After all, the security of the encryption should
 guarantee that Mallory can't learn \(p\), right?
 
-\begin{pause} \label[pause]{This-would-be-a-good-time}
+\begin{pause} \label[pause]{This-would-be-a-good-time-to-s}
 
 This would be a good time to stop reading and try to think for yourself
 whether using a secure encryption to encrypt \(p\) would guarantee
@@ -225,7 +225,7 @@ existence demonstrates that secrecy of the password does not guarantee
 security of the login protocol.
 
 \subsection{How do pseudorandom functions help in the login
-problem?}\label{How-do-pseudorandom-funct}
+problem?}\label{How-do-pseudorandom-functions-}
 
 The idea is that they create what's known as a \emph{one time password}.
 Alice and Bob will share an index \(s\in\{0,1\}^n\) for the pseudorandom
@@ -301,7 +301,7 @@ previously queried. Thus, if the function was truly random, Mallory has
 and would be able to predict (or rather, guess) it in all these
 locations with probability at most \(2^{-\ell}\).
 
-\begin{pause} \label[pause]{Please-make-sure-you-unde}
+\begin{pause} \label[pause]{Please-make-sure-you-understan}
 
 Please make sure you understand the informal reasoning above, since we
 will now translate this into a formal theorem and proof.
@@ -322,7 +322,7 @@ Bob accepts the interaction is at most \(2^{-\ell}+\mu(n)\) where
 
 \end{theorem}
 
-\begin{proof} \label[proof]{This-proof-as-so-many-oth}
+\begin{proof} \label[proof]{This-proof-as-so-many-others-i}
 
 This proof, as so many others in this course, uses an argument via
 contradiction. We assume, towards the sake of contradiction, that there
@@ -431,7 +431,8 @@ that is convenient for us.
 
 \end{remark}
 
-\section{Message Authentication Codes}\label{Message-Authentication-Co}
+\section{Message Authentication
+Codes}\label{Message-Authentication-Codes}
 
 One time passwords are a tool allowing you to prove your \emph{identity}
 to, say, your email server. But even after you did so, how can the
@@ -572,7 +573,7 @@ Under the PRF Conjecture, there exists a secure MAC.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{Let-Fcdotcdot-be-a-secure}
+\begin{proof} \label[proof]{Let-Fcdotcdot-be-a-secure-pseu}
 
 Let \(F(\cdot,\cdot)\) be a secure pseudorandom function generator with
 \(n/2\) bits output (as mentioned in \cref{outputincprfrem}, such PRF's
@@ -605,7 +606,7 @@ means that such an adversary \(A'\) can distinguish between an oracle to
 a contradiction.
 
 \section{Input length extension for MACs and
-PRFs}\label{Input-length-extension-fo}
+PRFs}\label{Input-length-extension-for-MAC}
 
 So far we required the message to be signed \(m\) to be no longer than
 the key \(k\) (i.e., both \(n\) bits long). However, it is not hard to

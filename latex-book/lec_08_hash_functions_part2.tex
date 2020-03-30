@@ -1,5 +1,5 @@
 \chapter{Key derivation, protecting passwords, slow hashes, Merkle
-trees}\label{Key-derivation-protecting}
+trees}\label{Key-derivation-protecting-pass}
 
 Last lecture we saw the notion of cryptographic hash functions which are
 functions that behave like a random function, even in settings (unlike
@@ -75,7 +75,7 @@ password \(p_{master}\) is used to \emph{encrypt} the other passwords.
 However to do that, we need to derive a key \(k_{master}\) from the
 password.
 
-\begin{pause} \label[pause]{A-natural-approach-is-to-}
+\begin{pause} \label[pause]{A-natural-approach-is-to-simpl}
 
 A natural approach is to simply let the key be the password. For
 example, if the password \(p\) is a string of at most 16 bytes, then we
@@ -152,7 +152,7 @@ passwords file falls to the hands of an adversary it will be expensive
 to recover them.
 
 \section{Merkle trees and verifying
-storage.}\label{Merkle-trees-and-verifyin}
+storage.}\label{Merkle-trees-and-verifying-sto}
 
 Suppose that you outsource to the cloud storing your huge data file
 \(x\in\{0,1\}^N\). You now need the \(i^{th}\) bit of that file and ask
@@ -203,7 +203,7 @@ this statement is true, or one can efficiently extract from \(\pi\) and
 
 \end{theorem}
 
-\begin{proof} \label[proof]{The-certificate-pi-consis}
+\begin{proof} \label[proof]{The-certificate-pi-consists-of}
 
 The certificate \(\pi\) consists of a sequence of \(\log t\) pairs of
 size-\(n\) blocks that are obtained by following the path on the tree
@@ -416,7 +416,7 @@ extractor.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{Let-h-be-chosen-as-above-}
+\begin{proof} \label[proof]{Let-h-be-chosen-as-above-and-l}
 
 Let \(h\) be chosen as above, and let \(X\) be some distribution over
 \(\{0,1\}^\ell\) with \(\max_x \{ \Pr[X=x]\} \leq 2^{-2n}\). Now, for
@@ -466,7 +466,7 @@ purpose.
 \end{remark}
 
 \subsection{Forward and backward
-secrecy}\label{Forward-and-backward-secr}
+secrecy}\label{Forward-and-backward-secrecy}
 
 A cryptographic tool such as encryption is clearly insecure if the
 adversary learns the private key, and similarly the output of a

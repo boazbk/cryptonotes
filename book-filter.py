@@ -249,7 +249,7 @@ def labelref(e, doc):
     if e.identifier:
         return e.identifier
     regex = re.compile(r"[^a-zA-Z\-]")
-    t = regex.sub("", pf.stringify(e).replace(" ", "-"))[:25]
+    t = regex.sub("", pf.stringify(e).replace(" ", "-"))[:30]
     if t:
         return t
     return "temp"

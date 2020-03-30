@@ -230,7 +230,7 @@ techniques to those used for public key encryption.
 \end{remark}
 
 \section{Public Key Encryptions:
-Definition}\label{Public-Key-Encryptions-De}
+Definition}\label{Public-Key-Encryptions-Definit}
 
 We now discuss how we define security for public key encryption. As
 mentioned above, it took quite a while for cryptographers to arrive at
@@ -293,7 +293,7 @@ We say that \((G,E,D)\) is \emph{CPA secure} every efficient adversary
 
 \end{definition}
 
-\begin{pause} \label[pause]{Despite-it-being-a-chosen}
+\begin{pause} \label[pause]{Despite-it-being-a-chosen-plai}
 
 Despite it being a ``chosen plaintext attack'', we don't explicitly give
 \(A\) access to the encryption oracle in the public key setting. Make
@@ -460,7 +460,7 @@ We will start by describing cryptosystems based on the first family
 implemented), and in future lectures talk about the second family.
 
 \subsection{Diffie-Hellman Encryption (aka
-El-Gamal)}\label{Diffie-Hellman-Encryption}
+El-Gamal)}\label{Diffie-Hellman-Encryption-aka-}
 
 The Diffie-Hellman public key system is built on the presumed difficulty
 of the \emph{discrete logarithm problem}:
@@ -548,7 +548,7 @@ problem then the Diffie-Hellman system is \emph{insecure}.
 
 \end{lemma}
 
-\begin{proof} \label[proof]{Using-a-discrete-logarith}
+\begin{proof} \label[proof]{Using-a-discrete-logarithm-alg}
 
 Using a discrete logarithm algorithm, we can compute the private key
 \(a\) from the parameters \(p,g,g^a\) present in the public key, and
@@ -601,7 +601,7 @@ where the probability is taken over \(a,b\) chosen at random in
   efficient. We ignore this optimization in our discussions.}
 \end{quote}
 
-\begin{pause} \label[pause]{Please-take-your-time-to-}
+\begin{pause} \label[pause]{Please-take-your-time-to-re-re}
 
 Please take your time to re-read the following conjecture until you are
 sure you understand what it means. Victor Shoup's excellent and online
@@ -622,7 +622,7 @@ secure in the random oracle model.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{For-CPA-security-we-need-}
+\begin{proof} \label[proof]{For-CPA-security-we-need-to-pr}
 
 For CPA security we need to prove that (for fixed \(\mathbb{G}\) of size
 \(p\) and random oracle \(H\)) the following two distributions are
@@ -771,7 +771,7 @@ The number of primes between \(1\) and \(N\) is \(\Omega(N/\log N)\).
 
 \end{lemma}
 
-\begin{proof} \label[proof]{Recall-that-the-least-com}
+\begin{proof} \label[proof]{Recall-that-the-least-common-m}
 
 Recall that the \emph{least common multiple (LCM)} of two or more
 \(a_1,\ldots,a_t\) is the smallest number that is a multiple of all of
@@ -824,7 +824,7 @@ hence lemma)
 \end{proof}
 
 \subsection{A little bit of group
-theory.}\label{A-little-bit-of-group-the}
+theory.}\label{A-little-bit-of-group-theory}
 
 If you haven't seen group theory, it might be useful for you to do a
 quick review. We will not use much group theory and mostly use the
@@ -899,7 +899,7 @@ and test that \(g^a \neq 1\) for all of the fewer than
 \(\log |\mathbb{G}|\) numbers that are obtained by taking
 \(|\mathbb{G}|/q\) where \(q\) is a factor of \(|\mathbb{G}|\).
 
-\begin{pause} \label[pause]{Try-to-stop-here-and-veri}
+\begin{pause} \label[pause]{Try-to-stop-here-and-verify-al}
 
 Try to stop here and verify all the facts on groups mentioned above.
 
@@ -971,7 +971,7 @@ unforgability condition.
 \end{remark}
 
 \subsection{The Digital Signature Algorithm
-(DSA)}\label{The-Digital-Signature-Alg}
+(DSA)}\label{The-Digital-Signature-Algorith}
 
 The Diffie-Hellman protocol can be turned into a signature scheme. This
 was first done by ElGamal, and a variant of his scheme was developed by
@@ -1044,7 +1044,7 @@ follows: (See also Section 12.5.2 in the KL book)
   \(m\), check that \(s\neq 0\) and \(f^\sigma=g^{H(m)}h^{F(f)}\).
 \end{itemize}
 
-\begin{pause} \label[pause]{You-should-pause-here-and}
+\begin{pause} \label[pause]{You-should-pause-here-and-veri}
 
 You should pause here and verify that this is indeed a valid signature
 scheme, in the sense that for every \(m\), \(V_s(m,S_s(m))=1\).
@@ -1061,7 +1061,7 @@ verification then (by taking \(\log\) to the base of \(g\)) the answers
 sufficiently many such equations should be enough to recover the
 discrete log \(a\).
 
-\begin{pause} \label[pause]{Before-seeing-the-actual-}
+\begin{pause} \label[pause]{Before-seeing-the-actual-proof}
 
 Before seeing the actual proof, it is a very good exercise to try to see
 how to convert the intuition above into a formal proof.
@@ -1077,7 +1077,7 @@ when \(H,F\) are modeled as random oracles.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{Suppose-towards-the-sake-}
+\begin{proof} \label[proof]{Suppose-towards-the-sake-of-co}
 
 Suppose, towards the sake of contradiction, that there was a \(T\)-time
 adversary \(A\) that succeeds with probability \(\epsilon\) in a chosen
@@ -1197,7 +1197,7 @@ such schemes later on in this course.
 \end{remark}
 
 \section{Putting everything together - security in
-practice.}\label{Putting-everything-togeth}
+practice.}\label{Putting-everything-together---}
 
 Let us discuss briefly how public key cryptography is used to secure web
 trafic through the SSL/TLS protocol that we all use when we use
@@ -1348,7 +1348,7 @@ Visa, Web.com, Wells Fargo Bank N.A., WISeKey, WoSign CA Limited
 \end{quote}
 
 \section{Appendix: An alternative proof of the density of
-primes}\label{Appendix-An-alternative-p}
+primes}\label{Appendix-An-alternative-proof-}
 
 I record here an alternative way to show that the fraction of primes in
 \([2^n]\) is \(\Omega(1/n)\).\footnote{It might be that the two ways are
@@ -1363,7 +1363,7 @@ The probability that a random \(n\) bit number is prime is at least
 
 \end{lemma}
 
-\begin{proof} \label[proof]{Let-Nn-We-need-to-show-th}
+\begin{proof} \label[proof]{Let-Nn-We-need-to-show-that-th}
 
 Let \(N=2^n\). We need to show that the number of primes between \(1\)
 and \(N\) is at least \(\Omega(N/\log N)\). Consider the number
@@ -1393,7 +1393,7 @@ number of primes in \([1,N]\) is \(\Omega(\tfrac{N}{\log N})\).
 \end{proof}
 
 \section{Additional Group Theory Exercises and
-Proofs}\label{Additional-Group-Theory-E}
+Proofs}\label{Additional-Group-Theory-Exerci}
 
 Below are optional group theory related exercises and proofs meant to
 help gain an intuition with group theory. Note that in this class, we
@@ -1437,7 +1437,7 @@ multiplication mod \(7\)? What if the operation is addition mod \(7\)?
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{Yes-if-multiplication-and}
+\begin{solution} \label[solution]{Yes-if-multiplication-and-no-i}
 
 Yes (if multiplication) and no (if addition). To prove that something is
 a group, we run through the definition of a group. This set is finite,
@@ -1470,7 +1470,7 @@ operation is multiplication mod \(7\)?
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{-and--Recall-that-a-gener}
+\begin{solution} \label[solution]{-and--Recall-that-a-generator-}
 
 \(3\) and \(5\). Recall that a generator of a group is an element \(g\)
 such that \(\{g,g^2,g^3,\cdots\}\) is the entire group. We can directly
@@ -1502,7 +1502,7 @@ where the operation is multiplication mod \(7\)?
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{The-orders-of--are------r}
+\begin{solution} \label[solution]{The-orders-of--are------respec}
 
 The orders (of \(1,2,3,4,5,6\)) are \(1,3, 6, 3, 6, 2\), respectively.
 This can be seen from the work of the previous problem, where we test
@@ -1525,7 +1525,7 @@ that the inverse of any element is unique (i.e.~prove that if
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{Suppose-that-a-in-mathbbG}
+\begin{solution} \label[solution]{Suppose-that-a-in-mathbbG-and-}
 
 Suppose that \(a \in \mathbb{G}\) and that \(b,c \in \mathbb{G}\) such
 that \(ab = 1\) and \(ac = 1\). Then we know that \(ab = ac\), and then
@@ -1546,7 +1546,7 @@ then \(a=b\)).
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{Suppose-that-ca--c-for-al}
+\begin{solution} \label[solution]{Suppose-that-ca--c-for-all-c-i}
 
 Suppose that \(ca = c\) for all \(c \in \mathbb{G}\) and that \(cb = c\)
 for all \(c \in \mathbb{G}\). Then we can say that \(ca =c = cb\) (for
@@ -1572,7 +1572,7 @@ Verify that \(\mathbb{H}\) is a subgroup of \(\mathbb{G}\).
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{To-be-a-subgroup-we-need-}
+\begin{solution} \label[solution]{To-be-a-subgroup-we-need-to-ma}
 
 To be a subgroup, we need to make sure that \(\mathbb{H}\) is a group in
 its own right (in particular, that it contains the identity, that it
@@ -1617,7 +1617,7 @@ strategy).
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{Suppose-that-we-recieve-s}
+\begin{solution} \label[solution]{Suppose-that-we-recieve-some-e}
 
 Suppose that we recieve some element \(g \in \mathbb{G}\). We want to
 know if there exists some \(g' \in \mathbb{G}\) such that \(g = (g')^2\)

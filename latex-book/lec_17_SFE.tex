@@ -1,6 +1,5 @@
 \chapter{Multiparty secure computation I: Definition and
-Honest-But-Curious to Malicious
-complier}\label{Multiparty-secure-computa}
+Honest-But-Curious to Malicious complier}\label{sfeonechap}
 
 Wikipedia \href{https://en.wikipedia.org/wiki/Cryptography}{defines}
 cryptography as ``the practice and study of techniques for secure
@@ -47,7 +46,7 @@ can even state the result, we need to talk about how can we even define
 security in a general setting.
 
 \section{Ideal vs.~Real Model
-Security.}\label{Ideal-vsReal-Model-Securi}
+Security.}\label{Ideal-vsReal-Model-Security}
 
 The key notion is that cryptography aims to replace \emph{trust}.
 Therefore, we imagine an \emph{ideal world} where there is some
@@ -103,7 +102,7 @@ world, we don't. This is what makes the notion of \emph{secure
 multiparty computation} so exciting.
 
 \section{Formally defining secure multiparty
-computation}\label{Formally-defining-secure-}
+computation}\label{Formally-defining-secure-multi}
 
 We now turn to formal definitions. As we discuss below, there are many
 variants of secure multiparty computation, and we pick one simple
@@ -128,7 +127,7 @@ in \(\{0,1\}^n\).\footnote{Fixing the input and output sizes to \(n\) is
   functionalities to building protocols for stateless ones.}
 
 \subsection{First attempt: a slightly ``too ideal''
-definition}\label{First-attempt-a-slightly-}
+definition}\label{First-attempt-a-slightly-too-i}
 
 Here is one attempt of a definition that is clean but a bit too strong,
 which nevertheless captures much of the spirit of secure multiparty
@@ -286,7 +285,7 @@ Here are some good exercises to make sure you follow the definition:
   \(1\).
 \end{itemize}
 
-\begin{pause} \label[pause]{It-is-an-excellent-idea-f}
+\begin{pause} \label[pause]{It-is-an-excellent-idea-for-yo}
 
 It is an excellent idea for you to pause here and try to work out at
 least informally these exercises.
@@ -427,7 +426,7 @@ survey of Goldreich}. Chapter 6 in
 and Shelat's notes} is also a good source.
 
 \section{Example: Second price auction using
-bitcoin}\label{Example-Second-price-auct}
+bitcoin}\label{Example-Second-price-auction-u}
 
 Suppose we have the following setup: an auctioneer wants to sell some
 item and run a second-price auction, where each party submits a sealed
@@ -496,7 +495,7 @@ remarkable. This demonstrates the tremendous power of obtaining
 protocols for general functionalities.
 
 \subsection{Another example: distributed and threshold
-cryptography}\label{Another-example-distribut}
+cryptography}\label{Another-example-distributed-an}
 
 It sometimes makes sense to use multiparty secure computation for
 \emph{cryptographic computations} as well. For example, there might be
@@ -569,7 +568,7 @@ multiparty secure computation can be used to achieve distributed
 cryptography with finer access control mechanisms.
 
 \section{Proving the fundamental
-theorem:}\label{Proving-the-fundamental-t}
+theorem:}\label{Proving-the-fundamental-theore}
 
 We will complete the proof of (a relaxed version of) the fundamental
 theorem over this lecture and the next one. The proof consists of two
@@ -604,7 +603,7 @@ We will focus on the case of \emph{two parties}. The same ideas extend
 to \(k>2\) parties but with some additional complications.
 
 \section{Malicious to honest but curious
-reduction}\label{Malicious-to-honest-but-c}
+reduction}\label{Malicious-to-honest-but-curiou}
 
 We start from the second stage. Giving a reduction transforming a
 protocol in the ``honest but curious'' setting into a protocol secure in
@@ -651,7 +650,7 @@ that \(m_i=f(x_1,m_1,\ldots,m_{i-1})\). However, this will actually not
 be secure - it is worth while at this point for you to pause and think
 if you can understand the problem with this solution.
 
-\begin{pause} \label[pause]{Really-please-stop-and-th}
+\begin{pause} \label[pause]{Really-please-stop-and-think-w}
 
 Really, please stop and think why this will not be secure.
 
@@ -794,7 +793,7 @@ curious setting into a protocol secure (allowing for aborts) in the
 malicious setting.
 
 \subsection{Handling probabilistic
-strategies:}\label{Handling-probabilistic-st}
+strategies:}\label{Handling-probabilistic-strateg}
 
 So far we assumed that the original strategy of Alice in the honest but
 curious is deterministic but of course we need to consider probabilistic

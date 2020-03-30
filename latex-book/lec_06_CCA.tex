@@ -1,4 +1,4 @@
-\chapter{Chosen Ciphertext Security}\label{Chosen-Ciphertext-Securit}
+\chapter{Chosen Ciphertext Security}\label{Chosen-Ciphertext-Security}
 
 \section{Short recap}\label{Short-recap}
 
@@ -51,14 +51,14 @@ unfettered access to the encryption function? Clearly an encryption
 satisfying this property will hide the contents of the message in all
 practical circumstances. Or will it?
 
-\begin{pause} \label[pause]{Please-stop-and-play-an-o}
+\begin{pause} \label[pause]{Please-stop-and-play-an-ominou}
 
 Please stop and play an ominous sound track at this point.
 
 \end{pause}
 
 \subsection{Example: The Wired Equivalence Protocol
-(WEP)}\label{Example-The-Wired-Equival}
+(WEP)}\label{Example-The-Wired-Equivalence-}
 
 The WEP is perhaps one of the most inaccurately named protocols of all
 times. It was invented in 1999 for the purpose of securing Wi-Fi
@@ -142,7 +142,8 @@ encryption.}
 \label{WEPattackfig}
 \end{figure}
 
-\subsection{Chosen ciphertext security}\label{Chosen-ciphertext-securit}
+\subsection{Chosen ciphertext
+security}\label{Chosen-ciphertext-security}
 
 This is not an isolated example but in fact an instance of a general
 pattern of many breaks in practical protocols. Some examples of
@@ -253,7 +254,7 @@ In particular \cref{ccaweplem} rules out the attack of transforming
 different address \(\ensuremath{\mathit{IP}}'\). Let us now sketch its
 proof.
 
-\begin{proof} \label[proof]{Well-show-that-such-if-we}
+\begin{proof} \label[proof]{Well-show-that-such-if-we-had-}
 
 We'll show that such if we had an adversary \(M'\) that violates the
 conclusion of the claim, then there is an adversary \(M\) that can win
@@ -277,7 +278,7 @@ probability at least \(1/2 + \epsilon/10\) or so.
 
 \end{proof}
 
-\begin{pause} \label[pause]{The-proof-above-is-rather}
+\begin{pause} \label[pause]{The-proof-above-is-rather-sket}
 
 The proof above is rather sketchy. However it is not very difficult and
 proving \cref{ccaweplem} on your own is an excellent way to ensure
@@ -286,7 +287,7 @@ familiarity with the definition of CCA security.
 \end{pause}
 
 \section{Constructing CCA secure
-encryption}\label{Constructing-CCA-secure-e}
+encryption}\label{Constructing-CCA-secure-encryp}
 
 The definition of CCA seems extremely strong, so perhaps it is not
 surprising that it is useful, but can we actually construct it? The WEP
@@ -343,7 +344,7 @@ CCA security. This turns out to be the case. But one needs to take some
 care exactly \emph{how} to use MAC's to get CCA security. At this point,
 you might want to stop and think how you would do this\ldots{}
 
-\begin{pause} \label[pause]{You-should-stop-here-and-}
+\begin{pause} \label[pause]{You-should-stop-here-and-try-t}
 
 You should stop here and try to think how you would implement a CCA
 secure encryption by combining MAC's with a CPA secure encryption.
@@ -352,7 +353,7 @@ secure encryption by combining MAC's with a CPA secure encryption.
 
 \newpage
 
-\begin{pause} \label[pause]{If-you-didnt-stop-before-}
+\begin{pause} \label[pause]{If-you-didnt-stop-before-then-}
 
 If you didn't stop before, then you should really stop and think now.
 
@@ -379,7 +380,7 @@ encryption \((E',D')\) with keys \(2n\) bits is CCA secure:\\
 
 \end{theorem}
 
-\begin{proof} \label[proof]{Suppose-for-the-sake-of-c}
+\begin{proof} \label[proof]{Suppose-for-the-sake-of-contra}
 
 Suppose, for the sake of contradiction, that there exists an adversary
 \(M'\) that wins the CCA game for the scheme \((E',D')\) with
@@ -478,7 +479,7 @@ security of \((E,D)\) thereby concluding the proof of the theorem.
 
 \end{proof}
 
-\begin{pause} \label[pause]{This-proof-is-emblematic-}
+\begin{pause} \label[pause]{This-proof-is-emblematic-of-a-}
 
 This proof is emblematic of a general principle for proving CCA
 security. The idea is to show that the decryption box is completely
@@ -558,7 +559,7 @@ one, and can be carried out quite efficiently). We leave it as an
 (excellent!) exercise to prove that the resulting scheme is CCA secure.
 
 \section{Padding, chopping, and their pitfalls: the ``buffer overflow''
-of cryptography}\label{Padding-chopping-and-thei}
+of cryptography}\label{Padding-chopping-and-their-pit}
 
 In this course we typically focus on the simplest case where messages
 have a \emph{fixed size}. But in fact, in real life we often need to
@@ -591,7 +592,7 @@ length message with the string \(10^{n-n'-1}\). Sometimes people use a
 different padding which involves encoding the length of the pad.
 
 \section{Chosen ciphertext attack as implementing
-metaphors}\label{Chosen-ciphertext-attack-}
+metaphors}\label{Chosen-ciphertext-attack-as-im}
 
 The classical ``metaphor'' for an encryption is a sealed envelope, but
 as we have seen in the WEP, this metaphor can lead you astray. If you

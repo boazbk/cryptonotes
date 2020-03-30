@@ -1,5 +1,5 @@
 \chapter{Concrete candidates for public key
-crypto}\label{Concrete-candidates-for-p}
+crypto}\label{Concrete-candidates-for-public}
 
 In the previous lecture we talked about \emph{public key cryptography}
 and saw the Diffie Hellman system and the DSA signature scheme. In this
@@ -98,7 +98,7 @@ probability \(1\) and if \(A\) is not even a ``pseudoprime'' it outputs
 
 \end{lemma}
 
-\begin{proof} \label[proof]{The-algorithm-is-very-sim}
+\begin{proof} \label[proof]{The-algorithm-is-very-simple-a}
 
 The algorithm is very simple and is based on Fermat's Little Theorem: on
 input \(m\), pick a random \(a\in \{2,\ldots,m-1\}\), and if
@@ -208,7 +208,7 @@ every \(x,y \in \Z^*_m\):\\
 
 \end{theorem}
 
-\begin{proof} \label[proof]{varphi-simply-maps-xin-Zm}
+\begin{proof} \label[proof]{varphi-simply-maps-xin-Zm-to-t}
 
 \(\varphi\) simply maps \(x\in \Z^*_m\) to the pair
 \((x \mod p, x \mod q)\). Verifying that it satisfies all desired
@@ -233,7 +233,7 @@ Suppose and there is an efficient algorithm \(A\) such that for every
 
 \end{theorem}
 
-\begin{proof} \label[proof]{Suppose-that-there-is-suc}
+\begin{proof} \label[proof]{Suppose-that-there-is-such-an-}
 
 Suppose that there is such an algorithm \(A\). Using the CRT we can
 define \(f:\Z^*_p\times\Z^*_q \rightarrow \Z^*_p\times \Z^*_q\) as
@@ -269,7 +269,7 @@ square root for a significant fraction of the inputs. This observation
 is crucial for cryptographic applications.
 
 \subsection{The RSA and Rabin
-functions}\label{The-RSA-and-Rabin-functio}
+functions}\label{The-RSA-and-Rabin-functions}
 
 We are now ready to describe the RSA and Rabin trapdoor functions:
 
@@ -316,7 +316,7 @@ has the advantage that it is a \emph{permutation} over \(\Z^*_m\):
 
 \end{lemma}
 
-\begin{proof} \label[proof]{Suppose-that-ensuremathma}
+\begin{proof} \label[proof]{Suppose-that-ensuremathmathitR}
 
 Suppose that
 \(\ensuremath{\mathit{RSA}}_{m,e}(a)=\ensuremath{\mathit{RSA}}_{m,e}(a')\).
@@ -347,7 +347,7 @@ without adding some randomization.
 \end{remark}
 
 \subsection{Abstraction: trapdoor
-permutations}\label{Abstraction-trapdoor-perm}
+permutations}\label{Abstraction-trapdoor-permutati}
 
 We can abstract away the particular construction of the RSA and Rabin
 functions to talk about a general \emph{trapdoor permutation family}. We
@@ -396,7 +396,7 @@ prime in the interval \([2^n-2^{0.6n},2^n]\).\footnote{Another, more
 \end{remark}
 
 \subsection{Public key encryption from trapdoor
-permutations}\label{Public-key-encryption-fro}
+permutations}\label{Public-key-encryption-from-tra}
 
 Here is how we can get a public key encryption from a trapdoor
 permutation scheme \(\{ p_k \}\).
@@ -420,7 +420,7 @@ permutation scheme \(\{ p_k \}\).
 \end{itemize}
 \end{quote}
 
-\begin{pause} \label[pause]{Please-verify-that-you-un}
+\begin{pause} \label[pause]{Please-verify-that-you-underst}
 
 Please verify that you understand why TDPENC is a \emph{valid}
 encryption scheme, in the sense that decryption of an encryption of
@@ -436,7 +436,7 @@ TDPENC is a CPA secure public key encryption scheme.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{Suppose-towards-the-sake-}
+\begin{proof} \label[proof]{Suppose-towards-the-sake-of-co}
 
 Suppose, towards the sake of contradiction, that there is a
 polynomial-size adversary \(A\) that succeeds in the CPA game of TDPENC
@@ -553,7 +553,7 @@ of winning in the latter experiment would still be less than
 \label{TDPENCgnomefig}
 \end{marginfigure}
 
-\begin{pause} \label[pause]{This-proof-of-crefTDPpkct}
+\begin{pause} \label[pause]{This-proof-of-crefTDPpkcthm-is}
 
 This proof of \cref{TDPpkcthm} is not very long but it is somewhat
 subtle. Please re-read it and make sure you understand it. I also
@@ -575,7 +575,7 @@ Levin.
 \end{remark}
 
 \subsection{Digital signatures from trapdoor
-permutations}\label{Digital-signatures-from-t}
+permutations}\label{Digital-signatures-from-trapdo}
 
 Here is how we can get digital signatures from trapdoor permutations
 \(\{ p_k \}\). This is known as the ``full domain hash'' signatures.
@@ -608,7 +608,7 @@ FDHSIG is chosen message attack secure digital signature scheme.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{Suppose-towards-the-sake-}
+\begin{proof} \label[proof]{Suppose-towards-the-sake-of-co}
 
 Suppose towards the sake of contradiction that there is a
 polynomial-sized adversary \(A\) that succeeds in a chosen message
@@ -671,7 +671,7 @@ inverter.
 
 \end{proof}
 
-\begin{pause} \label[pause]{Once-again-this-proof-is-}
+\begin{pause} \label[pause]{Once-again-this-proof-is-somew}
 
 Once again, this proof is somewhat subtle. I recommend you also read the
 version of this proof in Section 13.4 of Boneh-Shoup.
@@ -691,6 +691,6 @@ arbitrary length messages by defining \(S'_s(m)=S_s(h(m))\) and
 \end{remark}
 
 \section{Hardcore bits and security without random
-oracles}\label{Hardcore-bits-and-securit}
+oracles}\label{Hardcore-bits-and-security-wit}
 
 To be completed.

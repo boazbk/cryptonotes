@@ -33,7 +33,7 @@ theory of computation class such as CS 121 might want to look at my
 lecture notes or the first 2 chapters of my book with Arora.
 
 \section{A quick overview of mathematical
-prerequisites}\label{A-quick-overview-of-mathe}
+prerequisites}\label{A-quick-overview-of-mathematic}
 
 The main notions we will use in this course are the following:
 
@@ -170,7 +170,7 @@ it and explain which parts of the statement you have been able to verify
 and which parts you haven't.
 
 \subsection{Example: The existence of infinitely many
-primes.}\label{Example-The-existence-of-}
+primes.}\label{Example-The-existence-of-infin}
 
 In the spirit of ``do what I say and not what I do'', I will now
 demonstrate the importance of conciseness by belaboring the point and
@@ -250,7 +250,7 @@ primes, then we would get a contradiction as by combining
 \cref{primesfirstlem} and \cref{primesseclem} we would get a number
 \(n\) with a prime factor outside this set. We now prove the lemmas:
 
-\begin{proof}[Proof of \cref{primesfirstlem}] \label[proof]{Let-n-be-a-number-and-let}
+\begin{proof}[Proof of \cref{primesfirstlem}] \label[proof]{Let-n-be-a-number-and-let-p-be}
 
 Let \(n>1\) be a number, and let \(p\) be the smallest divisor of \(n\)
 that is larger than \(1\) (there exists such a number \(p\) since \(n\)
@@ -262,7 +262,7 @@ to the choice of \(p\) as the smallest divisor of \(n\).
 
 \end{proof}
 
-\begin{proof}[Proof of \cref{primesseclem}] \label[proof]{Let-np-cdots-pk---and-sup}
+\begin{proof}[Proof of \cref{primesseclem}] \label[proof]{Let-np-cdots-pk---and-suppose-}
 
 Let \(n=p_1 \cdots p_k + 1\) and suppose for the sake of contradiction
 that there exists some \(i\) such that \(n = p_i\cdot c\) for some
@@ -274,7 +274,8 @@ the fraction \(1/p_i\) on the righthand side.
 
 This completes the proof of \cref{infprimesthm}
 
-\section{Probability and Sample spaces}\label{Probability-and-Sample-sp}
+\section{Probability and Sample
+spaces}\label{Probability-and-Sample-spaces}
 
 Perhaps the main mathematical background needed in cryptography is
 probability theory since, as we will see, there is no secrecy without
@@ -373,14 +374,14 @@ For every \(n>0\),
 
 \end{lemma}
 
-\begin{pause} \label[pause]{To-test-your-intuition-on}
+\begin{pause} \label[pause]{To-test-your-intuition-on-prob}
 
 To test your intuition on probability, try to stop here and prove the
 lemma on your own.
 
 \end{pause}
 
-\begin{proof}[Proof of \cref{evenprob}] \label[proof]{We-prove-the-lemma-by-ind}
+\begin{proof}[Proof of \cref{evenprob}] \label[proof]{We-prove-the-lemma-by-inductio}
 
 We prove the lemma by induction on \(n\). For the case \(n=1\) it is
 clear since \(x=0\) is even and \(x=1\) is odd, and hence the
@@ -499,7 +500,7 @@ that it is \emph{linear}:
 
 \end{lemma}
 
-\begin{proof} \label[proof]{begingatheredE-XY--sumxin}
+\begin{proof} \label[proof]{begingatheredE-XY--sumxin-n-nl}
 
 \[
 \begin{gathered}
@@ -521,7 +522,7 @@ equal to \(n/2\). Indeed, if we write \(X= \sum_{i=0}^{n-1} x_i\) then
 \(\E[X_i] = (1/2)\cdot 0 + (1/2)\cdot 1 = 1/2\) and hence
 \(\E[X] = \sum_{i=0}^{n-1}\E[X_i] = n\cdot(1/2) = n/2\).
 
-\begin{pause} \label[pause]{If-you-have-not-seen-disc}
+\begin{pause} \label[pause]{If-you-have-not-seen-discrete-}
 
 If you have not seen discrete probability before, please go over this
 argument again until you are sure you follow it; it is a prototypical
@@ -543,7 +544,7 @@ For every two events \(A,B\), \(\Pr[ A \cup B] \leq \Pr[A]+\Pr[B]\)
 
 \end{lemma}
 
-\begin{pause} \label[pause]{Before-looking-at-the-pro}
+\begin{pause} \label[pause]{Before-looking-at-the-proof-tr}
 
 Before looking at the proof, try to see why the union bound makes
 intuitive sense. We can also prove it directly from the definition of
@@ -553,7 +554,7 @@ true? (See also \cref{unionboundfig}.)
 
 \end{pause}
 
-\begin{proof}[Proof of \cref{unionbound}] \label[proof]{For-every-x-the-variable-}
+\begin{proof}[Proof of \cref{unionbound}] \label[proof]{For-every-x-the-variable-Acup-}
 
 For every \(x\), the variable \(1_{A\cup B}(x) \leq 1_A(x)+1_B(x)\).
 Hence,
@@ -578,7 +579,8 @@ no intersection).}
 \label{unionboundfig}
 \end{marginfigure}
 
-\subsection{Distributions over strings}\label{Distributions-over-string}
+\subsection{Distributions over
+strings}\label{Distributions-over-strings}
 
 While most of the time we think of random variables as having as output
 a \emph{real number}, we sometimes consider random variables whose
@@ -610,7 +612,7 @@ and the map \(G:\{0,1\}^2 \rightarrow \{0,1\}^2\) defined as
 \(G(x_0x_1)=x_0(x_0 \oplus x_1)\)
 
 \subsection{More general sample
-spaces.}\label{More-general-sample-space}
+spaces.}\label{More-general-sample-spaces}
 
 While in this chapter we assume that the underlying probabilistic
 experiment corresponds to tossing \(n\) independent coins, everything we
@@ -626,7 +628,8 @@ is \(\sum_{x\in A} \mu(x)\). A \emph{random variable} is a function
 \(X:S \rightarrow \R\), where the probability that \(X=y\) is equal to
 \(\sum_{x\in S \text{ s.t. } X(x)=y} \mu(x)\).
 
-\section{Correlations and independence}\label{Correlations-and-independ}
+\section{Correlations and
+independence}\label{Correlations-and-independence}
 
 One of the most delicate but important concepts in probability is the
 notion of \emph{independence} (and the opposing notion of
@@ -764,7 +767,7 @@ intersection has probability \(\tfrac{2}{8}=\tfrac{1}{4}\) instead of
 \end{marginfigure}
 
 \subsection{Independent random
-variables}\label{Independent-random-variab}
+variables}\label{Independent-random-variables}
 
 We say that two random variables \(X:\{0,1\}^n \rightarrow \R\) and
 \(Y:\{0,1\}^n \rightarrow \R\) are independent if for every
@@ -788,7 +791,7 @@ Then \(X\) and \(Y\) are independent.
 
 \end{lemma}
 
-\begin{pause} \label[pause]{The-notation-in-the-lemma}
+\begin{pause} \label[pause]{The-notation-in-the-lemmas-sta}
 
 The notation in the lemma's statement is a bit cumbersome, but at the
 end of the day, it simply says that if \(X\) and \(Y\) are random
@@ -799,7 +802,7 @@ coins), then they are independent.
 
 \end{pause}
 
-\begin{proof}[Proof of \cref{indcoins}] \label[proof]{Let-abin-R-and-let-A---x-}
+\begin{proof}[Proof of \cref{indcoins}] \label[proof]{Let-abin-R-and-let-A---x-in-k-}
 
 Let \(a,b\in \R\), and let \(A = \{ x \in \{0,1\}^k : F(x)=a \}\) and
 \(B=\{ x\in \{0,1\}^m : F(x)=b \}\). Since \(S\) and \(T\) are disjoint,
@@ -847,7 +850,7 @@ Indeed, to prove this we can write for every \(a,b \in \R\):
 \]
 
 \subsection{Collections of independent random
-variables.}\label{Collections-of-independen}
+variables.}\label{Collections-of-independent-ran}
 
 We can extend the notions of independence to more than two random
 variables: we say that the random variables \(X_0,\ldots,X_{n-1}\) are
@@ -875,7 +878,7 @@ functions \(F_0,\ldots,F_{n-1}:\R \rightarrow \R\), then
 
 \end{lemma}
 
-\begin{pause} \label[pause]{We-leave-proving-crefexpp}
+\begin{pause} \label[pause]{We-leave-proving-crefexpprod-a}
 
 We leave proving \cref{expprod} and \cref{indeplem} as \cref{expprodex}
 \cref{indeplemex}. It is good idea for you stop now and do these
@@ -884,7 +887,8 @@ independence, as we will use it heavily later on in this course.
 
 \end{pause}
 
-\section{Concentration and tail bounds}\label{Concentration-and-tail-bo}
+\section{Concentration and tail
+bounds}\label{Concentration-and-tail-bounds}
 
 The name ``expectation'' is somewhat misleading. For example, suppose
 that you and I place a bet on the outcome of 10 coin tosses, where if
@@ -933,7 +937,7 @@ If \(X\) is a non-negative random variable then
 
 \end{theorem}
 
-\begin{pause} \label[pause]{Markovs-Inequality-is-act}
+\begin{pause} \label[pause]{Markovs-Inequality-is-actually}
 
 Markov's Inequality is actually a very natural statement (see also
 \cref{markovfig}). For example, if you know that the average (not the
@@ -948,7 +952,7 @@ much smaller: see the Chebyshev and Chernoff inequalities below.
 
 \end{pause}
 
-\begin{proof}[Proof of \cref{markovthm}] \label[proof]{Let-mu--EX-and-define-YX-}
+\begin{proof}[Proof of \cref{markovthm}] \label[proof]{Let-mu--EX-and-define-YX-geq-k}
 
 Let \(\mu = \E[X]\) and define \(Y=1_{X \geq k \mu}\). That is,
 \(Y(x)=1\) if \(X(x) \geq k \mu\) and \(Y(x)=0\) otherwise. Note that by
@@ -1008,7 +1012,7 @@ every \(k>0\), \(\Pr[ |X-\mu | \geq k \sigma ] \leq 1/k^2\).
 
 \end{theorem}
 
-\begin{proof} \label[proof]{The-proof-follows-from-Ma}
+\begin{proof} \label[proof]{The-proof-follows-from-Markovs}
 
 The proof follows from Markov's inequality. We define the random
 variable \(Y = (X-\mu)^2\). Then \(\E[Y] = \mathrm{Var}[X] = \sigma^2\),
@@ -1100,7 +1104,7 @@ generalization.)
 
 \section{Exercises}\label{Exercises}
 
-\begin{exercise} \label[exercise]{Prove-that-for-every-fini}
+\begin{exercise} \label[exercise]{Prove-that-for-every-finite-ST}
 
 Prove that for every finite \(S,T\), there are \((|T|+1)^{|S|}\) partial
 functions from \(S\) to \(T\).
@@ -1134,7 +1138,7 @@ following relations holds: \(F=O(G)\), \(F=\Omega(G)\), \(F=o(G)\) or
 
 \end{exercise}
 
-\begin{exercise} \label[exercise]{Give-an-example-of-a-pair}
+\begin{exercise} \label[exercise]{Give-an-example-of-a-pair-of-f}
 
 Give an example of a pair of functions \(F,G:\N \rightarrow \N\) such
 that neither \(F=O(G)\) nor \(G=O(F)\) holds.
@@ -1225,7 +1229,7 @@ otherwise.
 
 \section{Exercises}\label{Exercises}
 
-\begin{exercise} \label[exercise]{Suppose-that-we-toss-thre}
+\begin{exercise} \label[exercise]{Suppose-that-we-toss-three-ind}
 
 Suppose that we toss three independent fair coins \(a,b,c \in \{0,1\}\).
 What is the probability that the XOR of \(a\),\(b\), and \(c\) is equal
@@ -1234,7 +1238,7 @@ equal to \(1\)? Are these two events independent?
 
 \end{exercise}
 
-\begin{exercise} \label[exercise]{Give-an-example-of-random}
+\begin{exercise} \label[exercise]{Give-an-example-of-random-vari}
 
 Give an example of random variables \(X,Y: \{0,1\}^3 \rightarrow \R\)
 such that \(\E[\ensuremath{\mathit{XY}}] \neq \E[X]\E[Y]\).

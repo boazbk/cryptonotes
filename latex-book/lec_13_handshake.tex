@@ -1,5 +1,5 @@
 \chapter{Establishing secure connections over insecure
-channels}\label{Establishing-secure-conne}
+channels}\label{Establishing-secure-connection}
 
 We've now compiled all the tools that are needed for the basic goal of
 cryptography (which is still being subverted quite often) allowing Alice
@@ -33,7 +33,7 @@ randomness, and here we use hash functions as well for entropy
 extraction.
 
 \section{Cryptography's obsession with
-adjectives.}\label{Cryptographys-obsession-w}
+adjectives.}\label{Cryptographys-obsession-with-a}
 
 As we learn more and more cryptography we see more and more adjectives,
 every notion seems to have modifiers such as ``non-malleable'',
@@ -109,7 +109,7 @@ securely transmitting information between two parties Alice and Bob:
   conversation had taken place.
 \end{itemize}
 
-\section{Basic Key Exchange protocol}\label{Basic-Key-Exchange-protoc}
+\section{Basic Key Exchange protocol}\label{Basic-Key-Exchange-protocol}
 
 The basic primitive for secure communication is a \emph{key exchange}
 protocol, whose goal is to have Alice and Bob share a common random
@@ -161,7 +161,7 @@ probability of guessing which is the case would be at most
 or some other parameter related to the length of bit representation of
 members in the group).
 
-\section{Authenticated key exchange}\label{Authenticated-key-exchang}
+\section{Authenticated key exchange}\label{Authenticated-key-exchange}
 
 The main issue with this key exchange protocol is of course that
 adversaries often are \emph{not} passive. In particular, an active Eve
@@ -183,7 +183,7 @@ name change from SSL to TLS) largely because of security concerns. We
 now illustrate one of those attacks.
 
 \subsection{Bleichenbacher's attack on RSA PKCS V1.5 and SSL
-V3.0}\label{Bleichenbachers-attack-on}
+V3.0}\label{Bleichenbachers-attack-on-RSA-}
 
 If you have a public key, a natural approach is to take the
 encryption-based protocol and simply skip the first step since Bob
@@ -232,7 +232,7 @@ some implementation issues that allowed to perform some attacks, see the
 note in KL page 425 on Manfer's attack.)
 
 \section{Chosen ciphertext attack security for public key
-cryptography}\label{Chosen-ciphertext-attack-}
+cryptography}\label{Chosen-ciphertext-attack-secur}
 
 The concept of chosen ciphertext attack security makes perfect sense for
 \emph{public key} encryption as well. It is defined in the same way as
@@ -277,7 +277,7 @@ ciphertext. In the public key setting, one might hope that we could
 repeat the same construction using a CPA-secure \emph{public key}
 encryption and replacing the MAC with \emph{digital signatures}.
 
-\begin{pause} \label[pause]{Try-to-think-what-would-b}
+\begin{pause} \label[pause]{Try-to-think-what-would-be-suc}
 
 Try to think what would be such a construction, and whether there is a
 fundamental obstacle to combining digital signatures and public key
@@ -317,7 +317,7 @@ well as the first polynomial-time construction, was given in a seminal
 1991 work of Dolev, Dwork and Naor.)
 
 \section{CCA secure public key encryption in the Random Oracle
-Model}\label{CCA-secure-public-key-enc}
+Model}\label{CCA-secure-public-key-encrypti}
 
 We now show how to convert any CPA-secure public key encryption scheme
 to a CCA-secure scheme in the random oracle model (this construction is
@@ -331,7 +331,7 @@ RSA and Rabin schemes, but also directly with Diffie-Hellman and Lattice
 based schemes (though there are direct and more efficient variants for
 these as well).
 
-\begin{quote} \label[quote]{CCA-ROM-ENC-SchemeIngredi}
+\begin{quote} \label[quote]{CCA-ROM-ENC-SchemeIngredients-}
 
 \textbf{CCA-ROM-ENC Scheme:}
 
@@ -370,7 +370,7 @@ The above CCA-ROM-ENC scheme is CCA secure.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{Note-The-proof-here-refer}
+\begin{proof} \label[proof]{Note-The-proof-here-refers-to-}
 
 \textbf{Note:} The proof here refers to the original scheme in the notes
 (which was not secure) - should be updated by the scribes to the correct
@@ -431,7 +431,7 @@ CPA secure as an exercise to the reader.
 \end{proof}
 
 \subsection{Defining secure authenticated key
-exchange}\label{Defining-secure-authentic}
+exchange}\label{Defining-secure-authenticated-}
 
 The basic goal of secure communication is to set up a \emph{secure
 channel} between two parties Alice and Bob. We want to do so over an
@@ -470,7 +470,7 @@ client. (Though of course once we establish a secure channel, I could
 use it to login to my Amazon account.) Chapter 21 of Boneh Shoup
 contains an in depth discussion of authenticated key exchange protocols.
 
-\begin{pause} \label[pause]{You-should-stop-here-and-}
+\begin{pause} \label[pause]{You-should-stop-here-and-read-}
 
 You should stop here and read Section 21.9 of Boneh Shoup with the
 formal definitions of authenticated key exchange, going back as needed
@@ -479,7 +479,7 @@ to the previous section for the definitions of protocols AEK1 - AEK4.
 \end{pause}
 
 \subsection{The compiler approach for authenticated key
-exchange}\label{The-compiler-approach-for}
+exchange}\label{The-compiler-approach-for-auth}
 
 There is a generic ``compiler'' approach to obtaining authenticated key
 exchange protocols:
@@ -519,19 +519,19 @@ its variant \href{https://eprint.iacr.org/2005/176.pdf}{HMQV} by
 Krawczyk that has some improved security properties and analysis.
 
 \section{Password authenticated key
-exchange.}\label{Password-authenticated-ke}
+exchange.}\label{Password-authenticated-key-exc}
 
 To be completed (the most natural candidate: use MACS with a
 password-derived key to authenticate communication - completely fails)
 
-\begin{pause} \label[pause]{Please-skim-Boneh-Shoup-C}
+\begin{pause} \label[pause]{Please-skim-Boneh-Shoup-Chapte}
 
 Please skim Boneh Shoup Chapter 21.11
 
 \end{pause}
 
 \section{Client to client key exchange for secure text messaging - ZRTP,
-OTR, TextSecure}\label{Client-to-client-key-exch}
+OTR, TextSecure}\label{Client-to-client-key-exchange-}
 
 To be completed. See
 \href{http://blog.cryptographyengineering.com/2013/03/here-come-encryption-apps.html}{Matthew
@@ -541,7 +541,8 @@ secure}, \href{https://otr.cypherpunks.ca/Protocol-v3-4.0.0.html}{OTR}.
 
 Security requirements: forward secrecy, deniability.
 
-\section{Heartbleed and logjam attacks}\label{Heartbleed-and-logjam-att}
+\section{Heartbleed and logjam
+attacks}\label{Heartbleed-and-logjam-attacks}
 
 \begin{itemize}
 \item

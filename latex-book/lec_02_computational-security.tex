@@ -92,7 +92,7 @@ outputting \(b\).
 \cref{firstcompdef} seems very natural, but is in fact \emph{impossible}
 to achieve if the key is shorter than the message.
 
-\begin{pause} \label[pause]{Before-reading-further-yo}
+\begin{pause} \label[pause]{Before-reading-further-you-mig}
 
 Before reading further, you might want to stop and think if you can
 \emph{prove} that there is no, say, encryption scheme with \(\sqrt{n}\)
@@ -168,7 +168,7 @@ additional information about it before the universe collapses are more
 or less the same as the chances that a fairy will materialize and
 whisper it in your ear.
 
-\begin{pause} \label[pause]{Before-reading-the-proof-}
+\begin{pause} \label[pause]{Before-reading-the-proof-try-t}
 
 Before reading the proof, try to again review the proof of
 \cref{twotomanythm}, and see if you can generalize it yourself to the
@@ -176,7 +176,7 @@ computational setting.
 
 \end{pause}
 
-\begin{proof}[Proof of \cref{twotomanycomp}] \label[proof]{The-proof-is-rather-simil}
+\begin{proof}[Proof of \cref{twotomanycomp}] \label[proof]{The-proof-is-rather-similar-to}
 
 The proof is rather similar to the equivalence of guessing one of two
 messages vs.~one of many messages for perfect secrecy (i.e.,
@@ -560,7 +560,7 @@ where the message is longer than the key.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{We-just-sketch-the-proof-}
+\begin{proof} \label[proof]{We-just-sketch-the-proof-as-th}
 
 We just sketch the proof, as this is not the focus of this course. If
 \(P=\ensuremath{\mathit{NP}}\) then whenever we have a loop that
@@ -614,7 +614,7 @@ briefly mention some of them:
 \end{itemize}
 
 \section{Why care about the cipher
-conjecture?}\label{Why-care-about-the-cipher}
+conjecture?}\label{Why-care-about-the-cipher-conj}
 
 \begin{quote}
 \emph{``Give me a place to stand, and I shall move the world''}
@@ -656,7 +656,7 @@ construct increasingly sophisticated tools based on relatively simple
 ``axioms'' such as the cipher conjecture.
 
 \section{Prelude: Computational
-Indistinguishability}\label{Prelude-Computational-Ind}
+Indistinguishability}\label{Prelude-Computational-Indistin}
 
 The task of Eve in breaking an encryption scheme is to
 \emph{distinguish} between an encryption of \(m_0\) and an encryption of
@@ -743,7 +743,7 @@ Then \(\{ X_1 \} \approx_{T, (m-1)\epsilon} \{ X_m \}\).
 
 \end{theorem}
 
-\begin{proof} \label[proof]{Suppose-that-there-exists}
+\begin{proof} \label[proof]{Suppose-that-there-exists-a-T-}
 
 Suppose that there exists a \(T\) time \(Eve\) such that \[
 |\Pr[ Eve(X_1)=1] - \Pr[ Eve(X_m)=1]| > (m-1)\epsilon  \;.
@@ -773,7 +773,7 @@ over \({\{0,1\}}^n\) such that \(X_i \approx_{T,\epsilon} Y_i\). Then
 
 \end{theorem}
 
-\begin{proof} \label[proof]{For-every-iinldotsell-we-}
+\begin{proof} \label[proof]{For-every-iinldotsell-we-defin}
 
 For every \(i\in\{0,\ldots,\ell\}\) we define \(H_i\) to be the
 distribution \((X_1,\ldots,X_i,Y_{i+1},\ldots,Y_\ell)\). Clearly
@@ -829,7 +829,8 @@ it is important to get comfortable with it.
 
 \end{remark}
 
-\section{The Length Extension Theorem}\label{The-Length-Extension-Theo}
+\section{The Length Extension
+Theorem}\label{The-Length-Extension-Theorem}
 
 We now turn to show the \emph{length extension theorem}, stating that if
 we have an encryption for \(n+1\)-length messages with \(n\)-length
@@ -853,7 +854,7 @@ bit messages.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{This-might-seem-obvious-b}
+\begin{proof} \label[proof]{This-might-seem-obvious-but-in}
 
 This might seem ``obvious'' but in cryptography, even obvious facts are
 sometimes wrong, so it's important to prove this formally. Luckily, this
@@ -921,7 +922,7 @@ with \(n+1\) long messages}
 \label{tmplabelfig}
 \end{figure}
 
-\begin{proof} \label[proof]{Let-ttn-We-are-given-a-ci}
+\begin{proof} \label[proof]{Let-ttn-We-are-given-a-cipher-}
 
 Let \(t=t(n)\). We are given a cipher \(E'\) which can encrypt
 \(n+1\)-bit long messages with an \(n\)-bit long key and we need to
@@ -1038,7 +1039,7 @@ This concludes the proof of the claim and hence the theorem.
 \end{proof}
 
 \subsection{Appendix: The computational
-model}\label{Appendix-The-computationa}
+model}\label{Appendix-The-computational-mod}
 
 For concreteness sake let us give a precise definition of what it means
 for a function or probabilistic process \(f\) mapping \(\{0,1\}^n\) to

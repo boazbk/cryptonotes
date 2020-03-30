@@ -43,15 +43,15 @@ def loadyaml(file, default={}):
     """Utility function to load from yaml file"""
     try:
         with open(file, "r", encoding="utf-8") as f:
-            t = yaml.load(f)
+            t = yaml.load(f, Loader=yaml.FullLoader)
     except FileNotFoundError:
         t = default
     return t
 
 
 def digest(s):
-    if len(s)>30:
-        s = s[:30]
+    if len(s)>50:
+        s = s[:50]
     return re.sub(r'\W+','', s.lower())
 
 

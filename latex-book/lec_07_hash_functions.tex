@@ -1,5 +1,5 @@
 \chapter{Hash Functions and Random
-Oracles}\label{Hash-Functions-and-Random}
+Oracles}\label{Hash-Functions-and-Random-Orac}
 
 We have seen pseudorandom generators, functions and permutations, as
 well as Message Authentication codes, CPA and CCA secure encryptions.
@@ -96,7 +96,7 @@ self-validating if it contains a solution to the puzzle that is
 associated with \(\ensuremath{\mathit{ID}}\) according to the latest
 transaction in the ledger.
 
-\begin{pause} \label[pause]{Please-re-read-the-previo}
+\begin{pause} \label[pause]{Please-re-read-the-previous-pa}
 
 Please re-read the previous paragraph, to make sure you follow the
 logic.
@@ -189,7 +189,7 @@ to obtain an input \(x\) such that \(f_k(x)=0^\ell\). So, if we're not
 too careful, we might think of such an input \(x\) as a \emph{proof}
 that Alice spent \(2^\ell\) time.
 
-\begin{pause} \label[pause]{Stop-here-and-try-to-thin}
+\begin{pause} \label[pause]{Stop-here-and-try-to-think-if-}
 
 Stop here and try to think if indeed it is the case that one cannot find
 an input \(x\) such that \(f_k(x)=0^\ell\) using much fewer than
@@ -206,7 +206,7 @@ then can we guarantee that she can't find a ``shortcut'' to find such an
 input without running \(2^\ell\) queries? The answer, in general, is
 \textbf{no}.
 
-\begin{pause} \label[pause]{Indeed-it-is-an-excellent}
+\begin{pause} \label[pause]{Indeed-it-is-an-excellent-exer}
 
 Indeed, it is an excellent exercise to prove that (under the PRF
 conjecture) that there exists a PRF \(\{ f_k \}\) mapping \(n\) bits to
@@ -281,7 +281,7 @@ such that the first \(\lceil \log T \rceil\) bits of
   ignore here.}
 
 \subsection{From Proof of Work to Consensus on
-Ledger}\label{From-Proof-of-Work-to-Con}
+Ledger}\label{From-Proof-of-Work-to-Consensu}
 
 How does proof of work help us in achieving consensus? The idea is that
 every transaction \(t_i\) comes up with a proof of work of some \(T_i\)
@@ -364,7 +364,7 @@ survey} for more.
 \end{quote}
 
 \section{Collision Resistance Hash Functions and Creating Short
-``Unique'' Identifiers}\label{Collision-Resistance-Hash}
+``Unique'' Identifiers}\label{Collision-Resistance-Hash-Func}
 
 Another issue we ``swept under the carpet'' is how do we come up with
 these unique identifiers per transaction. We want each transaction
@@ -405,7 +405,7 @@ then the probability that after \(T\) queries an attacker finds
 
 \end{lemma}
 
-\begin{proof} \label[proof]{Let-us-think-of-H-in-the-}
+\begin{proof} \label[proof]{Let-us-think-of-H-in-the-lazy-}
 
 Let us think of \(H\) in the ``lazy evaluation'' mode where for every
 query the adversary makes, we choose a random answer in \(\{0,1\}^n\) at
@@ -475,7 +475,7 @@ and recommended exercise.)
 \end{remark}
 
 \section{Practical Constructions of Cryptographic Hash
-Functions}\label{Practical-Constructions-o}
+Functions}\label{Practical-Constructions-of-Cry}
 
 While we discussed hash functions as \emph{keyed} collections, in
 practice people often think of a hash function as being a \emph{fixed
@@ -516,7 +516,7 @@ efficiently find two messages \(x \neq x' \in \{0,1\}^{2n}\) such that
 
 \end{theorem}
 
-\begin{proof} \label[proof]{The-intuition-behind-the-}
+\begin{proof} \label[proof]{The-intuition-behind-the-proof}
 
 The intuition behind the proof is that if \(h\) was invertible then we
 could invert \(H\) by simply going backwards. Thus in principle if a
@@ -532,7 +532,7 @@ must be such a block). This block will yield a collision for \(h\).
 \end{proof}
 
 \subsection{Practical Random-ish
-Functions}\label{Practical-Random-ish-Func}
+Functions}\label{Practical-Random-ish-Functions}
 
 In practice we want much more than collision resistance from our hash
 functions. In particular we often would like them to be PRF's as well.
@@ -604,7 +604,8 @@ unbroken but it seems too close for comfort to those other systems.) The
 hash function Keccak was selected as the new standard
 \href{https://goo.gl/Bx1bu2}{SHA-3} in August of 2015.
 
-\subsection{The NSA and Hash Functions}\label{The-NSA-and-Hash-Function}
+\subsection{The NSA and Hash
+Functions}\label{The-NSA-and-Hash-Functions}
 
 The NSA is the world's largest employer of mathematicians, and is very
 heavily invested in cryptographic research. It seems quite possible that
@@ -639,7 +640,7 @@ suggests that the NSA (or at least the author) was not aware of the MD5
 collisions at the time.
 
 \subsection{Cryptographic vs Non-Cryptographic Hash
-Functions}\label{Cryptographic-vs-Non-Cryp}
+Functions}\label{Cryptographic-vs-Non-Cryptogra}
 
 Hash functions are of course also widely used for
 \emph{non-cryptographic} applications such as building hash tables and

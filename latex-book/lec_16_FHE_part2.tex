@@ -1,5 +1,5 @@
 \chapter{Fully homomorphic encryption: Construction \{chapfhetwo
-\}}\label{Fully-homomorphic-encrypt}
+\}}\label{Fully-homomorphic-encryption-C}
 
 In the last lecture we defined fully homomorphic encryption, and showed
 the ``bootstrapping theorem'' that transforms a partially homomorphic
@@ -32,7 +32,7 @@ homomorphically evaluated by \(\ensuremath{\mathit{EVAL}}\).
 \end{theorem}
 
 \section{Prelude: from vectors to
-matrices}\label{Prelude-from-vectors-to-m}
+matrices}\label{Prelude-from-vectors-to-matric}
 
 In the linear homomorphic scheme we saw in the last lecture, every
 ciphertext was a vector \(c\in\Z_q^n\) such that \(\langle c,s \rangle\)
@@ -62,7 +62,7 @@ is a matrix \(C\) such that the secret key is an \emph{eigenvector}
 discussion of how the encrypting party generates such a ciphertext,
 since this is in any case only a ``dream'' toy example.)
 
-\begin{pause} \label[pause]{You-should-make-sure-you-}
+\begin{pause} \label[pause]{You-should-make-sure-you-under}
 
 You should make sure you understand the \emph{types} of all the
 identifiers we refer to. In particular, above \(C\) is an \(n\times n\)
@@ -133,7 +133,7 @@ encryption to a \emph{public key} homomorphic encryption.
 \end{remark}
 
 \section{Real world partially homomorphic
-encryption}\label{Real-world-partially-homo}
+encryption}\label{Real-world-partially-homomorph}
 
 We now discuss how we can obtain an encryption in the real world where,
 as much as we'd like to ignore it, there are people who walk among us
@@ -167,7 +167,7 @@ and
 
 \[\ensuremath{\mathit{CC}}'s = C(b's+e')+e =bb's+ (b'e+Ce')\;. \label{eqhommult} \]
 
-\begin{pause} \label[pause]{I-recommend-you-pause-her}
+\begin{pause} \label[pause]{I-recommend-you-pause-here-and}
 
 I recommend you pause here and check for yourself whether it will be the
 case that if \(C+C'\) encrypts \(b+b'\) and
@@ -197,7 +197,8 @@ how small the entries of \(e'\), many of the entries of \(Ce'\) are
 quite likely to be of magnitude at least, say, \(q/2\) and so
 multiplying \(e'\) by \(C\) takes us ``beyond the edge of chaos''.
 
-\section{Noise management via encoding}\label{Noise-management-via-enco}
+\section{Noise management via
+encoding}\label{Noise-management-via-encoding}
 
 The problem we had above is that the entries of \(C\) are elements in
 \(\Z_q\) that can be very large, while we would have loved them to be
@@ -351,7 +352,7 @@ Vaikuntanathan showed how to relax the assumption to standard
 \end{itemize}
 \end{quote}
 
-\begin{pause} \label[pause]{Please-take-your-time-to-}
+\begin{pause} \label[pause]{Please-take-your-time-to-read-}
 
 Please take your time to read the definition of the scheme, and go over
 \cref{fheencfig} and \cref{fhedecfig} to make sure you understand it.
@@ -432,7 +433,7 @@ is an \((n\log q)\times (n \log q)\) matrix satisfying
 
 \end{lemma}
 
-\begin{proof} \label[proof]{For-starters-let-us-see-t}
+\begin{proof} \label[proof]{For-starters-let-us-see-that-t}
 
 For starters, let us see that the dimensions make sense: the encryption
 of \(b\) is computed by \(C=\widehat{(bQ^\top +D)}\) where \(D\) is an
@@ -501,7 +502,7 @@ Let \(C,C'\) be ciphertexts encrypting \(b,b'\) respectively with
 
 \end{lemma}
 
-\begin{proof} \label[proof]{This-follows-from-the-cal}
+\begin{proof} \label[proof]{This-follows-from-the-calculat}
 
 This follows from the calculations we have done before. As we've seen,
 \[\widehat{CQ^\top}C'v = \widehat{CQ^\top}(b'v+e') = b'\widehat{CQ^\top}Q^\top s + \widehat{CQ^\top}e' = b'(Cv)+ \widehat{CQ^\top}e' = bb'v + b'e+ \widehat{CQ^\top}e'\]
@@ -515,7 +516,8 @@ magnitude is bounded by the righthand side of \eqref{eqnoisebound}.
 
 \end{proof}
 
-\subsection{Shallow decryption circuit}\label{Shallow-decryption-circui}
+\subsection{Shallow decryption
+circuit}\label{Shallow-decryption-circuit}
 
 Recall that to plug in our homomorphic encryption scheme into the
 bootstrapping theorem, we needed to show that for every ciphertexts
@@ -556,7 +558,7 @@ we can use \(F\) with the vector \(c\) being the top row of
 \(\ensuremath{\mathit{CQ}}^\top s\). Note that if \(F\) has depth
 \(\ell\) then the function \(f()\) above has depth at most \(\ell+1\).)
 
-\begin{pause} \label[pause]{Please-make-sure-you-unde}
+\begin{pause} \label[pause]{Please-make-sure-you-understan}
 
 Please make sure you understand the above argument.
 
@@ -570,7 +572,7 @@ depth for a single addition of two numbers. However, the naive way to
 add two numbers in \(\Z_q\) (each represented by \(\log q\) bits) will
 have depth \(O(\log q)\) which is too much for us.
 
-\begin{pause} \label[pause]{Please-stop-here-and-see-}
+\begin{pause} \label[pause]{Please-stop-here-and-see-if-yo}
 
 Please stop here and see if you understand why the natural circuit to
 compute the addition of two numbers modulo \(q\) (represented as
@@ -602,7 +604,7 @@ For every \(c\in\Z_q^m\) there exists some function
 
 \end{lemma}
 
-\begin{proof} \label[proof]{For-every-number-xinZq-wr}
+\begin{proof} \label[proof]{For-every-number-xinZq-write-t}
 
 For every number \(x\in\Z_q\), write \(\tilde{x}\) to be the number that
 is obtained by writing \(x\) in the binary basis and setting all digits
@@ -643,7 +645,7 @@ This completes the proof that our scheme can fit into the bootstrapping
 theorem (i.e., of \cref{LWEFHEthm}), hence completing the description of
 the fully homomorphic encryption scheme.
 
-\begin{pause} \label[pause]{Now-would-be-a-good-point}
+\begin{pause} \label[pause]{Now-would-be-a-good-point-to-g}
 
 Now would be a good point to go back and see you understand how all the
 pieces fit together to obtain the complete construction of the fully

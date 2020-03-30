@@ -184,7 +184,7 @@ the server.
 \end{remark}
 
 \section{Defining fully homomorphic
-encryption}\label{Defining-fully-homomorphi}
+encryption}\label{Defining-fully-homomorphic-enc}
 
 We start by defining \emph{partially homomorphic} encryption. We focus
 on encryption for single bits. This is without loss of generality for
@@ -216,7 +216,7 @@ description size \(|f|\) at most \(poly(\ell)\) it holds that:
 
 \end{definition}
 
-\begin{pause} \label[pause]{Please-stop-and-verify-yo}
+\begin{pause} \label[pause]{Please-stop-and-verify-you-und}
 
 Please stop and verify you understand the definition. In particular you
 should understand why some bound on the length of the output of
@@ -267,7 +267,7 @@ circuit (say composed of
 known to be a universal basis).
 
 \subsection{Another application: fully homomorphic encryption for
-verifying computation}\label{Another-application-fully}
+verifying computation}\label{Another-application-fully-homo}
 
 The canonical application of fully homomorphic encryption is for a
 client to store encrypted data \(E(x)\) on a server, send a function
@@ -323,7 +323,7 @@ probability of detection can be amplified to \(1-negl(n)\) using
 appropriate repetition, see the paper for details.
 
 \section{Example: An XOR homomorphic
-encryption}\label{Example-An-XOR-homomorphi}
+encryption}\label{Example-An-XOR-homomorphic-enc}
 
 It turns out that Regev's LWE-based encryption LWEENC we saw before is
 homomorphic with respect to the class of linear (mod 2) functions. Let
@@ -362,7 +362,7 @@ perform operations such as addition and multiplication modulo \(q\)).
 This stronger conjecture also seems well supported by evidence and we
 will use it in future lectures.
 
-\begin{pause} \label[pause]{It-is-a-good-idea-for-you}
+\begin{pause} \label[pause]{It-is-a-good-idea-for-you-to-p}
 
 It is a good idea for you to pause here and try to show the equivalence
 on your own.
@@ -389,7 +389,7 @@ becomes stronger as \(q\) grows.)
 variant of the LWE-ENC described in \cref{lweencsec} turns out to be
 linearly homomorphic:
 
-\begin{quote} \label[quote]{LWE-ENC-encryptionKey-gen}
+\begin{quote} \label[quote]{LWE-ENC-encryptionKey-generati}
 
 \textbf{LWE-ENC' encryption:}
 
@@ -426,7 +426,7 @@ ciphertext \(c\) whose decryption \(b_1 \oplus \cdots \oplus b_\ell\).
 
 \end{lemma}
 
-\begin{pause} \label[pause]{This-claim-is-not-hard-to}
+\begin{pause} \label[pause]{This-claim-is-not-hard-to-prov}
 
 This claim is not hard to prove, but working it out for yourself can be
 a good way to get more familiarity with LWE-ENC' and the kind of
@@ -439,7 +439,7 @@ be an arbitrarily large polynomial in \(n\).
 
 \end{pause}
 
-\begin{proof}[Proof of \cref{parityhomlem}] \label[proof]{The-proof-is-quite-simple}
+\begin{proof}[Proof of \cref{parityhomlem}] \label[proof]{The-proof-is-quite-simple-ensu}
 
 The proof is quite simple. \(\ensuremath{\mathit{EVAL}}\) will simply
 add the ciphertexts as vectors in \(\Z_q\). If \(c = \sum c_i\) then
@@ -464,7 +464,7 @@ somewhat larger classes (e.g., quadratic functions by Boneh, Goh and
 Nissim) but not significantly so.
 
 \subsection{Abstraction: A trapdoor pseudorandom
-generator.}\label{Abstraction-A-trapdoor-ps}
+generator.}\label{Abstraction-A-trapdoor-pseudor}
 
 It is instructive to consider the following abstraction (which we'll use
 in the next lecture) of the above encryption scheme as a \emph{trapdoor
@@ -560,7 +560,7 @@ the following:
 
 \end{definition}
 
-\begin{pause} \label[pause]{This-is-not-an-easy-defin}
+\begin{pause} \label[pause]{This-is-not-an-easy-definition}
 
 This is not an easy definition to parse, but looking at \cref{TDPgenfig}
 can help. Make sure you understand why \(\ensuremath{\mathit{LWEENC}}\)
@@ -616,7 +616,7 @@ cryptographic primitives might end up making them less secure.
 \end{remark}
 
 \section{From linear homomorphism to full
-homomorphism}\label{From-linear-homomorphism-}
+homomorphism}\label{From-linear-homomorphism-to-fu}
 
 Gentry's breakthrough had two components:
 
@@ -652,7 +652,7 @@ encryption'' (based on a later work of Gentry, Sahai and Waters) that
 can fit that theorem in the next lecture.
 
 \section{Bootstrapping: Fully Homomorphic ``escape
-velocity''}\label{Bootstrapping-Fully-Homom}
+velocity''}\label{Bootstrapping-Fully-Homomorphi}
 
 
 \begin{marginfigure}
@@ -730,11 +730,11 @@ perform. We then continue this process by putting the \(i+1^{st}\) bag
 inside the \(i+2^{nd}\) bag and so on and so forth.
 
 \subsection{Proving the bootstrapping
-theorem}\label{Proving-the-bootstrapping}
+theorem}\label{Proving-the-bootstrapping-theo}
 
 We now turn to the formal proof of \cref{bootstrapthm}
 
-\begin{proof} \label[proof]{The-idea-behind-the-proof}
+\begin{proof} \label[proof]{The-idea-behind-the-proof-is-s}
 
 The idea behind the proof is simple but ingenious. Recall that the NAND
 gate \(b,b' \mapsto \neg(b \wedge b')\) is a universal gate that allows
@@ -799,7 +799,7 @@ prove.
 
 \end{proof}
 
-\begin{pause} \label[pause]{Dont-let-the-short-proof-}
+\begin{pause} \label[pause]{Dont-let-the-short-proof-fool-}
 
 Don't let the short proof fool you. This theorem is quite deep and
 subtle, and requires some reading and re-reading to truly ``get'' it.

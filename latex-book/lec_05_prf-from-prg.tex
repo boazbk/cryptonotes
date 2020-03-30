@@ -1,5 +1,5 @@
 \chapter{Pseudorandom functions from pseudorandom
-generators}\label{Pseudorandom-functions-fr}
+generators}\label{Pseudorandom-functions-from-ps}
 
 We have seen that PRF's (pseudorandom functions) are extremely useful,
 and we'll see some more applications of them later on. But are they
@@ -35,7 +35,7 @@ traverse right for every 1.}
 \label{PRFfromPRGfig}
 \end{figure}
 
-\begin{proof} \label[proof]{If-the-PRG-Conjecture-is-}
+\begin{proof} \label[proof]{If-the-PRG-Conjecture-is-true-}
 
 If the PRG Conjecture is true then in particular by the length extension
 theorem there exists a PRG \(G:\{0,1\}^n\rightarrow\{0,1\}^{2n}\) that
@@ -245,12 +245,12 @@ model. One can also obtain practical constructions of PRFs from
 \end{remark}
 
 \section{Securely encrypting many messages - chosen plaintext
-security}\label{Securely-encrypting-many-}
+security}\label{Securely-encrypting-many-messa}
 
 Let's get back to our favorite task of \emph{encryption}. We seemed to
 have nailed down the definition of secure encryption, or did we?
 
-\begin{pause} \label[pause]{Try-to-think-what-kind-of}
+\begin{pause} \label[pause]{Try-to-think-what-kind-of-secu}
 
 Try to think what kind of security guarantees are \emph{not} provided by
 the notion of computational secrecy we saw in \cref{compsecdef}
@@ -358,7 +358,7 @@ There is no CPA secure \((E,D)\) where \(E\) is \emph{deterministic}.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{The-proof-is-very-simple-}
+\begin{proof} \label[proof]{The-proof-is-very-simple-Eve-w}
 
 The proof is very simple: Eve will only use a single round of
 interacting with \(E\) where she will ask for the encryption \(c_1\) of
@@ -405,7 +405,7 @@ secure encryption scheme: \(E_s(m)=(r,f_s(r)\oplus m)\) where
 
 \end{theorem}
 
-\begin{proof} \label[proof]{I-leave-to-you-to-verify-}
+\begin{proof} \label[proof]{I-leave-to-you-to-verify-that-}
 
 I leave to you to verify that \(D_s(E_s(m))=m\). We need to show the CPA
 security property. As is usual in PRF-based constructions, we first show
@@ -450,7 +450,7 @@ hence contradicting the security property of the PRF.
 \end{proof}
 
 \section{Pseudorandom permutations / block
-ciphers}\label{Pseudorandom-permutations}
+ciphers}\label{Pseudorandom-permutations--blo}
 
 Now that we have pseudorandom functions, we might get greedy and want
 such functions with even more magical properties. This is where the
@@ -489,7 +489,7 @@ is known as the \emph{input length} or \emph{block length}. Often,
 
 \end{definition}
 
-\begin{pause} \label[pause]{At-first-look-crefPRPdef-}
+\begin{pause} \label[pause]{At-first-look-crefPRPdef-might}
 
 At first look \cref{PRPdef} might seem not to make sense, since on one
 hand it requires the map \(x \mapsto f_s(x)\) to be a permutation, but
@@ -531,7 +531,7 @@ collection.
 \label{feistelfig}
 \end{figure}
 
-\begin{proof} \label[proof]{creffeistelfig-illustrate}
+\begin{proof} \label[proof]{creffeistelfig-illustrates-the}
 
 \cref{feistelfig} illustrates the construction of a pseudorandom
 permutation from a pseudorandom function. The construction (known as the
@@ -858,7 +858,7 @@ reasons. ECB should not be used (except as a building block as part of a
 construction achieving stronger security).
 
 \section{Optional, Aside: Broadcast
-Encryption}\label{Optional-Aside-Broadcast-}
+Encryption}\label{Optional-Aside-Broadcast-Encry}
 
 At the beginning of this chapter, we saw the proof of \cref{prfthm},
 which states that the PRG Conjecture implies the existence of a secure

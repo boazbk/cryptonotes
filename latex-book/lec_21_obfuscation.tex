@@ -192,7 +192,7 @@ A tuple \((G,E,D,KeyDist)\) is a \emph{functional encryption scheme} if:
 
 \end{definition}
 
-\section{The software patch problem}\label{The-software-patch-proble}
+\section{The software patch problem}\label{The-software-patch-problem}
 
 It's not only exotic forms of encryption that we're missing. Here is
 another application that is not yet solved by the above tools. From time
@@ -260,7 +260,7 @@ following random variables are computationally indistinguishable:
 indistinguishable simply means that the probability of outputting \(1\)
 is equal in both cases up to a negligible additive factor.)
 
-\section{Applications of obfuscation}\label{Applications-of-obfuscati}
+\section{Applications of obfuscation}\label{Applications-of-obfuscation}
 
 The writings of Diffie and Hellman, James Ellis, and others that thought
 of public key encryption, shows that one of the first approaches they
@@ -289,7 +289,8 @@ outputs \texttt{error} otherwise. To solve the patch problem, for a
 given regular expression we can obfuscate the function that maps \(x\)
 to \(R(x)\).
 
-\section{Impossibility of obfuscation}\label{Impossibility-of-obfuscat}
+\section{Impossibility of
+obfuscation}\label{Impossibility-of-obfuscation}
 
 So far, we've learned that in cryptography no concept is too fantastic
 to be realized. Unfortunately, VBB secure obfuscation
@@ -304,7 +305,7 @@ compiler.
 \end{theorem}
 
 \subsection{Proof of impossibility of VBB
-obfuscation}\label{Proof-of-impossibility-of}
+obfuscation}\label{Proof-of-impossibility-of-VBB-}
 
 We will now show the proof of \cref{obfimpthm}. For starters, note that
 obfuscation is trivial for \emph{learnable} functions. That is, if \(F\)
@@ -348,7 +349,7 @@ There does not exist a strong VBB obfuscator.
 
 \end{lemma}
 
-\begin{proof} \label[proof]{Suppose-towards-a-contrad}
+\begin{proof} \label[proof]{Suppose-towards-a-contradictio}
 
 Suppose towards a contradiction that there exists a strong VBB
 obfuscator \(\mathcal{O}\). Let \(F_{\alpha,\beta}\) be defined as
@@ -407,7 +408,7 @@ obfuscating compiler.
 exists then we can transform any private key encryption into a fully
 homomorphic public key encryption.)
 
-\begin{proof} \label[proof]{Let-GEDensuremathmathitEV}
+\begin{proof} \label[proof]{Let-GEDensuremathmathitEVAL-be}
 
 Let \((G,E,D,\ensuremath{\mathit{EVAL}})\) be a fully homomorphic
 encryption scheme. For strings \(d,e,c,\alpha,\beta,\gamma\), we will
@@ -468,7 +469,7 @@ encryption scheme. \textgreater{} Now if neither case happens, then
 \(S\) does not receive any information about \(\gamma\), and hence the
 probability that its output is \(\gamma_1\) is at most \(1/2\).
 
-\begin{pause} \label[pause]{This-proof-is-simple-but-}
+\begin{pause} \label[pause]{This-proof-is-simple-but-deser}
 
 This proof is simple but deserves a second read. A crucial point here is
 to use FHE to allow the adversary to essentially ``feed \(C'\) to
@@ -479,7 +480,7 @@ access only.
 \end{pause}
 
 \section{Indistinguishability
-obfuscation}\label{Indistinguishability-obfu}
+obfuscation}\label{Indistinguishability-obfuscati}
 
 The proof can be generalized to give private key encryption for which
 the transformation to public key encryption would be insecure, and many

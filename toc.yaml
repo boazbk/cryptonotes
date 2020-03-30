@@ -458,7 +458,7 @@
 '19':
   filename: lec_18_SFE_part2.html
   href: ''
-  title: 'Multiparty secure computation: Construction using Fully Homomorphic Encryption'
+  title: 'Multiparty secure computation II: Construction using Fully Homomorphic Encryption'
 '19.1':
   filename: lec_18_SFE_part2.html
   href: constructing-2-party-honest-but-curious-computation-from-fully-homomorphic-encryption

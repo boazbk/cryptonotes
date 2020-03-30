@@ -1,32 +1,32 @@
--and--Recall-that-a-gener:
+-and--Recall-that-a-generator-:
   class: solution
   file: lec_10_public_key_intro
   number: 10.6.1
-A-little-bit-of-group-the:
+A-little-bit-of-group-theory:
   class: subsection
   file: lec_10_public_key_intro
   number: 10.3.3
-A-natural-approach-is-to-:
+A-natural-approach-is-to-simpl:
   class: pause
   file: lec_08_hash_functions_part2
   number: '8.1'
-A-quick-overview-of-mathe:
+A-quick-overview-of-mathematic:
   class: section
   file: lec_00_1_mathematical-background
   number: '0.1'
-A-world-without-Gaussian-:
+A-world-without-Gaussian-elimi:
   class: section
   file: lec_12_lattices
   number: '13.1'
-Abstraction-A-trapdoor-ps:
+Abstraction-A-trapdoor-pseudor:
   class: subsection
   file: lec_15_FHE
   number: 16.2.1
-Abstraction-trapdoor-perm:
+Abstraction-trapdoor-permutati:
   class: subsection
   file: lec_11_concrete_pkc
   number: 11.1.5
-Achieving-circuit-privacy:
+Achieving-circuit-privacy-in-a:
   class: section
   file: lec_18_SFE_part2
   number: '19.2'
@@ -34,7 +34,7 @@ Achieving-perfect-secrecy:
   class: subsection
   file: lec_01_introduction
   number: 1.5.1
-Additional-Group-Theory-E:
+Additional-Group-Theory-Exerci:
   class: section
   file: lec_10_public_key_intro
   number: '10.6'
@@ -46,7 +46,7 @@ Allowing-for-aborts:
   class: subsection
   file: lec_17_SFE
   number: 18.2.2
-Amplifying-success-probab:
+Amplifying-success-probability:
   class: subsection
   file: lec_01_introduction
   number: 1.6.1
@@ -66,31 +66,31 @@ Anonymous-routing:
   class: section
   file: lec_23_anonymous
   number: '24.2'
-Another-application-fully:
+Another-application-fully-homo:
   class: subsection
   file: lec_15_FHE
   number: 16.1.1
-Another-example-distribut:
+Another-example-distributed-an:
   class: subsection
   file: lec_17_SFE
   number: 18.3.1
-Appendix-An-alternative-p:
+Appendix-An-alternative-proof-:
   class: section
   file: lec_10_public_key_intro
   number: '10.5'
-Appendix-The-computationa:
+Appendix-The-computational-mod:
   class: subsection
   file: lec_02_computational-security
   number: 2.5.1
-Applications-for-zero-kno:
+Applications-for-zero-knowledg:
   class: section
   file: lec_14_zero_knowledge
   number: '15.1'
-Applications-of-obfuscati:
+Applications-of-obfuscation:
   class: section
   file: lec_21_obfuscation
   number: '22.6'
-As-in-the-proof-of-creflo:
+As-in-the-proof-of-creflongkey:
   class: proof
   file: lec_01_introduction
   number: 1.6.1
@@ -98,51 +98,51 @@ Aside-natural-proofs:
   class: section
   file: lec_04_pseudorandom-functions
   number: '4.5'
-At-first-look-crefPRPdef-:
+At-first-look-crefPRPdef-might:
   class: pause
   file: lec_05_prf-from-prg
   number: '5.2'
-At-this-point-you-might-w:
+At-this-point-you-might-want-t:
   class: pause
   file: lec_18_SFE_part2
   number: '19.1'
-Attacks-on-private-key-cr:
+Attacks-on-private-key-cryptos:
   class: subsection
   file: lec_09_priv_recap
   number: 9.0.1
-Attempt--Linear-Congruent:
+Attempt--Linear-Congruential-G:
   class: subsection
   file: lec_03_pseudorandom-generators
   number: 3.2.4
-Attempt--The-counter-gene:
+Attempt--The-counter-generator:
   class: subsection
   file: lec_03_pseudorandom-generators
   number: 3.2.1
-Attempt--The-linear-check:
+Attempt--The-linear-checksum--:
   class: subsection
   file: lec_03_pseudorandom-generators
   number: 3.2.2
-Authenticated-key-exchang:
+Authenticated-key-exchange:
   class: section
   file: lec_13_handshake
   number: '14.3'
-Basic-Key-Exchange-protoc:
+Basic-Key-Exchange-protocol:
   class: section
   file: lec_13_handshake
   number: '14.2'
-Before-looking-at-the-pro:
+Before-looking-at-the-proof-tr:
   class: pause
   file: lec_00_1_mathematical-background
   number: 0.3.1
-Before-reading-further-yo:
+Before-reading-further-you-mig:
   class: pause
   file: lec_02_computational-security
   number: '2'
-Before-reading-the-proof-:
+Before-reading-the-proof-try-t:
   class: pause
   file: lec_02_computational-security
   number: '2'
-Before-seeing-the-actual-:
+Before-seeing-the-actual-proof:
   class: pause
   file: lec_10_public_key_intro
   number: 10.3.5
@@ -150,7 +150,7 @@ Bells-Inequality:
   class: subsection
   file: lec_19_quantum
   number: 20.1.3
-Beyond-pairing-based-cryp:
+Beyond-pairing-based-cryptogra:
   class: section
   file: lec_22_obfuscation_part2
   number: '23.3'
@@ -162,19 +162,19 @@ Bitcoin-Architecture:
   class: subsection
   file: lec_07_hash_functions
   number: 7.1.2
-Bleichenbachers-attack-on:
+Bleichenbachers-attack-on-RSA-:
   class: subsection
   file: lec_13_handshake
   number: 14.3.1
-Bonus-features-of-zero-kn:
+Bonus-features-of-zero-knowled:
   class: subsection
   file: lec_14_zero_knowledge
   number: 15.5.1
-Bootstrapping-Fully-Homom:
+Bootstrapping-Fully-Homomorphi:
   class: section
   file: lec_15_FHE
   number: '16.4'
-Bottom-line-A-two-party-h:
+Bottom-line-A-two-party-honest:
   class: section
   file: lec_18_SFE_part2
   number: '19.3'
@@ -186,11 +186,11 @@ But-what-are-lattices:
   class: section
   file: lec_12_lattices
   number: '13.5'
-CCA-ROM-ENC-SchemeIngredi:
+CCA-ROM-ENC-SchemeIngredients-:
   class: quote
   file: lec_13_handshake
   number: '14.5'
-CCA-secure-public-key-enc:
+CCA-secure-public-key-encrypti:
   class: section
   file: lec_13_handshake
   number: '14.5'
@@ -230,7 +230,7 @@ Case-Study--RC:
   class: subsection
   file: lec_03_pseudorandom-generators
   number: 3.3.2
-Case-Study--Subset-Sum-Ge:
+Case-Study--Subset-Sum-Generat:
   class: subsection
   file: lec_03_pseudorandom-generators
   number: 3.3.1
@@ -246,27 +246,35 @@ Chinese-remainder-theorem:
   class: subsection
   file: lec_11_concrete_pkc
   number: 11.1.3
-Chosen-Ciphertext-Securit:
+Chosen-Ciphertext-Security:
   class: chapter
   file: lec_06_CCA
   number: '6'
-Chosen-ciphertext-attack-:
+Chosen-ciphertext-attack-as-im:
+  class: section
+  file: lec_06_CCA
+  number: '6.6'
+Chosen-ciphertext-attack-secur:
   class: section
   file: lec_13_handshake
   number: '14.4'
-Chosen-ciphertext-securit:
+Chosen-ciphertext-security:
+  class: subsection
+  file: lec_06_CCA
+  number: 6.2.2
+Chosen-ciphertext-security-for:
   class: chapter
   file: lec_12a_CCA_public_key
   number: '12'
-Client-to-client-key-exch:
+Client-to-client-key-exchange-:
   class: section
   file: lec_13_handshake
   number: '14.7'
-Collections-of-independen:
+Collections-of-independent-ran:
   class: subsection
   file: lec_00_1_mathematical-background
   number: 0.4.2
-Collision-Resistance-Hash:
+Collision-Resistance-Hash-Func:
   class: section
   file: lec_07_hash_functions
   number: '7.3'
@@ -274,23 +282,23 @@ Computational-Security:
   class: chapter
   file: lec_02_computational-security
   number: '2'
-Concentration-and-tail-bo:
+Concentration-and-tail-bounds:
   class: section
   file: lec_00_1_mathematical-background
   number: '0.5'
-Concrete-candidates-for-p:
+Concrete-candidates-for-public:
   class: chapter
   file: lec_11_concrete_pkc
   number: '11'
-Conjecture-Learning-with-:
+Conjecture-Learning-with-Error:
   class: quote
   file: lec_12_lattices
   number: '13.2'
-Constructing--party-hones:
+Constructing--party-honest-but:
   class: section
   file: lec_18_SFE_part2
   number: '19.1'
-Constructing-CCA-secure-e:
+Constructing-CCA-secure-encryp:
   class: section
   file: lec_06_CCA
   number: '6.3'
@@ -298,7 +306,7 @@ Correctness:
   class: subsection
   file: lec_16_FHE_part2
   number: 17.5.1
-Correlations-and-independ:
+Correlations-and-independence:
   class: section
   file: lec_00_1_mathematical-background
   number: '0.4'
@@ -306,11 +314,11 @@ Course-recap:
   class: chapter
   file: lec_25_course_recap
   number: '26'
-Cryptographic-vs-Non-Cryp:
+Cryptographic-vs-Non-Cryptogra:
   class: subsection
   file: lec_07_hash_functions
   number: 7.4.4
-Cryptographys-obsession-w:
+Cryptographys-obsession-with-a:
   class: section
   file: lec_13_handshake
   number: '14.1'
@@ -326,11 +334,11 @@ DSAsec:
   class: theorem
   file: lec_10_public_key_intro
   number: '10.13'
-Define-D-to-be-the-distri:
+Define-D-to-be-the-distributio:
   class: proof
   file: lec_12_lattices
   number: '13.4'
-Defining-and-constructing:
+Defining-and-constructing-zero:
   class: section
   file: lec_14_zero_knowledge
   number: '15.2'
@@ -338,19 +346,19 @@ Defining-encryptions:
   class: section
   file: lec_01_introduction
   number: '1.2'
-Defining-fully-homomorphi:
+Defining-fully-homomorphic-enc:
   class: section
   file: lec_15_FHE
   number: '16.1'
-Defining-secure-authentic:
+Defining-secure-authenticated-:
   class: subsection
   file: lec_13_handshake
   number: 14.5.1
-Defining-security-of-encr:
+Defining-security-of-encryptio:
   class: section
   file: lec_01_introduction
   number: '1.3'
-Defining-the-secrecy-requ:
+Defining-the-secrecy-requireme:
   class: section
   file: lec_01_introduction
   number: '1.4'
@@ -362,7 +370,7 @@ Deniable-encryption:
   class: section
   file: lec_21_obfuscation
   number: '22.2'
-Despite-it-being-a-chosen:
+Despite-it-being-a-chosen-plai:
   class: pause
   file: lec_10_public_key_intro
   number: '10.2'
@@ -370,7 +378,7 @@ Did-you-stop-and-think:
   class: pause
   file: lec_17_SFE
   number: '18.5'
-Diffie-Hellman-Encryption:
+Diffie-Hellman-Encryption-aka-:
   class: subsection
   file: lec_10_public_key_intro
   number: 10.3.1
@@ -378,15 +386,15 @@ Digital-Signatures:
   class: subsection
   file: lec_10_public_key_intro
   number: 10.3.4
-Digital-signatures-from-t:
+Digital-signatures-from-trapdo:
   class: subsection
   file: lec_11_concrete_pkc
   number: 11.1.7
-Distributions-over-string:
+Distributions-over-strings:
   class: subsection
   file: lec_00_1_mathematical-background
   number: 0.3.2
-Dont-let-the-short-proof-:
+Dont-let-the-short-proof-fool-:
   class: pause
   file: lec_15_FHE
   number: 16.4.2
@@ -398,27 +406,27 @@ Entropy-extraction:
   class: section
   file: lec_08_hash_functions_part2
   number: '8.4'
-Establishing-secure-conne:
+Establishing-secure-connection:
   class: chapter
   file: lec_13_handshake
   number: '14'
-Ethical-moral-and-policy-:
+Ethical-moral-and-policy-dimen:
   class: chapter
   file: lec_24_policy
   number: '25'
-Example-An-XOR-homomorphi:
+Example-An-XOR-homomorphic-enc:
   class: section
   file: lec_15_FHE
   number: '16.2'
-Example-Second-price-auct:
+Example-Second-price-auction-u:
   class: section
   file: lec_17_SFE
   number: '18.3'
-Example-The-Wired-Equival:
+Example-The-Wired-Equivalence-:
   class: subsection
   file: lec_06_CCA
   number: 6.2.1
-Example-The-existence-of-:
+Example-The-existence-of-infin:
   class: subsection
   file: lec_00_1_mathematical-background
   number: 0.2.1
@@ -442,47 +450,47 @@ Fields:
   class: subsection
   file: lec_11_concrete_pkc
   number: 11.1.2
-Finding-periods-of-a-func:
+Finding-periods-of-a-function-:
   class: section
   file: lec_20_quantum_part2
   number: '21.2'
-First-attempt-a-slightly-:
+First-attempt-a-slightly-too-i:
   class: subsection
   file: lec_17_SFE
   number: 18.2.1
-For-CPA-security-we-need-:
+For-CPA-security-we-need-to-pr:
   class: proof
   file: lec_10_public_key_intro
   number: 10.3.1
-For-every-iinldotsell-we-:
+For-every-iinldotsell-we-defin:
   class: proof
   file: lec_02_computational-security
   number: '2.4'
-For-every-number-xinZq-wr:
+For-every-number-xinZq-write-t:
   class: proof
   file: lec_16_FHE_part2
   number: 17.5.4
-For-every-x-the-variable-:
+For-every-x-the-variable-Acup-:
   class: proof
   file: lec_00_1_mathematical-background
   number: 0.3.1
-For-starters-let-us-see-t:
+For-starters-let-us-see-that-t:
   class: proof
   file: lec_16_FHE_part2
   number: 17.5.1
-For-two-binary-strings-a-:
+For-two-binary-strings-a-and-b:
   class: proof
   file: lec_01_introduction
   number: 1.5.1
-Formally-defining-secure-:
+Formally-defining-secure-multi:
   class: section
   file: lec_17_SFE
   number: '18.2'
-Forward-and-backward-secr:
+Forward-and-backward-secrecy:
   class: subsection
   file: lec_08_hash_functions_part2
   number: 8.4.1
-From-Proof-of-Work-to-Con:
+From-Proof-of-Work-to-Consensu:
   class: subsection
   file: lec_07_hash_functions
   number: 7.2.1
@@ -490,19 +498,19 @@ From-Simon-to-Shor:
   class: section
   file: lec_20_quantum_part2
   number: '21.3'
-From-insecurity-to-securi:
+From-insecurity-to-security:
   class: subsection
   file: lec_03_pseudorandom-generators
   number: 3.2.3
-From-linear-homomorphism-:
+From-linear-homomorphism-to-fu:
   class: section
   file: lec_15_FHE
   number: '16.3'
-From-order-finding-to-fac:
+From-order-finding-to-factorin:
   class: section
   file: lec_20_quantum_part2
   number: '21.1'
-Fully-homomorphic-encrypt:
+Fully-homomorphic-encryption-C:
   class: chapter
   file: lec_16_FHE_part2
   number: '17'
@@ -510,15 +518,15 @@ Functional-encryption:
   class: section
   file: lec_21_obfuscation
   number: '22.3'
-Generating-randomness-in-:
+Generating-randomness-in-actua:
   class: subsection
   file: lec_01_introduction
   number: 1.3.1
-Give-an-example-of-a-pair:
+Give-an-example-of-a-pair-of-f:
   class: exercise
   file: lec_00_1_mathematical-background
   number: '0.3'
-Give-an-example-of-random:
+Give-an-example-of-random-vari:
   class: exercise
   file: lec_00_1_mathematical-background
   number: '0.7'
@@ -530,19 +538,19 @@ Grovers-Algorithm:
   class: section
   file: lec_19_quantum
   number: '20.2'
-Handling-probabilistic-st:
+Handling-probabilistic-strateg:
   class: subsection
   file: lec_17_SFE
   number: 18.5.1
-Hardcore-bits-and-securit:
+Hardcore-bits-and-security-wit:
   class: section
   file: lec_11_concrete_pkc
   number: '11.2'
-Hash-Functions-and-Random:
+Hash-Functions-and-Random-Orac:
   class: chapter
   file: lec_07_hash_functions
   number: '7'
-Heartbleed-and-logjam-att:
+Heartbleed-and-logjam-attacks:
   class: section
   file: lec_13_handshake
   number: '14.8'
@@ -550,59 +558,59 @@ Homomorphism:
   class: subsection
   file: lec_16_FHE_part2
   number: 17.5.3
-How-do-pseudorandom-funct:
+How-do-pseudorandom-functions-:
   class: subsection
   file: lec_04_pseudorandom-functions
   number: 4.1.1
-How-to-get-IBE-from-pairi:
+How-to-get-IBE-from-pairing-ba:
   class: section
   file: lec_22_obfuscation_part2
   number: '23.2'
-I-leave-to-you-to-verify-:
+I-leave-to-you-to-verify-that-:
   class: proof
   file: lec_05_prf-from-prg
   number: '5.1'
-I-recommend-you-pause-her:
+I-recommend-you-pause-here-and:
   class: pause
   file: lec_16_FHE_part2
   number: '17.2'
-Ideal-vsReal-Model-Securi:
+Ideal-vsReal-Model-Security:
   class: section
   file: lec_17_SFE
   number: '18.1'
-If-the-PRG-Conjecture-is-:
+If-the-PRG-Conjecture-is-true-:
   class: proof
   file: lec_05_prf-from-prg
   number: '5'
-If-you-didnt-stop-before-:
+If-you-didnt-stop-before-then-:
   class: pause
   file: lec_06_CCA
   number: '6.3'
-If-you-have-a-CPA-secure-:
+If-you-have-a-CPA-secure-publi:
   class: pause
   file: lec_12_lattices
   number: '13.1'
-If-you-have-not-seen-disc:
+If-you-have-not-seen-discrete-:
   class: pause
   file: lec_00_1_mathematical-background
   number: 0.3.1
-Impossibility-of-obfuscat:
+Impossibility-of-obfuscation:
   class: section
   file: lec_21_obfuscation
   number: '22.7'
-Indeed-it-is-an-excellent:
+Indeed-it-is-an-excellent-exer:
   class: pause
   file: lec_07_hash_functions
   number: '7.2'
-Independent-random-variab:
+Independent-random-variables:
   class: subsection
   file: lec_00_1_mathematical-background
   number: 0.4.1
-Indistinguishability-obfu:
+Indistinguishability-obfuscati:
   class: section
   file: lec_21_obfuscation
   number: '22.8'
-Input-length-extension-fo:
+Input-length-extension-for-MAC:
   class: section
   file: lec_04_pseudorandom-functions
   number: '4.4'
@@ -610,19 +618,19 @@ Introduction:
   class: chapter
   file: lec_01_introduction
   number: '1'
-It-is-a-good-idea-for-you:
+It-is-a-good-idea-for-you-to-p:
   class: pause
   file: lec_15_FHE
   number: '16.2'
-It-is-an-excellent-idea-f:
+It-is-an-excellent-idea-for-yo:
   class: pause
   file: lec_17_SFE
   number: 18.2.2
-Juniper-backdoor-case-and:
+Juniper-backdoor-case-and-the-:
   class: subsection
   file: lec_24_policy
   number: 25.2.3
-Key-derivation-protecting:
+Key-derivation-protecting-pass:
   class: chapter
   file: lec_08_hash_functions_part2
   number: '8'
@@ -630,11 +638,11 @@ Keys-from-passwords:
   class: section
   file: lec_08_hash_functions_part2
   number: '8.1'
-LWE-ENC-encryptionKey-gen:
+LWE-ENC-encryptionKey-generati:
   class: quote
   file: lec_15_FHE
   number: '16.2'
-LWE-based-encryption-LWE-:
+LWE-based-encryption-LWE-ENC--:
   class: quote
   file: lec_12_lattices
   number: '13.4'
@@ -662,63 +670,63 @@ LWEsearchtodecthm:
   class: theorem
   file: lec_12_lattices
   number: '13.2'
-Lattice-based-cryptograph:
+Lattice-based-cryptography:
   class: chapter
   file: lec_12_lattices
   number: '13'
-Let-ED-be-a-valid-encrypt:
+Let-ED-be-a-valid-encryption-s:
   class: proof
   file: lec_01_introduction
   number: '1.6'
-Let-Fcdotcdot-be-a-secure:
+Let-Fcdotcdot-be-a-secure-pseu:
   class: proof
   file: lec_04_pseudorandom-functions
   number: '4.3'
-Let-GEDensuremathmathitEV:
+Let-GEDensuremathmathitEVAL-be:
   class: proof
   file: lec_21_obfuscation
   number: 22.7.1
-Let-Nn-We-need-to-show-th:
+Let-Nn-We-need-to-show-that-th:
   class: proof
   file: lec_10_public_key_intro
   number: '10.5'
-Let-V-be-an-arbitrary-eff:
+Let-V-be-an-arbitrary-efficien:
   class: proof
   file: lec_14_zero_knowledge
   number: '15.3'
-Let-abin-R-and-let-A---x-:
+Let-abin-R-and-let-A---x-in-k-:
   class: proof
   file: lec_00_1_mathematical-background
   number: 0.4.1
-Let-ensuremathmathitHAD-b:
+Let-ensuremathmathitHAD-be-the:
   class: proof
   file: lec_20_quantum_part2
   number: '21.2'
-Let-epsilonTellm-be-as-in:
+Let-epsilonTellm-be-as-in-the-:
   class: proof
   file: lec_03_pseudorandom-generators
   number: '3.4'
-Let-h-be-chosen-as-above-:
+Let-h-be-chosen-as-above-and-l:
   class: proof
   file: lec_08_hash_functions_part2
   number: '8.4'
-Let-mu--EX-and-define-YX-:
+Let-mu--EX-and-define-YX-geq-k:
   class: proof
   file: lec_00_1_mathematical-background
   number: '0.5'
-Let-n-be-a-number-and-let:
+Let-n-be-a-number-and-let-p-be:
   class: proof
   file: lec_00_1_mathematical-background
   number: 0.2.1
-Let-np-cdots-pk---and-sup:
+Let-np-cdots-pk---and-suppose-:
   class: proof
   file: lec_00_1_mathematical-background
   number: 0.2.1
-Let-ttn-We-are-given-a-ci:
+Let-ttn-We-are-given-a-cipher-:
   class: proof
   file: lec_02_computational-security
   number: '2.5'
-Let-us-think-of-H-in-the-:
+Let-us-think-of-H-in-the-lazy-:
   class: proof
   file: lec_07_hash_functions
   number: '7.3'
@@ -742,11 +750,11 @@ MPCthm:
   class: theorem
   file: lec_17_SFE
   number: '18.3'
-Malicious-to-honest-but-c:
+Malicious-to-honest-but-curiou:
   class: section
   file: lec_17_SFE
   number: '18.5'
-Markovs-Inequality-is-act:
+Markovs-Inequality-is-actually:
   class: pause
   file: lec_00_1_mathematical-background
   number: '0.5'
@@ -758,11 +766,11 @@ Mathematical-Proofs:
   class: section
   file: lec_00_1_mathematical-background
   number: '0.2'
-Merkle-trees-and-verifyin:
+Merkle-trees-and-verifying-sto:
   class: section
   file: lec_08_hash_functions_part2
   number: '8.2'
-Message-Authentication-Co:
+Message-Authentication-Codes:
   class: section
   file: lec_04_pseudorandom-functions
   number: '4.2'
@@ -770,39 +778,35 @@ More-applications:
   class: subsection
   file: lec_14_zero_knowledge
   number: 15.1.3
-More-general-sample-space:
+More-general-sample-spaces:
   class: subsection
   file: lec_00_1_mathematical-background
   number: 0.3.3
-More-obfuscation-exotic-e:
+More-obfuscation-exotic-encryp:
   class: chapter
   file: lec_22_obfuscation_part2
   number: '23'
-Multiparty-secure-computa:
-  class: chapter
-  file: lec_18_SFE_part2
-  number: '19'
 Necessity-of-long-keys:
   class: section
   file: lec_01_introduction
   number: '1.6'
-Noise-management-via-enco:
+Noise-management-via-encoding:
   class: section
   file: lec_16_FHE_part2
   number: '17.3'
-Non-constructive-existenc:
+Non-constructive-existence-of-:
   class: section
   file: lec_03_pseudorandom-generators
   number: '3.4'
-Note-The-proof-here-refer:
+Note-The-proof-here-refers-to-:
   class: proof
   file: lec_13_handshake
   number: '14.5'
-Now-would-be-a-fantastic-:
+Now-would-be-a-fantastic-time-:
   class: pause
   file: lec_04_pseudorandom-functions
   number: '4'
-Now-would-be-a-good-point:
+Now-would-be-a-good-point-to-g:
   class: pause
   file: lec_16_FHE_part2
   number: 17.5.4
@@ -810,19 +814,19 @@ Nuclear-disarmament:
   class: subsection
   file: lec_14_zero_knowledge
   number: 15.1.1
-On-input-yinn-consider-th:
+On-input-yinn-consider-the-alg:
   class: proof
   file: lec_03_pseudorandom-generators
   number: '3'
-Once-again-this-proof-is-:
+Once-again-this-proof-is-somew:
   class: pause
   file: lec_11_concrete_pkc
   number: 11.1.7
-One-time-passwords-egGoog:
+One-time-passwords-egGoogle-Au:
   class: section
   file: lec_04_pseudorandom-functions
   number: '4.1'
-Optional-Aside-Broadcast-:
+Optional-Aside-Broadcast-Encry:
   class: section
   file: lec_05_prf-from-prg
   number: '5.4'
@@ -830,7 +834,7 @@ Our-first-conjecture:
   class: section
   file: lec_02_computational-security
   number: '2.2'
-Our-scheme-is-the-one-tim:
+Our-scheme-is-the-one-time-pad:
   class: proofidea
   file: lec_01_introduction
   number: 1.5.1
@@ -858,15 +862,15 @@ PRPfromPRF:
   class: theorem
   file: lec_05_prf-from-prg
   number: '5.7'
-Padding-chopping-and-thei:
+Padding-chopping-and-their-pit:
   class: section
   file: lec_06_CCA
   number: '6.5'
-Parallel-repetition-and-t:
+Parallel-repetition-and-turnin:
   class: section
   file: lec_14_zero_knowledge
   number: '15.5'
-Password-authenticated-ke:
+Password-authenticated-key-exc:
   class: section
   file: lec_13_handshake
   number: '14.6'
@@ -874,67 +878,71 @@ Perfect-Secrecy:
   class: section
   file: lec_01_introduction
   number: '1.5'
-Physically-realizing-quan:
+Physically-realizing-quantum-c:
   class: subsection
   file: lec_19_quantum
   number: 20.1.1
-Please-make-sure-you-unde:
+Please-make-sure-you-understan:
   class: pause
   file: lec_16_FHE_part2
   number: 17.5.4
-Please-re-read-the-previo:
+Please-re-read-the-previous-pa:
   class: pause
   file: lec_07_hash_functions
   number: 7.1.2
-Please-skim-Boneh-Shoup-C:
+Please-skim-Boneh-Shoup-Chapte:
   class: pause
   file: lec_13_handshake
   number: '14.6'
-Please-stop-and-make-sure:
+Please-stop-and-make-sure-you-:
   class: pause
   file: lec_14_zero_knowledge
   number: '15.2'
-Please-stop-and-play-an-o:
+Please-stop-and-play-an-ominou:
   class: pause
   file: lec_06_CCA
   number: '6.2'
-Please-stop-and-verify-yo:
+Please-stop-and-verify-you-und:
   class: pause
   file: lec_15_FHE
   number: '16.1'
-Please-stop-here-and-make:
+Please-stop-here-and-make-sure:
   class: pause
   file: lec_12_lattices
   number: '13.1'
-Please-stop-here-and-see-:
+Please-stop-here-and-see-if-yo:
   class: pause
   file: lec_16_FHE_part2
   number: 17.5.4
-Please-stop-here-and-try-:
+Please-stop-here-and-try-to-pr:
   class: pause
   file: lec_18_SFE_part2
   number: '19.1'
-Please-take-your-time-to-:
+Please-take-your-time-to-re-re:
+  class: pause
+  file: lec_10_public_key_intro
+  number: 10.3.1
+Please-take-your-time-to-read-:
   class: pause
   file: lec_16_FHE_part2
   number: '17.4'
-Please-verify-that-you-un:
+Please-verify-that-you-underst:
   class: pause
   file: lec_11_concrete_pkc
   number: 11.1.6
-Practical-Constructions-o:
+Practical-Constructions-of-Cry:
   class: section
   file: lec_07_hash_functions
   number: '7.4'
-Practical-Random-ish-Func:
+Practical-Random-ish-Functions:
   class: subsection
   file: lec_07_hash_functions
   number: 7.4.1
-Prelude-Computational-Ind:
+Prelude-Computational-Indistin:
   class: section
   file: lec_02_computational-security
   number: '2.4'
-Prelude-from-vectors-to-m:
+Prelude-from-vectors-to-matric:
   class: section
   file: lec_16_FHE_part2
   number: '17.1'
@@ -950,7 +958,7 @@ Private-key-crypto-recap:
   class: section
   file: lec_10_public_key_intro
   number: '10.1'
-Probability-and-Sample-sp:
+Probability-and-Sample-spaces:
   class: section
   file: lec_00_1_mathematical-background
   number: '0.3'
@@ -958,7 +966,7 @@ Proof-by-reduction:
   class: subsection
   file: lec_02_computational-security
   number: 2.0.1
-Proof-of-impossibility-of:
+Proof-of-impossibility-of-VBB-:
   class: subsection
   file: lec_21_obfuscation
   number: 22.7.1
@@ -966,15 +974,15 @@ Proofs-of-Retrievability:
   class: section
   file: lec_08_hash_functions_part2
   number: '8.3'
-Prove-that-for-every-fini:
+Prove-that-for-every-finite-ST:
   class: exercise
   file: lec_00_1_mathematical-background
   number: '0.1'
-Proving-the-bootstrapping:
+Proving-the-bootstrapping-theo:
   class: subsection
   file: lec_15_FHE
   number: 16.4.2
-Proving-the-fundamental-t:
+Proving-the-fundamental-theore:
   class: section
   file: lec_17_SFE
   number: '18.4'
@@ -982,11 +990,11 @@ Pseudorandom-functions:
   class: chapter
   file: lec_04_pseudorandom-functions
   number: '4'
-Pseudorandom-functions-fr:
+Pseudorandom-functions-from-ps:
   class: chapter
   file: lec_05_prf-from-prg
   number: '5'
-Pseudorandom-permutations:
+Pseudorandom-permutations--blo:
   class: section
   file: lec_05_prf-from-prg
   number: '5.2'
@@ -994,7 +1002,7 @@ Pseudorandomness:
   class: chapter
   file: lec_03_pseudorandom-generators
   number: '3'
-Public-Key-Encryptions-De:
+Public-Key-Encryptions-Definit:
   class: section
   file: lec_10_public_key_intro
   number: '10.2'
@@ -1002,11 +1010,11 @@ Public-key-cryptography:
   class: chapter
   file: lec_10_public_key_intro
   number: '10'
-Public-key-encryption-fro:
+Public-key-encryption-from-tra:
   class: subsection
   file: lec_11_concrete_pkc
   number: 11.1.6
-Putting-everything-togeth:
+Putting-everything-together---:
   class: section
   file: lec_10_public_key_intro
   number: '10.4'
@@ -1018,15 +1026,15 @@ Quantum-:
   class: section
   file: lec_19_quantum
   number: '20.1'
-Quantum-Fourier-Transform:
+Quantum-Fourier-Transform-over:
   class: subsection
   file: lec_20_quantum_part2
   number: 21.3.3
-Quantum-computing-and-com:
+Quantum-computing-and-computat:
   class: subsection
   file: lec_19_quantum
   number: 20.0.1
-Quantum-computing-and-cry:
+Quantum-computing-and-cryptogr:
   class: chapter
   file: lec_20_quantum_part2
   number: '21'
@@ -1034,7 +1042,7 @@ Quantum-cryptography:
   class: subsection
   file: lec_20_quantum_part2
   number: 21.5.1
-Quick-linear-algebra-reca:
+Quick-linear-algebra-recap:
   class: subsection
   file: lec_12_lattices
   number: 13.0.1
@@ -1058,7 +1066,7 @@ Random-variables:
   class: subsection
   file: lec_00_1_mathematical-background
   number: 0.3.1
-Rational-approximation-of:
+Rational-approximation-of-real:
   class: section
   file: lec_20_quantum_part2
   number: '21.5'
@@ -1066,15 +1074,15 @@ Reading-prior-to-lecture:
   class: section
   file: lec_24_policy
   number: '25.1'
-Real-world-partially-homo:
+Real-world-partially-homomorph:
   class: section
   file: lec_16_FHE_part2
   number: '17.2'
-Really-please-stop-and-th:
+Really-please-stop-and-think-w:
   class: pause
   file: lec_17_SFE
   number: '18.5'
-Recall-that-the-least-com:
+Recall-that-the-least-common-m:
   class: proof
   file: lec_10_public_key_intro
   number: 10.3.2
@@ -1090,7 +1098,7 @@ Sampling-random-primes:
   class: subsection
   file: lec_10_public_key_intro
   number: 10.3.2
-Scheme-LwoE-ENC-Public-ke:
+Scheme-LwoE-ENC-Public-key-enc:
   class: quote
   file: lec_12_lattices
   number: '13.1'
@@ -1098,19 +1106,19 @@ Search-to-decision:
   class: section
   file: lec_12_lattices
   number: '13.3'
-Securely-encrypting-many-:
+Securely-encrypting-many-messa:
   class: section
   file: lec_05_prf-from-prg
   number: '5.1'
-Security-in-the-real-worl:
+Security-in-the-real-world:
   class: section
   file: lec_12_lattices
   number: '13.2'
-Shallow-decryption-circui:
+Shallow-decryption-circuit:
   class: subsection
   file: lec_16_FHE_part2
   number: 17.5.4
-Shors-Order-Finding-Algor:
+Shors-Order-Finding-Algorithm:
   class: section
   file: lec_20_quantum_part2
   number: '21.4'
@@ -1122,7 +1130,7 @@ Simplified-GCM-encryption:
   class: section
   file: lec_06_CCA
   number: '6.4'
-Slower-weaker-less-secure:
+Slower-weaker-less-securer:
   class: section
   file: lec_22_obfuscation_part2
   number: '23.1'
@@ -1158,7 +1166,7 @@ Some-number-theory:
   class: section
   file: lec_11_concrete_pkc
   number: '11.1'
-Some-things-we-did-not-co:
+Some-things-we-did-not-cover:
   class: section
   file: lec_25_course_recap
   number: '26.1'
@@ -1166,7 +1174,7 @@ Steganography:
   class: section
   file: lec_23_anonymous
   number: '24.1'
-Stop-here-and-try-to-thin:
+Stop-here-and-try-to-think-if-:
   class: pause
   file: lec_07_hash_functions
   number: '7.2'
@@ -1178,47 +1186,47 @@ Successful-examples:
   class: section
   file: lec_03_pseudorandom-generators
   number: '3.3'
-Suppose-for-the-sake-of-c:
+Suppose-for-the-sake-of-contra:
   class: proof
   file: lec_06_CCA
   number: '6.3'
-Suppose-that-a-in-mathbbG:
+Suppose-that-a-in-mathbbG-and-:
   class: solution
   file: lec_10_public_key_intro
   number: 10.6.1
-Suppose-that-ca--c-for-al:
+Suppose-that-ca--c-for-all-c-i:
   class: solution
   file: lec_10_public_key_intro
   number: 10.6.1
-Suppose-that-ensuremathma:
+Suppose-that-ensuremathmathitR:
   class: proof
   file: lec_11_concrete_pkc
   number: 11.1.4
-Suppose-that-there-exists:
+Suppose-that-there-exists-a-T-:
   class: proof
   file: lec_02_computational-security
   number: '2.4'
-Suppose-that-there-is-suc:
+Suppose-that-there-is-such-an-:
   class: proof
   file: lec_11_concrete_pkc
   number: 11.1.3
-Suppose-that-we-had-a-dec:
+Suppose-that-we-had-a-decision:
   class: proof
   file: lec_12_lattices
   number: '13.3'
-Suppose-that-we-recieve-s:
+Suppose-that-we-recieve-some-e:
   class: solution
   file: lec_10_public_key_intro
   number: 10.6.1
-Suppose-that-we-toss-thre:
+Suppose-that-we-toss-three-ind:
   class: exercise
   file: lec_00_1_mathematical-background
   number: '0.6'
-Suppose-towards-a-contrad:
+Suppose-towards-a-contradictio:
   class: proof
   file: lec_21_obfuscation
   number: 22.7.1
-Suppose-towards-the-sake-:
+Suppose-towards-the-sake-of-co:
   class: proof
   file: lec_11_concrete_pkc
   number: 11.1.7
@@ -1262,23 +1270,23 @@ The-Currency-Problem:
   class: subsection
   file: lec_07_hash_functions
   number: 7.1.1
-The-Digital-Signature-Alg:
+The-Digital-Signature-Algorith:
   class: subsection
   file: lec_10_public_key_intro
   number: 10.3.5
-The-Fourier-transform-ove:
+The-Fourier-transform-over-Zm:
   class: subsection
   file: lec_20_quantum_part2
   number: 21.3.1
-The-Length-Extension-Theo:
+The-Length-Extension-Theorem:
   class: section
   file: lec_02_computational-security
   number: '2.5'
-The-NSA-and-Hash-Function:
+The-NSA-and-Hash-Functions:
   class: subsection
   file: lec_07_hash_functions
   number: 7.4.3
-The-RSA-and-Rabin-functio:
+The-RSA-and-Rabin-functions:
   class: subsection
   file: lec_11_concrete_pkc
   number: 11.1.4
@@ -1286,11 +1294,11 @@ The-Snowden-revelations:
   class: subsection
   file: lec_24_policy
   number: 25.2.1
-The-algorithm-is-very-sim:
+The-algorithm-is-very-simple-a:
   class: proof
   file: lec_11_concrete_pkc
   number: 11.1.1
-The-argument-above-is-qui:
+The-argument-above-is-quite-si:
   class: pause
   file: lec_01_introduction
   number: 1.5.1
@@ -1298,15 +1306,15 @@ The-asymptotic-approach:
   class: section
   file: lec_02_computational-security
   number: '2.1'
-The-certificate-pi-consis:
+The-certificate-pi-consists-of:
   class: proof
   file: lec_08_hash_functions_part2
   number: '8.2'
-The-compiler-approach-for:
+The-compiler-approach-for-auth:
   class: subsection
   file: lec_13_handshake
   number: 14.5.2
-The-construction-is-actua:
+The-construction-is-actually-q:
   class: proof
   file: lec_03_pseudorandom-generators
   number: '3.1'
@@ -1314,15 +1322,19 @@ The-general-case:
   class: subsection
   file: lec_20_quantum_part2
   number: 21.4.2
-The-idea-behind-the-proof:
+The-idea-behind-the-proof-is-i:
+  class: proofidea
+  file: lec_01_introduction
+  number: '1.6'
+The-idea-behind-the-proof-is-s:
   class: proof
   file: lec_15_FHE
   number: 16.4.2
-The-intuition-behind-the-:
+The-intuition-behind-the-proof:
   class: proof
   file: lec_07_hash_functions
   number: '7.4'
-The-notation-in-the-lemma:
+The-notation-in-the-lemmas-sta:
   class: pause
   file: lec_00_1_mathematical-background
   number: 0.4.1
@@ -1330,115 +1342,115 @@ The-obfuscation-paradigm:
   class: subsection
   file: lec_10_public_key_intro
   number: 10.2.1
-The-only-if-direction-is-:
+The-only-if-direction-is-obvio:
   class: proof
   file: lec_01_introduction
   number: '1.5'
-The-orders-of--are------r:
+The-orders-of--are------respec:
   class: solution
   file: lec_10_public_key_intro
   number: 10.6.1
-The-proof-above-is-rather:
+The-proof-above-is-rather-sket:
   class: pause
   file: lec_06_CCA
   number: 6.2.2
-The-proof-follows-from-Ma:
+The-proof-follows-from-Markovs:
   class: proof
   file: lec_00_1_mathematical-background
   number: 0.5.1
-The-proof-is-quite-simple:
+The-proof-is-quite-simple-ensu:
   class: proof
   file: lec_15_FHE
   number: '16.2'
-The-proof-is-rather-simil:
+The-proof-is-rather-similar-to:
   class: proof
   file: lec_02_computational-security
   number: '2'
-The-proof-is-very-simple-:
+The-proof-is-very-simple-Eve-w:
   class: proof
   file: lec_05_prf-from-prg
   number: '5.1'
-The-proof-of-crefLWEENCth:
+The-proof-of-crefLWEENCthm-is-:
   class: pause
   file: lec_12_lattices
   number: '13.4'
-The-proof-of-creftwotoman:
+The-proof-of-creftwotomanythm-:
   class: pause
   file: lec_01_introduction
   number: '1.5'
-The-proof-of-this-theorem:
+The-proof-of-this-theorem-is-v:
   class: proof
   file: lec_03_pseudorandom-generators
   number: '3'
-The-proof-uses-an-extreme:
+The-proof-uses-an-extremely-us:
   class: proofidea
   file: lec_03_pseudorandom-generators
   number: '3.4'
-The-scheme-LWEENC-is-also:
+The-scheme-LWEENC-is-also-desc:
   class: pause
   file: lec_12_lattices
   number: '13.4'
-The-software-patch-proble:
+The-software-patch-problem:
   class: section
   file: lec_21_obfuscation
   number: '22.4'
-This-claim-is-not-hard-to:
+This-claim-is-not-hard-to-prov:
   class: pause
   file: lec_15_FHE
   number: '16.2'
-This-definition-as-is-oft:
+This-definition-as-is-often-th:
   class: pause
   file: lec_03_pseudorandom-generators
   number: '3'
-This-follows-because-Ekxx:
+This-follows-because-Ekxx-and-:
   class: proof
   file: lec_01_introduction
   number: '1.4'
-This-follows-from-the-cal:
+This-follows-from-the-calculat:
   class: proof
   file: lec_16_FHE_part2
   number: 17.5.3
-This-has-a-simple-proof-b:
+This-has-a-simple-proof-by-pic:
   class: proof
   file: lec_18_SFE_part2
   number: '19.2'
-This-is-an-excellent-poin:
+This-is-an-excellent-point-for:
   class: pause
   file: lec_03_pseudorandom-generators
   number: 3.3.1
-This-is-not-an-easy-defin:
+This-is-not-an-easy-definition:
   class: pause
   file: lec_15_FHE
   number: 16.2.1
-This-might-seem-obvious-b:
+This-might-seem-obvious-but-in:
   class: proof
   file: lec_02_computational-security
   number: '2.5'
-This-proof-as-so-many-oth:
+This-proof-as-so-many-others-i:
   class: proof
   file: lec_04_pseudorandom-functions
   number: 4.1.1
-This-proof-is-emblematic-:
+This-proof-is-emblematic-of-a-:
   class: pause
   file: lec_06_CCA
   number: '6.3'
-This-proof-is-simple-but-:
+This-proof-is-simple-but-deser:
   class: pause
   file: lec_21_obfuscation
   number: 22.7.1
-This-proof-of-crefTDPpkct:
+This-proof-of-crefTDPpkcthm-is:
   class: pause
   file: lec_11_concrete_pkc
   number: 11.1.6
-This-would-be-a-good-time:
+This-would-be-a-good-time-to-s:
   class: pause
   file: lec_04_pseudorandom-functions
   number: '4.1'
-To-be-a-subgroup-we-need-:
+To-be-a-subgroup-we-need-to-ma:
   class: solution
   file: lec_10_public_key_intro
   number: 10.6.1
-To-test-your-intuition-on:
+To-test-your-intuition-on-prob:
   class: pause
   file: lec_00_1_mathematical-background
   number: '0.3'
@@ -1446,19 +1458,19 @@ Tor:
   class: section
   file: lec_23_anonymous
   number: '24.3'
-Try-to-stop-here-and-veri:
+Try-to-stop-here-and-verify-al:
   class: pause
   file: lec_10_public_key_intro
   number: 10.3.3
-Try-to-think-what-kind-of:
+Try-to-think-what-kind-of-secu:
   class: pause
   file: lec_05_prf-from-prg
   number: '5.1'
-Try-to-think-what-would-b:
+Try-to-think-what-would-be-suc:
   class: pause
   file: lec_13_handshake
   number: '14.4'
-Using-a-discrete-logarith:
+Using-a-discrete-logarithm-alg:
   class: proof
   file: lec_10_public_key_intro
   number: 10.3.1
@@ -1470,31 +1482,31 @@ WEPattackfig:
   class: figure
   file: lec_06_CCA
   number: '6.1'
-We-just-sketch-the-proof-:
+We-just-sketch-the-proof-as-th:
   class: proof
   file: lec_02_computational-security
   number: '2.2'
-We-leave-proving-crefexpp:
+We-leave-proving-crefexpprod-a:
   class: pause
   file: lec_00_1_mathematical-background
   number: 0.4.2
-We-need-to-prove-complete:
+We-need-to-prove-completeness-:
   class: proof
   file: lec_14_zero_knowledge
   number: '15.4'
-We-omit-the-proof-of-cref:
+We-omit-the-proof-of-crefprodu:
   class: pause
   file: lec_18_SFE_part2
   number: '19.2'
-We-only-sketch-the-proof-:
+We-only-sketch-the-proof-The-c:
   class: solution
   file: lec_01_introduction
   number: '1.5'
-We-prove-the-lemma-by-ind:
+We-prove-the-lemma-by-inductio:
   class: proof
   file: lec_00_1_mathematical-background
   number: '0.3'
-Well-show-that-such-if-we:
+Well-show-that-such-if-we-had-:
   class: proof
   file: lec_06_CCA
   number: 6.2.2
@@ -1502,15 +1514,15 @@ What-I-hope-you-learned:
   class: section
   file: lec_25_course_recap
   number: '26.2'
-What-do-pseudorandom-gene:
+What-do-pseudorandom-generator:
   class: section
   file: lec_03_pseudorandom-generators
   number: '3.2'
-When-you-see-a-mathematic:
+When-you-see-a-mathematical-de:
   class: pause
   file: lec_01_introduction
   number: '1.4'
-Why-care-about-the-cipher:
+Why-care-about-the-cipher-conj:
   class: section
   file: lec_02_computational-security
   number: '2.3'
@@ -1530,27 +1542,35 @@ XKCDnavajofig:
   class: figure
   file: lec_01_introduction
   number: '1.2'
-Yes-if-multiplication-and:
+Yes-if-multiplication-and-no-i:
   class: solution
   file: lec_10_public_key_intro
   number: 10.6.1
-You-should-make-sure-you-:
+You-should-make-sure-you-under:
   class: pause
   file: lec_16_FHE_part2
   number: '17.1'
-You-should-pause-here-and:
+You-should-pause-here-and-veri:
   class: pause
   file: lec_10_public_key_intro
   number: 10.3.5
-You-should-really-pause-h:
+You-should-really-pause-here-a:
   class: pause
   file: lec_03_pseudorandom-generators
   number: 3.2.1
-You-should-stop-here-and-:
+You-should-stop-here-and-read-:
   class: pause
   file: lec_13_handshake
   number: 14.5.1
-Zero-knowledge-proof-for-:
+You-should-stop-here-and-try-t:
+  class: pause
+  file: lec_06_CCA
+  number: '6.3'
+You-should-stop-here-and-verif:
+  class: pause
+  file: lec_12_lattices
+  number: '13.4'
+Zero-knowledge-proof-for-Hamil:
   class: section
   file: lec_14_zero_knowledge
   number: '15.4'
@@ -1570,7 +1590,7 @@ asymptotic:
   class: remark
   file: lec_02_computational-security
   number: '2.5'
-begingatheredE-XY--sumxin:
+begingatheredE-XY--sumxin-n-nl:
   class: proof
   file: lec_00_1_mathematical-background
   number: 0.3.1
@@ -1702,7 +1722,7 @@ cpasecuredef:
   class: definition
   file: lec_05_prf-from-prg
   number: '5.3'
-creffeistelfig-illustrate:
+creffeistelfig-illustrates-the:
   class: proof
   file: lec_05_prf-from-prg
   number: '5.2'
@@ -1982,7 +2002,7 @@ iodef:
   class: definition
   file: lec_21_obfuscation
   number: '22.6'
-langle-wtop-Ax-rangle--la:
+langle-wtop-Ax-rangle--langle-:
   class: proof
   file: lec_12_lattices
   number: '13.4'
@@ -2370,6 +2390,14 @@ securethirdattemptdef:
   class: definition
   file: lec_01_introduction
   number: '1.6'
+sfeonechap:
+  class: chapter
+  file: lec_17_SFE
+  number: '18'
+sfetwochap:
+  class: chapter
+  file: lec_18_SFE_part2
+  number: '19'
 shorthm:
   class: theorem
   file: lec_20_quantum_part2
@@ -2490,7 +2518,7 @@ varianceex:
   class: exercise
   file: lec_00_1_mathematical-background
   number: '0.11'
-varphi-simply-maps-xin-Zm:
+varphi-simply-maps-xin-Zm-to-t:
   class: proof
   file: lec_11_concrete_pkc
   number: 11.1.3

@@ -1,5 +1,5 @@
-\chapter{Multiparty secure computation: Construction using Fully
-Homomorphic Encryption}\label{Multiparty-secure-computa}
+\chapter{Multiparty secure computation II: Construction using Fully
+Homomorphic Encryption}\label{sfetwochap}
 
 In the last lecture we saw the definition of secure multiparty
 computation, as well as the compiler reducing the task of achieving
@@ -56,7 +56,7 @@ controlling party \(t\) will view.
 \end{definition}
 
 \section{Constructing 2 party honest but curious computation from fully
-homomorphic encryption}\label{Constructing--party-hones}
+homomorphic encryption}\label{Constructing--party-honest-but}
 
 Let \(F\) be a two party functionality. Lets start with the case that
 \(F\) is \emph{deterministic} and that only Alice receives an output.
@@ -126,7 +126,7 @@ algorithm \(S\) such that \(S(y)\) is indistinguishable from Alice's
 view when interacting with Bob and their corresponding inputs are
 \((x,y)\).
 
-\begin{pause} \label[pause]{At-this-point-you-might-w}
+\begin{pause} \label[pause]{At-this-point-you-might-want-t}
 
 At this point, you might want to try to see if you can prove Claim A on
 your own. If you're having difficulties proving it, try to think whether
@@ -219,7 +219,7 @@ algorithm \(A\),
 
 \end{lemma}
 
-\begin{pause} \label[pause]{Please-stop-here-and-try-}
+\begin{pause} \label[pause]{Please-stop-here-and-try-to-pr}
 
 Please stop here and try to prove \cref{circprivacylem}
 
@@ -279,7 +279,7 @@ how we can construct fully homomorphic encryption schemes satisfying
 this property.
 
 \section{Achieving circuit privacy in a fully homomorphic
-encryption}\label{Achieving-circuit-privacy}
+encryption}\label{Achieving-circuit-privacy-in-a}
 
 We now discuss how we can modify our fully homomorphic encryption
 schemes to achieve the notion of circuit privacy. In the scheme we saw,
@@ -329,7 +329,7 @@ the two intervals.}
 \label{statdistintervalsfig}
 \end{marginfigure}
 
-\begin{proof} \label[proof]{This-has-a-simple-proof-b}
+\begin{proof} \label[proof]{This-has-a-simple-proof-by-pic}
 
 This has a simple ``proof by picture'': consider the intervals
 \([-T,+T]\) and \([-T+a,+T+a]\) on the number line (see
@@ -357,7 +357,7 @@ satisfy \(\Delta(X^m,X'^m) \leq m\delta\).
 
 \end{lemma}
 
-\begin{pause} \label[pause]{We-omit-the-proof-of-cref}
+\begin{pause} \label[pause]{We-omit-the-proof-of-crefprodu}
 
 We omit the proof of \cref{productstatisticialdistlem} and leave it as
 an exercise to prove it using the hybrid argument. We will actually only
@@ -391,7 +391,7 @@ create the effect of completely re-randomizing the noise. However,
 completely analyzing this requires non-trivial amount of care and work.
 
 \section{Bottom line: A two party honest but curious two party secure
-computation protocol}\label{Bottom-line-A-two-party-h}
+computation protocol}\label{Bottom-line-A-two-party-honest}
 
 We can now prove the following theorem:
 
