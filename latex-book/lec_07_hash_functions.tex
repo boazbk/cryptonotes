@@ -13,7 +13,7 @@ is purely coincidental.
 
 Using cryptography to create a \emph{centralized} digital-currency is
 fairly straightforward, and indeed this is what is done by Visa,
-Mastercard etc.. The main challenge with Bitcoin is that it is
+Mastercard, and so on. The main challenge with Bitcoin is that it is
 \emph{decentralized}. There is no trusted server, there are no ``user
 accounts'', no central authority to adjudicate claims. Rather we have a
 collection of anonymous and autonomous parties that somehow need to
@@ -61,9 +61,38 @@ the central authority.
 Bitcoin is a fiat currency without a central authority. A priori this
 seems like a contradiction in terms. If there is no trusted central
 authority, how can we ensure a scarce resource? who settles claims of
-ownership? and who sets monetary policy? Bitcoin (and other
-cryptocurrencies) is about the solution for these problems via
-cryptographic means.
+ownership? and who sets monetary policy?
+
+For instance, one problem we are particularly concerned with is the
+\emph{double-spend} problem. The following scenario is a double-spend:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Adversary \(A\) orders a pizza from Pinocchio's.
+\item
+  \(A\) gives Pinocchio's a particular ``set'' of money \(m\).
+\item
+  \(A\) eats the pizza.
+\item
+  \(A\) gives that same set of money \(m\) to another Domino's
+  \emph{such that Pinocchio's no longer has that money}.
+\item
+  \(A\) eats the second pizza.
+\end{enumerate}
+
+With cash, this situation is unfathomable. But think about a credit
+card: if you can ``revoke'' (or dispute) the first payment, you could
+take money away from Pinocchio's \emph{after} you've received some goods
+or services. Also consider that rather than giving \(m\) to Domino's in
+step 4, \(A\) could just give \(m\) back to itself.
+
+We want to make it difficult or impossible for the anyone to perform a
+double-spend like this.
+
+Bitcoin (and other cryptocurrencies) aims to provide cryptographic
+solutions to this problem and more.
 
 The basic unit in the Bitcoin system is a \emph{coin}. Each coin has a
 unique identifier, and a current \emph{owner} .\footnote{This is one of
@@ -80,10 +109,10 @@ owner \(P\)'' or ``transfer the coin \(\ensuremath{\mathit{ID}}\) from
 \emph{ledger}.
 
 Since there are no user accounts in Bitcoin, the ``entities'' \(P\) and
-\(Q\) are not identifiers of any person or account. Rather \(P\) and
-\(Q\) are ``computational puzzles''. A \emph{computational puzzle} can
-be thought of as a string \(\alpha\) that specifies some ``problem''
-such that it's easy to verify whether some other string \(\beta\) is a
+\(Q\) are not identifiers of any physical person. Rather \(P\) and \(Q\)
+are ``computational puzzles''. A \emph{computational puzzle} can be
+thought of as a string \(\alpha\) that specifies some ``problem'' such
+that it's easy to verify whether some other string \(\beta\) is a
 ``solution'' for \(\alpha\), but it is hard to find such a solution on
 your own. (Students with complexity background will recognize here the
 class \textbf{NP}.) So when we say ``transfer the coin
@@ -103,29 +132,35 @@ logic.
 
 \end{pause}
 
-One example of a puzzle is that \(\alpha\) can encode some large integer
-\(N\), and a solution \(\beta\) will encode a pair of numbers \(A,B\)
-such that \(N=A\cdot B\). Another more generic example (that you can
-keep in mind as a potential implementation for the puzzles we use here)
-is that \(\alpha\) will be a string in \(\{0,1\}^{2n}\) while \(\beta\)
-will be a string in \(\{0,1\}^n\) such that \(\alpha = G(\beta)\) where
+One theoretical example of a puzzle is the following: if \(alpha\) is
+the puzzle, an entity can ``prove'' that they own coins assigned to
+\(alpha\) if they can produce numbers \(A,B\) such that \(N=A\cdot B\).
+
+Another more generic example (that you can keep in mind as a potential
+implementation for the puzzles we use here) is: \(\alpha\) is some
+string in \(\{0,1\}^{2n}\) and \(\beta\) will be a string in
+\(\{0,1\}^n\) such that \(\alpha = G(\beta)\) where
 \(G:\{0,1\}^n\rightarrow\{0,1\}^{2n}\) is some pseudorandom generator.
+
 The real Bitcoin system typically uses puzzles based on \emph{digital
 signatures}, a concept we will learn about later in this course, but you
 can simply think of \(P\) as specifying some abstract puzzle and every
-person that can solve \(P\) can perform transactions on the coins owned
-by \(P\).\footnote{There are reasons why Bitcoin uses digital signatures
-  and not these puzzles. The main issue is that we want to bind the
-  puzzle not just to the coin but also to the particular transaction, so
-  that if you know the solution to the puzzle \(P\) corresponding to the
-  coin \(\ensuremath{\mathit{ID}}\) and want to use that to transfer it
-  to \(Q\), it won't be possible for someone to take your solution and
-  use that to transfer the coin to \(Q'\) before your transaction is
-  added to the public ledger. We will come back to this issue after we
-  learn about digital signatures.} In particular if you lost the
-solution to the puzzle then you have no access to the coin, and if
-someone stole the solution from you, then you have no recourse or way to
-get your coin back. People have managed to
+person that can solve \(P\) can construct transactions with the coins
+owned by \(P\).\footnote{There are reasons why Bitcoin uses digital
+  signatures and not these puzzles. The main issue is that we want to
+  bind the puzzle not just to the coin but also to the particular
+  transaction, so that if you know the solution to the puzzle \(P\)
+  corresponding to the coin \(\ensuremath{\mathit{ID}}\) and want to use
+  that to transfer it to \(Q\), it won't be possible for someone to take
+  your solution and use that to transfer the coin to \(Q'\) before your
+  transaction is added to the public ledger. We will come back to this
+  issue after we learn about digital signatures. As a quick preview, in
+  Bitcoin the puzzle is as follows: whoever can produce a digital
+  signature with the private key corresponding to the public key \(P\)
+  can claim these coins.} Unfortunately, this means if you \emph{lose}
+the solution to the puzzle then you have no access to the coin. More
+alarmingly, if someone steals the solution from you, then you have no
+recourse or way to get your coin back. People have managed to
 \href{http://readwrite.com/2014/01/13/what-happens-to-lost-Bitcoins}{lose
 millions of dollars} in this way.
 
@@ -143,18 +178,20 @@ problem; for example the famous
 \href{http://the-paper-trail.org/blog/a-brief-tour-of-flp-impossibility/}{Fischer,
 Lynch Patterson (FLP) result} showed that if there is even one party
 that has a \emph{benign} failure (i.e., it halts and stop responding)
-then it is impossible to guarantee consensus in an asynchronous network.
-Things are better if we assume synchrony (i.e., a global clock and some
-bounds on the latency of messages) as well as that a majority or
-supermajority of the parties behave correctly. The central clock
-assumption is typically approximately maintained on the Internet, but
-the honest majority assumption seems quite suspicious. What does it mean
-a ``majority of parties'' in an anonymous network where a single person
-can create multiple ``entities'' and cause them to behave arbitrarily
-(known as ``byzantine'' faults in distributed parlance)? Also, why would
-we assume that even one party would behave honestly- if there is no
-central authority and it is profitable to cheat then they everyone would
-cheat, wouldn't they?
+then it is impossible to guarantee consensus \textbf{in a completely
+asynchronous network}. Things are better if we assume some degree of
+partial synchrony (i.e., a global clock and some bounds on the latency
+of messages) as well as that a majority or supermajority of the parties
+behave correctly.
+
+The partial synchrony assumption is typically approximately maintained
+on the Internet, but the honest majority assumption seems quite
+suspicious. What does it mean a ``majority of parties'' in an anonymous
+network where a single person can create multiple ``entities'' and cause
+them to behave arbitrarily maliciously (known as ``byzantine'' faults in
+distributed parlance)? Also, why would we assume that even one party
+would behave honestly- if there is no central authority and it is
+profitable to cheat then they everyone would cheat, wouldn't they?
 
 
 \begin{figure}
@@ -231,11 +268,13 @@ course then I would state a result like the following:
 PRF.
 \end{quote}
 
-Unfortunately such a result is \emph{not} known to be true, and for a
-very good reason. Most natural ways to define ``super strong PRF'' will
-result in properties that can be shown to be \emph{impossible to
-achieve}. Nevertheless, the intuition behind it still seems useful and
-so we have the following heuristic:
+Where again, the ``super strong PRF'' behaves like a truly random
+function \emph{even to a party that holds the key}. Unfortunately such a
+result is \emph{not} known to be true, and for a very good reason. Most
+natural ways to define ``super strong PRF'' will result in properties
+that can be shown to be \emph{impossible to achieve}. Nevertheless, the
+intuition behind it still seems useful and so we have the following
+heuristic:
 
 \begin{quote}
 \textbf{The random oracle heuristic (aka ``Random oracle model'',
@@ -266,13 +305,13 @@ homework exercises).
 
 \end{remark}
 
-We can now specify the ``proof of work'' protocol for Bitcoin. Given
-some identifier \(\ensuremath{\mathit{ID}}\in\{0,1\}^n\), an integer
-\(T \ll 2^n\), and a hash function
-\(H:\{0,1\}^{2n}\rightarrow\{0,1\}^n\), the proof of work corresponding
-to \(\ensuremath{\mathit{ID}}\) and \(T\) will be some \(x\in\{0,1\}^*\)
-such that the first \(\lceil \log T \rceil\) bits of
-\(H(\ensuremath{\mathit{ID}}\| x)\) are zero.\footnote{The actual
+\emph{Under the random oracle model}, we can now specify the ``proof of
+work'' protocol for Bitcoin. Given some identifier
+\(\ensuremath{\mathit{ID}}\in\{0,1\}^n\), an integer \(T \ll 2^n\), and
+a hash function \(H:\{0,1\}^{2n}\rightarrow\{0,1\}^n\), the proof of
+work corresponding to \(\ensuremath{\mathit{ID}}\) and \(T\) will be
+some \(x\in\{0,1\}^*\) such that the first \(\lceil \log T \rceil\) bits
+of \(H(\ensuremath{\mathit{ID}}\| x)\) are zero.\footnote{The actual
   Bitcoin protocol is slightly more general, where the proof is some
   \(x\) such that \(H(\ensuremath{\mathit{ID}}\|x)\), when interpreted
   as a number in \([2^n]\), is at most \(T\). There are also other
@@ -283,36 +322,54 @@ such that the first \(\lceil \log T \rceil\) bits of
 \subsection{From Proof of Work to Consensus on
 Ledger}\label{From-Proof-of-Work-to-Consensu}
 
-How does proof of work help us in achieving consensus? The idea is that
-every transaction \(t_i\) comes up with a proof of work of some \(T_i\)
-time with respect to some identifier that is unique to \(t_i\). The
-\emph{length} of a ledger \((t_1,\ldots,t_n)\) is the sum of the
-corresponding \(T_i\)'s which correspond to the total number of cycles
-invested in creating this ledger.
+How does proof of work help us in achieving consensus?
 
-An honest party in the Bitcoin network will accept the longest valid
-ledger it is aware of. (A ledger is \emph{valid} if every transaction in
-it of the form ``transfer the coin \(\ensuremath{\mathit{ID}}\) from
-\(P\) to \(Q\)'' is self-certified by a solution of \(P\), and the last
-transaction in the ledger involving \(\ensuremath{\mathit{ID}}\) either
-transferred or minted the coin \(\ensuremath{\mathit{ID}}\) to \(P\)).
+We want every transaction \(t_i\) in the Bitcoin system to have a
+corresponding proof of work. In particular, some proof of \(T_i\) time
+``amount'' of work with respect to some identifier that is unique to
+\(t_i\).
+
+The \emph{length} of a ledger \((t_1,\ldots,t_n)\) is the sum of the
+corresponding \(T_i\)'s. In other words, the \emph{length} corresponds
+to the total number of cycles invested in creating this ledger. A ledger
+is \emph{valid} if every transaction in the ledger of the form
+``transfer the coin \(\ensuremath{\mathit{ID}}\) from \(P\) to \(Q\)''
+is self-certified by a solution to \(P\).
+
+Critically, participants (specifically \emph{miners}) in the Bitcoin
+network are rewarded for adding valid entries to the ledger. In other
+words, they are given Bitcoins (which are newly minted for them) for
+performing the ``work'' required to add an entry to the ledger. However,
+honest participants (including non-miners, people who just read the
+ledger) will accept the longest known ledger as the ground truth. In
+addition, Bitcoin miners are rewarded for adding entry \(i\)
+\emph{after} entry \(i+100\) is added to the ledger. This gives miners
+an incentive to choose the longest ledger to contribute their work
+towards. To see why, consider the following rough approximation of the
+incentive structure:
+
+Remember that Bitcoin miners are rewarded for adding entry \(i\)
+\emph{after} entry \(i+100\) is added to the ledger. Thus, by spending
+``work'' (which directly corresponds to CPU cycles, which directly
+corresponds to monetary value), miners are ``betting'' on whether a
+particular ledger will ``win''. Think of yourself as a miner, and
+consider a scenario in which there are two competing ledgers. Ledger 1
+has length \(3\) and Ledger 2 has length \(6\). That means miners have
+put roughly 2x the amount of work (= CPU cycles = money) into Ledger 2.
+In order for Ledger 1 to ``win'' (from your perspective that means reach
+length \(104\) to claim your prize and to become longer than Ledger 2),
+you would have to perform \(3\) entries worth of work \emph{just to get
+Ledger 1 to length \(6\)}. But in the meantime, other miners will
+already be working on Ledger 2, further increasing its length! Thus you
+want to add entries to Ledger 2.
+
 If a ledger \(L\) corresponds to the majority of the cycles that were
 available in this network then every honest party would accept it, as
 any alternative ledger would be necessarily shorter. (See
 \cref{ledgerfig}.)
 
-The question is then how do we get to that happy state given that many
-parties might be non-malicious but still \emph{selfish} and might not
-want to volunteer their computing power for the goal of creating a
-consensus ledger. Bitcoin achieves this by giving some incentive, in the
-form of the ability to mint new coins, to any party that adds to the
-ledger. This means that if we are already in the situation where there
-is a consensus ledger \(L\), then every party has an interest in
-continuing this ledger \(L\), and not any alternative, as they want
-their minting transaction to be part of the new consensus ledger. In
-contrast if they ``fork'' the consensus ledger then their work may well
-be for vain. Thus one can hope that the consensus ledger will continue
-to grow. (This is a rather hand-wavy and imprecise argument, see
+Thus one can hope that the consensus ledger will continue to grow. (This
+is a rather hand-wavy and imprecise argument, see
 \href{https://eprint.iacr.org/2015/261}{this paper} for a more in depth
 analysis; this is also related to the phenomenon known as
 \href{https://en.wikipedia.org/wiki/Preferential_attachment}{preferential

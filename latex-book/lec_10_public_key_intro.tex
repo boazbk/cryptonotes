@@ -1,23 +1,23 @@
 \chapter{Public key cryptography}\label{Public-key-cryptography}
 
-People have been dreaming about heavier than air flight since at least
-the days of Leonardo Da Vinci (not to mention Icarus from the greek
+People have been dreaming about heavier-than-air flight since at least
+the days of Leonardo Da Vinci (not to mention Icarus from Greek
 mythology). Jules Verne wrote with rather insightful details about going
 to the moon in 1865. But, as far as I know, in all the thousands of
 years people have been using secret writing, until about 50 years ago no
-one has considered the possibility of communicating securely without
+one had considered the possibility of communicating securely without
 first exchanging a shared secret key. However, in the late 1960's and
 early 1970's, several people started to question this ``common wisdom''.
 
 Perhaps the most surprising of these visionaries was an undergraduate
-student at Berkeley named Ralph Merkle. In the fall of 1974 he wrote a
+student at Berkeley named Ralph Merkle. In the fall of 1974, he wrote a
 \href{http://www.merkle.com/1974/}{project proposal} for his computer
 security course that while ``it might seem intuitively obvious that if
 two people have never had the opportunity to prearrange an encryption
 method, then they will be unable to communicate securely over an
 insecure channel\ldots{} I believe it is false''. The project proposal
 was rejected by his professor as ``not good enough''. Merkle later
-submitted a paper to the communication of the ACM where he apologized
+submitted a paper to the communication of the ACM, where he apologized
 for the lack of references since he was unable to find any mention of
 the problem in the scientific literature, and the only source where he
 saw the problem even \emph{raised} was in a science fiction story. The
@@ -28,18 +28,18 @@ invocations of a hash function to exchange a key, but an adversary (in
 the random oracle model, though he of course didn't use this name) would
 need roughly \(T^2\) invocations to break it. He conjectured that it may
 be possible to obtain such protocols where breaking is
-\emph{exponentially harder} than using them, but could not think of any
+\emph{exponentially harder} than using them but could not think of any
 concrete way to doing so.
 
 We only found out much later that in the late 1960's, a few years before
 Merkle, James Ellis of the British Intelligence agency GCHQ was
 \href{http://cryptome.org/jya/ellisdoc.htm}{having similar thoughts}.
-His curiosity was spurred by an old World-War II manuscript from Bell
+His curiosity was spurred by an old World War II manuscript from Bell
 labs that suggested the following way that two people could communicate
 securely over a phone line. Alice would inject noise to the line, Bob
 would relay his messages, and then Alice would subtract the noise to get
 the signal. The idea is that an adversary over the line sees only the
-sum of Alice's and Bob's signals, and doesn't know what came from what.
+sum of Alice's and Bob's signals and doesn't know what came from what.
 This got James Ellis thinking whether it would be possible to achieve
 something like that digitally. As he later recollected, in 1970 he
 realized that in principle this should be possible, since he could think
@@ -77,7 +77,7 @@ Micali, that such a deterministic encryption is not a good idea, at the
 time Diffie and Hellman had amazing intuitions but didn't really have
 proper definitions of security.) But they didn't stop there. They
 realized that protecting the \emph{integrity} of communication is no
-less important than protecting its \emph{secrecy}. Thus they imagined
+less important than protecting its \emph{secrecy}. Thus, they imagined
 that Alice could ``run encryption in reverse'' in order to certify or
 \emph{sign} messages. That is, given some message \(m\), Alice would
 send the value \(x=p_k^{-1}(h(m))\) (for a hash function \(h\)) as a way
@@ -85,15 +85,15 @@ to certify that she endorses \(m\), and every person who knows \(k\)
 could verify this by checking that \(p_k(x)=h(m)\).
 
 However, Diffie and Hellman were in a position not unlike physicists who
-predicted that a certain particle should exist but without any
-experimental verification. Luckily they
+predicted that a certain particle should exist but had no experimental
+verification. Luckily they
 \href{http://cr.yp.to/bib/1988/diffie.pdf}{met Ralph Merkle}, and his
 ideas about a probabilistic \emph{key exchange protocol}, together with
 a suggestion from their Stanford colleague
 \href{https://profiles.stanford.edu/john-gill}{John Gill}, inspired them
 to come up with what today is known as the \emph{Diffie-Hellman Key
-Exchange} (which unbeknownst to them was found two years earlier at GCHQ
-by Malcolm Williamson). They published their paper
+Exchange} (which, unbeknownst to them, was found two years earlier at
+GCHQ by Malcolm Williamson). They published their paper
 \href{https://www-ee.stanford.edu/~hellman/publications/24.pdf}{``New
 Directions in Cryptography''} in 1976, and it is considered to have
 brought about the birth of modern cryptography. However, they still
@@ -223,7 +223,7 @@ public key analog of message authentication codes. Surprisingly, despite
 being a ``public key'' object, it is possible to base digital signatures
 on one-way functions (this is obtained using ideas of Lamport, Merkle,
 Goldwasser-Goldreich-Micali, Naor-Yung, and Rompel). However these
-constructions are not very efficient (and this may be inherent) and so
+constructions are not very efficient (and this may be inherent), and so
 in practice people use digital signatures that are built using similar
 techniques to those used for public key encryption.
 
@@ -265,7 +265,7 @@ encryption scheme} if it satisfies the following:\\
   keys \((e,d)\).\\
 \item
   \(E\) is the \emph{encryption algorithm} that takes a pair of inputs
-  \(e,m\) with \(m\in \{0,1\}^n\) and outputs \(c=E_e(m)\)\\
+  \(e,m\) with \(m\in \{0,1\}^n\) and outputs \(c=E_e(m)\).\\
 \item
   \(D\) is the \emph{decryption algorithm} that takes a pair of inputs
   \(d,c\) and outputs \(m'=D_d(c)\).\\
@@ -275,8 +275,9 @@ encryption scheme} if it satisfies the following:\\
   \(E\),\(D\), \(D_d(E_e(m))=m\).\\
 \end{itemize}
 
-We say that \((G,E,D)\) is \emph{CPA secure} every efficient adversary
-\(A\) wins the following game with probability at most \(1/2+negl(n)\):
+We say that \((G,E,D)\) is \emph{CPA secure} if every efficient
+adversary \(A\) wins the following game with probability at most
+\(1/2+negl(n)\):
 
 \begin{itemize}
 \tightlist
@@ -304,8 +305,8 @@ power.
 
 One metaphor for a public key encryption is a ``self-locking lock''
 where you don't need the key to \emph{lock it} (but rather you simply
-push the shackle until it clicks and lock) but you do need the key to
-\emph{unlock} it. So, if Alice generates \((e,d)=G(1^n)\) then \(e\)
+push the shackle until it clicks and lock), but you do need the key to
+\emph{unlock} it. So, if Alice generates \((e,d)=G(1^n)\), then \(e\)
 serves as the ``lock'' that can be used to \emph{encrypt} messages for
 Alice while only \(d\) can be used to \emph{decrypt} the messages.
 Another way to think about it is that \(e\) is a ``hobbled key'' that
@@ -320,20 +321,20 @@ black box'' \(B\) such that if all parties have access to \(B\) then we
 could get a public key encryption scheme. Now if public key encryption
 was impossible it would mean that for every possible program \(P\) that
 computes the functionality of \(B\), if we distribute the code of \(P\)
-to all parties then we don't get a secure encryption scheme. That means
+to all parties, then we don't get a secure encryption scheme. That means
 that \emph{no matter what program \(P\) the adversary gets}, she will
 always be able to get some information out of that code that helps break
 the encryption, even though she wouldn't have been able to break it if
-\(P\) was a black box. Now intuitively understanding arbitrary code is a
-very hard problem, so Diffie and Hellman imagined that it might be
+\(P\) was a black box. Now, intuitively understanding arbitrary code is
+a very hard problem, so Diffie and Hellman imagined that it might be
 possible to take this ideal \(B\) and compile it to some sufficiently
 low level assembly language so that it would behave as a ``virtual black
 box''. In particular, if you took, say, the encoding procedure
-\(m \mapsto p_k(m)\) of a block cipher with a particular key \(k\), and
-ran it through an optimizing compiler you might hope that while it would
-be possible to perform this map using the resulting executable, it will
-be hard to extract \(k\) from it, and hence could treat this code as a
-``public key''. This suggests the following approach for getting an
+\(m \mapsto p_k(m)\) of a block cipher with a particular key \(k\) and
+ran it through an optimizing compiler, you might hope that while it
+would be possible to perform this map using the resulting executable, it
+will be hard to extract \(k\) from it. Hence, you could treat this code
+as a ``public key''. This suggests the following approach for getting an
 encryption scheme:
 
 \begin{quote}
@@ -366,23 +367,23 @@ Diffie and Hellman couldn't really find a way to make this work, but it
 convinced them this notion of public key is not \emph{inherently
 impossible}. This concept of compiling a program into a functionally
 equivalent but ``inscrutable'' form is known as \emph{software
-obfuscation} . It had turned out to be quite a tricky object to both
-define formally and achieve, but it serves as a very good intuition as
-to what can be achieved, even if, as the random oracle, this intuition
+obfuscation}. It had turned out to be quite a tricky object to both
+define formally and achieve, but it serves as very good intuition for
+what can be achieved, even if, as with the random oracle, this intuition
 can sometimes be too optimistic. (Indeed, if software obfuscation was
 possible then we could obtain a ``random oracle like'' hash function by
 taking the code of a function \(f_k\) chosen from a PRF family and
 compiling it through an obfuscating compiler.)
 
-We will not formally define obfuscators yet, but on intuitive level it
-would be a compiler that takes a program \(P\) and maps into a program
-\(P'\) such that:
+We will not formally define obfuscators yet, but on an intuitive level
+it would be a compiler that takes a program \(P\) and maps into a
+program \(P'\) such that:
 
 \begin{itemize}
 \tightlist
 \item
   \(P'\) is not much slower/bigger than \(P\) (e.g., as a Boolean
-  circuit it would be at most polynomially larger)
+  circuit it would be at most polynomially larger).
 \item
   \(P'\) is functionally equivalent to \(P\), i.e., \(P'(x)=P(x)\) for
   every input \(x\).\footnote{For simplicity, assume that the program
@@ -414,7 +415,7 @@ Diffie and Hellman.
 We would have loved to prove a theorem of the form:
 
 \begin{quote}
-\textbf{``Theorem'':} If the PRG conjecture is true then there exists a
+\textbf{``Theorem'':} If the PRG conjecture is true, then there exists a
 CPA-secure public key encryption.
 \end{quote}
 
@@ -426,13 +427,13 @@ such result is known (and this may be
 The kind of results we know have the following form:
 
 \begin{quote}
-\textbf{Theorem:} If problem \(X\) is hard then there exists a
+\textbf{Theorem:} If problem \(X\) is hard, then there exists a
 CPA-secure public key encryption.
 \end{quote}
 
 Where \(X\) is some problem that people have tried to solve and
-couldn't. Thus we have various \emph{candidates} for public key
-encryption and we fervently hope that at least one of them is actually
+couldn't. Thus, we have various \emph{candidates} for public key
+encryption, and we fervently hope that at least one of them is actually
 secure. The \href{https://eprint.iacr.org/2017/365.pdf}{dirty little
 secret} of cryptography is that we actually don't have that many
 candidates. We really have only two well studied families.\footnote{There
@@ -440,7 +441,7 @@ candidates. We really have only two well studied families.\footnote{There
   (including some by
   \href{http://www.eng.tau.ac.il/~bennyap/pubs/ncpkcFull1.pdf}{yours
   truly} as well as suggestions such as the
-  \href{http://eprint.iacr.org/2006/291}{isogeny star problem} , though
+  \href{http://eprint.iacr.org/2006/291}{isogeny star problem}, though
   see also \href{http://arxiv.org/pdf/1012.4019.pdf}{this}), but they
   have not yet received wide scrutiny.} One is the ``group theoretic''
 family that relies on the difficulty of the discrete logarithm (over
@@ -451,13 +452,14 @@ finding short vectors in a \emph{lattice} and solving instances of the
 ``knapsack'' problem. Moreover, problems from the first family are known
 to be \emph{efficiently solvable} in a computational model known as
 ``quantum computing''. If large scale physical devices that simulate
-this model, known as \emph{quantum computers}, then they could break all
-cryptosystems relying on these problems and we'll be down to only having
-a \emph{single} family of candidate public key encryption schemes.
+this model, known as \emph{quantum computers}, exist, then they could
+break all cryptosystems relying on these problems, and we'll be down to
+only having a \emph{single} family of candidate public key encryption
+schemes.
 
 We will start by describing cryptosystems based on the first family
-(which was discovered before the other, as well as much more widely
-implemented), and in future lectures talk about the second family.
+(which was discovered before the other and was more widely implemented),
+and talk about the second family in future lectures.
 
 \subsection{Diffie-Hellman Encryption (aka
 El-Gamal)}\label{Diffie-Hellman-Encryption-aka-}
@@ -475,7 +477,7 @@ be simply \(g\cdot g \cdots g\) (\(a\) times). A priori one might think
 that it would take \(a\cdot poly(n)\) time to compute \(g^a\), which
 might be exponential if \(a\) itself is roughly \(2^n\). However, we can
 compute this in \(poly((\log a) \cdot n)\) time using the \emph{repeated
-squaring trick}. The idea is that if \(a=2^{\ell}\) then we can compute
+squaring trick}. The idea is that if \(a=2^{\ell}\), then we can compute
 \(g^a\) in \(\ell\) by squaring \(g\) \(\ell\) times, and a general
 \(a\) can be decomposed into powers of two using the binary
 representation.
@@ -484,13 +486,13 @@ The \emph{discrete logarithm} problem is the problem of computing, given
 \(g,h \in \Z_p\), a number \(a\) such that \(g^a=h\). If such a solution
 \(a\) exists then there is always also a solution of size at most \(p\)
 (can you see why?) and so the solution can be represented using \(n\)
-bits. However, currently the best known algorithm for computing the
-discrete logarithm run in time roughly \(2^{n^{1/3}}\) which currently
+bits. However, currently the best-known algorithm for computing the
+discrete logarithm runs in time roughly \(2^{n^{1/3}}\), which currently
 becomes prohibitively expensive when \(p\) is a prime of length about
 \(2048\) bits.\footnote{The running time of the best known algorithms
   for computing the discrete logarithm modulo \(n\) bit primes is
-  \(2^{f(n)2^{n^{1/3}}}\) where \(f(n)\) is a function that depends
-  polylogarithmically on \(n\). If \(f(n)\) would equal \(1\) then we'd
+  \(2^{f(n)2^{n^{1/3}}}\), where \(f(n)\) is a function that depends
+  polylogarithmically on \(n\). If \(f(n)\) would equal \(1\), then we'd
   need numbers of \(128^3 \approx 2\cdot 10^6\) bits to get \(128\) bits
   of security, but because \(f(n)\) is larger than one, the current
   \href{https://goo.gl/ntszsg}{estimates} are that we need to let
@@ -499,7 +501,7 @@ becomes prohibitively expensive when \(p\) is a prime of length about
   larger keys than those used for private key systems to get the same
   level of security. In particular, to double the estimated security to
   \(256\) bits, NIST recommends that we multiply the RSA keysize
-  give-fold to \(15,360\). (The same document also says that SHA-256
+  five-fold to \(15,360\). (The same document also says that SHA-256
   gives \(256\) bits of security as a pseudorandom generator but only
   \(128\) bits when used to hash documents for digital signatures; can
   you see why?)}
@@ -517,7 +519,7 @@ based a public key encryption scheme as follows:
   \(2^n\)), a number \(g\leftarrow_R \Z_p\) and
   \(a \leftarrow_R \{0,\ldots,p-1\}\). We also sample a hash function
   \(H:\{0,1\}^n\rightarrow\{0,1\}^\ell\). The public key \(e\) is
-  \((p,g,g^a,H)\) while the secret key \(d\) is \(a\).\footnote{Formally
+  \((p,g,g^a,H)\), while the secret key \(d\) is \(a\).\footnote{Formally,
     the secret key should contain all the information in the public key
     plus the extra secret information, but we omit the public
     information for simplicity of notation.}
@@ -526,8 +528,8 @@ based a public key encryption scheme as follows:
 \begin{itemize}
 \item
   The \emph{encryption algorithm}, on input a message
-  \(m \in \{0,1\}^\ell\) and a public key \(e=(p,g,h,H)\) will choose a
-  random \(b\leftarrow_R \{0,\ldots,p-1\}\), and output
+  \(m \in \{0,1\}^\ell\) and a public key \(e=(p,g,h,H)\), will choose a
+  random \(b\leftarrow_R \{0,\ldots,p-1\}\) and output
   \((g^b,H(h^b)\oplus m)\).
 \item
   The \emph{decryption algorithm}, on input a ciphertext \((f,y)\) and
@@ -544,7 +546,7 @@ and the Diffie-Hellman system is the following:
 \begin{lemma} \label[lemma]{dhinseclem}
 
 If there is a polynomial time algorithm for the discrete logarithm
-problem then the Diffie-Hellman system is \emph{insecure}.
+problem, then the Diffie-Hellman system is \emph{insecure}.
 
 \end{lemma}
 
@@ -563,7 +565,21 @@ assuming the task of computing \(g^{ab}\) from \(g^a\) and \(g^b\)
 (which is now known as the \emph{Diffie-Hellman problem}) is
 hard.\footnote{One can get security results for this protocol without a
   random oracle if we assume a stronger variant known as the
-  \emph{Decisional Diffie-Hellman (DDH)} assumption.}
+  \emph{Decisional Diffie-Hellman (DDH)} assumption: for a random
+  \(a,b, u \in \mathbb{Z}_p\) (prime \(p\)), the triple
+  \((g^a, g^b, g^{ab})\approx (g^a, g^b, g^u)\). This implies CDH (can
+  you see why?). DDH also restricts our focus to groups of prime order.
+  In particular, DDH does not hold in even-order groups. For example,
+  DDH does not hold in \(\mathbb{Z}^{\*}_p=\{1,2\ldots p-1\}\) (with
+  group operation multiplication mod \(p\)) since half of its elements
+  are quadratic residues \emph{and} it is efficient to test if an
+  element is a quadratic residue using Fermat's little theorem (can you
+  see why? See Exercise 10.7). However, DDH holds in subgroups of
+  \(\mathbb{Z}^{\*}_p\) of prime order. If \(p\) is a safe prime
+  (i.e.~\(p=2q+1\) for a prime \(q\)), then we can instead use the
+  subgroup of quadratic residues, which has prime order \(q\). See
+  Boneh-Shoup 10.4.1 for more details on the underlying groups for CDH
+  and DDH.}
 
 \begin{quote}
 \textbf{Computational Diffie-Hellman Assumption:} Let \(\mathbb{G}\) be
@@ -609,7 +625,8 @@ available book \href{http://www.shoup.net/ntb/}{A Computational
 Introduction to Number Theory and Algebra} has an in depth treatment of
 groups, generators, and the discrete log and Diffie-Hellman problem. See
 also Chapters 10.4 and 10.5 in the Boneh-Shoup book, and Chapters 8.3
-and 11.4 in the Katz-Lindell book.
+and 11.4 in the Katz-Lindell book. There are also solved group theory
+exercises at the end of this chapter.
 
 \end{pause}
 
@@ -649,7 +666,7 @@ We make the following claim:
 size \(T\) distinguisher \(A\) with \(\epsilon\) advantage between the
 distribution \((g^a,g^b,H(g^{ab}))\) and the distribution
 \((g^a,g^b,U_\ell)\) (where \(a,b\) are chosen uniformly and
-independently in \(\Z_{p}\)) then there is a size \(poly(T)\) algorithm
+independently in \(\Z_{p}\)), then there is a size \(poly(T)\) algorithm
 \(A'\) to solve the Diffie-Hellman problem with respect to
 \(\mathbb{G},g\) with success at least \(\epsilon\). That is, for random
 \(a,b \in \Z_p\), \(A'(g,g^a,g^b)=g^{ab}\) with probability at least
@@ -660,10 +677,10 @@ assumptions above, \(a\) makes the query \(g^{ab}\) to its oracle \(H\)
 with probability at least \(\epsilon/2\) since otherwise, by the ``lazy
 evaluation'' paradigm, we can assume that \(H(g^{ab})\) is chosen
 independently at random after \(A\)'s attack is completed and hence
-(conditioned on the adversary not making that querty), the value
+(conditioned on the adversary not making that query), the value
 \(H(g^{ab})\) is indistinguishable from a uniform output. Therefore, on
 input \(g,g^a,g^b\), \(A'\) can simulate \(A\) and simply output one of
-the at most \(T\) queries that \(A\) makes to \(H\) at random, and will
+the at most \(T\) queries that \(A\) makes to \(H\) at random and will
 be successful with probability at least \(\epsilon/(2T)\).
 
 Now given the claim, we can complete the proof of security via the
@@ -685,7 +702,7 @@ in all cases \(a,b\) are chosen uniformly and independently in
 
 The claim implies that \(H_0 \approx H_1\). Indeed otherwise we could
 transform a distinguisher \(T\) between \(H_0\) and \(H_1\) to a
-distinguisher \(T'\) violating the claim by letting
+distinguisher \(T'\), violating the claim by letting
 \(T'(h,h',z) = T(h,h',z \oplus m)\).
 
 The distributions \(H_1\) and \(H_2\) are \emph{identical} by the same
@@ -713,7 +730,7 @@ curve cryptography}. This is a group consisting of points of the form
 multiplication can be defined according in a certain way. The main
 advantage of elliptic curve cryptography is that the best known
 algorithms run in time \(2^{\approx n}\) as opposed to
-\(2^{\approx n^{1/3}}\) which allows for much shorter keys.
+\(2^{\approx n^{1/3}}\), which allows for much shorter keys.
 Unfortunately, elliptic curve cryptography is just as susceptible to
 quantum algorithms as the discrete logarithm problem over \(\Z_p\).
 
@@ -728,22 +745,22 @@ public key system it is sometimes known as \emph{ElGamal
 encryption}.\footnote{ElGamal's actual contribution was to design a
   \emph{signature scheme} based on the Diffie-Hellman problem, a variant
   of which is the Digital Signature Algorithm (DSA) described below.}
-The reason for this mostly stems from the early confusion on what are
-the right security definitions. Diffie and Hellman thought of encryption
+The reason for this mostly stems from the early confusion on what the
+right security definitions are. Diffie and Hellman thought of encryption
 as a \emph{deterministic} process and so they called their scheme a
 ``key exchange protocol''. The work of Goldwasser and Micali showed that
 encryption must be probabilistic for security. Also, because of
 efficiency considerations, these days public key encryption is mostly
-used as a mechanism to exchange a key for a private key encryption, that
+used as a mechanism to exchange a key for a private key encryption that
 is then used for the bulk of the communication. Together this means that
-there is not much point in distinguishing between a two message key
+there is not much point in distinguishing between a two-message key
 exchange algorithm and a public key encryption.
 
 \end{remark}
 
 \subsection{Sampling random primes}\label{Sampling-random-primes}
 
-To sample a random \(n\) bit prime one can sample a random number
+To sample a random \(n\) bit prime, one can sample a random number
 \(0 \leq p < 2^n\) and then test if \(p\) is prime. If it is not prime,
 then we can sample a new random number again. To make this work we need
 to show two properties:
@@ -777,21 +794,21 @@ Recall that the \emph{least common multiple (LCM)} of two or more
 \(a_1,\ldots,a_t\) is the smallest number that is a multiple of all of
 the \(a_i\)'s. One way to compute the LCM of \(a_1,\ldots,a_t\) is to
 take the prime factorizations of all the \(a_i\)'s, and then the LCM is
-the product that all the primes that appear in these factorizations,
-with the highest power that they appear in. Let \(k\) be the number of
-primes between \(1\) and \(N\). The lemma will follow from the following
-two claims:
+the product of all the primes that appear in these factorizations, each
+taken to the corresponding highest power that appears in the
+factorization. Let \(k\) be the number of primes between \(1\) and
+\(N\). The lemma will follow from the following two claims:
 
 \textbf{CLAIM 1:} \(\ensuremath{\mathit{LCM}}(1,\ldots,N) \leq N^k\).
 
-\textbf{CLAIM 2:} If \(N\) is odd then
+\textbf{CLAIM 2:} If \(N\) is odd, then
 \(\ensuremath{\mathit{LCM}}(1,\ldots,N) \geq 2^{N-1}\).
 
-The two claim immediately imply the result since they imply that
+The two claims immediately imply the result, since they imply that
 \(2^N \leq N^k\), and taking logs we get that \(N-2 \leq k \log N\) or
 \(k \geq (N-2)/\log N\). (We can assume that \(N\) is odd without of
 loss of generality, since changing from \(N\) to \(N+1\) can change the
-number of primes by at most one.) Thus all that is left is to prove the
+number of primes by at most one.) Thus, all that is left is to prove the
 two claims.
 
 \textbf{Proof of CLAIM 1:} Let \(p_1,\ldots,p_k\) be all the prime
@@ -885,7 +902,7 @@ useful exercises:
 
 When using a group \(\mathbb{G}\) for the Diffie-Hellman protocol, we
 want the property that \(g\) is a \emph{generator} of the group, which
-also means that the map \(a \mapsto g^a\) is a one to one mapping from
+also means that the map \(a \mapsto g^a\) is a one-to-one mapping from
 \(\{0,\ldots,|\mathbb{G}|-1\}\) to \(\mathbb{G}\). This can be
 efficiently tested if we know the order of the group and its
 factorization, since it will occur if and only if \(g^a \neq 1\) for
@@ -893,24 +910,26 @@ every \(a<|\mathbb{G}|\) (can you see why this holds?) and we know that
 if \(g^a=1\) then \(a\) must divide \(\mathbb{G}\) (and this?).\\
 It is not hard to show that a random element \(g\in \mathbb{G}\) will be
 a generator with non-trivial probability (for similar reasons that a
-random number is prime with non-trivial probability) and hence an
-approach to getting such a generator is to simply choose \(g\) at random
-and test that \(g^a \neq 1\) for all of the fewer than
-\(\log |\mathbb{G}|\) numbers that are obtained by taking
-\(|\mathbb{G}|/q\) where \(q\) is a factor of \(|\mathbb{G}|\).
+random number is prime with non-trivial probability). Hence, an approach
+to getting such a generator is to simply choose \(g\) at random and test
+that \(g^a \neq 1\) for all of the fewer than \(\log |\mathbb{G}|\)
+numbers that are obtained by taking \(|\mathbb{G}|/q\) where \(q\) is a
+factor of \(|\mathbb{G}|\).
 
 \begin{pause} \label[pause]{Try-to-stop-here-and-verify-al}
 
 Try to stop here and verify all the facts on groups mentioned above.
+There are additional group theory exercises at the end of the chapter as
+well.
 
 \end{pause}
 
 \subsection{Digital Signatures}\label{Digital-Signatures}
 
-Public key encryption solves the \emph{confidentiality} problem but we
+Public key encryption solves the \emph{confidentiality} problem, but we
 still need to solve the \emph{authenticity} or \emph{integrity} problem,
 which might be even more important in practice. That is, suppose Alice
-wants to endorse a message \(m\) that \emph{everyone} can verify but
+wants to endorse a message \(m\) that \emph{everyone} can verify, but
 only she can sign. This of course is extremely widely used in many
 settings, including software updates, web pages, financial transactions,
 and more.
@@ -957,16 +976,16 @@ A triple of algorithms \((G,S,V)\) is a chosen-message-attack secure
 
 Just like for MACs (see \cref{MACdef}), our definition of security for
 digital signatures with respect to a chosen message attack does not
-preclude the ability of the adversary of producing a new signature for
-the same message that it has seen a signature of. Just like in MACs,
-people sometimes consider the notion of \emph{strong unforgability}
-which requires that it would not be possible for the adversary to
-produce a new message-signature pair (even if the message itself was
-queried before). Some signature schemes (such as the full domain hash
-and the DSA scheme) satisfy this stronger notion while others do not.
-However, just like MACs, it is possible to transform any signature with
-standard security into a signature that satisfies this stronger
-unforgability condition.
+preclude the ability of the adversary to produce a new signature for the
+same message that it has seen a signature of. Just like in MACs, people
+sometimes consider the notion of \emph{strong unforgability} which
+requires that it would not be possible for the adversary to produce a
+new message-signature pair (even if the message itself was queried
+before). Some signature schemes (such as the full domain hash and the
+DSA scheme) satisfy this stronger notion while others do not. However,
+just like MACs, it is possible to transform any signature with standard
+security into a signature that satisfies this stronger unforgability
+condition.
 
 \end{remark}
 
@@ -984,7 +1003,7 @@ If Alice published a public encryption key \(e\), then one natural
 approach for Alice to prove her identity to Bob is as follows. Bob will
 send an encryption \(c=E_e(x)\) of some random message
 \(x \leftarrow_R \{0,1\}^n\) to Alice, and Alice will send \(x'=D_d(c)\)
-back. If \(x=x'\) then she has proven that she can decrypt ciphertexts
+back. If \(x=x'\), then she has proven that she can decrypt ciphertexts
 encrypted with \(e\), and so Bob can be assured that she is the rightful
 owner of the public key \(e\).
 
@@ -1037,7 +1056,7 @@ follows: (See also Section 12.5.2 in the KL book)
 \item
   \emph{Signature:} To sign a message \(m\) with the key \(a\), pick
   \(b\) at random, and let \(f=g^b\), and then let
-  \(\sigma = b^{-1}[H(m)+a\cdot F(f)]\) where all computation is done
+  \(\sigma = b^{-1}[H(m)+a\cdot F(f)]\), where all computation is done
   modulo \(|\mathbb{G}|\). The signature is \((f,\sigma)\).\\
 \item
   \emph{Verification:} To verify a signature \((f,\sigma)\) on a message
@@ -1054,10 +1073,10 @@ scheme, in the sense that for every \(m\), \(V_s(m,S_s(m))=1\).
 Very roughly speaking, the idea behind security is that on one hand
 \(s\) does not reveal information about \(b\) and \(a\) because this is
 ``masked'' by the ``random'' value \(H(m)\). On the other hand, if an
-adversary is able to come up with valid signatures then at least if we
-treated \(H\) and \(F\) as oracles, then if the signature passes
-verification then (by taking \(\log\) to the base of \(g\)) the answers
-\(x,y\) of these oracles will satisfy \(bs = x + ay\) which means that
+adversary is able to come up with valid signatures, then at least if we
+treated \(H\) and \(F\) as oracles, if the signature passes verification
+then (by taking \(\log\) to the base of \(g\)) the answers \(x,y\) of
+these oracles will satisfy \(bs = x + ay\), which means that
 sufficiently many such equations should be enough to recover the
 discrete log \(a\).
 
@@ -1077,27 +1096,27 @@ when \(H,F\) are modeled as random oracles.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{Suppose-towards-the-sake-of-co}
+\begin{proof} \label[proof]{Suppose-for-the-sake-of-contra}
 
-Suppose, towards the sake of contradiction, that there was a \(T\)-time
+Suppose, for the sake of contradiction, that there was a \(T\)-time
 adversary \(A\) that succeeds with probability \(\epsilon\) in a chosen
 message attack against the DSA scheme. We will show that there is an
 adversary that can compute the discrete logarithm with running time and
 probability polynomially related to \(T\) and \(\epsilon\) respectively.
 
 Recall that in a chosen message attack in the random oracle model, the
-adversary interacts with a signature oracle, and oracles that compute
-the functions \(F\) and \(H\). For starters, we consider the following
-experiment \(\ensuremath{\mathit{CMA}}'\) where in the chosen message
+adversary interacts with a signature oracle and oracles that compute the
+functions \(F\) and \(H\). For starters, we consider the following
+experiment \(\ensuremath{\mathit{CMA}}'\), where in the chosen message
 attack we replace the signature box with the following ``fake signature
 oracle'' and ``fake function \(F\) oracle''. On input a message \(m\),
 the fake box will choose \(\sigma,r\) at random in \(\{0,\ldots,p-1\}\)
 (where \(p=|\mathbb{G}|\)), and compute
 \[f=(g^{H(m)}h^{r})^{\sigma^{-1} \mod p} \label{randomfdsaeq}\] and
 output \(h\). We will then record the value \(F(f)=r\) and answer \(r\)
-on future queries to \(F\). If we've already answered before \(F(f)\) to
-be a different value then we halt the experiment and output an error. We
-claim that the adversary's chance of succeeding in
+on future queries to \(F\). If we've already answered \(F(f)\) before
+with a different value, then we halt the experiment and output an error.
+We claim that the adversary's chance of succeeding in
 \(\ensuremath{\mathit{CMA}}'\) is computationally indistinguishable from
 its chance of succeeding in the original \(\ensuremath{\mathit{CMA}}\)
 experiment. Indeed, since we choose the value \(r=F(f)\) at random, as
@@ -1106,9 +1125,9 @@ function \(F\) is completely random. But since the adversary makes at
 most \(T\) queries, and each \(f\) is chosen according to
 \eqref{randomfdsaeq}, which yields a random element the group
 \(\mathbb{G}\) (which has size roughly \(2^n\)), the probability that
-\(f\) is repeated is at most \(T/|\mathbb{G}|\) which is negligible. Now
-we computed \(\sigma\) in the fake box as a random value, but we can
-also compute \(\sigma\) as equalling \(b^{-1}(H(m)+a r) \mod p\), where
+\(f\) is repeated is at most \(T/|\mathbb{G}|\), which is negligible.
+Now we computed \(\sigma\) in the fake box as a random value, but we can
+also compute \(\sigma\) as equaling \(b^{-1}(H(m)+a r) \mod p\), where
 \(b=\log_g f \mod \mathbb{G}\) is uniform as well, and so the
 distribution of the signature \((f,\sigma)\) is identical to the
 distribution by a real box.
@@ -1132,16 +1151,16 @@ box.
 \textbf{Case II:} The value \(F(f^*)\) is first queried by the
 adversary.
 
-If Case I happens with non negligible probability, then we know that the
+If Case I happens with non-negligible probability, then we know that the
 value \(f^*\) is queried when producing the signature \((f^*,\sigma)\)
 for some message \(m \neq m^*\), and so we know the following two
 equations hold: \[ g^{H(m)}h^{F(f^*)} = (f^*)^{\sigma}\] and
 \[ g^{H(m^*)}h^{F(f^*)}=  (f^*)^{\sigma^*}\] Taking logs we get the
 following equations on \(a = \log_g h\) and \(b=\log_g f^*\):
 \[H(m)+aF(f^*) = b\sigma\] and \[H(m^*)+aF(f^*)=b\sigma^*\] or
-\[b= (H(m^*)-H(m))(\sigma-\sigma^*)^{-1} \mod p\] since all of the valus
-\(H(m^*),H(m),\sigma,\sigma^*\) are known, this means we can compute
-\(b\), and hence also recover the unknown value \(a\).
+\[b= (H(m^*)-H(m))(\sigma-\sigma^*)^{-1} \mod p\] since all of the
+values \(H(m^*),H(m),\sigma,\sigma^*\) are known, this means we can
+compute \(b\), and hence also recover the unknown value \(a\).
 
 If Case II happens, then we split it into two cases as well.
 \textbf{Case IIa} is that this happens and \(F(f^*)\) is queried
@@ -1165,12 +1184,12 @@ we run the experiment. (The answers of \(F\) to \(f^*\) are the same
 since this happens before the \(t\)-th step). As before, we can use this
 to recover \(a=\log_g h\).
 
-If \textbf{Case IIb} happens with non-negligible probability
+If \textbf{Case IIb} happens with non-negligible probability,
 \(\epsilon>0\). Then again by the averaging argument there are some
 \(t< t' \in \{1,\ldots,T\}\) such that with probability at least
 \(\epsilon/T^2\), \(m^*\) is queried by the adversary at the \(t\)-th
-query and \(f^*\) is queried by the adversary at its \(t'\)-th query. We
-run the \(\ensuremath{\mathit{CMA}}'\) experiment \emph{twice}, using
+query, and \(f^*\) is queried by the adversary at its \(t'\)-th query.
+We run the \(\ensuremath{\mathit{CMA}}'\) experiment \emph{twice}, using
 the same randomness up until the \(t'-1\)-th query and independent
 randomness from then onwards. This time we will get the two equations
 \[H(m^*)+aF_1(f^*) = b\sigma\] and \[H(m^*)+aF_2(f^*)=b\sigma^*\] where
@@ -1189,7 +1208,7 @@ discrete log problem is hard for the group \(\mathbb{G}\).
 \begin{remark}[Non-random oracle model security] \label[remark]{nonromsec}
 
 In this lecture both our encryption scheme and digital signature schemes
-were not proven secure under a well stated computational assumption, but
+were not proven secure under a well-stated computational assumption but
 rather used the random oracle model heuristic. However, it is known how
 to obtain schemes that do not rely on this heuristic, and we will see
 such schemes later on in this course.
@@ -1240,7 +1259,7 @@ with a signed message to the effect of
 
 Such a message is known as a \emph{certificate}, and it allows you to
 extend your trust in Apple to a trust in Amazon. Now when your browser
-communicates with amazon, it can request this message, and if it is not
+communicates with Amazon, it can request this message, and if it is not
 present not continue with the interaction or at least display some
 warning. Clearly a person in the middle can stop this message from
 travelling and hence not allow the interaction to continue, but they
@@ -1253,8 +1272,7 @@ known as \emph{certificate authorities}. The security of these
 certificate authorities' private key is crucial to the security of the
 whole protocol, and it has been
 \href{https://en.wikipedia.org/wiki/DigiNotar}{attacked}
-\href{http://www.wired.com/2011/10/son-of-stuxnet-in-the-wild/}{before}.
-)
+\href{http://www.wired.com/2011/10/son-of-stuxnet-in-the-wild/}{before}.)
 
 Using certificates, we can assume that Bob the user has the public
 verification key \(v\) of Alice the server. Now Alice can send Bob also
@@ -1278,10 +1296,10 @@ and hence guaranteed to be correct.\footnote{If this key is
   paper}) that allowed via a buffer-overflow attack in OpenSSL to learn
   the private key of the server.} Once Bob knows Alice's public key they
 are in business- he can use that to send an encryption of some private
-key \(k\) which they can then use for all the rest of their
+key \(k\), which they can then use for all the rest of their
 communication.
 
-This is in a very high level the SSL/TLS protocol, but there are many
+This is, at a very high level, the SSL/TLS protocol, but there are many
 details inside it including the exact security notions needed from the
 encryption, how the two parties negotiate \emph{which} cryptographic
 algorithm to use, and more. All these issues can and have been used for
@@ -1376,9 +1394,9 @@ and \(2N\), and each factor \(P\) cannot appear more than
 the number of times \(P\) appears in the factorization of \(N!\) is
 \(\sum_i \floor{\tfrac{N}{P^i}}\), since we get \(\floor{\tfrac{N}{P}}\)
 times a factor \(P\) in the factorizations of \(\{1,\ldots,N\}\),
-\(\floor{\tfrac{N}{P^2}}\) times a factor of the form \(P^2\),
-etc\ldots{} Thus the number of times \(P\) appears in the factorization
-of \(\binom{2N}{N}=\tfrac{(2N)!}{N!N!}\) is equal to
+\(\floor{\tfrac{N}{P^2}}\) times a factor of the form \(P^2\), etc.
+Thus, the number of times \(P\) appears in the factorization of
+\(\binom{2N}{N}=\tfrac{(2N)!}{N!N!}\) is equal to
 \(\sum_i \floor{\tfrac{2N}{P^i}}-2\floor{\tfrac{N}{P^i}}\): a sum of at
 most \(k\) elements (since \(P^{k+1}>2N\)) each of which is either \(0\)
 or \(1\).
@@ -1426,6 +1444,39 @@ In this class, we restrict ourselves to finite commutative groups to
 avoid complications with infinite group orders and annoyances with
 non-commutative operations. For the problems below, assume that a
 ``group'' is really a ``finite commutative group''.
+
+Here are five more important groups used in cryptography other than
+\(\mathbb{Z}_{p}\). Recall that groups are given by a set and a binary
+operation.
+
+\begin{itemize}
+\tightlist
+\item
+  For some prime \(p\), \(\mathbb{Z}_p^{\*}=\{1,\ldots , p-1\}\), with
+  operation multiplication mod \(p\) (Note: the \(^{\*}\) is to
+  distinguish this group from \(\mathbb{Z}_p\) with an additive
+  operation and from \(\ensuremath{\mathit{GF}}(p)\).)
+\item
+  The quadratic residues of \(\mathbb{Z}_p^{\*}\):
+  \(Q_p=\{a^2:a\in \mathbb{Z}_p^{\*}\}\) with operation multiplication
+  mod \(p\)
+\item
+  \(\mathbb{Z}_n^{\*}\), where \(n=p\cdot q\) (product of two primes)
+\item
+  The quadratic residues of \(\mathbb{Z}_n^{\*}\)::
+  \(Q_n=\{a^2:a\in \mathbb{Z}_n^{*}\}\), where \(n=p\cdot q\)
+\item
+  Elliptic curve groups
+\end{itemize}
+
+For more familiarity with group definitions, you could verify that the
+first 4 groups satisfy the group axioms. For cryptography, two
+operations need be efficient for elements \(a,b\) in group
+\(\mathbb{G}\): * Exponentiation: \(a,b\mapsto a^b\). This is done
+efficiently using repeated squaring, i.e.~generate all the squares up to
+\(2^k\) and then use the binary representation. * Inverse:
+\(a \mapsto a^{-1}\). This is done efficiently in \(\mathbb{Z}_p^{\*}\)
+by Fermat's little theorem. \(a^{-1}=a^{p-2}\) mod \(p\).
 
 \subsection{Solved exercises:}\label{Solved-exercises}
 

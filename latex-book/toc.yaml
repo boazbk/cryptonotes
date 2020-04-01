@@ -449,7 +449,7 @@
   title: 'Proving the fundamental theorem:'
 '18.5':
   filename: lec_17_SFE.html
-  href: malicious-to-honest-but-curious-reduction
+  href: hbctomalred
   title: Malicious to honest but curious reduction
 18.5.1:
   filename: lec_17_SFE.html
@@ -468,11 +468,14 @@
   filename: lec_18_SFE_part2.html
   href: achieving-circuit-privacy-in-a-fully-homomorphic-encryption
   title: Achieving circuit privacy in a fully homomorphic encryption
+19.2.1:
+  filename: lec_18_SFE_part2.html
+  href: bottom-line-a-two-party-secure-computation-protocol
+  title: 'Bottom line: A two party secure computation protocol'
 '19.3':
   filename: lec_18_SFE_part2.html
-  href: bottom-line-a-two-party-honest-but-curious-two-party-secure-computation-protocol
-  title: 'Bottom line: A two party honest but curious two party secure computation
-    protocol'
+  href: beyond-two-parties
+  title: Beyond two parties
 '2':
   filename: lec_02_computational-security.html
   href: ''
@@ -705,6 +708,11 @@
   filename: lec_03_pseudorandom-generators.html
   href: ''
   title: Pseudorandomness
+3.0.1:
+  filename: lec_03_pseudorandom-generators.html
+  href: unpredictability-an-alternative-approach-for-proving-the-length-extension-theorem
+  title: 'Unpredictability: an alternative approach for proving the length extension
+    theorem'
 '3.1':
   filename: lec_03_pseudorandom-generators.html
   href: stream-ciphers
@@ -742,6 +750,10 @@
   href: case-study-2-rc4
   title: 'Case Study 2: RC4'
 '3.4':
+  filename: lec_03_pseudorandom-generators.html
+  href: case-study-3-b.b.s.
+  title: 'Case Study 3: B.B.S.'
+'3.5':
   filename: lec_03_pseudorandom-generators.html
   href: non-constructive-existence-of-pseudorandom-generators
   title: Non-constructive existence of pseudorandom generators
