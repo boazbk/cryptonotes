@@ -25,6 +25,7 @@ The general philosophy is to try to do everything in this filter so that the mar
 contains no latex code outside of math nor any html code.
 """
 
+
 import panflute as pf
 import fractions
 import sys

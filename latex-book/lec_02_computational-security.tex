@@ -283,7 +283,6 @@ proofs are typically:
   \(Eve\) had non-negligible advantage then so will \(Eve'\).
 \end{itemize}
 
-
 \begin{marginfigure}
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/reduction.jpg}
@@ -326,7 +325,7 @@ parameter such as \(n\) in the few hundreds or thousands then:
   standard key sizes it can withstand the combined computational powers
   of all computers on earth for several decades. In theory terms we
   would want the time to break the scheme be at least \(2^{\Omega(n)}\)
-  or \(2^(\Omega(\sqrt{n})\) / \(2^{\Omega(n^{1/3})}\) with not too
+  or \(2^{\Omega(\sqrt{n})}\) / \(2^{\Omega(n^{1/3})}\) with not too
   small hidden constants.
 \end{itemize}
 
@@ -397,8 +396,9 @@ definition
 \item
   Let \(\mu:\N \rightarrow [0,\infty)\) be a negligible function. Prove
   that for every polynomials \(p,q:\R \rightarrow \R\) with non-negative
-  coefficients, the function \(\mu':\N \rightarrow [0,\infty)\) defined
-  as \(\mu'(n) = p(\mu(q(n)))\) is negligible.
+  coefficients such that \(p(0) = 0\), the function
+  \(\mu':\N \rightarrow [0,\infty)\) defined as
+  \(\mu'(n) = p(\mu(q(n)))\) is negligible.
 \item
   Let \(\mu:\N \rightarrow \R\). Prove that \(\mu\) is negligible if and
   only if for every constant \(c\),
@@ -639,7 +639,6 @@ Moreover, this is just the beginning. There is a huge range of other
 useful cryptographic tools that we can obtain from this seemingly
 innocent conjecture: (We will see what all these names and some of these
 reductions mean later in the course.)
-
 
 \begin{figure}
 \centering
@@ -913,7 +912,6 @@ length \(t(n)\).
 
 \end{theorem}
 
-
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/length-extension.jpg}
@@ -968,11 +966,11 @@ make sure it's true we need to give an actual proof. Let
 following claim:
 
 \textbf{Claim:} Let \(\hat{E}\) be the algorithm that on input a message
-\(m\) and key \(k_0\) works like \(E\) except that its the \(i^{th}\)
-block contains \(E'_{k_{i-1}}(k'_i,m_i)\) where \(k'_i\) is a
-\emph{random} string in \({\{0,1\}}^n\), that is chosen
-\emph{independently} of everything else including the key \(k_i\). Then,
-for every message \(m\in{\{0,1\}}^t\)
+\(m\) and key \(k_0\) works like \(E\) except that its \(i^{th}\) block
+contains \(E'_{k_{i-1}}(k'_i,m_i)\) where \(k'_i\) is a \emph{random}
+string in \({\{0,1\}}^n\), that is chosen \emph{independently} of
+everything else including the key \(k_i\). Then, for every message
+\(m\in{\{0,1\}}^t\)
 
 \[
 E_{U_n}(m) \approx \hat{E}_{U_n}(m)  \label{lengthextendclaimeq} \;.

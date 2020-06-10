@@ -56,7 +56,6 @@ efficiently computable \(f()\). In particular in our scenario above (see
 Alice without ever getting the secret key and so without ever learning
 anything about \(x\) (or \(f(x)\) for that matter).
 
-
 \begin{marginfigure}
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/fhedescription.png}
@@ -233,7 +232,6 @@ see \cref{evalciphertextfig}.
 
 \end{pause}
 
-
 \begin{marginfigure}
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/evalciphertexts.png}
@@ -292,8 +290,7 @@ itself.
   In the initial stage the client computes the encrypted database
   \(\overline{c}=E_e(x)\) and sends \(\overline{c},e,e'\) to the server.
   It also computes \(c^* = E_e(f^*)\) for some function \(f^*\) as well
-  as
-  \(C^{**}=\ensuremath{\mathit{EVAL}}_{e}(eval,E_e(f^*)\|\overline{c})\)
+  as \(C^{**}=\ensuremath{\mathit{EVAL}}_{e}(eval,c^*\|\overline{c})\)
   for some function \(f^*\) and keeps \(c^*,c^{**}\) for herself, where
   \(eval(f,x)=f(x)\) is the circuit evaluation function.
 \item
@@ -493,7 +490,6 @@ obtain \(G_s\) by sampling the matrix \(A\) from the LWE assumption and
 having \(G_s\) output \(w^\top A\) for a random \(w\in\{0,1\}^n\), but
 we can ignore this particular implementation detail in the forgoing.
 
-
 \begin{marginfigure}
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/trapdoorprg.png}
@@ -654,7 +650,6 @@ can fit that theorem in the next lecture.
 \section{Bootstrapping: Fully Homomorphic ``escape
 velocity''}\label{Bootstrapping-Fully-Homomorphi}
 
-
 \begin{marginfigure}
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/fheescape.png}
@@ -699,7 +694,6 @@ encryption scheme.
 \end{theorem}
 
 \subsection{Radioactive legos analogy}\label{Radioactive-legos-analogy}
-
 
 \begin{marginfigure}
 \centering

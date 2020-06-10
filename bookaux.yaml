@@ -126,6 +126,10 @@ Authenticated-key-exchange:
   class: section
   file: lec_13_handshake
   number: '14.3'
+Bandwidth-efficient-fully-homo:
+  class: subsection
+  file: lec_16_FHE_part2
+  number: 17.6.2
 Basic-Key-Exchange-protocol:
   class: section
   file: lec_13_handshake
@@ -378,6 +382,10 @@ Deniable-encryption:
   class: section
   file: lec_21_obfuscation
   number: '22.2'
+Depththm:
+  class: theorem
+  file: lec_16_FHE_part2
+  number: '17.2'
 Despite-it-being-a-chosen-plai:
   class: pause
   file: lec_10_public_key_intro
@@ -414,6 +422,10 @@ Entropy-extraction:
   class: section
   file: lec_08_hash_functions_part2
   number: '8.4'
+EpsilonAdv:
+  class: lemma
+  file: lec_11_concrete_pkc
+  number: '11.21'
 Establishing-secure-connection:
   class: chapter
   file: lec_13_handshake
@@ -442,6 +454,10 @@ Exercises:
   class: section
   file: lec_00_1_mathematical-background
   number: '0.7'
+Extending-to-more-than-one-har:
+  class: subsection
+  file: lec_11_concrete_pkc
+  number: 11.2.1
 FBI-vs-Apple-case:
   class: subsection
   file: lec_24_policy
@@ -470,6 +486,10 @@ For-CPA-security-we-need-to-pr:
   class: proof
   file: lec_10_public_key_intro
   number: 10.3.1
+For-any-function-fmrightarrow-:
+  class: proof
+  file: lec_16_FHE_part2
+  number: '17'
 For-every-iinldotsell-we-defin:
   class: proof
   file: lec_02_computational-security
@@ -522,10 +542,10 @@ From-order-finding-to-factorin:
   class: section
   file: lec_20_quantum_part2
   number: '21.1'
-Fully-homomorphic-encryption-C:
-  class: chapter
+Fully-homomorphic-encryption-f:
+  class: subsection
   file: lec_16_FHE_part2
-  number: '17'
+  number: 17.6.1
 Functional-encryption:
   class: section
   file: lec_21_obfuscation
@@ -550,6 +570,14 @@ Grovers-Algorithm:
   class: section
   file: lec_19_quantum
   number: '20.2'
+HCBthm:
+  class: theorem
+  file: lec_11_concrete_pkc
+  number: '11.20'
+HCPdef:
+  class: definition
+  file: lec_11_concrete_pkc
+  number: '11.19'
 Handling-probabilistic-strateg:
   class: subsection
   file: lec_17_SFE
@@ -638,6 +666,10 @@ It-is-an-excellent-idea-for-yo:
   class: pause
   file: lec_17_SFE
   number: 18.2.2
+It-is-important-that-you-under:
+  class: pause
+  file: lec_11_concrete_pkc
+  number: '11.2'
 Juniper-backdoor-case-and-the-:
   class: subsection
   file: lec_24_policy
@@ -686,6 +718,10 @@ Lattice-based-cryptography:
   class: chapter
   file: lec_12_lattices
   number: '13'
+Leftoverhashlem:
+  class: lemma
+  file: lec_12_lattices
+  number: '13.6'
 Let-ED-be-a-valid-encryption-s:
   class: proof
   file: lec_01_introduction
@@ -742,6 +778,10 @@ Let-us-think-of-H-in-the-lazy-:
   class: proof
   file: lec_07_hash_functions
   number: '7.3'
+LogHCBthm:
+  class: theorem
+  file: lec_11_concrete_pkc
+  number: '11.22'
 MACdef:
   class: definition
   file: lec_04_pseudorandom-functions
@@ -926,6 +966,10 @@ Please-stop-here-and-try-to-pr:
   class: pause
   file: lec_18_SFE_part2
   number: '19.1'
+Please-stop-to-verify-that-thi:
+  class: pause
+  file: lec_11_concrete_pkc
+  number: '11.2'
 Please-take-your-time-to-re-re:
   class: pause
   file: lec_10_public_key_intro
@@ -938,6 +982,10 @@ Please-verify-that-you-underst:
   class: pause
   file: lec_11_concrete_pkc
   number: 11.1.6
+PolyHCBthm:
+  class: theorem
+  file: lec_11_concrete_pkc
+  number: '11.23'
 Practical-Constructions-of-Cry:
   class: section
   file: lec_07_hash_functions
@@ -1394,6 +1442,10 @@ The-proof-uses-an-extremely-us:
   class: proofidea
   file: lec_03_pseudorandom-generators
   number: '3.5'
+The-result-follows-from-an-ave:
+  class: proof
+  file: lec_11_concrete_pkc
+  number: '11.2'
 The-scheme-LWEENC-is-also-desc:
   class: pause
   file: lec_12_lattices
@@ -1490,6 +1542,10 @@ Using-a-discrete-logarithm-alg:
   class: proof
   file: lec_10_public_key_intro
   number: 10.3.1
+Using-fully-homomorphic-encryp:
+  class: subsection
+  file: lec_16_FHE_part2
+  number: 17.6.3
 Voting:
   class: subsection
   file: lec_14_zero_knowledge
@@ -1658,6 +1714,10 @@ chapfheone:
   class: chapter
   file: lec_15_FHE
   number: '16'
+chapfhetwo:
+  class: chapter
+  file: lec_16_FHE_part2
+  number: '17'
 chebychevthm:
   class: theorem
   file: lec_00_1_mathematical-background
@@ -1757,7 +1817,7 @@ curverem:
 decdepthlem:
   class: lemma
   file: lec_16_FHE_part2
-  number: '17.5'
+  number: '17.6'
 densityprimesaltlem:
   class: lemma
   file: lec_10_public_key_intro
@@ -1825,7 +1885,7 @@ eq:eventdefine:
 eqbinaryencoding:
   class: equation
   file: lec_16_FHE_part2
-  number: '17.5'
+  number: '17.7'
 eqcircprivacy:
   class: equation
   file: lec_18_SFE_part2
@@ -1833,7 +1893,7 @@ eqcircprivacy:
 eqfheaddfinal:
   class: equation
   file: lec_16_FHE_part2
-  number: '17.6'
+  number: '17.8'
 eqhitcipher:
   class: equation
   file: lec_01_introduction
@@ -1841,11 +1901,11 @@ eqhitcipher:
 eqhomadd:
   class: equation
   file: lec_16_FHE_part2
-  number: '17.3'
+  number: '17.5'
 eqhommult:
   class: equation
   file: lec_16_FHE_part2
-  number: '17.4'
+  number: '17.6'
 eqlongkeyprobproof:
   class: equation
   file: lec_01_introduction
@@ -1853,7 +1913,7 @@ eqlongkeyprobproof:
 eqnoisebound:
   class: equation
   file: lec_16_FHE_part2
-  number: '17.12'
+  number: '17.14'
 equnivhash:
   class: equation
   file: lec_06_CCA
@@ -1905,7 +1965,7 @@ feistelrounds:
 fhecorrectlem:
   class: lemma
   file: lec_16_FHE_part2
-  number: '17.3'
+  number: '17.4'
 fhedecfig:
   class: figure
   file: lec_16_FHE_part2
@@ -1921,11 +1981,11 @@ fhefig:
 fhemultfinaleqfirst:
   class: equation
   file: lec_16_FHE_part2
-  number: '17.7'
+  number: '17.9'
 fhemultfinaleqsec:
   class: equation
   file: lec_16_FHE_part2
-  number: '17.8'
+  number: '17.10'
 figid:
   class: figure
   file: lec_12_lattices
@@ -2006,6 +2066,10 @@ indcoins:
   class: lemma
   file: lec_00_1_mathematical-background
   number: '0.9'
+independencecoinsfig:
+  class: figure
+  file: lec_00_1_mathematical-background
+  number: '5'
 independencefig:
   class: figure
   file: lec_00_1_mathematical-background
@@ -2149,7 +2213,7 @@ noiseandsignallem:
 noisehomolem:
   class: lemma
   file: lec_16_FHE_part2
-  number: '17.4'
+  number: '17.5'
 nonromsec:
   class: remark
   file: lec_10_public_key_intro
@@ -2190,6 +2254,10 @@ onetimepadtwofig:
   class: figure
   file: lec_01_introduction
   number: '1.8'
+optrate:
+  class: theorem
+  file: lec_16_FHE_part2
+  number: '17.7'
 oracleevaltreefig:
   class: figure
   file: lec_05_prf-from-prg
@@ -2313,7 +2381,7 @@ privkeydef:
 privkeyfhe:
   class: remark
   file: lec_16_FHE_part2
-  number: '17.2'
+  number: '17.3'
 productstatisticialdistlem:
   class: lemma
   file: lec_18_SFE_part2
@@ -2370,6 +2438,10 @@ randprogdef:
   class: definition
   file: lec_02_computational-security
   number: '2.16'
+reductiongenfig:
+  class: figure
+  file: lec_02_computational-security
+  number: '2.1'
 reductionlengthextendfig:
   class: figure
   file: lec_03_pseudorandom-generators
@@ -2486,6 +2558,10 @@ tdpgendef:
   class: definition
   file: lec_15_FHE
   number: '16.6'
+temp:
+  class: proof
+  file: lec_11_concrete_pkc
+  number: '11.2'
 threepartympc:
   class: theorem
   file: lec_18_SFE_part2

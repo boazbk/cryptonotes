@@ -52,7 +52,6 @@ England, so that she could ascend to the throne and finally escape the
 house arrest under which she had been for the last 18 years. As part of
 this complicated plot, she sent a coded letter to Sir Anthony Babington.
 
-
 \begin{marginfigure}
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/encrypted_letter.jpg}
@@ -78,7 +77,6 @@ she was executed. Trusting in superficial security measures (such as
 using ``inscrutable'' symbols) is a trap that users of cryptography have
 been falling into again and again over the years. (As in many things,
 this is the subject of a great XKCD cartoon, see \cref{XKCDnavajofig}.)
-
 
 \begin{marginfigure}
 \centering
@@ -108,14 +106,12 @@ substitution cipher which can be done via frequency analysis (can you
 see why?). Confederate generals used Vigenère regularly during the civil
 war, and their messages were routinely cryptanalzed by Union officers.
 
-
 \begin{marginfigure}
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/confederate_cipher_disk.jpg}
 \caption{Confederate Cipher Disk for implementing the Vigenère cipher}
 \label{tmplabelfig}
 \end{marginfigure}
-
 
 \begin{marginfigure}
 \centering
@@ -146,7 +142,6 @@ looked more similar to washing machines than to iPhones). They were also
 helped along the way by some quirks and errors of the German operators.
 For example, the fact that their messages ended with ``Heil Hitler''
 turned out to be quite useful.
-
 
 \begin{marginfigure}
 \centering
@@ -233,7 +228,6 @@ D(k,E(k,x))=x \;. \label{eqvalidenc}
 We will often write the first input (i.e., the key) to the encryption
 and decryption as a subscript and so can write \eqref{eqvalidenc} also
 as \(D_k(E_k(x))=x\).
-
 
 \begin{marginfigure}
 \centering
@@ -409,7 +403,6 @@ communication they could break it also retroactively). This caused a
 huge headache and a worldwide regeneration of keys, though it is
 believed that many of the weak keys are still used. See
 \href{http://www.xkcd.com/424/}{XKCD's take} on that incident.
-
 
 \begin{figure}
 \centering
@@ -816,7 +809,6 @@ in fact \(x\) or \(x'\). It turns out the answer is yes! For example,
 \cref{onetimepadtwofig} details a perfectly secret encryption for two
 bits.
 
-
 \begin{marginfigure}
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/onetimepadtwobits.png}
@@ -831,7 +823,6 @@ in the sense that for every \(k\in \{0,1\}^2\), the map
 set of edges labeled with \(k\) is a \emph{matching}.}
 \label{onetimepadtwofig}
 \end{marginfigure}
-
 
 \begin{marginfigure}
 \centering
@@ -906,7 +897,6 @@ every particular \(y\in \{0,1\}^n\), the value \(y\) is output by
 
 \end{proof}
 
-
 \begin{marginfigure}
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/onetimepad.png}
@@ -980,7 +970,6 @@ Russian spies in the U.S. and other countries, including Julius
 Rosenberg, Harry Gold, Klaus Fuchs, Alger Hiss, Harry Dexter White and
 many others.
 
-
 \begin{marginfigure}
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/genevenona.png}
@@ -989,7 +978,6 @@ Feb 1943. Photo taken in 1942, see Page 7 in the Venona historical
 study.}
 \label{genegrabeelfig}
 \end{marginfigure}
-
 
 \begin{marginfigure}
 \centering
@@ -1112,7 +1100,7 @@ than the key, the success of Eve can be very close to \(1\):
 
 Let \((E,D)\) be an encryption scheme with \(L(n)=n+t\). Then there is a
 function \(Eve\) and pair of messages \(x_0,x_1\) such that
-\[\Pr_{k \leftarrow_R \{0,1\}^n b \leftarrow_R \{0,1\}}[ Eve(E_k(x_b) = x_b] \geq 1- 2^{-t-1}\;.\]
+\[\Pr_{k \leftarrow_R \{0,1\}^n, b \leftarrow_R \{0,1\}}[ Eve(E_k(x_b)) = x_b] \geq 1- 2^{-t-1}\;.\]
 
 \end{theorem}
 
@@ -1132,7 +1120,7 @@ also for random \(k\). Indeed, for every fixed \(k\), the map
 \(E_k(x)\) for random \(x\in \{0,1\}^n\) is uniform over some set
 \(T_k\) of size \(2^{n+t}\). For every \(k\), the probability over \(x\)
 that \(E_k(x) \in S_0\) is equal to
-\[\tfrac{|T_k \cap S_0|}{|T_k|} \leq \tfrac{|S_0|}{|T_k}| \leq \tfrac{2^n}{2^{n+t}}=2^{-t}\]
+\[\tfrac{|T_k \cap S_0|}{|T_k|} \leq \tfrac{|S_0|}{|T_k|} \leq \tfrac{2^n}{2^{n+t}}=2^{-t}\]
 thus proving \eqref{eqlongkeyprobproof}.
 
 Now, for every \(x\), define \(p_x\) to be

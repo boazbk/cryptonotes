@@ -172,7 +172,6 @@ Suppose that the PRG conjecture is true. Then for every polynomial
 
 \end{theorem}
 
-
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/length-extension-prg.jpg}
@@ -208,7 +207,6 @@ and \(H_t=U_t\) and hence by the triangle inequality it suffices to
 prove that \(H_i \approx H_{i+1}\) for all \(i\in\{0,\ldots,t-1\}\). We
 illustrate these two hybrids in \cref{lengthextendhybridfig}.
 
-
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/length-extension-prg-hybrid.jpg}
@@ -222,7 +220,6 @@ that \(\left| \E[Eve(H_i)] - \E[Eve(H_{i+1})] \right| \geq \epsilon\)
 for some non-negligible \(\epsilon\). We will build from \(Eve\) an
 adversary \(Eve'\) breaking the security of the pseudorandom generator
 \(G'\) (see \cref{reductionlengthextendfig}).
-
 
 \begin{figure}
 \centering
@@ -673,11 +670,11 @@ knowledge) pseudorandom generators:
 \subsection{Case Study 1: Subset Sum
 Generator}\label{Case-Study--Subset-Sum-Generat}
 
-Here is an extremely simple generator that is yet still secure\footnote{Actually
-  modern computers will be able to break this generator via brute force,
-  but if the length and number of the constants were doubled (or perhaps
-  quadrupled) this should be sufficiently secure, though longer to write
-  down.} as far as we know.
+Here is an extremely simple generator that is yet still
+secure\footnote{Actually modern computers will be able to break this
+  generator via brute force, but if the length and number of the
+  constants were doubled (or perhaps quadrupled) this should be
+  sufficiently secure, though longer to write down.} as far as we know.
 
 \begin{code}
 # seed is a list of 40 zero/one values

@@ -15,7 +15,6 @@ collection \(\{ f_s \}_{s\in\{0,1\}^*}\) such that for every
 
 \end{theorem}
 
-
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/PRF_from_PRG.jpg}
@@ -76,7 +75,6 @@ distinguish in time \(poly(T)\) an input of the form \(G(s)\) (where
 \(y\) is random in \(\{0,1\}^{2n}\) with bias at least
 \(\epsilon/poly(T)\).
 
-
 \begin{marginfigure}
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/Lazy_PRF_from_PRG.jpg}
@@ -109,7 +107,6 @@ the traversals continues left or right (i.e.~whether the current level
 corresponds to a value 0 or 1 in \(i\)) we label both children at the
 same time.
 
-
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/prf-oracle-step.jpg}
@@ -135,7 +132,6 @@ label internal nodes, then instead of labelling the \(b^{th}\) child of
 \(v\) by \(G_b(y)\) (where \(y\) is the label of \(v\)), the oracle
 simply labels it by a random string in \(\{0,1\}^n\).
 
-
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/hybrid_j_thm_5-1.jpg}
@@ -153,7 +149,6 @@ simply for easy of exposition, we could still index our nodes via the
 path reaching them from the root.}
 \label{hybridj}
 \end{figure}
-
 
 \begin{figure}
 \centering
@@ -174,7 +169,6 @@ exists some \(j\) such that it distinguishes between the \(j^{th}\)
 hybrid (pictured in \cref{hybridj}) and the \(j+1^{st}\) hybrid
 (pictured in \cref{hybridj1}) with bias at least \(\epsilon/T'\). We
 will use this \(j\) and \(A\) to break the pseudorandom generator.
-
 
 \begin{figure}
 \centering
@@ -330,7 +324,6 @@ probability at most \(1/2+negl(n)\) in the game defined below:
 
 \end{definition}
 
-
 \begin{marginfigure}
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/cpa-game.jpg}
@@ -367,7 +360,6 @@ interacting with \(E\) where she will ask for the encryption \(c_1\) of
 and only if \(c^*=c_1\).
 
 \end{proof}
-
 
 \begin{marginfigure}
 \centering
@@ -518,7 +510,6 @@ conjecture holds) then there exists a pseudorandom permutation
 collection.
 
 \end{theorem}
-
 
 \begin{figure}
 \centering
@@ -723,7 +714,6 @@ ensures that the overall cipher will not be an affine function. Each one
 of these operations is an easily reversible operations, and hence
 decrypting the cipher simply involves running the rounds backwards.
 
-
 \begin{marginfigure}
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/block-cipher-round.jpg}
@@ -757,7 +747,6 @@ secure. Moreover, this is actually a real problem of security on
 realistic inputs (see \cref{ecbtwofig}), so ECB mode should never be
 used.
 
-
 \begin{marginfigure}
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/ecb-mode.jpg}
@@ -765,7 +754,6 @@ used.
 encrypted deterministically and independently}
 \label{ecbonefig}
 \end{marginfigure}
-
 
 \begin{marginfigure}
 \centering
@@ -803,7 +791,6 @@ CPA secure (proving this is an excellent exercise). On the other hand,
 CBC mode suffers from the drawback that the encryption process cannot be
 parallelized: the ciphertext block \(c_i\) \emph{must} be computed
 before \(c_{i+1}\).
-
 
 \begin{marginfigure}
 \centering
@@ -888,7 +875,6 @@ system ensures that only approved devices can decrypt and play a
 consumer's copy of the movie. For this reason, we will sometimes refer
 to \(k\) as the \emph{device key}. This setup is depicted in
 \cref{brdcastencfig}.
-
 
 \begin{figure}
 \centering
@@ -975,7 +961,6 @@ concatenation of these strings \(E_{k_i}(\hat k)\), along with a
 ephermal key. Incorporating these two optimizations reduces the length
 of \(k_{master}\) to \(O(n)\) and the length of each encryption to
 \(O(nm + |x|)\).
-
 
 \begin{figure}
 \centering

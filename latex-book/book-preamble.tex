@@ -60,10 +60,10 @@
 % Environment for code listing
 \usepackage{minted}
 
-\newminted[code]{nand}{breaklines,mathescape}
-\newminted[framedcode]{nand}{frame=single,breaklines,mathescape}
+\newminted[code]{python}{breaklines,mathescape}
+\newminted[framedcode]{python}{frame=single,breaklines,mathescape}
 
-\newmintinline[codeinline]{nand}{breaklines,mathescape}
+\newmintinline[codeinline]{python}{breaklines,mathescape}
 
 \makeatletter
 \xpatchcmd{\codeinline}{\minted@fvset}{\minted@fvset\dontdofcolorbox}{}{}
@@ -338,10 +338,12 @@
   [\normalfont]
 
 
+\makeatletter
 \titlespacing*{\section}{0pc}{3ex \@plus4pt \@minus3pt}{5pt}
 \titlespacing*{\subsection}{0pc}{2.5ex \@plus3pt \@minus2pt}{0pt}
 \titlespacing*{\subsubsection}{0pc}{2ex \@plus2.5pt \@minus1.5pt}{0pt}
 \titlespacing*{\paragraph}{0pc}{1.5ex \@plus2pt \@minus1pt}{10pt}
+\makeatother
 
 
 

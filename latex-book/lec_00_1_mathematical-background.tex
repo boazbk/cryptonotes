@@ -324,7 +324,6 @@ tossing \(n\) coins as choosing a string \(x\) uniformly at random from
 \(\{0,1\}^n\), and hence we'll use the shorthand \(x\sim \{0,1\}^n\) for
 \(x\) that is chosen according to this experiment.
 
-
 \begin{marginfigure}
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/coinexperiment.png}
@@ -354,7 +353,6 @@ ones is \(\Pr[A]\) where
 \(A=\{ 000,011,101,110 \}\), and hence
 \(\Pr[A]=\tfrac{4}{8}=\tfrac{1}{2}\) (see \cref{eventhreecoinsfig}). It
 turns out this is true for every \(n\):
-
 
 \begin{marginfigure}
 \centering
@@ -567,7 +565,6 @@ that, for example, if there is a list of 100 bad events that can happen,
 and each one of them happens with probability at most \(1/10000\), then
 with probability at least \(1-100/10000 = 0.99\), no bad event happens.
 
-
 \begin{marginfigure}
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/unionbound.png}
@@ -661,7 +658,6 @@ are \emph{positively correlated}, while if
 \(\Pr[ A \cap B] < \Pr[A] \cdot \Pr[B]\) then we say that \(A\) and
 \(B\) are \emph{negatively correlated} (see \cref{coinexperimentfig}).
 
-
 \begin{marginfigure}
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/independence.png}
@@ -748,7 +744,6 @@ other hand, the events \(\{x_0 = 1 \}\), \(\{x_1 = 1\}\) and
 \(\{ x_0 + x_1 = 0 \mod 2 \}\) are \emph{not} mutually independent, even
 though every pair of these events is independent (can you see why? see
 also \cref{independencecoinsfig}).
-
 
 \begin{marginfigure}
 \centering
@@ -914,7 +909,6 @@ coins, then as \(n\) grows, the number of coins that come up ones will
 be more and more \emph{concentrated} around \(n/2\) according to the
 famous ``bell curve'' (see \cref{bellfig}).
 
-
 \begin{marginfigure}
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/binomial.png}
@@ -961,7 +955,6 @@ definition, for every \(x\), \(Y(x) \leq X/(k\mu)\). We need to show
 \(\E[Y] \leq \E[X/k(\mu)] = \E[X]/(k\mu) = \mu/(k\mu)=1/k\).
 
 \end{proof}
-
 
 \begin{marginfigure}
 \centering
@@ -1061,7 +1054,6 @@ Specifically, for a normal random variable \(X\) of expectation \(\mu\)
 and standard deviation \(\sigma\), the probability that
 \(|X-\mu| \geq k\sigma\) is at most \(2e^{-k^2/2}\). That is, we have an
 \emph{exponential decay} of the probability of deviation.
-
 
 \begin{marginfigure}
 \centering
@@ -1428,7 +1420,7 @@ and \textbf{(2)} the distribution of \(F(x)\) conditioned on
 \(\{0,\ldots,M-1\}\).\footnote{\textbf{Hint:} Think of
   \(x\in \{0,1\}^n\) as choosing \(k\) numbers
   \(y_1,\ldots,y_k \in \{0,\ldots, 2^{\lceil \log M \rceil}-1 \}\).
-  Output the first such number that is in \(\{0,\ldots,M-1\}\). }
+  Output the first such number that is in \(\{0,\ldots,M-1\}\).}
 
 \end{exercise}
 

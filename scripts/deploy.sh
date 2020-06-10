@@ -8,8 +8,8 @@ echo  "Copying files to deploy"
 cp -Rf htmlbase/* deploy/
 cp -Rf html/* deploy/public
 cp -Rf figure deploy/
-echo "Compressing images.."
-pngquant/pngquant.exe 256 --verbose --skip-if-larger --force --ext .png deploy/figure/*.png
+echo "Skipping compressing images.."
+#pngquant/pngquant.exe 256 --verbose --skip-if-larger --force --ext .png deploy/figure/*.png
 echo "Removing powerpoint"
 rm -f deploy/figure/*.pptx
 echo "Pushing to repository"
