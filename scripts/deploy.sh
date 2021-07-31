@@ -3,36 +3,28 @@
 echo "Deploying to web"
 echo "Cleaning deploy directory"
 rm -rf deploy/public/*
-rm -rf deploy/figure/*
+#rm -rf deploy/figure/*
 echo  "Copying files to deploy"
 cp -Rf htmlbase/* deploy/
 cp -Rf html/* deploy/public
-cp -Rf figure deploy/
-echo "Skipping compressing images.."
-#pngquant/pngquant.exe 256 --verbose --skip-if-larger --force --ext .png deploy/figure/*.png
+echo  "Copying images (png and jpg only)"
+for filename in figure/*.png; do
+   if [[ (! -f deploy/$filename ) || ($filename -nt deploy/$filename) ]]; then
+  echo "deploy/$filename doesnt exist or older than /$filename"
+  cp -f $filename deploy/$filename
+  pngquant 256 --verbose --skip-if-larger --force --ext .png deploy/$filename
+   else
+   echo "No need to copy $filename"
+    fi
+done
 echo "Removing powerpoint"
 rm -f deploy/figure/*.pptx
-echo "Pushing to repository"
-cd "deploy"
-git add -A
-git commit -m "deploy page"
-git pull --rebase
-git push
+cp -f figure/*.jpg deploy/figure
+
+echo "Compressing full book pdf"
+cd "latex-book"
+ghostscript -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dPrinted=false -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf lnotes_book.pdf
+mv output.pdf lnotes_book.pdf
 cd ..
-echo "Deploying binaries to s3"
+
 cp -Rf latex-book/*.pdf binaries/
-cp -Rf binaries/* C:/DBOX/WORK/Homepage/Binary/crypto/
-cd "C:/DBOX/WORK/Homepage/Binary/crypto"
-read -p "Run acrobat? " -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-    "C:\Program Files (x86)\Adobe\Acrobat DC\Acrobat\Acrobat.exe"
-fi
-read -p "Sync with s3? " -n 1 -r
-echo    # (optional) move to a new line
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-    cd ..
-    aws s3 sync . s3://files.boazbarak.org
-fi
