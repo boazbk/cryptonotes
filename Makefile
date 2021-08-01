@@ -86,3 +86,4 @@ just-deploy:
 
 deploy: book all-word split-book-to-handouts 
 	scripts/deploy.sh
+
