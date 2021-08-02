@@ -25,7 +25,6 @@ The general philosophy is to try to do everything in this filter so that the mar
 contains no latex code outside of math nor any html code.
 """
 
-
 import panflute as pf
 import fractions
 import sys
@@ -118,6 +117,7 @@ def prepare(doc):
     doc.label_descriptions = {}  # eventually handle different files, counters
     doc.searchtext = ""
     doc.logfile = open(logfilename, "w", encoding="utf-8")
+    doc.logfile.write("Created at " + time.strftime("%m/%d/%Y %H:%M:%S"))
     doc.logfile.write("LOG: argv:" + str(sys.argv) + "\n")
     doc.logfile.write("Metadata:\n" + str(doc.metadata) + "\n")
     doc.lastlabel = ""
@@ -172,6 +172,7 @@ def prepare(doc):
         h_html_code_block
     ]
     # h_code_inline for nice highlighting in code
+
 
 
 def finalize(doc):
@@ -250,9 +251,9 @@ def labelref(e, doc):
     if e.identifier:
         return e.identifier
     regex = re.compile(r"[^a-zA-Z\-]")
-    t = regex.sub("", pf.stringify(e).replace(" ", "-"))[:30]
+    t = regex.sub("", pf.stringify(e).replace(" ", "-"))[:22]
     if t:
-        return t
+        return doc.chapternum + '-' + t
     return "temp"
 
 
@@ -1002,6 +1003,13 @@ def format_pseudocode(code):
         "ENDIF",
         "END\\\\IF",
         "RETURN",
+        "LIF",
+        "LELSE",
+        "LENDIF",
+        "L\\\\IF",
+        "L\\\\ELSE",
+        "L\\\\ENDIF"
+
     ]
 
     for k in keywords:
@@ -1019,34 +1027,40 @@ def format_pseudocode(code):
     for l in lines:
         if not l:
             continue
-
+        
+        
         for f in functions:
-            i = l.find(f+"(")
-            if i > -1:
-                beg, end = findparen(l, i + 1)
-                if beg > -1:
-                    # calling functions should always happen in math mode
-                    suffix = l[end + 1 :].lstrip() if l[end + 1 :] else "$"
-                    suffix = suffix[1:] if suffix[0] == "$" else " $" + suffix
-                    prefix =  l[:i].rstrip()
-                    if prefix and prefix[-1]=="$":
-                        prefix = prefix[:-1]
-                    else:
-                        prefix += "$ "
-                    l = (
-                        prefix
-                        + "\\CALL{"
-                        + f
-                        + "}{$"
-                        + l[beg + 1 : end]
-                        + "$} "
-                        + suffix
-                    )
-        m = re.search(r"\S+", l)
-        if m:
-            i = m.start()
+            temp = ""
+            found = True
+            while found:
+                found = False
+                i = l.find(f+"(")
+                if i > -1:
+                    beg, end = findparen(l, i + 1)
+                    if beg > -1:
+                        found = True
+                        # calling functions should always happen in math mode
+                        #suffix = l[end + 1 :].lstrip() if l[end + 1 :] else "$"
+                        #suffix = suffix[1:] if suffix[0] == "$" else " $" + suffix
+                        #prefix =  l[:i].rstrip()
+                        #if prefix and prefix[-1]=="$":
+                        #    prefix = prefix[:-1]
+                        #else:
+                        #    prefix += "$ "
+                        suffix = l[end + 1 :].lstrip()
+                        prefix =  l[:i]
+                        temp += prefix + "\\CALL{" + f + "}{" + l[beg + 1 : end] + "}" 
+                        l = suffix
+            l = temp + l
+
+        i = len(l) - len(l.lstrip())        
+        if i < len(l):
             if l[i] != "\\":
                 l = l[:i] + "\\STATE " + l[i:]
+            no_state_keywords = [ "\RETURN" ]
+            for k in no_state_keywords:
+                if (len(l)-i >= len(k)) and (l[i:i+len(k)] == k):
+                    l = l[:i] + "\\STATE " + l[i:]
         l = re.sub(r"`([^`]+)`", lambda m: fr"\texttt{{{latexescape(m.group(1))}}}", l)
         i = l.find("#")
         if i > 0:
@@ -1062,15 +1076,17 @@ def format_pseudocode(code):
 
 
 
-def htmlpseudocode(id,number,title,code):
+def htmlpseudocode(id,chapnum,number,title,code):
     """Takes formatted code and makes it into HTML"""
     code = code.replace("<","&lt;").replace(">","&gt;")
+    bm= r'<span class="math inline">\('
+    em= r'\)</span>'
     prefix = dedent(f'''
         <div  class="pseudocodeoutput">
         <div class="ps-root">
         <div class="ps-algorithm with-caption" id = {id}>
         <p class="ps-line" style="text-indent:-1.2em;padding-left:1.2em;">
-        <span class="ps-keyword">Algorithm {number} </span>{math2unicode(title)}</p>
+        <span class="ps-keyword">Algorithm {chapnum}.{number} </span>{math2unicode(title)}</p>
         <div class="ps-algorithmic">
     ''') # dropped with-linenum
     postfix = dedent('''
@@ -1087,8 +1103,11 @@ def htmlpseudocode(id,number,title,code):
         "REQUIRE" :"Input:",
         "ELSE" : "else",
         "ELSIF" : "elsif", 
-        "RETURN" : "return"
-    }
+        "RETURN" : "return",
+        "LELSE" : "else",
+        "LIF" : "if",
+        "LENDIF" : ";"
+        }
 
     keywordsbeg = {
         "PROCEDURE" : "Procedure",
@@ -1110,30 +1129,39 @@ def htmlpseudocode(id,number,title,code):
     keywords.update(keywordsend)
     keywords.update(keywordsother)
     for line in code.split('\n'):
+        origline = line
         afterline = ""
         for k in keywordsbeg:
             if line.find("\\"+k) >= 0:
-                afterline += dedent(''' 
-                <div class="ps-block" style="margin-left:1.2em;">
-                ''')
+                afterline += '\n<div class="ps-block" style="margin-left:1.2em;">'
         for k in keywordsend:
             if line.find("\\"+k)>= 0:
                 main += "\n"+r"</div>"
-        line = re.sub(r"\\PROCEDURE\{(\w+)\}\{([^\}]*)\}",r"\\PROCEDURE \(\\mathsf{\1}(\2)\)", line)
+        line = re.sub(r"\\PROCEDURE\{(\w+)\}\{([^\}]*)\}",r"\\PROCEDURE $\\mathsf{\1}$(\2)", line)
+        line = re.sub(r"\\CALL\{(\w+)\}\{([^\}]*)\}",r"\\mathsf{\1}(\2)", line)
         for k in keywords:
             line = line.replace(f"\\{k}",f'<span class="ps-keyword">{keywords[k]}</span>')
-        while line.find("$") >= 0:
-            line = re.sub(r"\$([^\$]+)\$",r"\(\1\)",line)
-        line = re.sub(r"\\CALL\{(\w+)\}\{([^\}]*)\}",r"\\mathsf{\1}(\2)", line)
+        temp = ""
+        while line and (line.find("$") >= 0):
+            i = line.find("$")
+            j = line[i+1:].find("$")
+            if j<0: break
+            temp += f"{line[:i]}{bm}{line[i+1:j+i+1]}{em}"
+            line = line[i+j+2:]
+        line = temp + line
+        
         line = line.replace("\\STATE","")
         t = line.find("\\COMMENT")
         if t>=0:
             rest = line[t+len("\\COMMENT{"):]
-            rest = rest[:rest.find("}")]
-            line = line[:t]+rf'<span class="ps-comment"><i># {rest}</i></span>'
-        main += dedent(f'''
-            <p class="ps-line" style="text-indent:-1.2em;padding-left:1.2em;">{line}
-        ''') + afterline
+            rest=  rest.rstrip() 
+            i = rest.rfind('}')
+            rest = rest[:i]
+            line = line[:t]+rf'<span class="ps-comment"><i># {rest}</i></span>{rest[i+1:]}'
+        main += '\n'+dedent(f'''
+            <!-- {origline} -->
+            <p class="ps-line" style="text-indent:-1.2em;padding-left:1.2em;">{line}</p>
+        ''') + '\n'+ afterline
     res =  prefix+main+postfix
     res += "</div>"*(res.count("<div>") - res.count("</div>"))
     return res
@@ -1175,7 +1203,7 @@ def h_pseudocode(e, doc):
         )
         return pf.RawBlock(result, format="latex")
     if doc.format == "html":
-        result = htmlpseudocode(label,number,title,format_pseudocode(content))
+        result = htmlpseudocode(label,doc.chapternum,number,title,format_pseudocode(content))
         return pf.RawBlock(result, format="html")
 
     if doc.format == "-html":

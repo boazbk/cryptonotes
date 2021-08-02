@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Checkout content submodule
+      uses: actions/checkout@v2
+      with:
+        repository: boazbk/crypto
+        token: ${{ secrets.CI_TOKEN }}
+        path: content
+    - name: Checkout deploy submodule
+      uses: actions/checkout@v2
+      with:
+        repository: boazbk/cryptodeploy
+        token: ${{ secrets.CI_TOKEN }}
+        path: deploy
+    - name: verify files
+      run: |
+        ls -alht content/
+        ls -alht deploy/
+    - name: start deploy with docker
+      run: |
+        docker rm tcs || true
+        docker create --name tcs marwahaha/tcsimage
+        docker cp . tcs:/app/
+        docker start tcs
+        docker ps
+    - name: wait til done
+      run: |
+        while [ $(docker ps | wc -l) -eq 2 ];  do docker ps; sleep 10s; done
+    - name: logs
+      run: docker logs tcs
+    - name: copy artifacts back
+      run: |
+        docker cp tcs:/app/binaries .
+        docker cp tcs:/app/deploy/. deploy/
+        ls -alht binaries/*.pdf
+        ls -alht binaries/
+        ls -alht deploy/
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.KUNAL_AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.KUNAL_AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+    - name: push binaries to aws
+      run: |
+        cd binaries
+        aws s3 sync . s3://files.boazbarak.org/crypto/
+        cd ..
+    - name: deploy html site
+      run: |
+        cd deploy
+        git config --global user.name 'Kunal Marwaha'
+        git config --global user.email 'marwahaha@berkeley.edu'
+        git add -A
+        git commit -m "deploy from github actions"
+        git push
+        cd ..

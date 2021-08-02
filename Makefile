@@ -49,7 +49,7 @@ all-word: $(docx-targets)
 
 latex-book/lnotes_book.pdf: all-tex
 	@echo "<<<PDF-BOOK WINDOWS>>>"
-	cd latex-book && xelatex -quiet -shell-escape  lnotes_book.tex && Biber lnotes_book && xelatex -quiet -shell-escape  lnotes_book.tex
+	cd latex-book && xelatex -halt-on-error -no-pdf -quiet -shell-escape  lnotes_book.tex && biber lnotes_book && xelatex -halt-on-error -quiet -shell-escape  lnotes_book.tex
 
 book: all-tex latex-book/lnotes_book.pdf all-html 
 
@@ -86,3 +86,4 @@ just-deploy:
 
 deploy: book all-word split-book-to-handouts 
 	scripts/deploy.sh
+

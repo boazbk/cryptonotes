@@ -43,16 +43,19 @@ def loadyaml(file, default={}):
     """Utility function to load from yaml file"""
     try:
         with open(file, "r", encoding="utf-8") as f:
-            t = yaml.load(f, Loader=yaml.FullLoader)
+            t = yaml.load(f)
     except FileNotFoundError:
         t = default
     return t
 
 
 def digest(s):
-    if len(s)>50:
-        s = s[:50]
-    return re.sub(r'\W+','', s.lower())
+    if len(s)>40:
+        s = s[:40]
+    s = s.lower()
+    return re.sub('[^A-Za-z0-9]+', '', s) 
+
+    
 
 
 def initsections(tocfile, maxlevel = 0):
