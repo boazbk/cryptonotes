@@ -60,9 +60,9 @@ compress-book:
 	  -dDownsampleColorImages=true \
 	  -dDownsampleGrayImages=true \
 	  -dDownsampleMonoImages=true \
-	  -dColorImageResolution=300 \
-	  -dGrayImageResolution=300 \
-	  -dMonoImageResolution=300 \
+	  -dColorImageResolution=600 \
+	  -dGrayImageResolution=600 \
+	  -dMonoImageResolution=600 \
 	  -dColorImageDownsampleThreshold=1.0 \
 	  -dGrayImageDownsampleThreshold=1.0 \
 	  -dMonoImageDownsampleThreshold=1.0 \
