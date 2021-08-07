@@ -39,7 +39,7 @@ docx-targets := $(foreach l,$(lectures),binaries/$(l).docx)
 aux-yaml:
 	@echo "Preparing bookaux.yaml"
 	python auxtoyaml.py "latex-book/"
-	
+
 
 all-html: aux-yaml $(html-targets) html/index.html
 
@@ -51,23 +51,24 @@ latex-book/lnotes_book.pdf: all-tex
 	@echo "<<<PDF-BOOK WINDOWS>>>"
 	cd latex-book && xelatex -halt-on-error -no-pdf -quiet -shell-escape  lnotes_book.tex && biber lnotes_book && xelatex -halt-on-error -quiet -shell-escape  lnotes_book.tex
 
-book: all-tex latex-book/lnotes_book.pdf all-html 
+book: all-tex latex-book/lnotes_book.pdf all-html
 
 compress-book:
-	  $(GHOSTSCRIPT)  \
-	  -sDEVICE=pdfwrite \
-	  -dPDFSETTINGS=/ebook \
-	  -dDownsampleColorImages=true \
-	  -dDownsampleGrayImages=true \
-	  -dDownsampleMonoImages=true \
-	  -dColorImageResolution=600 \
-	  -dGrayImageResolution=600 \
-	  -dMonoImageResolution=600 \
-	  -dColorImageDownsampleThreshold=1.0 \
-	  -dGrayImageDownsampleThreshold=1.0 \
-	  -dMonoImageDownsampleThreshold=1.0 \
-	  -dNOPAUSE -dQUIET -dBATCH  -dCompatibilityLevel=1.4 \
-	  -sOutputFile=binaries/lnotes_book.pdf  latex-book/lnotes_book.pdf
+	  cp latex-book/lnotes_book.pdf binaries/lnotes_book.pdf
+	#   $(GHOSTSCRIPT)  \
+	#   -sDEVICE=pdfwrite \
+	#   -dPDFSETTINGS=/ebook \
+	#   -dDownsampleColorImages=true \
+	#   -dDownsampleGrayImages=true \
+	#   -dDownsampleMonoImages=true \
+	#   -dColorImageResolution=600 \
+	#   -dGrayImageResolution=600 \
+	#   -dMonoImageResolution=600 \
+	#   -dColorImageDownsampleThreshold=1.0 \
+	#   -dGrayImageDownsampleThreshold=1.0 \
+	#   -dMonoImageDownsampleThreshold=1.0 \
+	#   -dNOPAUSE -dQUIET -dBATCH  -dCompatibilityLevel=1.4 \
+	#   -sOutputFile=binaries/lnotes_book.pdf  latex-book/lnotes_book.pdf
 
 
 split-book-to-handouts: latex-book/lnotes_book.pdf
@@ -84,6 +85,6 @@ split-book-to-handouts: latex-book/lnotes_book.pdf
 just-deploy:
 	scripts/deploy.sh
 
-deploy: book all-word split-book-to-handouts 
+deploy: book all-word split-book-to-handouts
 	scripts/deploy.sh
 
