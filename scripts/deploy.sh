@@ -21,10 +21,10 @@ echo "Removing powerpoint"
 rm -f deploy/figure/*.pptx
 cp -f figure/*.jpg deploy/figure
 
-echo "Compressing full book pdf"
-cd "latex-book"
-ghostscript -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dPrinted=false -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf lnotes_book.pdf
-mv output.pdf lnotes_book.pdf
-cd ..
+# echo "Compressing full book pdf"
+# cd "latex-book"
+# ghostscript -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dPrinted=false -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf lnotes_book.pdf
+# mv output.pdf lnotes_book.pdf
+# cd ..
 
 cp -Rf latex-book/*.pdf binaries/
