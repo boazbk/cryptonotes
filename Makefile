@@ -54,21 +54,11 @@ latex-book/lnotes_book.pdf: all-tex
 book: all-tex latex-book/lnotes_book.pdf all-html
 
 compress-book:
-	  cp latex-book/lnotes_book.pdf binaries/lnotes_book.pdf
-	#   $(GHOSTSCRIPT)  \
-	#   -sDEVICE=pdfwrite \
-	#   -dPDFSETTINGS=/ebook \
-	#   -dDownsampleColorImages=true \
-	#   -dDownsampleGrayImages=true \
-	#   -dDownsampleMonoImages=true \
-	#   -dColorImageResolution=600 \
-	#   -dGrayImageResolution=600 \
-	#   -dMonoImageResolution=600 \
-	#   -dColorImageDownsampleThreshold=1.0 \
-	#   -dGrayImageDownsampleThreshold=1.0 \
-	#   -dMonoImageDownsampleThreshold=1.0 \
-	#   -dNOPAUSE -dQUIET -dBATCH  -dCompatibilityLevel=1.4 \
-	#   -sOutputFile=binaries/lnotes_book.pdf  latex-book/lnotes_book.pdf
+	  $(GHOSTSCRIPT)  \
+	  -sDEVICE=pdfwrite \
+	  -dPDFSETTINGS=/prepress \
+	  -dNOPAUSE -dQUIET -dBATCH  -dCompatibilityLevel=1.4 \
+	  -sOutputFile=binaries/lnotes_book.pdf  latex-book/lnotes_book.pdf
 
 
 split-book-to-handouts: latex-book/lnotes_book.pdf
