@@ -23,7 +23,7 @@ cp -f figure/*.jpg deploy/figure
 
 echo "Compressing full book pdf"
 cd "latex-book"
-ghostscript -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dPrinted=false -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf lnotes_book.pdf
+ghostscript -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dPrinted=false -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf lnotes_book.pdf
 mv output.pdf lnotes_book.pdf
 cd ..
 
