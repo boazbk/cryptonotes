@@ -183,7 +183,7 @@ the server.
 \end{remark}
 
 \section{Defining fully homomorphic
-encryption}\label{Defining-fully-homomorphic-enc}
+encryption}\label{16-Defining-fully-homomor}
 
 We start by defining \emph{partially homomorphic} encryption. We focus
 on encryption for single bits. This is without loss of generality for
@@ -215,7 +215,7 @@ description size \(|f|\) at most \(poly(\ell)\) it holds that:
 
 \end{definition}
 
-\begin{pause} \label[pause]{Please-stop-and-verify-you-und}
+\begin{pause} \label[pause]{16-Please-stop-and-verify}
 
 Please stop and verify you understand the definition. In particular you
 should understand why some bound on the length of the output of
@@ -265,7 +265,7 @@ circuit (say composed of
 known to be a universal basis).
 
 \subsection{Another application: fully homomorphic encryption for
-verifying computation}\label{Another-application-fully-homo}
+verifying computation}\label{16-Another-application-fu}
 
 The canonical application of fully homomorphic encryption is for a
 client to store encrypted data \(E(x)\) on a server, send a function
@@ -320,7 +320,7 @@ probability of detection can be amplified to \(1-negl(n)\) using
 appropriate repetition, see the paper for details.
 
 \section{Example: An XOR homomorphic
-encryption}\label{Example-An-XOR-homomorphic-enc}
+encryption}\label{16-Example-An-XOR-homomor}
 
 It turns out that Regev's LWE-based encryption LWEENC we saw before is
 homomorphic with respect to the class of linear (mod 2) functions. Let
@@ -359,7 +359,7 @@ perform operations such as addition and multiplication modulo \(q\)).
 This stronger conjecture also seems well supported by evidence and we
 will use it in future lectures.
 
-\begin{pause} \label[pause]{It-is-a-good-idea-for-you-to-p}
+\begin{pause} \label[pause]{16-It-is-a-good-idea-for-}
 
 It is a good idea for you to pause here and try to show the equivalence
 on your own.
@@ -386,7 +386,7 @@ becomes stronger as \(q\) grows.)
 variant of the LWE-ENC described in \cref{lweencsec} turns out to be
 linearly homomorphic:
 
-\begin{quote} \label[quote]{LWE-ENC-encryptionKey-generati}
+\begin{quote} \label[quote]{16-LWE-ENC-encryptionKey-}
 
 \textbf{LWE-ENC' encryption:}
 
@@ -423,7 +423,7 @@ ciphertext \(c\) whose decryption \(b_1 \oplus \cdots \oplus b_\ell\).
 
 \end{lemma}
 
-\begin{pause} \label[pause]{This-claim-is-not-hard-to-prov}
+\begin{pause} \label[pause]{16-This-claim-is-not-hard}
 
 This claim is not hard to prove, but working it out for yourself can be
 a good way to get more familiarity with LWE-ENC' and the kind of
@@ -436,16 +436,20 @@ be an arbitrarily large polynomial in \(n\).
 
 \end{pause}
 
-\begin{proof}[Proof of \cref{parityhomlem}] \label[proof]{The-proof-is-quite-simple-ensu}
+\begin{proof}[Proof of \cref{parityhomlem}] \label[proof]{16-The-proof-is-quite-sim}
 
 The proof is quite simple. \(\ensuremath{\mathit{EVAL}}\) will simply
 add the ciphertexts as vectors in \(\Z_q\). If \(c = \sum c_i\) then
-\[\langle c,s \rangle = \sum b_i \floor{\tfrac{q}{2}}  +  \xi \mod  q\]
+\begin{equation*}
+\langle c,s \rangle = \sum b_i \floor{\tfrac{q}{2}}  +  \xi \mod  q
+\end{equation*}
 where \(\xi \in \Z_q\) is a ``noise term'' such that
 \(|\xi| \leq \ell m \sqrt{q} \ll q\). Since
 \(|\floor{\tfrac{q}{2}}- \tfrac{q}{2}|<1\), adding at most \(\ell\)
 terms of this difference adds at most \(\ell\), and so we can also write
-\[\langle c,s \rangle = \floor{ \sum b_i \tfrac{q}{2} }  +  \xi' \mod  q\]
+\begin{equation*}
+\langle c,s \rangle = \floor{ \sum b_i \tfrac{q}{2} }  +  \xi' \mod  q
+\end{equation*}
 for \(|\xi'| \leq \ell m \sqrt{q} + \ell \ll q\). If \(\sum b_i\) is
 even then \(\sum b_i \tfrac{q}{2}\) is an integer multiple of \(q\) and
 hence in this case \(|\langle c,s \rangle| \ll q\). If \(\sum b_i\) is
@@ -461,7 +465,7 @@ somewhat larger classes (e.g., quadratic functions by Boneh, Goh and
 Nissim) but not significantly so.
 
 \subsection{Abstraction: A trapdoor pseudorandom
-generator.}\label{Abstraction-A-trapdoor-pseudor}
+generator.}\label{16-Abstraction-A-trapdoor}
 
 It is instructive to consider the following abstraction (which we'll use
 in the next lecture) of the above encryption scheme as a \emph{trapdoor
@@ -556,7 +560,7 @@ the following:
 
 \end{definition}
 
-\begin{pause} \label[pause]{This-is-not-an-easy-definition}
+\begin{pause} \label[pause]{16-This-is-not-an-easy-de}
 
 This is not an easy definition to parse, but looking at \cref{TDPgenfig}
 can help. Make sure you understand why \(\ensuremath{\mathit{LWEENC}}\)
@@ -612,7 +616,7 @@ cryptographic primitives might end up making them less secure.
 \end{remark}
 
 \section{From linear homomorphism to full
-homomorphism}\label{From-linear-homomorphism-to-fu}
+homomorphism}\label{16-From-linear-homomorphi}
 
 Gentry's breakthrough had two components:
 
@@ -648,7 +652,7 @@ encryption'' (based on a later work of Gentry, Sahai and Waters) that
 can fit that theorem in the next lecture.
 
 \section{Bootstrapping: Fully Homomorphic ``escape
-velocity''}\label{Bootstrapping-Fully-Homomorphi}
+velocity''}\label{16-Bootstrapping-Fully-Ho}
 
 \begin{marginfigure}
 \centering
@@ -693,7 +697,7 @@ encryption scheme.
 
 \end{theorem}
 
-\subsection{Radioactive legos analogy}\label{Radioactive-legos-analogy}
+\subsection{Radioactive legos analogy}\label{16-Radioactive-legos-anal}
 
 \begin{marginfigure}
 \centering
@@ -724,11 +728,11 @@ perform. We then continue this process by putting the \(i+1^{st}\) bag
 inside the \(i+2^{nd}\) bag and so on and so forth.
 
 \subsection{Proving the bootstrapping
-theorem}\label{Proving-the-bootstrapping-theo}
+theorem}\label{16-Proving-the-bootstrapp}
 
 We now turn to the formal proof of \cref{bootstrapthm}
 
-\begin{proof} \label[proof]{The-idea-behind-the-proof-is-s}
+\begin{proof} \label[proof]{16-The-idea-behind-the-pr}
 
 The idea behind the proof is simple but ingenious. Recall that the NAND
 gate \(b,b' \mapsto \neg(b \wedge b')\) is a universal gate that allows
@@ -785,7 +789,9 @@ key \(d\), but we can still design a circuit that computes this function
 \(f_{c,c'}\). Now \(\ensuremath{\mathit{NANDEVAL}}(c,c')\) will simply
 be defined as \(\ensuremath{\mathit{EVAL}}(f_{c,c'},c^*)\). Since
 \(c^* = E_e(d)\), we get that
-\[D_d(\ensuremath{\mathit{NANDEVAL}}(c,c'))= D_d(\ensuremath{\mathit{EVAL}}(f_{c,c'},c^*))=f_{c,c'}(d) =D_d(c) \;\ensuremath{\mathit{NAND}}\; D_d(c') \;.\]
+\begin{equation*}
+D_d(\ensuremath{\mathit{NANDEVAL}}(c,c'))= D_d(\ensuremath{\mathit{EVAL}}(f_{c,c'},c^*))=f_{c,c'}(d) =D_d(c) \;\ensuremath{\mathit{NAND}}\; D_d(c') \;.
+\end{equation*}
 Thus indeed we map \emph{any} pair of ciphertexts \(c,c'\) that decrypt
 to \(b,b'\) into a ciphertext \(c''\) that decrypts to
 \(b \;\ensuremath{\mathit{NAND}}\; b'\). This is all that we needed to
@@ -793,7 +799,7 @@ prove.
 
 \end{proof}
 
-\begin{pause} \label[pause]{Dont-let-the-short-proof-fool-}
+\begin{pause} \label[pause]{16-Dont-let-the-short-pro}
 
 Don't let the short proof fool you. This theorem is quite deep and
 subtle, and requires some reading and re-reading to truly ``get'' it.

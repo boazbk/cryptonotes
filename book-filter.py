@@ -738,6 +738,7 @@ def h_math(e, doc):
     text = e.text
     reg = r"\\label\{([a-zA-Z\:\_\-0-9]+)\}"
     eqlabel = ""
+    labelled = re.search(reg,text)
 
     def _tmp(m):
         nonlocal eqlabel
@@ -754,6 +755,8 @@ def h_math(e, doc):
     reg2 = r"\A([A-Z][A-Z]+)"
     text = re.sub(reg2, r"\\ensuremath{\\mathit{\1}}", text)
     e.text = text.replace('""', r'\ensuremath{\text{\texttt{""}}}')
+    if (not labelled) and (doc.format == 'latex') and (e.format == 'DisplayMath'):
+        return pf.RawInline('\n'+r'\begin{equation*}'+text+r'\end{equation*}'+'\n', format = 'latex')
     if doc.format != "html":
         return e
     p = e.parent

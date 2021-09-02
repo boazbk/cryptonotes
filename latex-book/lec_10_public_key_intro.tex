@@ -1,4 +1,4 @@
-\chapter{Public key cryptography}\label{Public-key-cryptography}
+\chapter{Public key cryptography}\label{10-Public-key-cryptograph}
 
 People have been dreaming about heavier-than-air flight since at least
 the days of Leonardo Da Vinci (not to mention Icarus from Greek
@@ -106,7 +106,7 @@ I can tell Cocks, Ellis and Williamson did not realize the application
 to digital signatures). From this point on began a flurry of advances in
 cryptography which hasn't really died down till this day.
 
-\section{Private key crypto recap}\label{Private-key-crypto-recap}
+\section{Private key crypto recap}\label{10-Private-key-crypto-rec}
 
 Before we embark on the wonderful journey to \emph{public key}
 cryptography, let's briefly look back and see what we learned about
@@ -230,7 +230,7 @@ techniques to those used for public key encryption.
 \end{remark}
 
 \section{Public Key Encryptions:
-Definition}\label{Public-Key-Encryptions-Definit}
+Definition}\label{10-Public-Key-Encryptions}
 
 We now discuss how we define security for public key encryption. As
 mentioned above, it took quite a while for cryptographers to arrive at
@@ -293,7 +293,7 @@ adversary \(A\) wins the following game with probability at most
 
 \end{definition}
 
-\begin{pause} \label[pause]{Despite-it-being-a-chosen-plai}
+\begin{pause} \label[pause]{10-Despite-it-being-a-cho}
 
 Despite it being a ``chosen plaintext attack'', we don't explicitly give
 \(A\) access to the encryption oracle in the public key setting. Make
@@ -311,7 +311,7 @@ Alice while only \(d\) can be used to \emph{decrypt} the messages.
 Another way to think about it is that \(e\) is a ``hobbled key'' that
 can be used for only some of the functions of \(d\).
 
-\subsection{The obfuscation paradigm}\label{The-obfuscation-paradigm}
+\subsection{The obfuscation paradigm}\label{10-The-obfuscation-paradi}
 
 Why would someone imagine that such a magical object could exist? The
 writing of both James Ellis as well as Diffie and Hellman suggests that
@@ -409,7 +409,7 @@ heuristic to first ask yourself what could be possible if only everyone
 involved had access to a magic black box. It certainly worked well for
 Diffie and Hellman.
 
-\section{Some concrete candidates:}\label{Some-concrete-candidates}
+\section{Some concrete candidates:}\label{10-Some-concrete-candidat}
 
 We would have loved to prove a theorem of the form:
 
@@ -461,7 +461,7 @@ We will start by describing cryptosystems based on the first family
 and talk about the second family in future lectures.
 
 \subsection{Diffie-Hellman Encryption (aka
-El-Gamal)}\label{Diffie-Hellman-Encryption-aka-}
+El-Gamal)}\label{10-Diffie-Hellman-Encrypt}
 
 The Diffie-Hellman public key system is built on the presumed difficulty
 of the \emph{discrete logarithm problem}:
@@ -549,7 +549,7 @@ problem, then the Diffie-Hellman system is \emph{insecure}.
 
 \end{lemma}
 
-\begin{proof} \label[proof]{Using-a-discrete-logarithm-alg}
+\begin{proof} \label[proof]{10-Using-a-discrete-logar}
 
 Using a discrete logarithm algorithm, we can compute the private key
 \(a\) from the parameters \(p,g,g^a\) present in the public key, and
@@ -616,7 +616,7 @@ where the probability is taken over \(a,b\) chosen at random in
   efficient. We ignore this optimization in our discussions.}
 \end{quote}
 
-\begin{pause} \label[pause]{Please-take-your-time-to-re-re}
+\begin{pause} \label[pause]{10-Please-take-your-time-}
 
 Please take your time to re-read the following conjecture until you are
 sure you understand what it means. Victor Shoup's excellent and online
@@ -638,7 +638,7 @@ secure in the random oracle model.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{For-CPA-security-we-need-to-pr}
+\begin{proof} \label[proof]{10-For-CPA-security-we-ne}
 
 For CPA security we need to prove that (for fixed \(\mathbb{G}\) of size
 \(p\) and random oracle \(H\)) the following two distributions are
@@ -757,7 +757,7 @@ exchange algorithm and a public key encryption.
 
 \end{remark}
 
-\subsection{Sampling random primes}\label{Sampling-random-primes}
+\subsection{Sampling random primes}\label{10-Sampling-random-primes}
 
 To sample a random \(n\) bit prime, one can sample a random number
 \(0 \leq p < 2^n\) and then test if \(p\) is prime. If it is not prime,
@@ -787,7 +787,7 @@ The number of primes between \(1\) and \(N\) is \(\Omega(N/\log N)\).
 
 \end{lemma}
 
-\begin{proof} \label[proof]{Recall-that-the-least-common-m}
+\begin{proof} \label[proof]{10-Recall-that-the-least-}
 
 Recall that the \emph{least common multiple (LCM)} of two or more
 \(a_1,\ldots,a_t\) is the smallest number that is a multiple of all of
@@ -826,21 +826,24 @@ the least common multiple, this means that
 positive number and so \(I>0\). On one hand, for every \(x\) between
 zero and one, \(x(1-x) \leq 1/4\) and hence \(I\) is at most
 \(4^{-(N-1)/2}=2^{-N+1}\). On the other hand, the polynomial
-\(x^{N/2}(1-x)^{N/2}\) is some polynomial of degree at most \(N-1\) with
-integer coefficients, and so \(I=\sum_{k=1}^{N-1} C_k \int_0^1 x^k dx\)
-for some integer coefficients \(C_1,\ldots,C_{N-1}\). Since
-\(\int_0^1 x^k = \tfrac{1}{k+1}\), we see that \(I\) is a sum of
-fractions with integer numerators and with denominators that are at most
-\(N\). Since all the denominators are at most \(N\) and \(I>0\), it
-follows that \(I \geq \tfrac{1}{LCM(1,\ldots,N)}\), and so
-\[2^{-N+1} \geq I \geq \tfrac{1}{LCM(1,\ldots,N)}\] which implies
-\(\ensuremath{\mathit{LCM}}(1,\ldots,N) \leq 2^{N-1}\). QED (CLAIM 2 and
-hence lemma)
+\(x^{(N-1)/2}(1-x)^{(N-1)/2}\) is some polynomial of degree at most
+\(N-1\) with integer coefficients, and so
+\(I=\sum_{k=0}^{N-1} C_k \int_0^1 x^k dx\) for some integer coefficients
+\(C_0,\ldots,C_{N-1}\). Since \(\int_0^1 x^k = \tfrac{1}{k+1}\), we see
+that \(I\) is a sum of fractions with integer numerators and with
+denominators that are at most \(N\). Since all the denominators are at
+most \(N\) and \(I>0\), it follows that
+\(I \geq \tfrac{1}{LCM(1,\ldots,N)}\), and so
+\begin{equation*}
+2^{-N+1} \geq I \geq \tfrac{1}{LCM(1,\ldots,N)}
+\end{equation*}
+which implies \(\ensuremath{\mathit{LCM}}(1,\ldots,N) \leq 2^{N-1}\).
+QED (CLAIM 2 and hence lemma)
 
 \end{proof}
 
 \subsection{A little bit of group
-theory.}\label{A-little-bit-of-group-theory}
+theory.}\label{10-A-little-bit-of-group-}
 
 If you haven't seen group theory, it might be useful for you to do a
 quick review. We will not use much group theory and mostly use the
@@ -915,7 +918,7 @@ that \(g^a \neq 1\) for all of the fewer than \(\log |\mathbb{G}|\)
 numbers that are obtained by taking \(|\mathbb{G}|/q\) where \(q\) is a
 factor of \(|\mathbb{G}|\).
 
-\begin{pause} \label[pause]{Try-to-stop-here-and-verify-al}
+\begin{pause} \label[pause]{10-Try-to-stop-here-and-v}
 
 Try to stop here and verify all the facts on groups mentioned above.
 There are additional group theory exercises at the end of the chapter as
@@ -923,7 +926,7 @@ well.
 
 \end{pause}
 
-\subsection{Digital Signatures}\label{Digital-Signatures}
+\subsection{Digital Signatures}\label{10-Digital-Signatures}
 
 Public key encryption solves the \emph{confidentiality} problem, but we
 still need to solve the \emph{authenticity} or \emph{integrity} problem,
@@ -989,7 +992,7 @@ condition.
 \end{remark}
 
 \subsection{The Digital Signature Algorithm
-(DSA)}\label{The-Digital-Signature-Algorith}
+(DSA)}\label{10-The-Digital-Signature-}
 
 The Diffie-Hellman protocol can be turned into a signature scheme. This
 was first done by ElGamal, and a variant of his scheme was developed by
@@ -1062,7 +1065,7 @@ follows: (See also Section 12.5.2 in the KL book)
   \(m\), check that \(s\neq 0\) and \(f^\sigma=g^{H(m)}h^{F(f)}\).
 \end{itemize}
 
-\begin{pause} \label[pause]{You-should-pause-here-and-veri}
+\begin{pause} \label[pause]{10-You-should-pause-here-}
 
 You should pause here and verify that this is indeed a valid signature
 scheme, in the sense that for every \(m\), \(V_s(m,S_s(m))=1\).
@@ -1079,7 +1082,7 @@ these oracles will satisfy \(bs = x + ay\), which means that
 sufficiently many such equations should be enough to recover the
 discrete log \(a\).
 
-\begin{pause} \label[pause]{Before-seeing-the-actual-proof}
+\begin{pause} \label[pause]{10-Before-seeing-the-actu}
 
 Before seeing the actual proof, it is a very good exercise to try to see
 how to convert the intuition above into a formal proof.
@@ -1095,7 +1098,7 @@ when \(H,F\) are modeled as random oracles.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{Suppose-for-the-sake-of-contra}
+\begin{proof} \label[proof]{10-Suppose-for-the-sake-o}
 
 Suppose, for the sake of contradiction, that there was a \(T\)-time
 adversary \(A\) that succeeds with probability \(\epsilon\) in a chosen
@@ -1153,13 +1156,30 @@ adversary.
 If Case I happens with non-negligible probability, then we know that the
 value \(f^*\) is queried when producing the signature \((f^*,\sigma)\)
 for some message \(m \neq m^*\), and so we know the following two
-equations hold: \[ g^{H(m)}h^{F(f^*)} = (f^*)^{\sigma}\] and
-\[ g^{H(m^*)}h^{F(f^*)}=  (f^*)^{\sigma^*}\] Taking logs we get the
-following equations on \(a = \log_g h\) and \(b=\log_g f^*\):
-\[H(m)+aF(f^*) = b\sigma\] and \[H(m^*)+aF(f^*)=b\sigma^*\] or
-\[b= (H(m^*)-H(m))(\sigma-\sigma^*)^{-1} \mod p\] since all of the
-values \(H(m^*),H(m),\sigma,\sigma^*\) are known, this means we can
-compute \(b\), and hence also recover the unknown value \(a\).
+equations hold:
+\begin{equation*}
+ g^{H(m)}h^{F(f^*)} = (f^*)^{\sigma}
+\end{equation*}
+and
+\begin{equation*}
+ g^{H(m^*)}h^{F(f^*)}=  (f^*)^{\sigma^*}
+\end{equation*}
+Taking logs we get the following equations on \(a = \log_g h\) and
+\(b=\log_g f^*\):
+\begin{equation*}
+H(m)+aF(f^*) = b\sigma
+\end{equation*}
+and
+\begin{equation*}
+H(m^*)+aF(f^*)=b\sigma^*
+\end{equation*}
+or
+\begin{equation*}
+b= (H(m^*)-H(m))(\sigma-\sigma^*)^{-1} \mod p
+\end{equation*}
+since all of the values \(H(m^*),H(m),\sigma,\sigma^*\) are known, this
+means we can compute \(b\), and hence also recover the unknown value
+\(a\).
 
 If Case II happens, then we split it into two cases as well.
 \textbf{Case IIa} is that this happens and \(F(f^*)\) is queried
@@ -1176,12 +1196,18 @@ query. We run the \(\ensuremath{\mathit{CMA}}'\) experiment
 and independent randomness from then onwards. With probability at least
 \((\epsilon/T^2)^2\), both experiments will result in a successful
 forge, and since \(f^*\) was queried before at stage \(t'<t\), we get
-the following equations \[H_1(m^*)+aF(f^*) = b\sigma\] and
-\[H_2(m^*)+aF(f^*)=b\sigma^*\] where \(H_1(m^*)\) and \(H_2(m^*)\) are
-the answers of \(H\) to the query \(m^*\) in the first and second time
-we run the experiment. (The answers of \(F\) to \(f^*\) are the same
-since this happens before the \(t\)-th step). As before, we can use this
-to recover \(a=\log_g h\).
+the following equations
+\begin{equation*}
+H_1(m^*)+aF(f^*) = b\sigma
+\end{equation*}
+and
+\begin{equation*}
+H_2(m^*)+aF(f^*)=b\sigma^*
+\end{equation*}
+where \(H_1(m^*)\) and \(H_2(m^*)\) are the answers of \(H\) to the
+query \(m^*\) in the first and second time we run the experiment. (The
+answers of \(F\) to \(f^*\) are the same since this happens before the
+\(t\)-th step). As before, we can use this to recover \(a=\log_g h\).
 
 If \textbf{Case IIb} happens with non-negligible probability,
 \(\epsilon>0\). Then again by the averaging argument there are some
@@ -1191,8 +1217,14 @@ query, and \(f^*\) is queried by the adversary at its \(t'\)-th query.
 We run the \(\ensuremath{\mathit{CMA}}'\) experiment \emph{twice}, using
 the same randomness up until the \(t'-1\)-th query and independent
 randomness from then onwards. This time we will get the two equations
-\[H(m^*)+aF_1(f^*) = b\sigma\] and \[H(m^*)+aF_2(f^*)=b\sigma^*\] where
-\(F_1(f^*)\) and \(F_2(f^*)\) are our two answers in the first and
+\begin{equation*}
+H(m^*)+aF_1(f^*) = b\sigma
+\end{equation*}
+and
+\begin{equation*}
+H(m^*)+aF_2(f^*)=b\sigma^*
+\end{equation*}
+where \(F_1(f^*)\) and \(F_2(f^*)\) are our two answers in the first and
 second experiment, and now we can use this to learn
 \(a= b(\sigma-\sigma^*)(F_1(f^*)-F_2(f^*))^{-1}\).
 
@@ -1215,7 +1247,7 @@ such schemes later on in this course.
 \end{remark}
 
 \section{Putting everything together - security in
-practice.}\label{Putting-everything-together---}
+practice.}\label{10-Putting-everything-tog}
 
 Let us discuss briefly how public key cryptography is used to secure web
 trafic through the SSL/TLS protocol that we all use when we use
@@ -1362,7 +1394,7 @@ Visa, Web.com, Wells Fargo Bank N.A., WISeKey, WoSign CA Limited
 \end{quote}
 
 \section{Appendix: An alternative proof of the density of
-primes}\label{Appendix-An-alternative-proof-}
+primes}\label{10-Appendix-An-alternativ}
 
 I record here an alternative way to show that the fraction of primes in
 \([2^n]\) is \(\Omega(1/n)\).\footnote{It might be that the two ways are
@@ -1377,7 +1409,7 @@ The probability that a random \(n\) bit number is prime is at least
 
 \end{lemma}
 
-\begin{proof} \label[proof]{Let-Nn-We-need-to-show-that-th}
+\begin{proof} \label[proof]{10-Let-Nn-We-need-to-show}
 
 Let \(N=2^n\). We need to show that the number of primes between \(1\)
 and \(N\) is at least \(\Omega(N/\log N)\). Consider the number
@@ -1399,15 +1431,25 @@ or \(1\).
 
 Thus,
 \(\binom{2N}{N} \leq \prod_{\substack{1 \leq P \leq 2N \\ P \text{ prime }}} P^{\floor{\tfrac{\log 2N}{\log P}}}\).
-Taking logs we get that \[N \leq \log \binom{2N}{N}\]
-\[\leq \sum_{P \text{ prime} \in [2n]} \floor{\tfrac{\log 2N}{\log P}}\log P\]
-\[\leq \sum_{P \text{ prime} \in [2n]} \log 2N\] establishing that the
-number of primes in \([1,N]\) is \(\Omega(\tfrac{N}{\log N})\).
+Taking logs we get that
+\begin{equation*}
+N \leq \log \binom{2N}{N}
+\end{equation*}
+
+\begin{equation*}
+\leq \sum_{P \text{ prime} \in [2n]} \floor{\tfrac{\log 2N}{\log P}}\log P
+\end{equation*}
+
+\begin{equation*}
+\leq \sum_{P \text{ prime} \in [2n]} \log 2N
+\end{equation*}
+establishing that the number of primes in \([1,N]\) is
+\(\Omega(\tfrac{N}{\log N})\).
 
 \end{proof}
 
 \section{Additional Group Theory Exercises and
-Proofs}\label{Additional-Group-Theory-Exerci}
+Proofs}\label{10-Additional-Group-Theor}
 
 Below are optional group theory related exercises and proofs meant to
 help gain an intuition with group theory. Note that in this class, we
@@ -1474,7 +1516,7 @@ efficiently using repeated squaring, i.e.~generate all the squares up to
 \(a \mapsto a^{-1}\). This is done efficiently in \(\mathbb{Z}_p^{\*}\)
 by Fermat's little theorem. \(a^{-1}=a^{p-2}\) mod \(p\).
 
-\subsection{Solved exercises:}\label{Solved-exercises}
+\subsection{Solved exercises:}\label{10-Solved-exercises}
 
 \hypertarget{grouptheoryex1}{}
 \begin{solvedexercise} \label[solvedexercise]{grouptheoryex1}
@@ -1484,7 +1526,7 @@ multiplication mod \(7\)? What if the operation is addition mod \(7\)?
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{Yes-if-multiplication-and-no-i}
+\begin{solution} \label[solution]{10-Yes-if-multiplication-}
 
 Yes (if multiplication) and no (if addition). To prove that something is
 a group, we run through the definition of a group. This set is finite,
@@ -1517,7 +1559,7 @@ operation is multiplication mod \(7\)?
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{-and--Recall-that-a-generator-}
+\begin{solution} \label[solution]{10--and--Recall-that-a-ge}
 
 \(3\) and \(5\). Recall that a generator of a group is an element \(g\)
 such that \(\{g,g^2,g^3,\cdots\}\) is the entire group. We can directly
@@ -1549,7 +1591,7 @@ where the operation is multiplication mod \(7\)?
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{The-orders-of--are------respec}
+\begin{solution} \label[solution]{10-The-orders-of--are----}
 
 The orders (of \(1,2,3,4,5,6\)) are \(1,3, 6, 3, 6, 2\), respectively.
 This can be seen from the work of the previous problem, where we test
@@ -1572,7 +1614,7 @@ that the inverse of any element is unique (i.e.~prove that if
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{Suppose-that-a-in-mathbbG-and-}
+\begin{solution} \label[solution]{10-Suppose-that-a-in-math}
 
 Suppose that \(a \in \mathbb{G}\) and that \(b,c \in \mathbb{G}\) such
 that \(ab = 1\) and \(ac = 1\). Then we know that \(ab = ac\), and then
@@ -1593,7 +1635,7 @@ then \(a=b\)).
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{Suppose-that-ca--c-for-all-c-i}
+\begin{solution} \label[solution]{10-Suppose-that-ca--c-for}
 
 Suppose that \(ca = c\) for all \(c \in \mathbb{G}\) and that \(cb = c\)
 for all \(c \in \mathbb{G}\). Then we can say that \(ca =c = cb\) (for
@@ -1619,7 +1661,7 @@ Verify that \(\mathbb{H}\) is a subgroup of \(\mathbb{G}\).
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{To-be-a-subgroup-we-need-to-ma}
+\begin{solution} \label[solution]{10-To-be-a-subgroup-we-ne}
 
 To be a subgroup, we need to make sure that \(\mathbb{H}\) is a group in
 its own right (in particular, that it contains the identity, that it
@@ -1664,7 +1706,7 @@ strategy).
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{Suppose-that-we-recieve-some-e}
+\begin{solution} \label[solution]{10-Suppose-that-we-reciev}
 
 Suppose that we recieve some element \(g \in \mathbb{G}\). We want to
 know if there exists some \(g' \in \mathbb{G}\) such that \(g = (g')^2\)

@@ -1,5 +1,5 @@
 \chapter{Key derivation, protecting passwords, slow hashes, Merkle
-trees}\label{Key-derivation-protecting-pass}
+trees}\label{8-Key-derivation-protect}
 
 Last lecture we saw the notion of cryptographic hash functions which are
 functions that behave like a random function, even in settings (unlike
@@ -11,7 +11,7 @@ relatively mild and well-defined property of \emph{collision resistance}
 while in others we only know how to analyze security under the stronger
 (and not precisely well defined) \emph{random oracle heuristic}.
 
-\section{Keys from passwords}\label{Keys-from-passwords}
+\section{Keys from passwords}\label{8-Keys-from-passwords}
 
 We have seen great cryptographic tools, including PRFs, MACs, and CCA
 secure encryptions, that Alice and Bob can use when they share a
@@ -75,7 +75,7 @@ password \(p_{master}\) is used to \emph{encrypt} the other passwords.
 However to do that, we need to derive a key \(k_{master}\) from the
 password.
 
-\begin{pause} \label[pause]{A-natural-approach-is-to-simpl}
+\begin{pause} \label[pause]{8-A-natural-approach-is-}
 
 A natural approach is to simply let the key be the password. For
 example, if the password \(p\) is a string of at most 16 bytes, then we
@@ -151,7 +151,7 @@ passwords file falls to the hands of an adversary it will be expensive
 to recover them.
 
 \section{Merkle trees and verifying
-storage.}\label{Merkle-trees-and-verifying-sto}
+storage.}\label{8-Merkle-trees-and-verif}
 
 Suppose that you outsource to the cloud storing your huge data file
 \(x\in\{0,1\}^N\). You now need the \(i^{th}\) bit of that file and ask
@@ -201,7 +201,7 @@ this statement is true, or one can efficiently extract from \(\pi\) and
 
 \end{theorem}
 
-\begin{proof} \label[proof]{The-certificate-pi-consists-of}
+\begin{proof} \label[proof]{8-The-certificate-pi-con}
 
 The certificate \(\pi\) consists of a sequence of \(\log t\) pairs of
 size-\(n\) blocks that are obtained by following the path on the tree
@@ -217,7 +217,7 @@ input \(z'\) in \(\pi\) that hash to the same output.
 
 \end{proof}
 
-\section{Proofs of Retrievability}\label{Proofs-of-Retrievability}
+\section{Proofs of Retrievability}\label{8-Proofs-of-Retrievabili}
 
 The above provides a way to ensure Alice that the value retrieved from a
 cloud storage is correct, but how can Alice be sure that the cloud
@@ -253,7 +253,7 @@ Vadhan and Wichs} is a good source for this; see also
 slides by Seny Kamara} for a more recent overview of the theory and
 implementations.
 
-\section{Entropy extraction}\label{Entropy-extraction}
+\section{Entropy extraction}\label{8-Entropy-extraction}
 
 As we've seen time and again, \emph{randomness} is crucial to
 cryptography. But how \emph{do} we get these random bits we need? If we
@@ -351,9 +351,13 @@ hence \((X,Y)\) is uniform over a set of \(2^n\) elements), and
 \(H(Y|X)= \E \log k_i\). Thus the chain rule tells us that
 \(H_{Shannon}(X) = n - \E[Y|X] = n - \sum_{i=1}^m p_i k_i = n - \sum_{i=1}^m p_i \log(2^n p_i)\)
 since \(p_i = k_i/2^n\). Since \(\log(2^n p_i) = n + \log(p_i)\) we see
-that this means that \[
+that this means that
+\begin{equation*}
+
 H_{Shannon}(X) =  n - \sum_i p_i \cdot n  - \sum_i p_i \log(p_i) = - \sum_i p_i \log (p_i)
-\] using the fact that \(\sum_i p_i = 1\).
+
+\end{equation*}
+using the fact that \(\sum_i p_i = 1\).
 
 The Shannon entropy has many attractive properties, but it turns out
 that for cryptographic applications, the notion of \emph{min entropy} is
@@ -413,7 +417,7 @@ extractor.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{Let-h-be-chosen-as-above-and-l}
+\begin{proof} \label[proof]{8-Let-h-be-chosen-as-abo}
 
 Let \(h\) be chosen as above, and let \(X\) be some distribution over
 \(\{0,1\}^\ell\) with \(\max_x \{ \Pr[X=x]\} \leq 2^{-2n}\). Now, for
@@ -463,7 +467,7 @@ purpose.
 \end{remark}
 
 \subsection{Forward and backward
-secrecy}\label{Forward-and-backward-secrecy}
+secrecy}\label{8-Forward-and-backward-s}
 
 A cryptographic tool such as encryption is clearly insecure if the
 adversary learns the private key, and similarly the output of a

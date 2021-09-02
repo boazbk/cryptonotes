@@ -1,5 +1,5 @@
 \chapter{Pseudorandom functions from pseudorandom
-generators}\label{Pseudorandom-functions-from-ps}
+generators}\label{5-Pseudorandom-functions}
 
 We have seen that PRF's (pseudorandom functions) are extremely useful,
 and we'll see some more applications of them later on. But are they
@@ -34,7 +34,7 @@ traverse right for every 1.}
 \label{PRFfromPRGfig}
 \end{figure}
 
-\begin{proof} \label[proof]{If-the-PRG-Conjecture-is-true-}
+\begin{proof} \label[proof]{5-If-the-PRG-Conjecture-}
 
 If the PRG Conjecture is true then in particular by the length extension
 theorem there exists a PRG \(G:\{0,1\}^n\rightarrow\{0,1\}^{2n}\) that
@@ -44,11 +44,14 @@ is, \(G_0(s)\) denotes the first \(n\) bits and \(G_1(s)\) denotes the
 last \(n\) bits of \(G(s)\).
 
 For \(i\in\{0,1\}^n\), we define \(f_s(i)\) as
-\[G_{i_n}(G_{i_{n-1}}(\cdots G_{i_1}(s))).\] This corresponds to \(n\)
-composed applications of \(G_{b}\) for \(b \in \{0,1\}\). If the
-\(j^{th}\) bit of \(i\)'s binary string is 0 then the \(j^{th}\)
-application of the PRG is \(G_{0}\) otherwise it is \(G_{1}\). This
-series of successive applications starts with the initial seed \(s\).
+\begin{equation*}
+G_{i_n}(G_{i_{n-1}}(\cdots G_{i_1}(s))).
+\end{equation*}
+This corresponds to \(n\) composed applications of \(G_{b}\) for
+\(b \in \{0,1\}\). If the \(j^{th}\) bit of \(i\)'s binary string is 0
+then the \(j^{th}\) application of the PRG is \(G_{0}\) otherwise it is
+\(G_{1}\). This series of successive applications starts with the
+initial seed \(s\).
 
 This definition directly corresponds to the depiction in
 \cref{PRFfromPRGfig}, where the successive applications of \(G_{b}\)
@@ -239,12 +242,12 @@ model. One can also obtain practical constructions of PRFs from
 \end{remark}
 
 \section{Securely encrypting many messages - chosen plaintext
-security}\label{Securely-encrypting-many-messa}
+security}\label{5-Securely-encrypting-ma}
 
 Let's get back to our favorite task of \emph{encryption}. We seemed to
 have nailed down the definition of secure encryption, or did we?
 
-\begin{pause} \label[pause]{Try-to-think-what-kind-of-secu}
+\begin{pause} \label[pause]{5-Try-to-think-what-kind}
 
 Try to think what kind of security guarantees are \emph{not} provided by
 the notion of computational secrecy we saw in \cref{compsecdef}
@@ -351,7 +354,7 @@ There is no CPA secure \((E,D)\) where \(E\) is \emph{deterministic}.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{The-proof-is-very-simple-Eve-w}
+\begin{proof} \label[proof]{5-The-proof-is-very-simp}
 
 The proof is very simple: Eve will only use a single round of
 interacting with \(E\) where she will ask for the encryption \(c_1\) of
@@ -397,7 +400,7 @@ secure encryption scheme: \(E_s(m)=(r,f_s(r)\oplus m)\) where
 
 \end{theorem}
 
-\begin{proof} \label[proof]{I-leave-to-you-to-verify-that-}
+\begin{proof} \label[proof]{5-I-leave-to-you-to-veri}
 
 I leave to you to verify that \(D_s(E_s(m))=m\). We need to show the CPA
 security property. As is usual in PRF-based constructions, we first show
@@ -442,7 +445,7 @@ hence contradicting the security property of the PRF.
 \end{proof}
 
 \section{Pseudorandom permutations / block
-ciphers}\label{Pseudorandom-permutations--blo}
+ciphers}\label{5-Pseudorandom-permutati}
 
 Now that we have pseudorandom functions, we might get greedy and want
 such functions with even more magical properties. This is where the
@@ -481,7 +484,7 @@ is known as the \emph{input length} or \emph{block length}. Often,
 
 \end{definition}
 
-\begin{pause} \label[pause]{At-first-look-crefPRPdef-might}
+\begin{pause} \label[pause]{5-At-first-look-crefPRPd}
 
 At first look \cref{PRPdef} might seem not to make sense, since on one
 hand it requires the map \(x \mapsto f_s(x)\) to be a permutation, but
@@ -522,7 +525,7 @@ collection.
 \label{feistelfig}
 \end{figure}
 
-\begin{proof} \label[proof]{creffeistelfig-illustrates-the}
+\begin{proof} \label[proof]{5-creffeistelfig-illustr}
 
 \cref{feistelfig} illustrates the construction of a pseudorandom
 permutation from a pseudorandom function. The construction (known as the
@@ -723,7 +726,7 @@ round key, \(x_i\) is the block before the \(i^{th}\) round and
 \label{blockcipherfig}
 \end{marginfigure}
 
-\section{Encryption modes}\label{Encryption-modes}
+\section{Encryption modes}\label{5-Encryption-modes}
 
 How do we use a block cipher to actually encrypt traffic? Well we could
 use it as a PRF in the construction above, but in practice people use
@@ -845,7 +848,7 @@ reasons. ECB should not be used (except as a building block as part of a
 construction achieving stronger security).
 
 \section{Optional, Aside: Broadcast
-Encryption}\label{Optional-Aside-Broadcast-Encry}
+Encryption}\label{5-Optional-Aside-Broadca}
 
 At the beginning of this chapter, we saw the proof of \cref{prfthm},
 which states that the PRG Conjecture implies the existence of a secure

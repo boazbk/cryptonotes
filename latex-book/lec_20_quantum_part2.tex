@@ -1,5 +1,5 @@
 \chapter{Quantum computing and cryptography
-II}\label{Quantum-computing-and-cryptogr}
+II}\label{21-Quantum-computing-and-}
 
 Bell's Inequality is powerful demonstration that there is something very
 strange going on with quantum mechanics. But could this ``strangeness''
@@ -40,7 +40,7 @@ length \(O(\log |\mathbb{G}|)\) and there is a
 group.
 
 \section{From order finding to factoring and discrete
-log}\label{From-order-finding-to-factorin}
+log}\label{21-From-order-finding-to-}
 
 The order finding problem allows not just to factor integers in
 polynomial time, but also solve the discrete logarithm over arbitrary
@@ -69,7 +69,7 @@ details)
 \end{itemize}
 
 \section{Finding periods of a function: Simon's
-Algorithm}\label{Finding-periods-of-a-function-}
+Algorithm}\label{21-Finding-periods-of-a-f}
 
 Let \(\mathbb{H}\) be some Abelian group with a group operation that
 we'll denote by \(\oplus\), and \(f\) be some function mapping
@@ -133,7 +133,7 @@ there exists a quantum polynomial-time algorithm that outputs a random
 Note that given \(O(n)\) such samples, we can recover \(h^*\) with high
 probability by solving the corresponding linear equations.
 
-\begin{proof} \label[proof]{Let-ensuremathmathitHAD-be-the}
+\begin{proof} \label[proof]{21-Let-ensuremathmathitHA}
 
 Let \(\ensuremath{\mathit{HAD}}\) be the \(2\times 2\) unitary matrix
 corresponding to the one qubit operation
@@ -172,7 +172,7 @@ that the same insights that underlie the well known Fast Fourier
 Transform (FFT) algorithm can be used to essentially follow the same
 strategy for this group as well.
 
-\section{From Simon to Shor}\label{From-Simon-to-Shor}
+\section{From Simon to Shor}\label{21-From-Simon-to-Shor}
 
 (Note: The presentation here is adapted from the quantum computing
 chapter in my textbook with Arora.)
@@ -215,7 +215,7 @@ non-trivial information, which we do not know how to obtain using
 classical (non-quantum) computers.
 
 \subsection{The Fourier transform over
-\(\Z_m\)}\label{The-Fourier-transform-over-Zm}
+\(\Z_m\)}\label{21-The-Fourier-transform-}
 
 We now define the Fourier transform over \(\Z_m\) (the group of integers
 in \(\{0,\ldots,m-1\}\) with addition modulo \(m\)). We give a
@@ -235,7 +235,9 @@ The Fourier transform is simply a representation of \(f\) in the
 the vector/function whose \(y^{th}\) coordinate is
 \(\tfrac{1}{\sqrt{m}\omega^{xy}}\). Now the inner product of any two
 vectors \(\chi_x,\chi_z\) in this basis is equal to
-\[\langle \chi_x,\chi_z \rangle = \tfrac{1}{m}\sum_{y\in\Z_m} \omega^{xy} \overline{\omega^{zy}} = \tfrac{1}{m}\sum_{y\in\Z_m} \omega^{(x-z)y}  \;.\]
+\begin{equation*}
+\langle \chi_x,\chi_z \rangle = \tfrac{1}{m}\sum_{y\in\Z_m} \omega^{xy} \overline{\omega^{zy}} = \tfrac{1}{m}\sum_{y\in\Z_m} \omega^{(x-z)y}  \;.
+\end{equation*}
 But if \(x=z\) then \(\omega^{(x-z)}=1\) and hence this sum is equal to
 \(1\). On the other hand, if \(x \neq z\), then this sum is equal to
 \(\tfrac{1}{m} \tfrac{1 -\omega^{(x-y)m}}{1-\omega^{x-y}}= \tfrac{1}{m}\tfrac{1-1}{1-\omega^{x-y}}=0\)
@@ -260,7 +262,7 @@ with the period of \(f\) should be large, and so we might be able to
 discover \(f\)'s period from this representation. This does turn out to
 be the case, and is a crucial point in Shor's algorithm.
 
-\subsubsection{Fast Fourier Transform.}\label{Fast-Fourier-Transform}
+\subsubsection{Fast Fourier Transform.}\label{21-Fast-Fourier-Transform}
 
 Denote by \(\ensuremath{\mathit{FT}}_m\) the operation that maps every
 vector \(f\in\mathbb{C}^m\) to its Fourier transform \(\hat{f}\). The
@@ -301,7 +303,7 @@ size-\(m/2\) subproblems, leading to a recursive time bound of the form
 \(T(m) = 2T(m/2) + O(m)\) which solves to \(T(m)=O(m\log m)\).
 
 \subsection{Quantum Fourier Transform over
-\(\Z_m\)}\label{Quantum-Fourier-Transform-over}
+\(\Z_m\)}\label{21-Quantum-Fourier-Transf}
 
 The \emph{quantum Fourier transform} is an algorithm to change the state
 of a quantum register from \(f \in \mathbb{C}^m\) to its Fourier
@@ -366,7 +368,7 @@ The final state is equal to \(\hat{f}\) by the FFT equations (we leave
 this as an exercise)
 
 \section{Shor's Order-Finding
-Algorithm.}\label{Shors-Order-Finding-Algorithm}
+Algorithm.}\label{21-Shors-Order-Finding-Al}
 
 We now present the central step in Shor's factoring algorithm: a quantum
 polynomial-time algorithm to find the \emph{order} of an integer \(a\)
@@ -426,7 +428,7 @@ always amplify the algorithm's success by running it several times and
 taking the smallest output).
 
 \subsection{Analysis: the case that
-\(r|m\)}\label{Analysis-the-case-that-rm}
+\(r|m\)}\label{21-Analysis-the-case-that}
 
 We start by analyzing the algorithm in the case that \(m = rc\) for some
 integer \(c\). Though very unrealistic (remember that \(m\) is a power
@@ -459,7 +461,7 @@ measured with zero probability. But if \(x = cj\) then
 amplitudes of all such \(x\)'s are equal for all
 \(j \in \{0, 2, \ldots, r-1\}\).
 
-\subsubsection{The general case}\label{The-general-case}
+\subsubsection{The general case}\label{21-The-general-case}
 
 In the general case, where \(r\) does not necessarily divide \(m\), we
 will not be able to show that the measured value \(x\) satisfies
@@ -512,7 +514,9 @@ factor would be shared with \(rx \pmod{m}\) as well.
 \paragraph{Proof of Lemma 2:} Let \(x\) be such that
 \(0 < xr \pmod{m} < r/10\). The absolute value of \(|x\rangle\)'s
 coefficient in the state before the measurement is
-\[\tfrac{1}{\sqrt{K}\sqrt{m}}\left| \sum_{\ell=0}^{K-1} \omega^{\ell r x} \right| \;,\]
+\begin{equation*}
+\tfrac{1}{\sqrt{K}\sqrt{m}}\left| \sum_{\ell=0}^{K-1} \omega^{\ell r x} \right| \;,
+\end{equation*}
 where \(K = \floor{(m-x_0-1)/r}\). Note that
 \(\tfrac{m}{2r} < K < \tfrac{m}{r}\) since \(x_0 < N \ll m\).
 
@@ -531,7 +535,7 @@ coefficient of \(x\) is at least
 This completes the proof of \cref{orderdinfindrestatethm}.
 
 \section{Rational approximation of real
-numbers}\label{Rational-approximation-of-real}
+numbers}\label{21-Rational-approximation}
 
 In many settings, including Shor's algorithm, we are given a real number
 in the form of a program that can compute its first \(t\) bits in
@@ -549,9 +553,11 @@ Given a real number \(\alpha>0\), we can find its representation as an
 part \(\floor{\alpha}\) and fractional part \(\alpha - \floor{\alpha}\),
 find recursively the representation \(R\) of
 \(1/(\alpha - \floor{\alpha})\), and then write
-\[\alpha = \floor{\alpha} + \frac{1}{R} \;.\] If we continue this
-process for \(n\) steps, we get a rational number, denoted by
-\([a_0,a_1,\ldots,a_n]\), which can be represented as
+\begin{equation*}
+\alpha = \floor{\alpha} + \frac{1}{R} \;.
+\end{equation*}
+If we continue this process for \(n\) steps, we get a rational number,
+denoted by \([a_0,a_1,\ldots,a_n]\), which can be represented as
 \(\tfrac{p_n}{q_n}\) with \(p_n,q_n\) coprime. The following facts can
 be proven using induction:
 
@@ -584,7 +590,7 @@ again meaning that \(\tfrac{p_{n+1}}{q_{n+1}}=\tfrac{a}{b}\). It's not
 hard to verify that \(q_n \geq 2^{n/2}\), implying that \(p_n\) and
 \(q_n\) can be computed in \(polylog(q_n)\) time.
 
-\subsection{Quantum cryptography}\label{Quantum-cryptography}
+\subsection{Quantum cryptography}\label{21-Quantum-cryptography}
 
 There is another way in which quantum mechanics interacts with
 cryptography. These ``spooky actions at a distance'' have been suggested

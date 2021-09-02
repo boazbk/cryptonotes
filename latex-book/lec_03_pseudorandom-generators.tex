@@ -1,4 +1,4 @@
-\chapter{Pseudorandomness}\label{Pseudorandomness}
+\chapter{Pseudorandomness}\label{3-Pseudorandomness}
 
 \paragraph{Reading:} Katz-Lindell Section 3.3, Boneh-Shoup Chapter 3
 
@@ -87,7 +87,7 @@ Equivalently, \(G\) as above is a pseudorandom generator if the two
 distributions \(G(U_n)\) and \(U_{\ell(n)}\) are \emph{computationally
 indistinguishable}.
 
-\begin{pause} \label[pause]{This-definition-as-is-often-th}
+\begin{pause} \label[pause]{3-This-definition-as-is-}
 
 This definition (as is often the case in cryptography) is a bit long, so
 you want to take your time parsing it. In particular you should verify
@@ -119,7 +119,7 @@ exists an (inefficient) algorithm
 
 \end{lemma}
 
-\begin{proof} \label[proof]{On-input-yinn-consider-the-alg}
+\begin{proof} \label[proof]{3-On-input-yinn-consider}
 
 On input \(y\in{\{0,1\}}^{n+1}\), consider the algorithm \(Eve\) that
 goes over all possible \(x\in{\{0,1\}}^n\) and will output \(1\) if and
@@ -179,7 +179,7 @@ Suppose that the PRG conjecture is true. Then for every polynomial
 \label{lengthextendprgfig}
 \end{figure}
 
-\begin{proof} \label[proof]{The-proof-of-this-theorem-is-v}
+\begin{proof} \label[proof]{3-The-proof-of-this-theo}
 
 The proof of this theorem is very similar to the length extension
 theorem for ciphers, and in fact this theorem can be used to give an
@@ -255,7 +255,7 @@ current seed, uses part of the output to update the seed, and returns
 the remainder to the caller.
 
 \subsection{Unpredictability: an alternative approach for proving the
-length extension theorem}\label{Unpredictability-an-alternativ}
+length extension theorem}\label{3-Unpredictability-an-al}
 
 The notion that being random is the same as being ``unpredictable'', as
 discussed at the beginning of this chapter, can be formalized as
@@ -267,7 +267,9 @@ follows.
 An efficiently computable function \(G:\{0,1\}^* \rightarrow \{0,1\}^*\)
 is \emph{unpredictable} if, for any \(n\), \(1\le i<\ell(n)\) and
 polynomially-sized circuit \(P\),
-\[\Pr_{y\leftarrow G(U_n)}[P(y_1,\ldots,y_{i-1}) = y_i] \le \frac12+negl(n).\]
+\begin{equation*}
+\Pr_{y\leftarrow G(U_n)}[P(y_1,\ldots,y_{i-1}) = y_i] \le \frac12+negl(n).
+\end{equation*}
 Here, \(\ell(n)\) is the length function of \(G\) and
 \(y\leftarrow G(U_n)\) denotes that \(y\) is a random output of \(G\).
 In other words, no polynomial-sized circuit can predict the next bit of
@@ -289,7 +291,7 @@ unpredictable.
 
 \end{lemma}
 
-\begin{proof} \label[proof]{For-the-forward-direction-supp}
+\begin{proof} \label[proof]{3-For-the-forward-direct}
 
 For the forward direction, suppose for contradiction that there exists
 some \(i\) and some circuit \(P\) can predict \(y_i\) given
@@ -303,7 +305,10 @@ If \(y=G(x)\) for a uniform \(x\), then \(P\) succeeds with probability
 \(y_i\) is generated \emph{after} \(P\) finished its calculation. The
 bit \(y_i\) is \(0\) or \(1\) with equal probability, so \(P\) succeeds
 with probability \(\frac12\). Since \(Eve\) outputs 1 when \(P\)
-succeeds,\[\left| \Pr[Eve(G(U_n))=1] - \Pr[ Eve(U_\ell)=1] \right|=|p-\frac12|\ge \epsilon(n),\]
+succeeds,
+\begin{equation*}
+\left| \Pr[Eve(G(U_n))=1] - \Pr[ Eve(U_\ell)=1] \right|=|p-\frac12|\ge \epsilon(n),
+\end{equation*}
 a contradiction.
 
 For the backward direction, let \(G\) be an unpredictable function. Let
@@ -314,18 +319,23 @@ For the backward direction, let \(G\) be an unpredictable function. Let
 
 Suppose \(H_{i-1}\ncong H_{i}\) for some \(i\), i.e.~there exists some
 \(Eve\) and non-negligible \(\epsilon\) such that
-\[\Pr[Eve(H_{i})=1]-\Pr[Eve(H_{i-1})=1]>\epsilon(n).\] Consider the
-program \(P\) that, on input \((y_1,\ldots,y_{i-1})\), picks the bit
-\(\hat y_{i},\ldots, \hat y_n\) uniformly at random. Then, \(P\) calls
-\(Eve\) on the generated input. If \(Eve\) outputs \(1\) then \(P\)
-outputs \(\hat y_{i}\), and otherwise it outputs \(1-\hat y_{i}\).
+\begin{equation*}
+\Pr[Eve(H_{i})=1]-\Pr[Eve(H_{i-1})=1]>\epsilon(n).
+\end{equation*}
+Consider the program \(P\) that, on input \((y_1,\ldots,y_{i-1})\),
+picks the bit \(\hat y_{i},\ldots, \hat y_n\) uniformly at random. Then,
+\(P\) calls \(Eve\) on the generated input. If \(Eve\) outputs \(1\)
+then \(P\) outputs \(\hat y_{i}\), and otherwise it outputs
+\(1-\hat y_{i}\).
 
 The string \((y_1,\ldots,y_{i-1}, \hat y_i,\ldots,\hat y_n)\) has the
 same distribution as \(H_{i-1}\). However, conditioned on
 \(\hat y_i=y_i\), the string has distribution equal to \(H_{i}\). Let
 \(p\) be the probability that \(Eve\) outputs \(1\) if \(\hat y_i=y_i\)
 and \(q\) be the same probability when \(\hat y_i\neq y_i\), then we get
-\[p-\frac12(p+q)=\Pr[Eve(H_{i})=1]-\Pr[Eve(H_{i-1})=1]>\epsilon(n).\]
+\begin{equation*}
+p-\frac12(p+q)=\Pr[Eve(H_{i})=1]-\Pr[Eve(H_{i-1})=1]>\epsilon(n).
+\end{equation*}
 Therefore, the probability \(P\) outputs the correct value is equal to
 \(\frac12p+\frac12(1-q)=\frac12+\epsilon(n)2\), a contradiction.
 
@@ -338,7 +348,7 @@ will see later in the chapter is proved to be unpredictable if the
 ``quadratic residuosity problem'' is hard. It is also nice to know that
 our intuition at the beginning of the chapter can be formalized.
 
-\section{Stream ciphers}\label{Stream-ciphers}
+\section{Stream ciphers}\label{3-Stream-ciphers}
 
 We now show a connection between psuedorandom generators and encryption
 schemes:
@@ -355,7 +365,7 @@ two conjectures are \emph{equivalent}. We will probably not show the
 (quite non-trivial) proof of this fact in this course. (We might show
 some weaker version of this harder direction.)
 
-\begin{proof} \label[proof]{Recall-that-the-one-time-pad-i}
+\begin{proof} \label[proof]{3-Recall-that-the-one-ti}
 
 Recall that the \emph{one time pad} is a perfectly secure cipher but its
 only problem was that to encrypt an \(n+1\) long message it needed an
@@ -364,15 +374,19 @@ only problem was that to encrypt an \(n+1\) long message it needed an
 enough that we could use it as a key for the one-time pad. That is, our
 cipher will look as follows:
 
-\[
+\begin{equation*}
+
 E_k(m) = G(k) \oplus m
-\]
+
+\end{equation*}
 
 and
 
-\[
+\begin{equation*}
+
 D_k(c) = G(k) \oplus c
-\]
+
+\end{equation*}
 
 Just like in the one time pad,
 \(D_k(E_k(m)) = G(k) \oplus G(k) \oplus m = m\). Moreover, the
@@ -385,9 +399,11 @@ the one-time pad. Suppose that for some non-negligible
 \(\epsilon=\epsilon(n)>0\) there is an efficient adversary \(Eve'\) such
 that
 
-\[
+\begin{equation*}
+
 \left| {\mathbb{E}}[ Eve'(G(U_n)\oplus m)] - {\mathbb{E}}[ Eve'(U_{n+1}\oplus m) ] \right| \geq \epsilon.
-\]
+
+\end{equation*}
 
 Then the adversary \(Eve\) defined as \(Eve(y) = Eve'(y\oplus m)\) would
 be also efficient. Furthermore, if \(y\) is pseudorandom then
@@ -440,7 +456,7 @@ prove it is an excellent exercise.)
 \end{remark}
 
 \section{What do pseudorandom generators actually look
-like?}\label{What-do-pseudorandom-generator}
+like?}\label{3-What-do-pseudorandom-g}
 
 So far we have made the conjectures that objects such as ciphers and
 pseudorandom generators \emph{exist}, without giving any hint as to how
@@ -463,7 +479,7 @@ in Katz-Lindell and (for greater depth) Sections 3.6-3.9 in the
 Boneh-Shoup book.
 
 \subsection{Attempt 0: The counter
-generator}\label{Attempt--The-counter-generator}
+generator}\label{3-Attempt--The-counter-g}
 
 To get started, let's look at an example of an obviously bogus
 pseudorandom generator. We define the ``counter pseudorandom generator''
@@ -473,7 +489,7 @@ where \(s' = s + 1 \mod 2^n\) (treating \(s\) and \(s'\) as numbers in
 \(s'\). It's a great exercise to work out why this is \emph{not} a
 secure pseudorandom generator.
 
-\begin{pause} \label[pause]{You-should-really-pause-here-a}
+\begin{pause} \label[pause]{3-You-should-really-paus}
 
 You should really pause here and make sure you see why the ``counter
 pseudorandom generator'' is not a secure pseudorandom generator. Show
@@ -483,7 +499,7 @@ that this is true even if we replace the least significant digit by the
 \end{pause}
 
 \subsection{Attempt 1: The linear checksum / linear feedback shift
-register (LFSR)}\label{Attempt--The-linear-checksum--}
+register (LFSR)}\label{3-Attempt--The-linear-ch}
 
 LFSR can be thought of as the ``mother'' (or maybe more like the sick
 great-uncle) of all psuedorandom generators. One of the simplest ways to
@@ -595,8 +611,7 @@ not their actual running time.)
 
 \end{remark}
 
-\subsection{From insecurity to
-security}\label{From-insecurity-to-security}
+\subsection{From insecurity to security}\label{3-From-insecurity-to-sec}
 
 It is often the case that we want to ``fix'' a broken cryptographic
 primitive, such as a pseudorandom generator, to make it secure. At the
@@ -646,7 +661,7 @@ trying to recover some of the structure (e.g., by embedding modular
 arithmetic in the real line or ``linearizing'' non linear equations).
 
 \subsection{Attempt 2: Linear Congruential Generators with dropped
-bits}\label{Attempt--Linear-Congruential-G}
+bits}\label{3-Attempt--Linear-Congru}
 
 One approach that is widely used in implementations of pseudorandom
 generators is to take a linear generator such as the linear congruential
@@ -662,13 +677,13 @@ against such generators that uses the notion of \emph{lattice
 algorithms} that we will encounter later in this course in very
 different contexts.
 
-\section{Successful examples}\label{Successful-examples}
+\section{Successful examples}\label{3-Successful-examples}
 
 Let's now describe some \emph{successful} (at least per current
 knowledge) pseudorandom generators:
 
 \subsection{Case Study 1: Subset Sum
-Generator}\label{Case-Study--Subset-Sum-Generat}
+Generator}\label{3-Case-Study--Subset-Sum}
 
 Here is an extremely simple generator that is yet still
 secure\footnote{Actually modern computers will be able to break this
@@ -702,7 +717,9 @@ hardwired constants each 48 bits long (these constants were generated at
 random, but are fixed once and for all, and are not kept secret and
 hence are not considered part of the secret random seed). The output is
 simply
-\[\sum_{i=1}^{40} \texttt{seed}[i]\texttt{constants}[i] \pmod{2^{48}}\]
+\begin{equation*}
+\sum_{i=1}^{40} \texttt{seed}[i]\texttt{constants}[i] \pmod{2^{48}}
+\end{equation*}
 and hence expands the \(40\) bit input into a \(48\) bit output.
 
 This generator is loosely motivated by the ``subset sum'' computational
@@ -713,7 +730,7 @@ To get some intuition for its security, we can work out why (given that
 it seems to be linear) we cannot break it by simply using Gaussian
 elimination.
 
-\begin{pause} \label[pause]{This-is-an-excellent-point-for}
+\begin{pause} \label[pause]{3-This-is-an-excellent-p}
 
 This is an excellent point for you to stop and try to answer this
 question on your own.
@@ -745,7 +762,7 @@ subspace is closely related to a classical problem known as finding the
 \href{https://goo.gl/WRNT9S}{shortest vector in a lattice}. (See also
 the \href{https://goo.gl/KwZWhV}{short integer solution (SIS) problem}.)
 
-\subsection{Case Study 2: RC4}\label{Case-Study--RC}
+\subsection{Case Study 2: RC4}\label{3-Case-Study--RC}
 
 The following is another example of an extremely simple generator known
 as RC4 (this stands for Rivest Cipher 4, as Ron Rivest invented this in
@@ -787,18 +804,20 @@ designed by Dan Bernstein, have a similar design to RC4, and are
 considered secure and deployed in several standard protocols such as
 TLS, SSH and QUIC, see Section 3.6 in Boneh-Shoup.
 
-\section{Case Study 3: B.B.S.}\label{Case-Study--BBS}
+\section{Case Study 3: B.B.S.}\label{3-Case-Study--BBS}
 
 B.B.S., which stands for the authors Blum, Blum and Shub, is a simple
 generator constructed from a potentially hard problem in number theory.
 
 Let \(n=pq\), where \(p,q\) are primes. Then, the set \(Q_n\) of
 \emph{quadratic residues modulo \(n\)} is the set
-\[Q_n=\{x^2\mid \gcd(x,N)=1\}.\] The definition extends the concept of
-``perfect squares'' when we are working with standard integers. Notice
-that each number in \(Q_n\) has at least one square root. We will see
-later in the course that if \(n=pq\) then these numbers will have \(4\)
-square roots.
+\begin{equation*}
+Q_n=\{x^2\mid \gcd(x,N)=1\}.
+\end{equation*}
+The definition extends the concept of ``perfect squares'' when we are
+working with standard integers. Notice that each number in \(Q_n\) has
+at least one square root. We will see later in the course that if
+\(n=pq\) then these numbers will have \(4\) square roots.
 
 The B.B.S. generator chooses \(n=pq\), where \(p,q\) are prime and
 \(p,q\equiv 3\pmod{4}\). The second condition guarantees that for each
@@ -818,7 +837,7 @@ develop. However, it is interesting and I recommend the reader to search
 up this particular generator.
 
 \section{Non-constructive existence of pseudorandom
-generators}\label{Non-constructive-existence-of-}
+generators}\label{3-Non-constructive-exist}
 
 We now show that, if we don't insist on \emph{constructivity} of
 pseudorandom generators, then there exists pseudorandom generators with
@@ -834,7 +853,7 @@ There is some absolute constant \(C\) such that for every
 
 \end{lemma}
 
-\begin{proofidea} \label[proofidea]{The-proof-uses-an-extremely-us}
+\begin{proofidea} \label[proofidea]{3-The-proof-uses-an-extr}
 
 The proof uses an extremely useful technique known as the
 ``probabilistic method'' which is not too hard mathematically but can be
@@ -856,7 +875,7 @@ conditions of a \((T, \epsilon)\) PRG.
 The above discussion might be rather abstract at this point, but would
 become clearer after seeing the proof.
 
-\begin{proof}[Proof of \cref{prgexist}] \label[proof]{Let-epsilonTellm-be-as-in-the-}
+\begin{proof}[Proof of \cref{prgexist}] \label[proof]{3-Let-epsilonTellm-be-as}
 
 Let \(\epsilon,T,\ell,m\) be as in the lemma's statement. We need to
 show that there exists a function

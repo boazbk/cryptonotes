@@ -1,4 +1,4 @@
-\chapter{Lattice based cryptography}\label{Lattice-based-cryptography}
+\chapter{Lattice based cryptography}\label{12-Lattice-based-cryptogr}
 
 Lattice based public key encryption (and its cousins known as knapsack
 and coding based encryption) have almost as long a history as discrete
@@ -90,8 +90,7 @@ course we only touch on few aspects of it. I highly recommend
 \href{https://web.eecs.umich.edu/~cpeikert/pubs/lattice-survey.pdf}{Chris
 Peikert's Survey} for a much more in depth treatment of this area.
 
-\subsection{Quick linear algebra
-recap}\label{Quick-linear-algebra-recap}
+\subsection{Quick linear algebra recap}\label{12-Quick-linear-algebra-r}
 
 A \emph{field} \(\mathbb{F}\) is a set that supports the operations
 \(+,\cdot\) and contains the numbers \(0\) and \(1\) (more formally the
@@ -236,7 +235,7 @@ see a symbol such as \(v,A,x,y\) ask yourself:
 \end{remark}
 
 \section{A world without Gaussian
-elimination}\label{A-world-without-Gaussian-elimi}
+elimination}\label{12-A-world-without-Gaussi}
 
 The general approach people used to get a public key encryption is to
 obtain a hard computational problem with some mathematical
@@ -272,7 +271,7 @@ linear equations, we can still combine several equations to get new
 ones. To keep things simple, let's consider the case of encrypting a
 single bit.
 
-\begin{pause} \label[pause]{If-you-have-a-CPA-secure-publi}
+\begin{pause} \label[pause]{12-If-you-have-a-CPA-secu}
 
 If you have a CPA secure public key encryption scheme for single bit
 messages then you can extend it to a CPA secure encryption scheme for
@@ -319,7 +318,7 @@ Thus, at least intuitively, the following encryption scheme would be
 ``secure'' in the Gaussian-elimination free world of attackers that
 haven't taken freshman linear algebra:
 
-\begin{quote} \label[quote]{Scheme-LwoE-ENC-Public-key-enc}
+\begin{quote} \label[quote]{12-Scheme-LwoE-ENC-Public}
 
 \textbf{Scheme ``LwoE-ENC'':} Public key encryption under the hardness
 of ``learning linear equations without errors''.
@@ -340,7 +339,7 @@ of ``learning linear equations without errors''.
 
 \end{quote}
 
-\begin{pause} \label[pause]{Please-stop-here-and-make-sure}
+\begin{pause} \label[pause]{12-Please-stop-here-and-m}
 
 Please stop here and make sure that you see why this is a valid
 encryption (not in the sense that it is secure - it's not - but in the
@@ -350,7 +349,7 @@ calculations are done modulo \(q\).
 
 \end{pause}
 
-\section{Security in the real world.}\label{Security-in-the-real-world}
+\section{Security in the real world.}\label{12-Security-in-the-real-w}
 
 Like it or not (and cryptographers typically don't) Gaussian elimination
 \emph{is} possible in the real world and the scheme above is completely
@@ -396,7 +395,7 @@ or rationals disappears), the resulting equations have the form
 The \emph{Learning With Errors (LWE)} conjecture is that this is
 \emph{inherent}:
 
-\begin{quote} \label[quote]{Conjecture-Learning-with-Error}
+\begin{quote} \label[quote]{12-Conjecture-Learning-wi}
 
 \textbf{Conjecture (Learning with Errors, Regev 2005):} Let \(q=q(n)\)
 and \(\delta=\delta(n)\) be some functions. The \emph{Learning with
@@ -404,20 +403,22 @@ Error (LWE) conjecture with respect to \(q,\delta\)},denoted as
 \(\ensuremath{\mathit{LWE}}_{q,\delta}\), is the following conjecture:
 for every polynomial \(m(n)\) and polynomial-time adversary \(R\),
 
-\[\Pr[ R(A,Ax+e) = x ] < negl(n)\] where for \(q=q(n)\) and
-\(\delta = \delta(n)\), this probability is taken over \(A\) a random
-\(m\times n\) matrix in \(\Z_q\), \(x\) a random vector in \(\Z_q^n,\)
-and \(e\) a random ``noise vector'' in \(\Z_q^m\) where
-\(|e_i| < \delta q\) for every \(i \in [m]\).\footnote{One can think of
-  \(e\) as chosen by simply letting every coordinate be chosen at random
-  in \(\{ -\delta q, -\delta q + 1 , \ldots, +\delta q \}\). For
-  technical reasons, we sometimes consider other distributions and in
-  particular the \emph{discrete Gaussian} distribution which is obtained
-  by letting every coordinate of \(e\) be an independent Gaussian random
-  variable with standard deviation \(\delta q\), conditioned on it being
-  an integer. (A closely related distribution is obtained by picking
-  such a Gaussian random variable and then rounding it to the nearest
-  integer.)}
+\begin{equation*}
+\Pr[ R(A,Ax+e) = x ] < negl(n)
+\end{equation*}
+where for \(q=q(n)\) and \(\delta = \delta(n)\), this probability is
+taken over \(A\) a random \(m\times n\) matrix in \(\Z_q\), \(x\) a
+random vector in \(\Z_q^n,\) and \(e\) a random ``noise vector'' in
+\(\Z_q^m\) where \(|e_i| < \delta q\) for every
+\(i \in [m]\).\footnote{One can think of \(e\) as chosen by simply
+  letting every coordinate be chosen at random in
+  \(\{ -\delta q, -\delta q + 1 , \ldots, +\delta q \}\). For technical
+  reasons, we sometimes consider other distributions and in particular
+  the \emph{discrete Gaussian} distribution which is obtained by letting
+  every coordinate of \(e\) be an independent Gaussian random variable
+  with standard deviation \(\delta q\), conditioned on it being an
+  integer. (A closely related distribution is obtained by picking such a
+  Gaussian random variable and then rounding it to the nearest integer.)}
 
 The \emph{LWE conjecture} (without any parameters) is that there is some
 absolute constant \(c\) such that for every polynomial \(p(n)\) there,
@@ -439,7 +440,7 @@ adversary \(R\) as getting access to a ``magic box'' that they can use
 form \((a_i,y_i)\) with \(a_i\in \Z_q^n\), \(y_i \in \Z_q\) where
 \(y_i = \langle a_i, x \rangle + e_i\)).
 
-\section{Search to decision}\label{Search-to-decision}
+\section{Search to decision}\label{12-Search-to-decision}
 
 It turns out that if the LWE is hard, then it is even hard to
 distinguish between random equations and nearly correct ones:
@@ -476,7 +477,7 @@ are computationally indistinguishable:
 
 \end{theorem}
 
-\begin{proof} \label[proof]{Suppose-that-we-had-a-decision}
+\begin{proof} \label[proof]{12-Suppose-that-we-had-a-}
 
 Suppose that we had a decisional adversary \(D\) that succeeds in
 distinguishing the two distributions above with bias \(\epsilon\). For
@@ -533,7 +534,7 @@ recover \(x\).
 
 We can now show the secure variant of our original encryption scheme:
 
-\begin{quote} \label[quote]{LWE-based-encryption-LWE-ENC--}
+\begin{quote} \label[quote]{12-LWE-based-encryption-L}
 
 \textbf{LWE-based encryption LWE-ENC:} * \emph{Parameters:} Let
 \(\delta(n)=1/n^4\) and let \(q=poly(n)\) be a prime such that LWE holds
@@ -556,7 +557,7 @@ w.r.t. \(q,\delta\). We let \(m = n^2\log q\).
 
 \end{quote}
 
-\begin{pause} \label[pause]{The-scheme-LWEENC-is-also-desc}
+\begin{pause} \label[pause]{12-The-scheme-LWEENC-is-a}
 
 The scheme LWEENC is also described in \cref{lweencdescfig} with
 slightly different notation. I highly recommend you stop and verify you
@@ -589,7 +590,7 @@ With high probability, the decryption of the encryption of \(b\) equals
 
 \end{lemma}
 
-\begin{proof} \label[proof]{langle-wtop-Ax-rangle--langle-}
+\begin{proof} \label[proof]{12-langle-wtop-Ax-rangle-}
 
 \(\langle w^\top A,x \rangle = \langle w,Ax \rangle\). Hence, if
 \(y=Ax+e\) then
@@ -645,7 +646,7 @@ indistinguishable:
 
 \end{lemma}
 
-\begin{pause} \label[pause]{You-should-stop-here-and-verif}
+\begin{pause} \label[pause]{12-You-should-stop-here-a}
 
 You should stop here and verify that \textbf{(i)} You understand the
 statement of \cref{LWEENClem} and \textbf{(ii)} you understand why this
@@ -661,7 +662,7 @@ the hybrid argument.
 We now prove \cref{LWEENClem}, which will complete the proof of
 \cref{LWEENCthm}.
 
-\begin{proof}[Proof of \cref{LWEENClem}] \label[proof]{Define-D-to-be-the-distributio}
+\begin{proof}[Proof of \cref{LWEENClem}] \label[proof]{12-Define-D-to-be-the-dis}
 
 Define \(D\) to be the distribution
 \((A,y,w^\top A,\langle w,y \rangle)\) as in the lemma's statement
@@ -783,29 +784,39 @@ over \(H\) and \(W\). Let \(Z'\) be an independent copy of \(Z\).
 Step 1: we'll show that
 \(\Pr[Z=Z']\le\frac{1}{|\mathcal{H}|\cdot|\mathcal{V}|}(1+4\epsilon^2)\).
 
-\[ \begin{aligned} \Pr[Z=Z']&=\Pr[(H(W),H)=(H'(W'),H')]\\&=\Pr[H=H']\cdot\Pr[H(W)=H(W')]\\&=\frac{1}{|\mathcal{H}|}\left(\Pr[W=W']+\Pr[H(W)=H(W')\wedge X\neq X']\right)\\&\le\frac{1}{|\mathcal{H}|}\left(\frac{1}{|\mathcal{V}|}\epsilon^2\cdot 4+\frac{1}{|\mathcal{V}|}\right)\\&=\frac{1}{|\mathcal{H}|\cdot|\mathcal{V}|}(1+4\epsilon^2).\end{aligned} \]
+\begin{equation*}
+ \begin{aligned} \Pr[Z=Z']&=\Pr[(H(W),H)=(H'(W'),H')]\\&=\Pr[H=H']\cdot\Pr[H(W)=H(W')]\\&=\frac{1}{|\mathcal{H}|}\left(\Pr[W=W']+\Pr[H(W)=H(W')\wedge X\neq X']\right)\\&\le\frac{1}{|\mathcal{H}|}\left(\frac{1}{|\mathcal{V}|}\epsilon^2\cdot 4+\frac{1}{|\mathcal{V}|}\right)\\&=\frac{1}{|\mathcal{H}|\cdot|\mathcal{V}|}(1+4\epsilon^2).\end{aligned} 
+\end{equation*}
 
 Step 2: we'll show this implies that the statistical difference between
 \((H(W),H)\) and \((V,H)\) is less than \(\epsilon\). Denote the
 statistical difference by \(\Delta((H(W),H),(V,H))\).
 
-\[ \begin{aligned} \Delta((H(W),H),(V,H))&=\frac{1}{2}\sum_{h,w}\left|\Pr[Z=(h(w),w)]-\frac{1}{|\mathcal{H}|\cdot|\mathcal{V}|}\right|.\end{aligned} \]
+\begin{equation*}
+ \begin{aligned} \Delta((H(W),H),(V,H))&=\frac{1}{2}\sum_{h,w}\left|\Pr[Z=(h(w),w)]-\frac{1}{|\mathcal{H}|\cdot|\mathcal{V}|}\right|.\end{aligned} 
+\end{equation*}
 Define
 \(x_{h,w}=\Pr[Z=(h(w),h)]-\frac{1}{|\mathcal{H}|\cdot|\mathcal{V}|}\)
 and \(s_{h,w}=\text{sign}(x_{h,w})\). Write \(x\) for the vector of all
 the \(x_{h,w}\) and \(s\) for the vector of all the \(s_{h,w}\). Then
-\[\begin{aligned}\Delta((H(W),H),(V,H))&=\frac{1}{2}\langle x,s\rangle\\&\le\frac{1}{2}\|x\|_2\cdot\|s\|_2&\text{Cauchy-Schwarz}\\
-&=\frac{\sqrt{|\mathcal{H}|\cdot|\mathcal{V}|}}{2}\|x\|_2.\end{aligned}\]
+\begin{equation*}
+\begin{aligned}\Delta((H(W),H),(V,H))&=\frac{1}{2}\langle x,s\rangle\\&\le\frac{1}{2}\|x\|_2\cdot\|s\|_2&\text{Cauchy-Schwarz}\\
+&=\frac{\sqrt{|\mathcal{H}|\cdot|\mathcal{V}|}}{2}\|x\|_2.\end{aligned}
+\end{equation*}
 
 Let's expand \(\|x\|_2\):
-\[\begin{aligned} \|x\|_2^2&=\sum_{h,w}\left(\Pr[Z=(h(w),h)]-\frac{1}{|\mathcal{H}|\cdot|\mathcal{V}|}\right)^2\\&=\sum_{h,w}\left(\Pr[Z=(h(w),h)]^2-\frac{2\Pr[Z=(h(w),h)]}{|\mathcal{H}|\cdot|\mathcal{V}|}+\frac{1}{(|\mathcal{H}|\cdot|\mathcal{V}|)^2}\right)\\&\le\frac{1+4\epsilon^2}{|\mathcal{H}|\cdot|\mathcal{V}|}-\frac{2}{|\mathcal{H}|\cdot|\mathcal{V}|}+\frac{|\mathcal{H}|\cdot|\mathcal{V}|}{(|\mathcal{H}|\cdot|\mathcal{V}|)^2}\\&=\frac{4\epsilon^2}{|\mathcal{H}|\cdot|\mathcal{V}|}.\end{aligned}\]
+\begin{equation*}
+\begin{aligned} \|x\|_2^2&=\sum_{h,w}\left(\Pr[Z=(h(w),h)]-\frac{1}{|\mathcal{H}|\cdot|\mathcal{V}|}\right)^2\\&=\sum_{h,w}\left(\Pr[Z=(h(w),h)]^2-\frac{2\Pr[Z=(h(w),h)]}{|\mathcal{H}|\cdot|\mathcal{V}|}+\frac{1}{(|\mathcal{H}|\cdot|\mathcal{V}|)^2}\right)\\&\le\frac{1+4\epsilon^2}{|\mathcal{H}|\cdot|\mathcal{V}|}-\frac{2}{|\mathcal{H}|\cdot|\mathcal{V}|}+\frac{|\mathcal{H}|\cdot|\mathcal{V}|}{(|\mathcal{H}|\cdot|\mathcal{V}|)^2}\\&=\frac{4\epsilon^2}{|\mathcal{H}|\cdot|\mathcal{V}|}.\end{aligned}
+\end{equation*}
 When we plug this in to our expression for the statistical distance, we
 get
-\[\begin{aligned}\Delta((H(W),H),(V,H))&\le\frac{\sqrt{|\mathcal{H}|\cdot|\mathcal{V}|}}{2}\|x\|_2\\&\le \epsilon.\end{aligned}\]
+\begin{equation*}
+\begin{aligned}\Delta((H(W),H),(V,H))&\le\frac{\sqrt{|\mathcal{H}|\cdot|\mathcal{V}|}}{2}\|x\|_2\\&\le \epsilon.\end{aligned}
+\end{equation*}
 
 \end{proof}
 
-\begin{pause} \label[pause]{The-proof-of-crefLWEENCthm-is-}
+\begin{pause} \label[pause]{12-The-proof-of-crefLWEEN}
 
 The proof of \cref{LWEENCthm} is quite subtle and requires some
 re-reading and thought. To read more about this, you can look at the
@@ -815,7 +826,7 @@ Learning with Error Problem''} Sections 3 and 4.
 
 \end{pause}
 
-\section{But what are lattices?}\label{But-what-are-lattices}
+\section{But what are lattices?}\label{12-But-what-are-lattices}
 
 You can think of a lattice as a discrete version of a subspace. A
 lattice \(L\) is simply a discrete subset of \(\mathbb{R}^n\) such that
@@ -883,7 +894,7 @@ have an extremely good basis \(L\) for the lattice then \(v\) may indeed
 be the closest vector in the lattice, but in other more ``skewed'' bases
 it can be extremely far from it.
 
-\section{Ring based lattices}\label{Ring-based-lattices}
+\section{Ring based lattices}\label{12-Ring-based-lattices}
 
 One of the biggest issues with lattice based cryptosystem is the key
 size. In particular, the scheme above uses an \(m\times n\) matrix where

@@ -1,4 +1,4 @@
-\chapter{Mathematical Background}\label{Mathematical-Background}
+\chapter{Mathematical Background}\label{0-Mathematical-Backgroun}
 
 This is a brief review of some mathematical tools, and especially
 probability theory, that we will use in this course. See also the
@@ -25,15 +25,15 @@ Ellenberg.
 
 Although knowledge of algorithms is not strictly necessary, it would be
 quite useful. Students who did not take an algorithms class such as CS
-124 might want to look at the books (1) Corman, Leiserson, Rivest and
-Smith, (2) Dasgupte, Papadimitriou and Vaziarni, or (3) Kleinberg and
-Tardos. We do not require prior knowledge of complexity or computability
-but some basic familiarity could be useful. Students who did not take a
-theory of computation class such as CS 121 might want to look at my
-lecture notes or the first 2 chapters of my book with Arora.
+124 might want to look at one of the books (1) Corman, Leiserson, Rivest
+and Smith, (2) Dasgupte, Papadimitriou and Vaziarni, or (3) Kleinberg
+and Tardos. We do not require prior knowledge of complexity or
+computability but some basic familiarity could be useful. Students who
+did not take a theory of computation class such as CS 121 might want to
+look at my lecture notes or the first 2 chapters of my book with Arora.
 
 \section{A quick overview of mathematical
-prerequisites}\label{A-quick-overview-of-mathematic}
+prerequisites}\label{0-A-quick-overview-of-ma}
 
 The main notions we will use in this course are the following:
 
@@ -126,7 +126,7 @@ The main notions we will use in this course are the following:
 
 ~
 
-\section{Mathematical Proofs}\label{Mathematical-Proofs}
+\section{Mathematical Proofs}\label{0-Mathematical-Proofs}
 
 Arguably \emph{the} mathematical prerequisite needed for this course is
 a certain level of comfort with mathematical proofs. Many students tend
@@ -170,7 +170,7 @@ it and explain which parts of the statement you have been able to verify
 and which parts you haven't.
 
 \subsection{Example: The existence of infinitely many
-primes.}\label{Example-The-existence-of-infin}
+primes.}\label{0-Example-The-existence-}
 
 In the spirit of ``do what I say and not what I do'', I will now
 demonstrate the importance of conciseness by belaboring the point and
@@ -250,7 +250,7 @@ primes, then we would get a contradiction as by combining
 \cref{primesfirstlem} and \cref{primesseclem} we would get a number
 \(n\) with a prime factor outside this set. We now prove the lemmas:
 
-\begin{proof}[Proof of \cref{primesfirstlem}] \label[proof]{Let-n-be-a-number-and-let-p-be}
+\begin{proof}[Proof of \cref{primesfirstlem}] \label[proof]{0-Let-n-be-a-number-and-}
 
 Let \(n>1\) be a number, and let \(p\) be the smallest divisor of \(n\)
 that is larger than \(1\) (there exists such a number \(p\) since \(n\)
@@ -262,7 +262,7 @@ to the choice of \(p\) as the smallest divisor of \(n\).
 
 \end{proof}
 
-\begin{proof}[Proof of \cref{primesseclem}] \label[proof]{Let-np-cdots-pk---and-suppose-}
+\begin{proof}[Proof of \cref{primesseclem}] \label[proof]{0-Let-np-cdots-pk---and-}
 
 Let \(n=p_1 \cdots p_k + 1\) and suppose for the sake of contradiction
 that there exists some \(i\) such that \(n = p_i\cdot c\) for some
@@ -274,8 +274,7 @@ the fraction \(1/p_i\) on the righthand side.
 
 This completes the proof of \cref{infprimesthm}
 
-\section{Probability and Sample
-spaces}\label{Probability-and-Sample-spaces}
+\section{Probability and Sample spaces}\label{0-Probability-and-Sample}
 
 Perhaps the main mathematical background needed in cryptography is
 probability theory since, as we will see, there is no secrecy without
@@ -368,18 +367,20 @@ probability \(1/2\) since it corresponds to exactly \(4\) out of the
 \begin{lemma} \label[lemma]{evenprob}
 
 For every \(n>0\),
-\[\Pr_{x\sim \{0,1\}^n}[ \text{$\sum_{i=0}^{n-1} x_i$ is even }] = 1/2\]
+\begin{equation*}
+\Pr_{x\sim \{0,1\}^n}[ \text{$\sum_{i=0}^{n-1} x_i$ is even }] = 1/2
+\end{equation*}
 
 \end{lemma}
 
-\begin{pause} \label[pause]{To-test-your-intuition-on-prob}
+\begin{pause} \label[pause]{0-To-test-your-intuition}
 
 To test your intuition on probability, try to stop here and prove the
 lemma on your own.
 
 \end{pause}
 
-\begin{proof}[Proof of \cref{evenprob}] \label[proof]{We-prove-the-lemma-by-inductio}
+\begin{proof}[Proof of \cref{evenprob}] \label[proof]{0-We-prove-the-lemma-by-}
 
 We prove the lemma by induction on \(n\). For the case \(n=1\) it is
 clear since \(x=0\) is even and \(x=1\) is odd, and hence the
@@ -401,9 +402,13 @@ the four sets \(E_0,E_1,O_0,O_1\) is of size \(2^{n-2}\). Since
 up to an even number and the final coordinate is \(0\) or the first
 \(n-1\) coordinates sum up to an odd number and the final coordinate is
 \(1\)), we get that the probability that \(x\) satisfies this property
-is \[
+is
+\begin{equation*}
+
 \tfrac{|E_0\cup O_1|}{2^n} = \frac{2^{n-2}+2^{n-2}}{2^n} = \frac{1}{2} \;,
-\] using the fact that \(E_0\) and \(O_1\) are disjoint and hence
+
+\end{equation*}
+using the fact that \(E_0\) and \(O_1\) are disjoint and hence
 \(|E_0 \cup O_1| = |E_0|+|O_1|\).
 
 \end{proof}
@@ -423,16 +428,22 @@ Because intersection corresponds to considering the logical AND of the
 conditions that two events happen, while union corresponds to
 considering the logical OR, we will sometimes use the \(\wedge\) and
 \(\vee\) operators instead of \(\cap\) and \(\cup\), and so write this
-probability \(p=\Pr[A \cap B]\) defined above also as \[
+probability \(p=\Pr[A \cap B]\) defined above also as
+\begin{equation*}
+
 \Pr_{x\sim \{0,1\}^n} \left[ \sum_i x_i =0 \mod 2 \; \wedge \; x_0 = 1 \right] \;.
-\]
+
+\end{equation*}
 
 If \(A \subseteq \{0,1\}^n\) is an event, then
 \(\overline{A} = \{0,1\}^n \setminus A\) corresponds to the event that
 \(A\) does \emph{not} happen. Since \(|\overline{A}|=2^n-|A|\), we get
 that
-\[\Pr[\overline{A}] = \tfrac{|\overline{A}|}{2^n} = \tfrac{2^n-|A|}{2^n}=1-\tfrac{|A|}{2^n} = 1- \Pr[A]
-\] This makes sense: since \(A\) happens if and only if \(\overline{A}\)
+\begin{equation*}
+\Pr[\overline{A}] = \tfrac{|\overline{A}|}{2^n} = \tfrac{2^n-|A|}{2^n}=1-\tfrac{|A|}{2^n} = 1- \Pr[A]
+
+\end{equation*}
+This makes sense: since \(A\) happens if and only if \(\overline{A}\)
 does \emph{not} happen, the probability of \(\overline{A}\) should be
 one minus the probability of \(A\).
 
@@ -465,7 +476,7 @@ significant.
 
 \end{remark}
 
-\subsection{Random variables}\label{Random-variables}
+\subsection{Random variables}\label{0-Random-variables}
 
 \emph{Events} correspond to Yes/No questions, but often we want to
 analyze finer questions. For example, if we make a bet at the roulette
@@ -482,9 +493,12 @@ variable.
 The \emph{expectation} of a random variable \(X\), denoted by \(\E[X]\),
 is the average value that that this number takes, taken over all draws
 from the probabilistic experiment. In other words, the expectation of
-\(X\) is defined as follows: \[
+\(X\) is defined as follows:
+\begin{equation*}
+
 \E[X] = \sum_{x\in \{0,1\}^n} 2^{-n}X(x) \;.
-\]
+
+\end{equation*}
 
 If \(X\) and \(Y\) are random variables, then we can define \(X+Y\) as
 simply the random variable that maps a point \(x\in \{0,1\}^n\) to
@@ -494,19 +508,23 @@ that it is \emph{linear}:
 \hypertarget{linearityexp}{}
 \begin{lemma}[Linearity of expectation] \label[lemma]{linearityexp}
 
-\[ \E[ X+Y ] = \E[X] + \E[Y] \]
+\begin{equation*}
+ \E[ X+Y ] = \E[X] + \E[Y] 
+\end{equation*}
 
 \end{lemma}
 
-\begin{proof} \label[proof]{begingatheredE-XY--sumxin-n-nl}
+\begin{proof} \label[proof]{0-beginequationbegingath}
 
-\[
+\begin{equation*}
+
 \begin{gathered}
 \E [X+Y] = \sum_{x\in \{0,1\}^n}2^{-n}\left(X(x)+Y(x)\right) =  \\
 \sum_{x\in \{0,1\}^b} 2^{-n}X(x) + \sum_{x\in \{0,1\}^b} 2^{-n}Y(x) = \\
 \E[X] + \E[Y]
 \end{gathered}
-\]
+
+\end{equation*}
 
 \end{proof}
 
@@ -520,7 +538,7 @@ equal to \(n/2\). Indeed, if we write \(X= \sum_{i=0}^{n-1} x_i\) then
 \(\E[X_i] = (1/2)\cdot 0 + (1/2)\cdot 1 = 1/2\) and hence
 \(\E[X] = \sum_{i=0}^{n-1}\E[X_i] = n\cdot(1/2) = n/2\).
 
-\begin{pause} \label[pause]{If-you-have-not-seen-discrete-}
+\begin{pause} \label[pause]{0-If-you-have-not-seen-d}
 
 If you have not seen discrete probability before, please go over this
 argument again until you are sure you follow it; it is a prototypical
@@ -542,7 +560,7 @@ For every two events \(A,B\), \(\Pr[ A \cup B] \leq \Pr[A]+\Pr[B]\)
 
 \end{lemma}
 
-\begin{pause} \label[pause]{Before-looking-at-the-proof-tr}
+\begin{pause} \label[pause]{0-Before-looking-at-the-}
 
 Before looking at the proof, try to see why the union bound makes
 intuitive sense. We can also prove it directly from the definition of
@@ -552,7 +570,7 @@ true? (See also \cref{unionboundfig}.)
 
 \end{pause}
 
-\begin{proof}[Proof of \cref{unionbound}] \label[proof]{For-every-x-the-variable-Acup-}
+\begin{proof}[Proof of \cref{unionbound}] \label[proof]{0-For-every-x-the-variab}
 
 For every \(x\), the variable \(1_{A\cup B}(x) \leq 1_A(x)+1_B(x)\).
 Hence,
@@ -576,8 +594,7 @@ no intersection).}
 \label{unionboundfig}
 \end{marginfigure}
 
-\subsection{Distributions over
-strings}\label{Distributions-over-strings}
+\subsection{Distributions over strings}\label{0-Distributions-over-str}
 
 While most of the time we think of random variables as having as output
 a \emph{real number}, we sometimes consider random variables whose
@@ -608,8 +625,7 @@ map \(00 \mapsto 00\), \(01 \mapsto 01\), \(10 \mapsto 11\),
 and the map \(G:\{0,1\}^2 \rightarrow \{0,1\}^2\) defined as
 \(G(x_0x_1)=x_0(x_0 \oplus x_1)\)
 
-\subsection{More general sample
-spaces.}\label{More-general-sample-spaces}
+\subsection{More general sample spaces.}\label{0-More-general-sample-sp}
 
 While in this chapter we assume that the underlying probabilistic
 experiment corresponds to tossing \(n\) independent coins, everything we
@@ -625,8 +641,7 @@ is \(\sum_{x\in A} \mu(x)\). A \emph{random variable} is a function
 \(X:S \rightarrow \R\), where the probability that \(X=y\) is equal to
 \(\sum_{x\in S \text{ s.t. } X(x)=y} \mu(x)\).
 
-\section{Correlations and
-independence}\label{Correlations-and-independence}
+\section{Correlations and independence}\label{0-Correlations-and-indep}
 
 One of the most delicate but important concepts in probability is the
 notion of \emph{independence} (and the opposing notion of
@@ -686,18 +701,22 @@ other words \(\Pr[A \cap B ] < \Pr[A] \cdot \Pr[B]\).}
 If we consider the above examples on the experiment of choosing
 \(x\in \{0,1\}^3\) then we can see that
 
-\[
+\begin{equation*}
+
 \begin{aligned}
 \Pr[x_0=1] &= \tfrac{1}{2} \\
 \Pr[x_0+x_1+x_2 \geq 2] = \Pr[\{ 011,101,110,111 \}] &= \tfrac{4}{8} = \tfrac{1}{2}
 \end{aligned}
-\]
+
+\end{equation*}
 
 but
 
-\[
+\begin{equation*}
+
 \Pr[x_0 =1 \; \wedge \; x_0+x_1+x_2 \geq 2 ] = \Pr[ \{101,110,111 \} ] = \tfrac{3}{8} > \tfrac{1}{2} \cdot \tfrac{1}{2}
-\]
+
+\end{equation*}
 
 and hence, as we already observed, the events \(\{ x_0 = 1 \}\) and
 \(\{ x_0+x_1+x_2 \geq 2 \}\) are not independent and in fact are
@@ -734,9 +753,12 @@ more than two events. We say that events \(A_1,\ldots,A_k\) are
 \emph{mutually independent} if knowing that any set of them occurred or
 didn't occur does not change the probability that an event outside the
 set occurs. Formally, the condition is that for every subset
-\(I \subseteq [k]\), \[
+\(I \subseteq [k]\),
+\begin{equation*}
+
 \Pr[ \wedge_{i\in I} A_i] =\prod_{i\in I} \Pr[A_i].
-\]
+
+\end{equation*}
 
 For example, if \(x\sim \{0,1\}^3\), then the events \(\{ x_0=1 \}\),
 \(\{ x_1 = 1\}\) and \(\{x_2 = 1 \}\) are mutually independent. On the
@@ -762,7 +784,7 @@ intersection has probability \(\tfrac{2}{8}=\tfrac{1}{4}\) instead of
 \end{marginfigure}
 
 \subsection{Independent random
-variables}\label{Independent-random-variables}
+variables}\label{0-Independent-random-var}
 
 We say that two random variables \(X:\{0,1\}^n \rightarrow \R\) and
 \(Y:\{0,1\}^n \rightarrow \R\) are independent if for every
@@ -786,7 +808,7 @@ Then \(X\) and \(Y\) are independent.
 
 \end{lemma}
 
-\begin{pause} \label[pause]{The-notation-in-the-lemmas-sta}
+\begin{pause} \label[pause]{0-The-notation-in-the-le}
 
 The notation in the lemma's statement is a bit cumbersome, but at the
 end of the day, it simply says that if \(X\) and \(Y\) are random
@@ -797,7 +819,7 @@ coins), then they are independent.
 
 \end{pause}
 
-\begin{proof}[Proof of \cref{indcoins}] \label[proof]{Let-abin-R-and-let-A---x-in-k-}
+\begin{proof}[Proof of \cref{indcoins}] \label[proof]{0-Let-abin-R-and-let-A--}
 
 Let \(a,b\in \R\), and let \(A = \{ x \in \{0,1\}^k : F(x)=a \}\) and
 \(B=\{ x\in \{0,1\}^m : F(x)=b \}\). Since \(S\) and \(T\) are disjoint,
@@ -807,25 +829,32 @@ Hence we can write \(\Pr[X=a \wedge X=b] = |C|/2^n\) where
 \(C= \{ x_0,\ldots,x_{n-1} : (x_0,\ldots,x_{k-1}) \in A \wedge (x_k,\ldots,x_{k+m-1}) \in B \}\).
 Another way to write this using string concatenation is that
 \(C = \{ xyz : x\in A, y\in B, z\in \{0,1\}^{n-k-m} \}\), and hence
-\(|C|=|A||B|2^{n-k-m}\), which means that \[
+\(|C|=|A||B|2^{n-k-m}\), which means that
+\begin{equation*}
+
 \tfrac{|C|}{2^n} = \tfrac{|A|}{2^k}\tfrac{|B|}{2^m}\tfrac{2^{n-k-m}}{2^{n-k-m}}=\Pr[X=a]\Pr[Y=b] .
-\]
+
+\end{equation*}
 
 \end{proof}
 
 Note that if \(X\) and \(Y\) are independent random variables then (if
 we let \(S_X,S_Y\) denote all the numbers that have positive probability
-of being the output of \(X\) and \(Y\), respectively) it holds that: \[
+of being the output of \(X\) and \(Y\), respectively) it holds that:
+\begin{equation*}
+
 \begin{gathered}
 \E[ \ensuremath{\mathit{XY}} ] = \sum_{a \in S_X,b \in S_Y} {\textstyle\Pr[X=a \wedge Y=b]}\cdot ab \; =^{(1)} \; \sum_{a \in S_X,b \in S_Y} {\textstyle \Pr[X=a]\Pr[Y=b]}\cdot ab =^{(2)} \\
 \left(\sum_{a \in S_X} {\textstyle \Pr[X=a]}\cdot a\right)\left(\sum_{b \in S_Y} {\textstyle \Pr[Y=b]}b\right) =^{(3)} \\
 \E[X] \E[Y]
 \end{gathered}
-\] where the first equality (\(=^{(1)}\)) follows from the independence
-of \(X\) and \(Y\), the second equality (\(=^{(2)}\)) follows by
-``opening the parentheses'' of the righthand side, and the third
-inequality (\(=^{(3)}\)) follows from the definition of expectation.
-(This is not an ``if and only if''; see \cref{noindnocorex}.)
+
+\end{equation*}
+where the first equality (\(=^{(1)}\)) follows from the independence of
+\(X\) and \(Y\), the second equality (\(=^{(2)}\)) follows by ``opening
+the parentheses'' of the righthand side, and the third inequality
+(\(=^{(3)}\)) follows from the definition of expectation. (This is not
+an ``if and only if''; see \cref{noindnocorex}.)
 
 Another useful fact is that if \(X\) and \(Y\) are independent random
 variables, then so are \(F(X)\) and \(G(Y)\) for all functions
@@ -835,31 +864,39 @@ variables, then so are \(F(X)\) and \(G(Y)\) for all functions
 \(Y\) (and so also about \(F(Y)\)) then neither will learning \(F(X)\).
 Indeed, to prove this we can write for every \(a,b \in \R\):
 
-\[
+\begin{equation*}
+
 \begin{gathered}
 \Pr[ F(X)=a \wedge G(Y)=b ] = \sum_{x \text{ s.t.} F(x)=a, y \text{ s.t. } G(y)=b} \Pr[ X=x \wedge Y=y ] = \\
 \sum_{x \text{ s.t.} F(x)=a, y \text{ s.t. } G(y)=b} \Pr[ X=x ] \Pr[  Y=y ]  = \\
 \left( \sum_{x \text{ s.t.} F(x)=a } \Pr[X=x ] \right) \cdot \left( \sum_{y \text{ s.t.} G(y)=b } \Pr[Y=y ] \right) = \\
 \Pr[ F(X)=a] \Pr[G(Y)=b] .
 \end{gathered}
-\]
+
+\end{equation*}
 
 \subsection{Collections of independent random
-variables.}\label{Collections-of-independent-ran}
+variables.}\label{0-Collections-of-indepen}
 
 We can extend the notions of independence to more than two random
 variables: we say that the random variables \(X_0,\ldots,X_{n-1}\) are
 \emph{mutually independent} if for every \(a_0,\ldots,a_{n-1} \in \R\),
-\[
+\begin{equation*}
+
 \Pr\left[X_0=a_0 \wedge \cdots \wedge X_{n-1}=a_{n-1}\right]=\Pr[X_0=a_0]\cdots \Pr[X_{n-1}=a_{n-1}] .
-\] And similarly, we have that
+
+\end{equation*}
+And similarly, we have that
 
 \hypertarget{expprod}{}
 \begin{lemma}[Expectation of product of independent random variables] \label[lemma]{expprod}
 
-If \(X_0,\ldots,X_{n-1}\) are mutually independent then \[
+If \(X_0,\ldots,X_{n-1}\) are mutually independent then
+\begin{equation*}
+
 \E[ \prod_{i=0}^{n-1} X_i ] = \prod_{i=0}^{n-1} \E[X_i] .
-\]
+
+\end{equation*}
 
 \end{lemma}
 
@@ -873,7 +910,7 @@ functions \(F_0,\ldots,F_{n-1}:\R \rightarrow \R\), then
 
 \end{lemma}
 
-\begin{pause} \label[pause]{We-leave-proving-crefexpprod-a}
+\begin{pause} \label[pause]{0-We-leave-proving-crefe}
 
 We leave proving \cref{expprod} and \cref{indeplem} as \cref{expprodex}
 \cref{indeplemex}. It is good idea for you stop now and do these
@@ -882,8 +919,7 @@ independence, as we will use it heavily later on in this course.
 
 \end{pause}
 
-\section{Concentration and tail
-bounds}\label{Concentration-and-tail-bounds}
+\section{Concentration and tail bounds}\label{0-Concentration-and-tail}
 
 The name ``expectation'' is somewhat misleading. For example, suppose
 that you and I place a bet on the outcome of 10 coin tosses, where if
@@ -892,9 +928,11 @@ otherwise you pay me 10 dollars. If we let
 \(X:\{0,1\}^{10} \rightarrow \R\) be the random variable denoting your
 gain, then we see that
 
-\[
+\begin{equation*}
+
 \E[X] = 2^{-10}\cdot 100000 - (1-2^{-10})10 \sim 90 .
-\]
+
+\end{equation*}
 
 But we don't really ``expect'' the result of this experiment to be for
 you to gain 90 dollars. Rather, 99.9\% of the time you will pay me 10
@@ -931,7 +969,7 @@ If \(X\) is a non-negative random variable then
 
 \end{theorem}
 
-\begin{pause} \label[pause]{Markovs-Inequality-is-actually}
+\begin{pause} \label[pause]{0-Markovs-Inequality-is-}
 
 Markov's Inequality is actually a very natural statement (see also
 \cref{markovfig}). For example, if you know that the average (not the
@@ -946,7 +984,7 @@ much smaller: see the Chebyshev and Chernoff inequalities below.
 
 \end{pause}
 
-\begin{proof}[Proof of \cref{markovthm}] \label[proof]{Let-mu--EX-and-define-YX-geq-k}
+\begin{proof}[Proof of \cref{markovthm}] \label[proof]{0-Let-mu--EX-and-define-}
 
 Let \(\mu = \E[X]\) and define \(Y=1_{X \geq k \mu}\). That is,
 \(Y(x)=1\) if \(X(x) \geq k \mu\) and \(Y(x)=0\) otherwise. Note that by
@@ -981,7 +1019,7 @@ theorem'', ``invariance principles'' and ``Chernoff bounds'', is one of
 the most fundamental in probability and statistics, and is one that we
 heavily use in computer science as well.
 
-\subsection{Chebyshev's Inequality}\label{Chebyshevs-Inequality}
+\subsection{Chebyshev's Inequality}\label{0-Chebyshevs-Inequality}
 
 A standard way to measure the deviation of a random variable from its
 expectation is by using its \emph{standard deviation}. For a random
@@ -1005,7 +1043,7 @@ every \(k>0\), \(\Pr[ |X-\mu | \geq k \sigma ] \leq 1/k^2\).
 
 \end{theorem}
 
-\begin{proof} \label[proof]{The-proof-follows-from-Markovs}
+\begin{proof} \label[proof]{0-The-proof-follows-from}
 
 The proof follows from Markov's inequality. We define the random
 variable \(Y = (X-\mu)^2\). Then \(\E[Y] = \mathrm{Var}[X] = \sigma^2\),
@@ -1037,7 +1075,7 @@ and in particular if \(\sqrt{n} \leq 0.001n/k\), we can use Chebyshev's
 inequality to bound the probability that \(X\) is not in
 \([0.499n,0.501n]\) by \(1/k^2\).
 
-\subsection{The Chernoff bound}\label{The-Chernoff-bound}
+\subsection{The Chernoff bound}\label{0-The-Chernoff-bound}
 
 Chebyshev's inequality already shows a connection between independence
 and concentration, but in many cases we can hope for a quantitatively
@@ -1080,9 +1118,12 @@ the computer science literature:
 
 If \(X_1,\ldots,X_n\) are i.i.d random variables such that
 \(X_i \in [0,1]\) and \(\E[X_i]=p\) for every \(i\), then for every
-\(\epsilon >0\) \[
+\(\epsilon >0\)
+\begin{equation*}
+
 \Pr[ \left| \sum_{i=0}^{n-1} X_i - pn \right| > \epsilon n ] \leq 2\cdot e^{-2\epsilon^2 n} .
-\]
+
+\end{equation*}
 
 \end{theorem}
 
@@ -1094,9 +1135,9 @@ form \(Y_i = e^{\lambda X_i}\) for some carefully chosen parameter
 \(\{0,1\}\) valued and \(p=1/2\). (See also \cref{poorchernoff} for a
 generalization.)
 
-\section{Exercises}\label{Exercises}
+\section{Exercises}\label{0-Exercises}
 
-\begin{exercise} \label[exercise]{Prove-that-for-every-finite-ST}
+\begin{exercise} \label[exercise]{0-Prove-that-for-every-f}
 
 Prove that for every finite \(S,T\), there are \((|T|+1)^{|S|}\) partial
 functions from \(S\) to \(T\).
@@ -1130,7 +1171,7 @@ following relations holds: \(F=O(G)\), \(F=\Omega(G)\), \(F=o(G)\) or
 
 \end{exercise}
 
-\begin{exercise} \label[exercise]{Give-an-example-of-a-pair-of-f}
+\begin{exercise} \label[exercise]{0-Give-an-example-of-a-p}
 
 Give an example of a pair of functions \(F,G:\N \rightarrow \N\) such
 that neither \(F=O(G)\) nor \(G=O(F)\) holds.
@@ -1219,9 +1260,9 @@ otherwise.
 
 \end{exercise}
 
-\section{Exercises}\label{Exercises}
+\section{Exercises}\label{0-Exercises}
 
-\begin{exercise} \label[exercise]{Suppose-that-we-toss-three-ind}
+\begin{exercise} \label[exercise]{0-Suppose-that-we-toss-t}
 
 Suppose that we toss three independent fair coins \(a,b,c \in \{0,1\}\).
 What is the probability that the XOR of \(a\),\(b\), and \(c\) is equal
@@ -1230,7 +1271,7 @@ equal to \(1\)? Are these two events independent?
 
 \end{exercise}
 
-\begin{exercise} \label[exercise]{Give-an-example-of-random-vari}
+\begin{exercise} \label[exercise]{0-Give-an-example-of-ran}
 
 Give an example of random variables \(X,Y: \{0,1\}^3 \rightarrow \R\)
 such that \(\E[\ensuremath{\mathit{XY}}] \neq \E[X]\E[Y]\).
@@ -1300,9 +1341,13 @@ Let \(H(p) = p \log(1/p)+(1-p)\log(1/(1-p))\).\footnote{While you don't
 
 Prove that for every \(p \in (0,1)\) and \(\epsilon>0\), if \(n\) is
 large enough then\footnote{\textbf{Hint:} Use Stirling's formula for
-  approximating the factorial function.} \[
+  approximating the factorial function.}
+\begin{equation*}
+
 2^{(H(p)-\epsilon)n }\binom{n}{pn} \leq 2^{(H(p)+\epsilon)n}
-\] where \(\binom{n}{k}\) is the binomial coefficient
+
+\end{equation*}
+where \(\binom{n}{k}\) is the binomial coefficient
 \(\tfrac{n!}{k!(n-k)!}\) which is equal to the number of \(k\)-size
 subsets of \(\{0,\ldots,n-1\}\).
 

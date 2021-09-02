@@ -1,4 +1,4 @@
-\chapter{Zero knowledge proofs}\label{Zero-knowledge-proofs}
+\chapter{Zero knowledge proofs}\label{15-Zero-knowledge-proofs}
 
 The notion of \emph{proof} is central to so many fields. In mathematics,
 we want to prove that a certain assertion is correct. In other sciences,
@@ -35,12 +35,12 @@ would you achieve such a thing, or even define it? And why on earth
 would it be useful? This is the topic of this lecture.
 
 \section{Applications for zero knowledge
-proofs.}\label{Applications-for-zero-knowledg}
+proofs.}\label{15-Applications-for-zero-}
 
 Before we talk about how to achieve zero knowledge, let us discuss some
 of its potential applications:
 
-\subsection{Nuclear disarmament}\label{Nuclear-disarmament}
+\subsection{Nuclear disarmament}\label{15-Nuclear-disarmament}
 
 The United States and Russia have reached a dangerous and expensive
 equilibrium by which each has about
@@ -93,7 +93,7 @@ the U.S. would like to share with Russia and vice versa. So, how can the
 U.S. convince the Russian that it has destroyed a warhead, when it
 cannot let Russian experts anywhere near it?
 
-\subsection{Voting}\label{Voting}
+\subsection{Voting}\label{15-Voting}
 
 Electronic voting has been of great interest for many reasons. One
 potential advantage is that it could allow completely transparent vote
@@ -104,7 +104,7 @@ authority \emph{prove} that the final outcome corresponds to the counts
 of all the plaintexts. But of course to maintain voter privacy, we need
 to prove this without actually revealing those plaintexts. Can we do so?
 
-\subsection{More applications}\label{More-applications}
+\subsection{More applications}\label{15-More-applications}
 
 I chose these two examples above precisely because they are hardly the
 first that come to mind when thinking about zero knowledge. Zero
@@ -139,7 +139,7 @@ guarantees that we can verify correct behaviour without access to these
 inputs.
 
 \section{Defining and constructing zero knowledge
-proofs}\label{Defining-and-constructing-zero}
+proofs}\label{15-Defining-and-construct}
 
 So, zero knowledge proofs are wonderful objects, but how do we get them?
 In fact, we haven't answered the even more basic question of how do we
@@ -272,7 +272,7 @@ matter what she does, Alice has probability at most \(1/2\) of guessing
 Bob would have \(1-2^{-n}\) confidence that \(x\) is indeed a
 non-residue modulo \(m\).
 
-\begin{pause} \label[pause]{Please-stop-and-make-sure-you-}
+\begin{pause} \label[pause]{15-Please-stop-and-make-s}
 
 Please stop and make sure you see the similarities between this protocol
 and the one for demonstrating that the two pieces of plastic do not have
@@ -351,7 +351,7 @@ there is not much we can (or should?) do about it.
 
 \end{remark}
 
-\section{Defining zero knowledge}\label{Defining-zero-knowledge}
+\section{Defining zero knowledge}\label{15-Defining-zero-knowledg}
 
 So far we merely defined the notion of an interactive proof system, but
 we need to define what it means for a proof to be \emph{zero knowledge}.
@@ -475,7 +475,7 @@ Protocol ZK-QR above is a zero knowledge protocol.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{Let-V-be-an-arbitrary-efficien}
+\begin{proof} \label[proof]{15-Let-V-be-an-arbitrary-}
 
 Let \(V^*\) be an arbitrary efficient strategy for Bob. Since Bob only
 sends a single bit, we can think of this strategy as composed of two
@@ -561,7 +561,7 @@ with negligible soundness error and a \emph{constant} number of
 communication rounds, see Goldreich's book (Vol 1, Sec 4.9).
 
 \section{Zero knowledge proof for
-Hamiltonicity.}\label{Zero-knowledge-proof-for-Hamil}
+Hamiltonicity.}\label{15-Zero-knowledge-proof-f}
 
 We now show a proof for another language. Suppose that Alice and Bob
 know an \(n\)-vertex graph \(G\) and Alice knows a \emph{Hamiltonian
@@ -618,7 +618,7 @@ Hamiltonian graphs.\footnote{Goldreich, Micali and Wigderson were the
 
 \end{theorem}
 
-\begin{proof} \label[proof]{We-need-to-prove-completeness-}
+\begin{proof} \label[proof]{15-We-need-to-prove-compl}
 
 We need to prove \textbf{completeness}, \textbf{soundness}, and
 \textbf{zero knowledge}.
@@ -727,7 +727,7 @@ This completes the proof of the theorem.
 
 \end{proof}
 
-\subsection{Why is this interesting?}\label{Why-is-this-interesting}
+\subsection{Why is this interesting?}\label{15-Why-is-this-interestin}
 
 The reason that a protocol for Hamiltonicity is more interesting than a
 protocol for quadratic residuosity is that Hamiltonicity is an
@@ -770,7 +770,7 @@ have obtain on his own.}
 \end{figure}
 
 \section{Parallel repetition and turning zero knowledge proofs to
-signatures.}\label{Parallel-repetition-and-turnin}
+signatures.}\label{15-Parallel-repetition-an}
 
 While we talked about amplifying zero knowledge proofs by running them
 \(n\) times one \emph{after} the other, one could also imagine running
@@ -789,7 +789,7 @@ indeed widely used. Schnorr designed signatures based on this non
 interactive version.
 
 \subsection{``Bonus features'' of zero
-knowledge}\label{Bonus-features-of-zero-knowled}
+knowledge}\label{15-Bonus-features-of-zero}
 
 \begin{itemize}
 \item

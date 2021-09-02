@@ -1,4 +1,4 @@
-\chapter{Pseudorandom functions}\label{Pseudorandom-functions}
+\chapter{Pseudorandom functions}\label{4-Pseudorandom-functions}
 
 In the last lecture we saw the notion of \emph{pseudorandom generators},
 and introduced the \textbf{PRG conjecture}, which stated that there
@@ -39,7 +39,9 @@ single bit \(F(s,i)\) is a \emph{pseudorandom function (PRF) generator}
 if for every polynomial time adversary \(A\) outputting a single bit and
 polynomial \(p(n)\), if \(n\) is large enough then:
 
-\[ \left| \E_{s\in\{0,1\}^n}[ A^{F(s,\cdot)}(1^n)] - \E_{H \leftarrow_R [2^n]\rightarrow\{0,1\}}[A^H(1^n)] \right| < 1/p(n) \;.\]
+\begin{equation*}
+ \left| \E_{s\in\{0,1\}^n}[ A^{F(s,\cdot)}(1^n)] - \E_{H \leftarrow_R [2^n]\rightarrow\{0,1\}}[A^H(1^n)] \right| < 1/p(n) \;.
+\end{equation*}
 
 \end{definition}
 
@@ -102,7 +104,7 @@ model).
 
 \end{remark}
 
-\begin{pause} \label[pause]{Now-would-be-a-fantastic-time-}
+\begin{pause} \label[pause]{4-Now-would-be-a-fantast}
 
 Now would be a fantastic time to stop and think deeply about the three
 constructions in the remark above, and in particular why they are all
@@ -160,7 +162,7 @@ But before we see the proof of \cref{prffromprgthmone}, let us see why
 pseudorandom functions could be useful.
 
 \section{One time passwords (e.g.~Google Authenticator, RSA ID,
-etc.)}\label{One-time-passwords-egGoogle-Au}
+etc.)}\label{4-One-time-passwords-egG}
 
 Until now we have talked about the task of \emph{encryption}, or
 protecting the \emph{secrecy} of messages. But the task of
@@ -204,7 +206,7 @@ the login problem be for Alice to send to Bob an encryption of the
 password \(p\)? After all, the security of the encryption should
 guarantee that Mallory can't learn \(p\), right?
 
-\begin{pause} \label[pause]{This-would-be-a-good-time-to-s}
+\begin{pause} \label[pause]{4-This-would-be-a-good-t}
 
 This would be a good time to stop reading and try to think for yourself
 whether using a secure encryption to encrypt \(p\) would guarantee
@@ -224,7 +226,7 @@ existence demonstrates that secrecy of the password does not guarantee
 security of the login protocol.
 
 \subsection{How do pseudorandom functions help in the login
-problem?}\label{How-do-pseudorandom-functions-}
+problem?}\label{4-How-do-pseudorandom-fu}
 
 The idea is that they create what's known as a \emph{one time password}.
 Alice and Bob will share an index \(s\in\{0,1\}^n\) for the pseudorandom
@@ -299,7 +301,7 @@ previously queried. Thus, if the function was truly random, Mallory has
 and would be able to predict (or rather, guess) it in all these
 locations with probability at most \(2^{-\ell}\).
 
-\begin{pause} \label[pause]{Please-make-sure-you-understan}
+\begin{pause} \label[pause]{4-Please-make-sure-you-u}
 
 Please make sure you understand the informal reasoning above, since we
 will now translate this into a formal theorem and proof.
@@ -320,7 +322,7 @@ Bob accepts the interaction is at most \(2^{-\ell}+\mu(n)\) where
 
 \end{theorem}
 
-\begin{proof} \label[proof]{This-proof-as-so-many-others-i}
+\begin{proof} \label[proof]{4-This-proof-as-so-many-}
 
 This proof, as so many others in this course, uses an argument via
 contradiction. We assume, towards the sake of contradiction, that there
@@ -429,8 +431,7 @@ that is convenient for us.
 
 \end{remark}
 
-\section{Message Authentication
-Codes}\label{Message-Authentication-Codes}
+\section{Message Authentication Codes}\label{4-Message-Authentication}
 
 One time passwords are a tool allowing you to prove your \emph{identity}
 to, say, your email server. But even after you did so, how can the
@@ -555,7 +556,7 @@ single signature that would pass verification (can you see why?).
 
 \end{remark}
 
-\section{MACs from PRFs}\label{MACs-from-PRFs}
+\section{MACs from PRFs}\label{4-MACs-from-PRFs}
 
 We now show how pseudorandom function generators yield message
 authentication codes. In fact, the construction is so immediate that
@@ -571,7 +572,7 @@ Under the PRF Conjecture, there exists a secure MAC.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{Let-Fcdotcdot-be-a-secure-pseu}
+\begin{proof} \label[proof]{4-Let-Fcdotcdot-be-a-sec}
 
 Let \(F(\cdot,\cdot)\) be a secure pseudorandom function generator with
 \(n/2\) bits output (as mentioned in \cref{outputincprfrem}, such PRF's
@@ -604,7 +605,7 @@ means that such an adversary \(A'\) can distinguish between an oracle to
 a contradiction.
 
 \section{Input length extension for MACs and
-PRFs}\label{Input-length-extension-for-MAC}
+PRFs}\label{4-Input-length-extension}
 
 So far we required the message to be signed \(m\) to be no longer than
 the key \(k\) (i.e., both \(n\) bits long). However, it is not hard to
@@ -628,7 +629,7 @@ needs to be very careful on the exact way one chops the message into
 blocks and pads it to an integer multiple of the block size. Several
 attacks have been mounted on schemes that performed this incorrectly.
 
-\section{Aside: natural proofs}\label{Aside-natural-proofs}
+\section{Aside: natural proofs}\label{4-Aside-natural-proofs}
 
 Pseudorandom functions play an important role in computational
 complexity, where they have been used as a way to give ``barrier

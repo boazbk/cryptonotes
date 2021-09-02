@@ -1,4 +1,4 @@
-\chapter{Computational Security}\label{Computational-Security}
+\chapter{Computational Security}\label{2-Computational-Security}
 
 \paragraph{Additional reading:} Sections 2.2 and 2.3 in Boneh-Shoup
 book. Chapter 3 up to and including Section 3.3 in Katz-Lindell book.
@@ -24,7 +24,7 @@ from itertools import product # Import an iterator for cartesian products
 #
 # We assume we have access to the function Encrypt(key,ciphertext)
 def Distinguish(ciphertext,plaintext1,plaintext2):
-    for key in product([0,1], repeat = 128): # Iterate over all possible keys of lenght 128
+    for key in product([0,1], repeat = 128): # Iterate over all possible keys of length 128
         if Encrypt(key, plaintext1)==ciphertext:
             return plaintext1
     return plaintext2
@@ -92,7 +92,7 @@ outputting \(b\).
 \cref{firstcompdef} seems very natural, but is in fact \emph{impossible}
 to achieve if the key is shorter than the message.
 
-\begin{pause} \label[pause]{Before-reading-further-you-mig}
+\begin{pause} \label[pause]{2-Before-reading-further}
 
 Before reading further, you might want to stop and think if you can
 \emph{prove} that there is no, say, encryption scheme with \(\sqrt{n}\)
@@ -105,9 +105,9 @@ polynomial.
 The reason \cref{firstcompdef} can't be achieved that if the message is
 even one bit longer than the key, we can always have a very efficient
 procedure that achieves success probability of about \(1/2 + 2^{-n-1}\)
-by guessing the key. That is, we can replace the loop in the Python
-program \texttt{Distinguish} by choosing the key at random. Since we
-have some small chance of guessing correctly, we will get a small
+by guessing the key. This is because we can replace the loop in the
+Python program \texttt{Distinguish} by choosing the key at random. Since
+we have some small chance of guessing correctly, we will get a small
 advantage over half.
 
 Of course an advantage of \(2^{-256}\) in guessing the message is not
@@ -146,7 +146,7 @@ this definition implies the analogous condition to perfect secrecy.
 \hypertarget{twotomanycomp}{}
 \begin{theorem}[Guessing game for computational secrecy] \label[theorem]{twotomanycomp}
 
-If \((E,D)\) is has \(t\) bits of Computational secrecy as per
+If \((E,D)\) has \(t\) bits of Computational secrecy as per
 \cref{compsecconcdef} then every subset \(M \subseteq {\{0,1\}}^\ell\)
 and every strategy of Eve using at most \(2^t-(100\ell+100)\)
 computational steps, if we choose at random \(m\in M\) and a random key
@@ -168,7 +168,7 @@ additional information about it before the universe collapses are more
 or less the same as the chances that a fairy will materialize and
 whisper it in your ear.
 
-\begin{pause} \label[pause]{Before-reading-the-proof-try-t}
+\begin{pause} \label[pause]{2-Before-reading-the-pro}
 
 Before reading the proof, try to again review the proof of
 \cref{twotomanythm}, and see if you can generalize it yourself to the
@@ -176,7 +176,7 @@ computational setting.
 
 \end{pause}
 
-\begin{proof}[Proof of \cref{twotomanycomp}] \label[proof]{The-proof-is-rather-similar-to}
+\begin{proof}[Proof of \cref{twotomanycomp}] \label[proof]{2-The-proof-is-rather-si}
 
 The proof is rather similar to the equivalence of guessing one of two
 messages vs.~one of many messages for perfect secrecy (i.e.,
@@ -196,9 +196,11 @@ and
 \item
   An adversary \(Eve:{\{0,1\}}^o\rightarrow{\{0,1\}}^\ell\) such that
 
-  \[
+  \begin{equation*}
+
   \Pr_{m{\leftarrow_{\tiny R}}M, k{\leftarrow_{\tiny R}}{\{0,1\}}^n}[ Eve(E_k(m))=m ] > 1/|M|
-  \]
+
+  \end{equation*}
 \end{itemize}
 
 Then there exist two messages \(m_0,m_1\) and an adversary
@@ -238,7 +240,7 @@ costs \(T\) operations), checked if \(m=m_0\) (which costs, say, at most
 
 \end{proof}
 
-\subsection{Proof by reduction}\label{Proof-by-reduction}
+\subsection{Proof by reduction}\label{2-Proof-by-reduction}
 
 The proof of \cref{twotomanycomp} is a model to how a great many of the
 results in this course will look like. Generally we will have many
@@ -259,7 +261,7 @@ all of the proofs of such statements will have the same global
 structure--- we will assume towards a contradiction, that there is an
 efficient adversary strategy \(Eve\) demonstrating that the scheme \(S\)
 violates the security notion \(X\), and build from \(Eve\) a strategy
-\(Eve'\) demonstrating that \(S'\) violates \(X\). This is such an
+\(Eve'\) demonstrating that \(S'\) violates \(X'\). This is such an
 important point that it deserves repeating:
 
 \begin{quote}
@@ -303,7 +305,7 @@ an interplay of several entities (for example, sender, receiver, and
 adversary) and probabilistic choices (e.g., over the message to be sent
 and the key).
 
-\section{The asymptotic approach}\label{The-asymptotic-approach}
+\section{The asymptotic approach}\label{2-The-asymptotic-approac}
 
 For practical security, often every bit of security matters. We want our
 keys to be as short as possible and our schemes to be as fast as
@@ -324,16 +326,17 @@ parameter such as \(n\) in the few hundreds or thousands then:
   capabilities. A typical modern encryption is built so that using
   standard key sizes it can withstand the combined computational powers
   of all computers on earth for several decades. In theory terms we
-  would want the time to break the scheme be at least \(2^{\Omega(n)}\)
-  or \(2^{\Omega(\sqrt{n})}\) / \(2^{\Omega(n^{1/3})}\) with not too
-  small hidden constants.
+  would want the time to break the scheme to be \(2^{\Omega(n)}\) (or if
+  not, at least \(2^{\Omega(\sqrt{n})}\) or \(2^{\Omega(n^{1/3})}\))
+  with not too small hidden constants.
 \end{itemize}
 
-For understanding the \emph{principles} behind cryptography, keeping
-track of those bits can be a distraction, and so just like we do in
-algorithms courses, we will use \emph{asymptotic analysis} (also known
-as \emph{big Oh notation}) to sweep many of those details under the
-carpet.
+For implementing cryptography in practice, the tradeoff between security
+and efficiency can be crucial. However, for understanding the
+\emph{principles} behind cryptography, keeping track of concrete
+security can be a distraction, and so just like we do in algorithms
+courses, we will use \emph{asymptotic analysis} (also known as \emph{big
+Oh notation}) to sweep many of those details under the carpet.
 
 To a first approximation, there will be only two types of running times
 we will encounter in this course:
@@ -341,8 +344,8 @@ we will encounter in this course:
 \begin{itemize}
 \item
   \emph{Polynomial} running time of the form \(d\cdot n^c\) for some
-  constants \(d,c>0\) (or \(poly(n)=n^{O(1)}\) for short) , which we
-  will consider as \emph{efficient}
+  constants \(d,c>0\) (or \(poly(n)=n^{O(1)}\) for short), which we will
+  consider as \emph{efficient}.
 \item
   \emph{Exponential} running time of the form
   \(2^{d\cdot n^{\epsilon}}\) for some constants \(d,\epsilon >0\) (or
@@ -357,18 +360,38 @@ we will encounter in this course:
 Another way to say it is that in this course, if a scheme has any
 security at all, it will have at least \(n^{\epsilon}\) bits of security
 where \(n\) is the length of the key and \(\epsilon>0\) is some absolute
-constant such as \(\epsilon=1/3\).
+constant such as \(\epsilon=1/3\). Hence in this course, whenever you
+hear the term ``super polynomial'', you can equate it in your mind with
+``exponential'' and you won't be far off the truth.
 
 These are not all the theoretically possible running times. One can have
 intermediate functions such as \(n^{\log n}\) though we will generally
 not encounter those. To make things clean (and to correspond to standard
-terminology), we will say that an algorithm \(A\) is \emph{efficient} if
-it runs in time \(poly(n)\) when \(n\) is its input length (which will
-always be the same, up to polynomial factors, as the key length). If
-\(\mu(n)\) is some probability that depends on the input/key length
-parameter \(n\), then we say that \(\mu(n)\) is \emph{negligible} if
-it's smaller than every polynomial. That is, we make the following
-definition
+terminology), we will generally ``efficient computation'' with
+\emph{polynomial time} in \(n\) where \(n\) is either its input length
+or the key size (the key size and input length will always be
+polynomially related, and so this choice won't matter). We want our
+algorithms (encryption, decryption, etc) to be computable in polynomial
+time, but to require \emph{super polynomial time} to break.
+
+\_\_Negligible probabilities\_. In cryptography, we care not just about
+the running time of the adversary but also about their probability of
+success (which should be as small as possible). If
+\(\mu:\N \rightarrow [0,\infty)\) is a function (which we'll often think
+of as corresponding to the adversary's probability of success or
+advantage over the trivial probability, as a function of the key size
+\(n\)) then we say that \(\mu(n)\) is \emph{negligible} if it's smaller
+than every polynomial. Our security definitions will have the following
+form:
+
+\begin{quote}
+\emph{"Scheme \(S\) is secure if for every polynomial \(p(\cdot)\) and
+\(p(n)\) time adversary \(Eve\), there is some negligible function
+\(\mu\) such that the probability that \(Eve\) succeeds in the security
+game for \(S\) is at most \(trivial + \mu(n)\)}"
+\end{quote}
+
+We now make these notions more formal.
 
 \hypertarget{negligibledef}{}
 \begin{definition}[Negligible function] \label[definition]{negligibledef}
@@ -376,12 +399,12 @@ definition
 A function \(\mu:\mathbb{N} \rightarrow [0,\infty)\) is
 \emph{negligible} if for every polynomial \(p:\N \rightarrow \N\) there
 exists \(N \in \N\) such that \(\mu(n) < \tfrac{1}{p(n)}\) for every
-\(n>N\).\^{}{[}Negligible functions are sometimes defined with image
-equalling \([0,1]\) as opposed to the set \([0,\infty)\) of non-negative
-real numbers, since they are typically used to bound probabilities.
-However, this does not make much difference since if \(\mu\) is
-negligible then for large enough \(N\), \(\mu(n)\) will be smaller than
-one. {]}
+\(n>N\).\footnote{Negligible functions are sometimes defined with image
+  equalling \([0,1]\) as opposed to the set \([0,\infty)\) of
+  non-negative real numbers, since they are typically used to bound
+  probabilities. However, this does not make much difference since if
+  \(\mu\) is negligible then for large enough \(n\), \(\mu(n)\) will be
+  smaller than one.}
 
 \end{definition}
 
@@ -423,11 +446,15 @@ What you need to remember is that negligible is much smaller than any
 inverse polynomial, while polynomials are closed under multiplication,
 and so we have the ``equations''
 
-\[negligible\times polynomial = negligible\]
+\begin{equation*}
+negligible\times polynomial = negligible
+\end{equation*}
 
 and
 
-\[polynomial \times polynomial = polynomial\]
+\begin{equation*}
+polynomial \times polynomial = polynomial
+\end{equation*}
 
 As mentioned, in practice people really want to get as close as possible
 to \(n\) bits of security with an \(n\) bit key, but we would be happy
@@ -456,8 +483,9 @@ probability.\footnote{Note that there is a subtle issue here with the
   between the honest use and the adversary resources can be
   \emph{exponential}. For example, a low power embedded device can
   encrypt messages that, as far as we know, are undecipherable even by a
-  nation-state using super-computers and massive data centers.} That is,
-we make the following definition:
+  nation-state using super-computers and massive data centers.}
+
+We can now formally define computational secrecy in asymptotic terms:
 
 \hypertarget{compsecdef}{}
 \begin{definition}[Computational secrecy (asymptotic)] \label[definition]{compsecdef}
@@ -479,22 +507,30 @@ Fortunately, when we don't really care about the difference between
 \(T\) and, say, \(T^2\), then essentially every reasonable definition
 gives the same answer.\footnote{With some caveats that need to be added
   due to \emph{quantum computers}: we'll get to those later in the
-  course, though they won't change most of our theory.} Formally, we can
-use the notions of Turing machines, Boolean circuits, or straightline
-programs to define complexity. For concreteness, lets define that a
-function \(F:{\{0,1\}}^n\rightarrow{\{0,1\}}^m\) has complexity at most
-\(T\) if there is a Boolean circuit that computes \(F\) using at most
-\(T\) Boolean gates (say AND/OR/NOT or NAND, or you can choose your
-favorite universal gate sets.) We will often also consider
-\emph{probabilistic} functions in which case we allow the circuit a RAND
-gate that outputs a single random bit (though this in general does not
-give extra power). The fact that we only care about asymptotics means
-you don't really need to think of gates, etc.. when arguing in
-cryptography. However, it is comforting to know that this notion has a
-precise mathematical formulation.
+  course, though they won't change most of our theory. See also
+  \href{https://introtcs.org/public/lec_04_code_and_data.html\#PECTTsec}{this
+  discussion in my intro TCS textbook} and
+  \href{https://www.scottaaronson.com/talks/bernays2.ppt}{this
+  presentation of Aaronson} on the ``extended Church Turing thesis''.}
+Formally, we can use the notions of Turing machines, Boolean circuits,
+or straightline programs to define complexity. For concreteness, let's
+define that a function \(F:{\{0,1\}}^n\rightarrow{\{0,1\}}^m\) has
+complexity at most \(T\) if there is a Boolean circuit that computes
+\(F\) using at most \(T\) Boolean gates (say AND/OR/NOT or NAND;
+alternatively you can choose your favorite universal gate sets.) We will
+often also consider \emph{probabilistic} functions in which case we
+allow the circuit a RAND gate that outputs a single random bit (though
+this in general does not give extra power). The fact that we only care
+about asymptotics means you don't really need to think of gates when
+arguing in cryptography. However, it is comforting to know that this
+notion has a precise mathematical formulation.
 
-We could also have used Turing Machines. The main reason we use
-circuits, which are a non-uniform model, is that:
+\paragraph{Uniform vs non-uniform models.} While many computational
+texts focus on models such as Turing machines, in cryptography it is
+more convenient to use Boolean circuits which are a
+\href{https://introtcs.org/public/lec_11_running_time.html\#nonuniformcompsec}{non
+uniform model} of computation in the sense that we allow a different
+circuit for every given input length. The reasons are the following:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -529,7 +565,7 @@ messages.
 
 \end{remark}
 
-\section{Our first conjecture}\label{Our-first-conjecture}
+\section{Our first conjecture}\label{2-Our-first-conjecture}
 
 We are now ready to make our first conjecture:
 
@@ -560,7 +596,7 @@ where the message is longer than the key.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{We-just-sketch-the-proof-as-th}
+\begin{proof} \label[proof]{2-We-just-sketch-the-pro}
 
 We just sketch the proof, as this is not the focus of this course. If
 \(P=\ensuremath{\mathit{NP}}\) then whenever we have a loop that
@@ -603,8 +639,8 @@ briefly mention some of them:
   independently of their cryptographic applications.
 \item
   \emph{Minimalism:} Clearly if the cipher conjecture is false then we
-  also don't have a secure encryption with a key, say, twice as long as
-  the message. But it turns out the cipher conjecture is in fact
+  also don't have a secure encryption with a message, say, twice as long
+  as the key. But it turns out the cipher conjecture is in fact
   \emph{necessary} for essentially every cryptographic primitive,
   including not just private key and public key encryptions but also
   digital signatures, hash functions, pseudorandom generators, and more.
@@ -614,7 +650,7 @@ briefly mention some of them:
 \end{itemize}
 
 \section{Why care about the cipher
-conjecture?}\label{Why-care-about-the-cipher-conj}
+conjecture?}\label{2-Why-care-about-the-cip}
 
 \begin{quote}
 \emph{``Give me a place to stand, and I shall move the world''}
@@ -655,7 +691,7 @@ construct increasingly sophisticated tools based on relatively simple
 ``axioms'' such as the cipher conjecture.
 
 \section{Prelude: Computational
-Indistinguishability}\label{Prelude-Computational-Indistin}
+Indistinguishability}\label{2-Prelude-Computational-}
 
 The task of Eve in breaking an encryption scheme is to
 \emph{distinguish} between an encryption of \(m_0\) and an encryption of
@@ -670,29 +706,39 @@ that \(X\) and \(Y\) are \((T,\epsilon)\)\emph{-computationally
 indistinguishable}, denoted by \(X \approx_{T,\epsilon} Y\), if for
 every function \(Eve\) computable with at most \(T\) operations,
 
-\[
+\begin{equation*}
+
 | \Pr[ Eve(X) = 1 ] - \Pr[ Eve(Y) = 1 ] | \leq \epsilon \;.
-\]
+
+\end{equation*}
 
 We say that \(X\) and \(Y\) over \(\{0,1\}^o\) are simply
 \emph{computationally indistinguishable}, denoted by \(X\approx Y\), if
 they are \((T,\epsilon)\) indistinguishable for every polynomial
-\(T(o)\) and inverse polynomial \(\epsilon(o)\).\footnote{This
-  definition implicitly assumes that \(X\) and \(Y\) are actually
-  \emph{parameterized} by some number \(n\) (that is polynomially
-  related to \(o\)) so for every polynomial \(T(o)\) and inverse
-  polynomial \(\epsilon(o)\) we can take \(n\) to be large enough so
-  that \(X\) and \(Y\) will be \((T,\epsilon)\) indistinguishable. In
-  all the cases we will consider, the choice of the parameter \(n\)
-  (which is usually the length of the key) will be clear from the
-  context.}
+\(T(o)\) and inverse polynomial \(\epsilon(o)\).
 
 \end{definition}
 
-\paragraph{Note:} The expression \(\Pr[ Eve(X)=1]\) can also be written
-as \({\mathbb{E}}[Eve(X)]\) (since we can assume that whenever
-\(Eve(x)\) does not output \(1\) it outputs zero). This notation will be
-useful for us sometimes.
+\paragraph{Notes:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The asymptotic version of \cref{compindef}, where we say \(X\) and
+  \(Y\) are simply computationally indistinguishable, implicitly assumes
+  that \(X\) and \(Y\) are actually \emph{parameterized} by some number
+  \(n\) (that is polynomially related to \(o\)) so for every polynomial
+  \(T(o)\) and inverse polynomial \(\epsilon(o)\) we can take \(n\) to
+  be large enough so that \(X\) and \(Y\) will be \((T,\epsilon)\)
+  indistinguishable. In all the cases we will consider, the choice of
+  the parameter \(n\) (which is usually the length of the key) will be
+  clear from the context.
+\item
+  The expression \(\Pr[ Eve(X)=1]\) can also be written as
+  \({\mathbb{E}}[Eve(X)]\) (since we can assume that whenever \(Eve(x)\)
+  does not output \(1\) it outputs zero). This notation will be
+  sometimes useful.
+\end{enumerate}
 
 We can use computational indistinguishability to phrase the definition
 of Computational secrecy more succinctly:
@@ -703,8 +749,10 @@ of Computational secrecy more succinctly:
 Let \((E,D)\) be a valid encryption scheme. Then \((E,D)\) is
 computationally secret if and only if for every two messages
 \(m_0,m_1 \in \{0,1\}^\ell\),
-\[ \{ E_k(m_0) \}  \approx \{ E_k(m_1) \}  \] where each of these two
-distributions is obtained by sampling a random
+\begin{equation*}
+ \{ E_k(m_0) \}  \approx \{ E_k(m_1) \}  
+\end{equation*}
+where each of these two distributions is obtained by sampling a random
 \(k{\leftarrow_{\tiny R}}{\{0,1\}}^n\).
 
 \end{theorem}
@@ -742,22 +790,36 @@ Then \(\{ X_1 \} \approx_{T, (m-1)\epsilon} \{ X_m \}\).
 
 \end{theorem}
 
-\begin{proof} \label[proof]{Suppose-that-there-exists-a-T-}
+\begin{proof} \label[proof]{2-Suppose-that-there-exi}
 
-Suppose that there exists a \(T\) time \(Eve\) such that \[
+Suppose that there exists a \(T\) time \(Eve\) such that
+\begin{equation*}
+
 |\Pr[ Eve(X_1)=1] - \Pr[ Eve(X_m)=1]| > (m-1)\epsilon  \;.
-\]
 
-Write \[
+\end{equation*}
+
+Write
+\begin{equation*}
+
 \Pr[ Eve(X_1)=1] - \Pr[ Eve(X_m)=1] = \sum_{i=1}^{m-1} \left( \Pr[ Eve(X_i)=1] - \Pr[ Eve(X_{i+1})=1] \right)  \;.
-\]
 
-Thus, \[
+\end{equation*}
+
+Thus,
+\begin{equation*}
+
 \sum_{i=1}^{m-1} \left| \Pr[ Eve(X_i)=1] - \Pr[ Eve(X_{i+1})=1] \right| > (m-1)\epsilon
-\] and hence in particular there must exists some
-\(i\in\{1,\ldots,m-1\}\) such that \[
+
+\end{equation*}
+and hence in particular there must exist some \(i\in\{1,\ldots,m-1\}\)
+such that
+\begin{equation*}
+
 \left| \Pr[ Eve(X_i)=1] - \Pr[ Eve(X_{i+1})=1] \right| > \epsilon
-\] contradicting the assumption that
+
+\end{equation*}
+contradicting the assumption that
 \(\{ X_i \} \approx_{T,\epsilon} \{ X_{i+1} \}\) for all
 \(i\in\{1,\ldots,m-1\}\).
 
@@ -772,7 +834,7 @@ over \({\{0,1\}}^n\) such that \(X_i \approx_{T,\epsilon} Y_i\). Then
 
 \end{theorem}
 
-\begin{proof} \label[proof]{For-every-iinldotsell-we-defin}
+\begin{proof} \label[proof]{2-For-every-iinldotsell-}
 
 For every \(i\in\{0,\ldots,\ell\}\) we define \(H_i\) to be the
 distribution \((X_1,\ldots,X_i,Y_{i+1},\ldots,Y_\ell)\). Clearly
@@ -782,36 +844,52 @@ will prove that for every \(i\),
 follow from the triangle inequality (can you see why?). Indeed, suppose
 towards the sake of contradiction that there was some
 \(i\in \{0,\ldots,\ell\}\) and some \(T-10\ell n\)-time
-\(Eve's:{\{0,1\}}^{n\ell}\rightarrow{\{0,1\}}\) such that
+\(Eve':{\{0,1\}}^{n\ell}\rightarrow{\{0,1\}}\) such that
 
-\[
-\left| {\mathbb{E}}[ Eve'(H_i) ] - {\mathbb{E}}[ Eve(H_{i+1}) ] \right|  > \epsilon\;.
-\]
+\begin{equation*}
 
-In other words \[
+\left| {\mathbb{E}}[ Eve'(H_i) ] - {\mathbb{E}}[ Eve'(H_{i+1}) ] \right|  > \epsilon\;.
+
+\end{equation*}
+
+In other words
+\begin{equation*}
+
 \left| {\mathbb{E}}_{X_1,\ldots,X_{i-1},Y_i,\ldots,Y_\ell}[ Eve'(X_1,\ldots,X_{i-1},Y_i,\ldots,Y_\ell) ] - {\mathbb{E}}_{X_1,\ldots,X_i,Y_{i+1},\ldots,Y_\ell}[ Eve'(X_1,\ldots,X_i,Y_{i+1},\ldots,Y_\ell) ]   \right|  > \epsilon\;.
-\]
+
+\end{equation*}
 
 By linearity of expectation we can write the difference of these two
-expectations as \[
+expectations as
+\begin{equation*}
+
 {\mathbb{E}}_{X_1,\ldots,X_{i-1},X_i,Y_i,Y_{i+1},\ldots,Y_\ell}\left[ Eve'(X_1,\ldots,X_{i-1},Y_i,Y_{i+1},\ldots,Y_\ell) -  Eve'(X_1,\ldots,X_{i-1},X_i,Y_{i+1},\ldots,Y_\ell) \right]
-\]
+
+\end{equation*}
 
 By the \emph{averaging principle}\footnote{This is the principle that if
   the average grade in an exam was at least \(\alpha\) then
   \emph{someone} must have gotten at least \(\alpha\), or in other words
   that if a real-valued random variable \(Z\) satisfies
-  \({\mathbb{E}}Z \geq \alpha\) then \(\Pr[Z\geq \alpha]>0\).} this
+  \({\mathbb{E}}[Z] \geq \alpha\) then \(\Pr[Z\geq \alpha]>0\).} this
 means that there exist some values
-\(x_1,\ldots,x_{i-1},y_{i+1},\ldots,y_\ell\) such that \[
+\(x_1,\ldots,x_{i-1},y_{i+1},\ldots,y_\ell\) such that
+\begin{equation*}
+
 \left|{\mathbb{E}}_{X_i,Y_i}\left[ Eve'(x_1,\ldots,x_{i-1},Y_i,y_{i+1},\ldots,y_\ell) -  Eve'(x_1,\ldots,x_{i-1},X_i,y_{i+1},\ldots,y_\ell) \right]\right|>\epsilon
-\] Now \(X_i\) and \(Y_i\) are simply independent draws from the
+
+\end{equation*}
+Now \(X_i\) and \(Y_i\) are simply independent draws from the
 distributions \(X\) and \(Y\) respectively, and so if we define
 \(Eve(z) = Eve'(x_1,\ldots,x_{i-1},z,y_{i+1},\ldots,y_\ell)\) then
-\(Eve\) runs in time at most the running time of \(Eve\) plus
-\(2\ell n\) and it satisfies \[
+\(Eve\) runs in time at most the running time of \(Eve'\) plus
+\(2\ell n\) and it satisfies
+\begin{equation*}
+
 \left| {\mathbb{E}}_{X_i} [ Eve(X_i) ] - {\mathbb{E}}_{Y_i} [ Eve(Y_i) ] \right| > \epsilon
-\] contradicting the assumption that \(X_i \approx_{T,\epsilon} Y_i\).
+
+\end{equation*}
+contradicting the assumption that \(X_i \approx_{T,\epsilon} Y_i\).
 
 \end{proof}
 
@@ -828,15 +906,15 @@ it is important to get comfortable with it.
 
 \end{remark}
 
-\section{The Length Extension
-Theorem}\label{The-Length-Extension-Theorem}
+\section{The Length Extension Theorem or Stream
+Ciphers}\label{2-The-Length-Extension-T}
 
 We now turn to show the \emph{length extension theorem}, stating that if
 we have an encryption for \(n+1\)-length messages with \(n\)-length
 keys, then we can obtain an encryption with \(p(n)\)-length messages for
-every polynomial \(p(n)\). For a warm-up, let's show that the easier
-fact that we can transform an encryption such as above, into one that
-has keys of length \(tn\) and messages of length \(t(n+1)\) for every
+every polynomial \(p(n)\). For a warm-up, let's show the easier fact
+that we can transform an encryption such as above, into one that has
+keys of length \(tn\) and messages of length \(t(n+1)\) for every
 integer \(t\):
 
 \hypertarget{secrepthm}{}
@@ -853,7 +931,7 @@ bit messages.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{This-might-seem-obvious-but-in}
+\begin{proof} \label[proof]{2-This-might-seem-obviou}
 
 This might seem ``obvious'' but in cryptography, even obvious facts are
 sometimes wrong, so it's important to prove this formally. Luckily, this
@@ -866,26 +944,29 @@ indistinguishability of many samples lemma, for every two tuples
 \(m_1,\ldots,m_t \in {\{0,1\}}^{n+1}\) and
 \(m'_1,\ldots,m'_t\in {\{0,1\}}^{n+1}\),
 
-\[
+\begin{equation*}
+
 (E'_{k_1}(m_1),\ldots,E'_{k_t}(m_t)) \approx (E'_{k_1}(m'_1),\ldots,E'_{k_t}(m'_t))
-\]
+
+\end{equation*}
 
 for random \(k_1,\ldots,k_t\) chosen independently from \(U_n\) which is
 exactly the condition that \((E,D)\) is computationally secret.
 
 \end{proof}
 
-We can now prove the full length extension theorem. Before doing so, we
-will need to generalize the notion of an encryption scheme to allow a
-\emph{randomized encryption scheme}. That is, we will consider
-encryption schemes where the encryption algorithm can ``toss coins'' in
-its computation. There is a crucial difference between key material and
-such ``as hoc'' randomness. Keys need to be not only chosen at random,
-but also shared in advance between the sender and receiver, and stored
-securely throughout their lifetime. The ``coin tosses'' used by a
-randomized encryption scheme are generated ``on the fly'' and are not
-known to the receiver, nor do they need to be stored long term by the
-sender. So, allowing such randomized encryption does not make a
+\paragraph{Randomized encryption scheme.} We can now prove the full
+length extension theorem. Before doing so, we will need to generalize
+the notion of an encryption scheme to allow a \emph{randomized
+encryption scheme}. That is, we will consider encryption schemes where
+the encryption algorithm can ``toss coins'' in its computation. There is
+a crucial difference between key material and such ``as hoc'' (sometimes
+also known as ``ephemeral'') randomness. Keys need to be not only chosen
+at random, but also shared in advance between the sender and receiver,
+and stored securely throughout their lifetime. The ``coin tosses'' used
+by a randomized encryption scheme are generated ``on the fly'' and are
+not known to the receiver, nor do they need to be stored long term by
+the sender. So, allowing such randomized encryption does not make a
 difference for most applications of encryption schemes. In fact, as we
 will see later in this course, randomized encryption is \emph{necessary}
 for security against more sophisticated attacks such as chosen plaintext
@@ -917,10 +998,26 @@ length \(t(n)\).
 \includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/length-extension.jpg}
 \caption{Constructing a cipher with \(t\) bit long messages from one
 with \(n+1\) long messages}
-\label{tmplabelfig}
+\label{cipherlengthextensionfig}
 \end{figure}
 
-\begin{proof} \label[proof]{Let-ttn-We-are-given-a-cipher-}
+\begin{pause} \label[pause]{2-This-is-perhaps-our-fi}
+
+This is perhaps our first example of a non trivial cryptographic
+theorem, and the blueprint for this proof will be one that we will
+follow time and again during this course. Please make sure you read this
+proof carefully and follow the argument.
+
+\end{pause}
+
+::: \# \{.proof data-ref=``lengthextendthm''\} The construction,
+depicted in \cref{cipherlengthextensionfig}, is actually quite natural
+and variants of it are used in practice for \emph{stream ciphers}, which
+are ways to encrypt arbitrarily long messages using a fixed size key.
+The idea is that we use a key \(k_0\) of size \(n\) to encrypt
+\textbf{(1)} a fresh key \(k_1\) of size \(n\) and \textbf{(2)} one bit
+of the message. Now we can encrypt \(k_2\) using \(k_1\) and so on and
+so forth. We now describe the construction and analysis in detail.
 
 Let \(t=t(n)\). We are given a cipher \(E'\) which can encrypt
 \(n+1\)-bit long messages with an \(n\)-bit long key and we need to
@@ -965,12 +1062,12 @@ make sure it's true we need to give an actual proof. Let
 \(E_{U_n}(m) \approx E_{U_n}(m')\). The heart of the proof will be the
 following claim:
 
-\textbf{Claim:} Let \(\hat{E}\) be the algorithm that on input a message
-\(m\) and key \(k_0\) works like \(E\) except that its \(i^{th}\) block
-contains \(E'_{k_{i-1}}(k'_i,m_i)\) where \(k'_i\) is a \emph{random}
-string in \({\{0,1\}}^n\), that is chosen \emph{independently} of
-everything else including the key \(k_i\). Then, for every message
-\(m\in{\{0,1\}}^t\)
+\paragraph{Claim:} Let \(\hat{E}\) be the algorithm that on input a
+message \(m\) and key \(k_0\) works like \(E\) except that its
+\(i^{th}\) block contains \(E'_{k_{i-1}}(k'_i,m_i)\) where \(k'_i\) is a
+\emph{random} string in \({\{0,1\}}^n\), that is chosen
+\emph{independently} of everything else including the key \(k_i\). Then,
+for every message \(m\in{\{0,1\}}^t\)
 
 \[
 E_{U_n}(m) \approx \hat{E}_{U_n}(m)  \label{lengthextendclaimeq} \;.
@@ -983,22 +1080,26 @@ are randomized encryption schemes (with \(E\) using \((t-1)n\) bits of
 randomness for the ephemeral keys \(k_1,\ldots,k_{t-1}\) and \(\hat{E}\)
 using \((2t-1)n\) bits of randomness for the ephemeral keys
 \(k_1,\ldots,k_t,k'_2,\ldots,k'_t\)), we can also write
-\eqref{lengthextendclaimeq} as \[
+\eqref{lengthextendclaimeq} as
+\begin{equation*}
+
 E_{U_n}(m; U'_{tn}) \approx \hat{E}_{U_n}(m; U'_{(2t-1)n})  
-\] where we use \(U'_\ell\) to denote a random variable that is chosen
+
+\end{equation*}
+where we use \(U'_\ell\) to denote a random variable that is chosen
 uniformly at random from \(\{0,1\}^\ell\) and independently from the
 choice of \(U_n\) (which is chosen uniformly at random from
 \(\{0,1\}^n\)).
 
 Once we prove the claim then we are done since we know that for every
-pair of message \(m,m'\), \(E_{U_n}(m) \approx \hat{E}_{U_n}(m)\) and
+pair of messages \(m,m'\), \(E_{U_n}(m) \approx \hat{E}_{U_n}(m)\) and
 \(E_{U_n}(m') \approx \hat{E}_{U_n}(m')\) but
 \(\hat{E}_{U_n}(m) \approx \hat{E}_{U_n}(m')\) since \(\hat{E}\) is
 essentially the same as the \(t\)-times repetition scheme we analyzed
 above. Thus by the triangle inequality we can conclude that
 \(E_{U_n}(m) \approx E_{U_n}(m')\) as we desired.
 
-\textbf{Proof of claim:} We prove the claim by the hybrid method. For
+\paragraph{Proof of claim:} We prove the claim by the hybrid method. For
 \(j\in \{0,\ldots, \ell\}\), let \(H_j\) be the distribution of
 ciphertexts where in the first \(j\) blocks we act like \(\hat{E}\) and
 in the last \(t-j\) blocks we act like \(E\). That is, we choose
@@ -1011,9 +1112,11 @@ to prove that for every \(j\), \(H_j \approx H_{j+1}\). Indeed, let
 \(j \in \{0,\ldots,\ell\}\) and suppose towards the sake of
 contradiction that there exists an efficient \(Eve'\) such that
 
-\[
+\begin{equation*}
+
 \left| {\mathbb{E}}[ Eve'(H_j)] - {\mathbb{E}}[ Eve'(H_{j+1})]\right|\geq \epsilon \;\;(*)
-\]
+
+\end{equation*}
 
 where \(\epsilon = \epsilon(n)\) is noticeable. By the averaging
 principle, there exists some fixed choice for
@@ -1024,20 +1127,20 @@ blocks and the last \(t-j\) blocks of \(H_j\) and \(H_{j+1}\) would be
 identical and we can denote them by \(\alpha\) and \(\beta\)
 respectively and hence write \((*)\) as
 
-\[
+\begin{equation*}
+
 \left| {\mathbb{E}}_{k_{j-1}}[ Eve'(\alpha,E'_{k_{j-1}}(k_{j},m_j),\beta) - Eve'(\alpha,E'_{k_{j-1}}(k'_j,m_j),\beta) ] \right| \geq \epsilon \;\;(**)
-\]
+
+\end{equation*}
 
 But now consider the adversary \(Eve\) that is defined as
 \(Eve(c) = Eve'(\alpha,c,\beta)\). Then \(Eve\) is also efficient and by
 \((**)\) it can distinguish between \(E'_{U_n}(k_j,m_j)\) and
 \(E'_{U_n}(k'_j,m_j)\) thus contradicting the security of \((E',D')\).
-This concludes the proof of the claim and hence the theorem.
-
-\end{proof}
+This concludes the proof of the claim and hence the theorem. :::
 
 \subsection{Appendix: The computational
-model}\label{Appendix-The-computational-mod}
+model}\label{2-Appendix-The-computati}
 
 For concreteness sake let us give a precise definition of what it means
 for a function or probabilistic process \(f\) mapping \(\{0,1\}^n\) to
@@ -1076,10 +1179,10 @@ lines, each one of them one of the following forms:
 
 \begin{itemize}
 \item
-  \texttt{foo = bar NAND baz} where
+  \texttt{foo = NAND(bar, baz)} where
   \texttt{foo},\texttt{bar},\texttt{baz} are variable identifiers.
 \item
-  \texttt{foo = RAND} where \texttt{foo} is a variable identifier.
+  \texttt{foo = RAND()} where \texttt{foo} is a variable identifier.
 \end{itemize}
 
 \end{definition}
@@ -1107,29 +1210,14 @@ about \(10^{10}\) neurons, so should in principle be simulatable by a
 program that has up to a few order of magnitudes of the same number of
 lines). Crucially, for cryptography, we care about such programs not
 because we want to actually run them, but because we want to argue about
-their \emph{non existence}.\footnote{An interesting potential exception
-  to this principle that every natural process should be simulatable by
-  a straightline program of comparable complexity are processes where
-  the quantum mechanical notions of \emph{interference} and
-  \emph{entanglement} play a significant role. We will talk about this
-  notion of \emph{quantum computing} towards the end of the course,
-  though note that much of what we say does not really change when we
-  add quantum into the picture. As discussed in
-  \href{http://introtcs.org}{my lecture notes}, we can still capture
-  these processes by straightline programs (that now have somewhat more
-  complex form), and so most of what we'll do just carries over in the
-  same way to the quantum realm as long as we are fine with conjecturing
-  the strong form of the cipher conjecture, namely that the cipher is
-  infeasible to break even for quantum computers. (All current evidence
-  points toward this strong form being true as well.)} If we have a
-process that cannot be computed by a straightline program of length
-shorter than \(2^{128}>10^{38}\) then it seems safe to say that a
-computer the size of the human brain (or even all the human and nonhuman
-brains on this planet) will not be able to perform it either.
+their \emph{non existence}. If we have a process that cannot be computed
+by a straightline program of length shorter than \(2^{128}>10^{38}\)
+then it seems safe to say that a computer the size of the human brain
+(or even all the human and nonhuman brains on this planet) will not be
+able to perform it either.
 
-\begin{quote}
-\textbf{Advanced note:} The computational model we use in this class is
-\emph{non uniform} (corresponding to Boolean circuits) as opposed to
+\paragraph{Advanced note:} The computational model we use in this class
+is \emph{non uniform} (corresponding to Boolean circuits) as opposed to
 \emph{uniform} (corresponding to Turing machines). If this distinction
 doesn't mean anything to you, you can ignore it as it won't play a
 significant role in what we do next. It basically means that we do allow
@@ -1140,4 +1228,23 @@ our algorithms to be efficient in the stronger sense of being computable
 in uniform probabilistic polynomial time (for some fixed polynomial,
 often \(O(n)\) or \(O(n^2\))), while the adversary is allowed to use non
 uniformity.
-\end{quote}
+
+\paragraph{Quantum computing.} An interesting potential exception to
+this principle that every natural process should be simulatable by a
+straightline program of comparable complexity are processes where the
+quantum mechanical notions of \emph{interference} and
+\emph{entanglement} play a significant role. We will talk about this
+notion of \emph{quantum computing} towards the end of the course, though
+note that much of what we say does not really change when we add quantum
+into the picture. As discussed in
+\href{https://introtcs.org/public/lec_26_quantum_computing.html}{the CS
+121 text}, we can still capture these processes by straightline programs
+(that now have somewhat more complex form), and so most of what we'll do
+just carries over in the same way to the quantum realm as long as we are
+fine with conjecturing the strong form of the cipher conjecture, namely
+that the cipher is infeasible to break even for quantum computers. All
+current evidence points toward this strong form being true as well. The
+field of constructing encryption schemes that are potentially secure
+against quantum computers is known as
+\href{https://en.wikipedia.org/wiki/Post-quantum_cryptography}{post
+quantum cryptography} and we will return to this later in the course.
