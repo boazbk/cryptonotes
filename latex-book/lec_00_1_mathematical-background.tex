@@ -404,9 +404,7 @@ up to an even number and the final coordinate is \(0\) or the first
 \(1\)), we get that the probability that \(x\) satisfies this property
 is
 \begin{equation*}
-
 \tfrac{|E_0\cup O_1|}{2^n} = \frac{2^{n-2}+2^{n-2}}{2^n} = \frac{1}{2} \;,
-
 \end{equation*}
 using the fact that \(E_0\) and \(O_1\) are disjoint and hence
 \(|E_0 \cup O_1| = |E_0|+|O_1|\).
@@ -430,9 +428,7 @@ considering the logical OR, we will sometimes use the \(\wedge\) and
 \(\vee\) operators instead of \(\cap\) and \(\cup\), and so write this
 probability \(p=\Pr[A \cap B]\) defined above also as
 \begin{equation*}
-
 \Pr_{x\sim \{0,1\}^n} \left[ \sum_i x_i =0 \mod 2 \; \wedge \; x_0 = 1 \right] \;.
-
 \end{equation*}
 
 If \(A \subseteq \{0,1\}^n\) is an event, then
@@ -441,7 +437,6 @@ If \(A \subseteq \{0,1\}^n\) is an event, then
 that
 \begin{equation*}
 \Pr[\overline{A}] = \tfrac{|\overline{A}|}{2^n} = \tfrac{2^n-|A|}{2^n}=1-\tfrac{|A|}{2^n} = 1- \Pr[A]
-
 \end{equation*}
 This makes sense: since \(A\) happens if and only if \(\overline{A}\)
 does \emph{not} happen, the probability of \(\overline{A}\) should be
@@ -495,9 +490,7 @@ is the average value that that this number takes, taken over all draws
 from the probabilistic experiment. In other words, the expectation of
 \(X\) is defined as follows:
 \begin{equation*}
-
 \E[X] = \sum_{x\in \{0,1\}^n} 2^{-n}X(x) \;.
-
 \end{equation*}
 
 If \(X\) and \(Y\) are random variables, then we can define \(X+Y\) as
@@ -509,7 +502,7 @@ that it is \emph{linear}:
 \begin{lemma}[Linearity of expectation] \label[lemma]{linearityexp}
 
 \begin{equation*}
- \E[ X+Y ] = \E[X] + \E[Y] 
+\E[ X+Y ] = \E[X] + \E[Y]
 \end{equation*}
 
 \end{lemma}
@@ -517,13 +510,11 @@ that it is \emph{linear}:
 \begin{proof} \label[proof]{0-beginequationbegingath}
 
 \begin{equation*}
-
 \begin{gathered}
 \E [X+Y] = \sum_{x\in \{0,1\}^n}2^{-n}\left(X(x)+Y(x)\right) =  \\
 \sum_{x\in \{0,1\}^b} 2^{-n}X(x) + \sum_{x\in \{0,1\}^b} 2^{-n}Y(x) = \\
 \E[X] + \E[Y]
 \end{gathered}
-
 \end{equation*}
 
 \end{proof}
@@ -702,20 +693,16 @@ If we consider the above examples on the experiment of choosing
 \(x\in \{0,1\}^3\) then we can see that
 
 \begin{equation*}
-
 \begin{aligned}
 \Pr[x_0=1] &= \tfrac{1}{2} \\
 \Pr[x_0+x_1+x_2 \geq 2] = \Pr[\{ 011,101,110,111 \}] &= \tfrac{4}{8} = \tfrac{1}{2}
 \end{aligned}
-
 \end{equation*}
 
 but
 
 \begin{equation*}
-
 \Pr[x_0 =1 \; \wedge \; x_0+x_1+x_2 \geq 2 ] = \Pr[ \{101,110,111 \} ] = \tfrac{3}{8} > \tfrac{1}{2} \cdot \tfrac{1}{2}
-
 \end{equation*}
 
 and hence, as we already observed, the events \(\{ x_0 = 1 \}\) and
@@ -755,9 +742,7 @@ didn't occur does not change the probability that an event outside the
 set occurs. Formally, the condition is that for every subset
 \(I \subseteq [k]\),
 \begin{equation*}
-
 \Pr[ \wedge_{i\in I} A_i] =\prod_{i\in I} \Pr[A_i].
-
 \end{equation*}
 
 For example, if \(x\sim \{0,1\}^3\), then the events \(\{ x_0=1 \}\),
@@ -831,9 +816,7 @@ Another way to write this using string concatenation is that
 \(C = \{ xyz : x\in A, y\in B, z\in \{0,1\}^{n-k-m} \}\), and hence
 \(|C|=|A||B|2^{n-k-m}\), which means that
 \begin{equation*}
-
 \tfrac{|C|}{2^n} = \tfrac{|A|}{2^k}\tfrac{|B|}{2^m}\tfrac{2^{n-k-m}}{2^{n-k-m}}=\Pr[X=a]\Pr[Y=b] .
-
 \end{equation*}
 
 \end{proof}
@@ -842,13 +825,11 @@ Note that if \(X\) and \(Y\) are independent random variables then (if
 we let \(S_X,S_Y\) denote all the numbers that have positive probability
 of being the output of \(X\) and \(Y\), respectively) it holds that:
 \begin{equation*}
-
 \begin{gathered}
 \E[ \ensuremath{\mathit{XY}} ] = \sum_{a \in S_X,b \in S_Y} {\textstyle\Pr[X=a \wedge Y=b]}\cdot ab \; =^{(1)} \; \sum_{a \in S_X,b \in S_Y} {\textstyle \Pr[X=a]\Pr[Y=b]}\cdot ab =^{(2)} \\
 \left(\sum_{a \in S_X} {\textstyle \Pr[X=a]}\cdot a\right)\left(\sum_{b \in S_Y} {\textstyle \Pr[Y=b]}b\right) =^{(3)} \\
 \E[X] \E[Y]
 \end{gathered}
-
 \end{equation*}
 where the first equality (\(=^{(1)}\)) follows from the independence of
 \(X\) and \(Y\), the second equality (\(=^{(2)}\)) follows by ``opening
@@ -865,14 +846,12 @@ variables, then so are \(F(X)\) and \(G(Y)\) for all functions
 Indeed, to prove this we can write for every \(a,b \in \R\):
 
 \begin{equation*}
-
 \begin{gathered}
 \Pr[ F(X)=a \wedge G(Y)=b ] = \sum_{x \text{ s.t.} F(x)=a, y \text{ s.t. } G(y)=b} \Pr[ X=x \wedge Y=y ] = \\
 \sum_{x \text{ s.t.} F(x)=a, y \text{ s.t. } G(y)=b} \Pr[ X=x ] \Pr[  Y=y ]  = \\
 \left( \sum_{x \text{ s.t.} F(x)=a } \Pr[X=x ] \right) \cdot \left( \sum_{y \text{ s.t.} G(y)=b } \Pr[Y=y ] \right) = \\
 \Pr[ F(X)=a] \Pr[G(Y)=b] .
 \end{gathered}
-
 \end{equation*}
 
 \subsection{Collections of independent random
@@ -882,9 +861,7 @@ We can extend the notions of independence to more than two random
 variables: we say that the random variables \(X_0,\ldots,X_{n-1}\) are
 \emph{mutually independent} if for every \(a_0,\ldots,a_{n-1} \in \R\),
 \begin{equation*}
-
 \Pr\left[X_0=a_0 \wedge \cdots \wedge X_{n-1}=a_{n-1}\right]=\Pr[X_0=a_0]\cdots \Pr[X_{n-1}=a_{n-1}] .
-
 \end{equation*}
 And similarly, we have that
 
@@ -893,9 +870,7 @@ And similarly, we have that
 
 If \(X_0,\ldots,X_{n-1}\) are mutually independent then
 \begin{equation*}
-
 \E[ \prod_{i=0}^{n-1} X_i ] = \prod_{i=0}^{n-1} \E[X_i] .
-
 \end{equation*}
 
 \end{lemma}
@@ -929,9 +904,7 @@ otherwise you pay me 10 dollars. If we let
 gain, then we see that
 
 \begin{equation*}
-
 \E[X] = 2^{-10}\cdot 100000 - (1-2^{-10})10 \sim 90 .
-
 \end{equation*}
 
 But we don't really ``expect'' the result of this experiment to be for
@@ -1120,9 +1093,7 @@ If \(X_1,\ldots,X_n\) are i.i.d random variables such that
 \(X_i \in [0,1]\) and \(\E[X_i]=p\) for every \(i\), then for every
 \(\epsilon >0\)
 \begin{equation*}
-
 \Pr[ \left| \sum_{i=0}^{n-1} X_i - pn \right| > \epsilon n ] \leq 2\cdot e^{-2\epsilon^2 n} .
-
 \end{equation*}
 
 \end{theorem}
@@ -1343,9 +1314,7 @@ Prove that for every \(p \in (0,1)\) and \(\epsilon>0\), if \(n\) is
 large enough then\footnote{\textbf{Hint:} Use Stirling's formula for
   approximating the factorial function.}
 \begin{equation*}
-
 2^{(H(p)-\epsilon)n }\binom{n}{pn} \leq 2^{(H(p)+\epsilon)n}
-
 \end{equation*}
 where \(\binom{n}{k}\) is the binomial coefficient
 \(\tfrac{n!}{k!(n-k)!}\) which is equal to the number of \(k\)-size

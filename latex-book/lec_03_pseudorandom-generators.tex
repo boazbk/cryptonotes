@@ -375,17 +375,13 @@ enough that we could use it as a key for the one-time pad. That is, our
 cipher will look as follows:
 
 \begin{equation*}
-
 E_k(m) = G(k) \oplus m
-
 \end{equation*}
 
 and
 
 \begin{equation*}
-
 D_k(c) = G(k) \oplus c
-
 \end{equation*}
 
 Just like in the one time pad,
@@ -400,9 +396,7 @@ the one-time pad. Suppose that for some non-negligible
 that
 
 \begin{equation*}
-
 \left| {\mathbb{E}}[ Eve'(G(U_n)\oplus m)] - {\mathbb{E}}[ Eve'(U_{n+1}\oplus m) ] \right| \geq \epsilon.
-
 \end{equation*}
 
 Then the adversary \(Eve\) defined as \(Eve(y) = Eve'(y\oplus m)\) would

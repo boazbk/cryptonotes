@@ -208,7 +208,7 @@ decryption, then we should get the same message back. That is, for every
 \(k \in \{0,1\}^n\) and \(m\in \{0,1\}^\ell\),
 
 \begin{equation*}
- m = D_k(E_k(m)) \;.
+m = D_k(E_k(m)) \;.
 \end{equation*}
 
 This motivates the following definition which attempts to capture what
@@ -697,18 +697,14 @@ most \(1/|M|\), or in other words
 
 \[\Pr_{k \leftarrow_R \{0,1\}^n, m_1 \leftarrow_R M}[Eve(E_k(m_0))=m_1]  \leq  1/|M|\;. \label{eqhitcipher}\]
 
-We can also write \eqref{{eqabovetrivialcipher}} and \eqref{eqhitcipher}
+We can also write \eqref{eqabovetrivialcipher} and \eqref{eqhitcipher}
 as
 \begin{equation*}
-
-\E_{m_1 \leftarrow_R M} \Pr[ Eve(E_k(m_1))=m_1] > 1/|M| 
-
+\E_{m_1 \leftarrow_R M} \Pr[ Eve(E_k(m_1))=m_1] > 1/|M|
 \end{equation*}
 and
 \begin{equation*}
-
-\E_{m_1 \leftarrow_R M} \Pr[ Eve(E_k(m_0))=m_1] \leq 1/|M| 
-
+\E_{m_1 \leftarrow_R M} \Pr[ Eve(E_k(m_0))=m_1] \leq 1/|M|
 \end{equation*}
 where these expectations are taken over the choice of \(m_1\). Hence by
 linearity of expectation \[
@@ -722,7 +718,7 @@ the average of numbers is larger than \(\alpha\) then one of the numbers
 is larger than \(\alpha\)) there must \emph{exist} \(m_1 \in M\)
 satisfying
 \begin{equation*}
- \Pr[Eve(E_k(m_1))=m_1]   > \Pr[Eve(E_k(m_0))=m_1] \;.
+\Pr[Eve(E_k(m_1))=m_1]   > \Pr[Eve(E_k(m_0))=m_1] \;.
 \end{equation*}
 (Can you see why? This is worthwhile stopping and reading again.)
 
@@ -1188,9 +1184,7 @@ probability that \(Eve(E_k(x_1))=x_1\) is equal to
 guessing correctly is
 
 \begin{equation*}
-
 \tfrac{1}{2} \cdot 1 + \tfrac{1}{2} \cdot \left( 1-2^{-t} \right) = 1 - 2^{-t-1} \;.
-
 \end{equation*}
 
 \end{proof}

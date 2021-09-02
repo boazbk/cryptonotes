@@ -756,7 +756,7 @@ def h_math(e, doc):
     text = re.sub(reg2, r"\\ensuremath{\\mathit{\1}}", text)
     e.text = text.replace('""', r'\ensuremath{\text{\texttt{""}}}')
     if (not labelled) and (doc.format == 'latex') and (e.format == 'DisplayMath'):
-        return pf.RawInline('\n'+r'\begin{equation*}'+text+r'\end{equation*}'+'\n', format = 'latex')
+        return pf.RawInline('\n'+r'\begin{equation*}'+'\n'+text.strip()+'\n'+r'\end{equation*}'+'\n', format = 'latex')
     if doc.format != "html":
         return e
     p = e.parent

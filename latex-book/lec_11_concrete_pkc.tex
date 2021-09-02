@@ -968,21 +968,19 @@ inequality, we get
 \end{quote}
 
 \begin{equation*}
-
 \begin{aligned}
     \Pr \left[ \sum_{J}I_J \leq \frac{1}{2}m \right] &\leq \Pr \left[ \left| \sum_{J} I_J - \left(\frac{1}{2} + \frac{1}{q(n)} \right) m \right| \geq \frac{m}{q(n)}m \right] \\
     &= \Pr \left[ \left| \sum_{J} I_J - \mathbb{E} \left[ \sum_{J} I_J \right] \right| \geq \frac{m}{q(n)} \right] \\
     &\leq \frac{m \mathbf{Var}(I_J)}{\left(\frac{m}{q(n)}\right)^2} \\
     &\leq \frac{\frac{1}{4}}{\left( \frac{1}{q(n)} \right)^2 m}
 \end{aligned}
-
 \end{equation*}
 
 Since \(x \in S\) we know
 \(\frac{1}{q(n)} \geq \frac{\epsilon_A(n)}{2} \geq \frac{1}{2p(n)}\), so
 
 \begin{equation*}
-\frac{\frac{1}{4}}{\left( \frac{1}{q(n)} \right)^2 m} \leq \frac{\frac{1}{4}}{\left( \frac{1}{2p(n)} \right)^2 2n \cdot p(n)^2} = \frac{1}{2n} 
+\frac{\frac{1}{4}}{\left( \frac{1}{q(n)} \right)^2 m} \leq \frac{\frac{1}{4}}{\left( \frac{1}{2p(n)} \right)^2 2n \cdot p(n)^2} = \frac{1}{2n}
 \end{equation*}
 
 Putting it all together, \(B\) must first pick an \(x \in S\), then
