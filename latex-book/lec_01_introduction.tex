@@ -506,7 +506,7 @@ definition:
 \hypertarget{securefirstattemptdef}{}
 \begin{definition}[Security of encryption: first attempt] \label[definition]{securefirstattemptdef}
 
-An encyption scheme \((E,D)\) is \emph{\(n\)-secure} if no matter what
+An enrcyption scheme \((E,D)\) is \emph{\(n\)-secure} if no matter what
 method Eve employs, the probability that she can recover the true key
 \(k\) from the ciphertext \(c\) is at most \(2^{-n}\).
 
@@ -612,7 +612,7 @@ try to consider a definition with a \emph{random} message. That is:
 \hypertarget{securethirdattemptdef}{}
 \begin{definition}[Security of encryption: third attempt] \label[definition]{securethirdattemptdef}
 
-An encyption scheme \((E,D)\) is \emph{\(n\)-secure} if no matter what
+An enrcyption scheme \((E,D)\) is \emph{\(n\)-secure} if no matter what
 method Eve employs, if \(m\) is chosen at random from \(\{0,1\}^\ell\),
 the probability that she can recover \(m\) from the ciphertext
 \(c=E_k(m)\) is at most \(2^{-n}\).
@@ -768,15 +768,15 @@ distributions \(Y\) and \(Y'\) over \(\{0,1\}^*\) are identical:
 
 We only sketch the proof. The condition in the exercise is equivalent to
 perfect secrecy with \(|M|=2\). For every \(M = \{ m,m' \}\), if \(Y\)
-and \(Y'\) are identical then clearly for every \(Eve\),
-\(\Pr[ Eve(E_k(m))=1] = \Pr[ Eve(E_k(m'))=1]\) since these correspond
-applying \(Eve\) on the same distribution \(Y=Y'\). On the other hand,
-if \(Y\) and \(Y'\) are not identical then there must exist some
-ciphertext \(c^*\) such that \(\Pr[ Y=c^*] > \Pr[ Y'=c^*]\) (or vice
-versa). The adversary that on input \(c\) will guess that \(c\) is an
-encryption of \(m\) if \(c=c^*\) and otherwise will toss a coin will
-have some advantage over \(1/2\) in distinguishing an encryption of
-\(x\) from an encryption of \(m'\).
+and \(Y'\) are identical then clearly for every \(Eve\) and possible
+output \(y\), \(\Pr[ Eve(E_k(m))=y] = \Pr[ Eve(E_k(m'))=y]\) since these
+correspond applying \(Eve\) on the same distribution \(Y=Y'\). On the
+other hand, if \(Y\) and \(Y'\) are not identical then there must exist
+some ciphertext \(c^*\) such that \(\Pr[ Y=c^*] > \Pr[ Y'=c^*]\) (or
+vice versa). The adversary that on input \(c\) guesses that \(c\) is an
+encryption of \(m\) if \(c=c^*\) and otherwise tosses a coin will have
+some advantage over \(1/2\) in distinguishing an encryption of \(m\)
+from an encryption of \(m'\).
 
 \end{solution}
 
@@ -903,7 +903,7 @@ For two binary strings \(a\) and \(b\) of the same length \(n\), we
 define \(a \oplus b\) to be the string \(c \in \{0,1\}^n\) such that
 \(c_i = a_i + b_i \mod 2\) for every \(i\in [n]\). The encryption scheme
 \((E,D)\) is defined as follows: \(E_k(m) = m\oplus k\) and
-\(D_k(c)= v \oplus k\). By the associative law of addition (which works
+\(D_k(c)= c \oplus k\). By the associative law of addition (which works
 also modulo two),
 \(D_k(E_k(m))=(m\oplus k) \oplus k = m \oplus (k \oplus k) = m \oplus 0^n = m\),
 using the fact that for every bit \(\sigma \in \{0,1\}\),

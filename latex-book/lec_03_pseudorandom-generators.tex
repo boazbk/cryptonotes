@@ -1,8 +1,7 @@
 \chapter{Pseudorandomness}\label{3-Pseudorandomness}
 
-\paragraph{Reading:} Katz-Lindell Section 3.3, Boneh-Shoup Chapter 3
-
-Edited and expanded by Richard Xu in Spring 2020.
+\paragraph{Reading:} Katz-Lindell Section 3.3, Boneh-Shoup Chapter
+3\footnote{Edited and expanded by Richard Xu in Spring 2020.}
 
 The nature of randomness has troubled philosophers, scientists,
 statisticians and laypeople for many years.\footnote{Even lawyers
@@ -56,14 +55,19 @@ distribution on \({\{0,1\}}^t\).
 That is, \(G\) is a \((T,\epsilon)\) pseudorandom generators if no
 circuit of at most \(T\) gates can distinguish with bias better than
 \(\epsilon\) between the output of \(G\) (on a random input) and a
-uniformly random string of the same length.
+uniformly random string of the same length. Spelling this out fully,
+this means that for every function
+\(D:\{0,1\}^\ell \rightarrow \{0,1\}\) computable using at most \(T\)
+operations,
+
+\$\$\(\left| \Pr_{x \sim \{0,1\}^n}[ D(G(x))=1 ] - \Pr_{y \sim \{0,1\}^\ell}[ D(y)=1 \right| < \epsilon\;.\)
 
 As we did for the case of encryption, we will typically use
 \emph{asymptotic terms} to describe cryptographic pseudorandom
 generator. We say that \(G\) is simply a pseudorandom generator if it is
-\((p(n),1/p(n))\)-pseudorandom generator for every polynomial
-\(p(\cdot)\). In other words, we define pseudorandom generators as
-follows:
+efficiently computable and it is \((p(n),1/p(n))\)-pseudorandom
+generator for every polynomial \(p(\cdot)\). In other words, we define
+pseudorandom generators as follows:
 
 \hypertarget{prgdef}{}
 \begin{definition}[Pseudorandom generator] \label[definition]{prgdef}
@@ -76,29 +80,44 @@ with length function \(\ell:\N \rightarrow \N\) (where \(\ell(n)>n\)) if
 \item
   For every \(x\in \{0,1\}^*\), \(|G(x)| = \ell(|x|)\).
 \item
-  For every polynomial \(p(\cdot)\) and sufficiently large \(n\), the
-  function \(G_n\) (the restriction of \(G\) to inputs of length \(n\))
-  is a \((p(n),\tfrac{1}{p(n)})\) pseudorandom generator.
+  For every polynomial \(p(\cdot)\) and sufficiently large \(n\), if
+  \(D:\{0,1\}^{\ell(n)} \rightarrow \{0,1\}\) is computable by at most
+  \(p(n)\) operations, then
 \end{itemize}
+
+\[\left| \Pr[D(G(U_n))=1] - \Pr[ D(U_\ell)=1] \right| < \tfrac{1}{p(n)} \label{prgdefeq}\]
 
 \end{definition}
 
-Equivalently, \(G\) as above is a pseudorandom generator if the two
-distributions \(G(U_n)\) and \(U_{\ell(n)}\) are \emph{computationally
-indistinguishable}.
+Another way to say it, is that a polynomial-time computable function
+\(G\) mapping \(n\) bits strings to \(\ell(n)>n\) bit strings is a
+pseudo-random generator if the two distributions \(G(U_n)\) and
+\(U_{\ell(n)}\) are \emph{computationally indistinguishable}.
 
 \begin{pause} \label[pause]{3-This-definition-as-is-}
 
-This definition (as is often the case in cryptography) is a bit long, so
-you want to take your time parsing it. In particular you should verify
-that you understand why the condition \eqref{prgdefeq} is the same as
-saying that for every polynomial \(p:\N \rightarrow \N\), if \(n\) is
-sufficiently large, then for every circuit \(D\) of at most \(T\) gates
-(or equivalently, for every straightline program \(D\) of at most \(T\)
-lines):
-\[\left| \Pr[D(G(U_n))=1] - \Pr[ D(U_\ell)=1] \right| < \tfrac{1}{p(n)} \label{prgdefeq}\]
+This definition (as is often the case in cryptography) is a bit long,
+but the concept of a pseudorandom generator is central to cryptography,
+and so you should take your time and make sure you understand it.
+Intuitively, a function \(G\) is a pseudorandom generator if
+\textbf{(1)} it expands its input (mapping \(n\) bits to \(n+1\) or
+more) and \textbf{(2)} we cannot distinguish between the output \(G(x)\)
+for \(x\) is a short (i.e., \(n\) bit long) random string, often known
+as the \emph{seed} of the pseudorandom genertor, and a truly random long
+(i.e., of length \(\ell(n)\)) string chosen uniformly at random from
+\(\{0,1\}^{\ell(n)}\).
 
 \end{pause}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/prg_def.png}
+\caption{A function \(G:\{0,1\}^n \rightarrow \{0,1\}^{\ell(n)}\) is a
+\emph{pseuaodrandom generator} if \(G(x)\) for a random short
+\(x \sim \{0,1\}^n\) is computationally indistinguishable from a long
+truly random \(y \sim \{0,1\}^{\ell(n)}\).}
+\label{prgdeffig}
+\end{figure}
 
 Note that the requirement that \(\ell>n\) is crucial to make this notion
 non-trivial, as for \(\ell=n\) the function \(G(x)=x\) clearly satisfies
@@ -247,12 +266,33 @@ contradicting the security of \(G'\).
 
 \end{proof}
 
+\hypertarget{prgpractice}{}
+\begin{remark}[Pseudorandom generators in practice] \label[remark]{prgpractice}
+
 The proof of \cref{lengthextendprgthm} is indicative of many practical
-constructions of pseudorandom generators. Many operating systems keep
-track of an initial \emph{seed} of randomness, and supply a system call
-\texttt{rand} that applies a pseudorandom generator \(G'\) to the
-current seed, uses part of the output to update the seed, and returns
-the remainder to the caller.
+constructions of pseudorandom generators. In many operating systems and
+programming environments, pseudorandom generators work as follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Upon initialization, the system obtains an initial \emph{seed} of
+  randomness \(x_0 \in \{0,1\}^n\) (where often \(n\) is something like
+  \(128\) or \(256\)).
+\item
+  At the \(t\)-th call to a function such as `rand' to obtain new
+  randomness, the system uses some underlying pseudorandom generator
+  \(G':\{0,1\}^n \rightarrow \{0,1\}^{n+m}\) to let
+  \(x'\|y = G'(x_{t-1})\), updates \(x_t = x'\) and outputs \(y\).
+\end{enumerate}
+
+There are often some additional complications on how to obtain this seed
+from some ``unpredictable'' or ``high entropy'' observations (which can
+sometimes include network latency, user typing and mouse patterns, and
+more), and whether the state of the system is periodically ``refreshed''
+using additional observations.
+
+\end{remark}
 
 \subsection{Unpredictability: an alternative approach for proving the
 length extension theorem}\label{3-Unpredictability-an-al}
@@ -279,8 +319,9 @@ guessing.
 \end{definition}
 
 We now show that the condition for a function \(G\) to be unpredictable
-is equivalent to the condition for it to be a secure PRG. The proof is
-detailed to give you another example of reduction proof.
+is equivalent to the condition for it to be a secure PRG. Please make
+sure you follow the proof, because it is an important theorem, and
+because it is another example of a canonical cryptographic proof.
 
 \hypertarget{unpredequiv}{}
 \begin{lemma} \label[lemma]{unpredequiv}
@@ -362,8 +403,8 @@ If the PRG conjecture is true then so is the cipher conjecture.
 
 It turns out that the converse direction is also true, and hence these
 two conjectures are \emph{equivalent}. We will probably not show the
-(quite non-trivial) proof of this fact in this course. (We might show
-some weaker version of this harder direction.)
+(quite non-trivial) proof of this fact in this course. (We might show a
+weaker version though.)
 
 \begin{proof} \label[proof]{3-Recall-that-the-one-ti}
 
