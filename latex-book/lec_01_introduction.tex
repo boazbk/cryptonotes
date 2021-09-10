@@ -755,11 +755,11 @@ distributions \(Y\) and \(Y'\) over \(\{0,1\}^*\) are identical:
 
 \begin{itemize}
 \item
-  \(Y\) is obtained by sampling \(k\sim \{0,1\}^n\) and outputting
-  \(E_k(m)\).
+  \(Y\) is obtained by sampling \(k\leftarrow_R \{0,1\}^n\) and
+  outputting \(E_k(m)\).
 \item
-  \(Y'\) is obtained by sampling \(k\sim \{0,1\}^n\) and outputting
-  \(E_k(m')\).
+  \(Y'\) is obtained by sampling \(k\leftarrow_R \{0,1\}^n\) and
+  outputting \(E_k(m')\).
 \end{itemize}
 
 \end{solvedexercise}
@@ -797,8 +797,8 @@ Let \((E,D)\) be a valid encryption scheme with message length
   \((E,D)\) is perfectly secret as per \cref{perfectsecrecydef}.
 \item
   For every pair of messages \(m_0,m_1 \in \{0,1\}^{\ell(n)}\), the
-  distributions \(\{ E_k(m_0) \}_{k \sim \{0,1\}^n}\) and
-  \(\{ E_k(m_1) \}_{k \sim \{0,1\}^n}\) are identical.
+  distributions \(\{ E_k(m_0) \}_{k \leftarrow_R \{0,1\}^n}\) and
+  \(\{ E_k(m_1) \}_{k \leftarrow_R \{0,1\}^n}\) are identical.
 \item
   (Two-message security: Eve can't guess which of one of two messages
   was encrypted with success better than half.) For every function
@@ -807,7 +807,7 @@ Let \((E,D)\) be a valid encryption scheme with message length
 \end{enumerate}
 
 \begin{equation*}
-\Pr_{b \sim \{0,1\}, k \sim \{0,1\}^n} [ Eve(E_k(m_b))=m_b ] \leq 1/2
+\Pr_{b \leftarrow_R \{0,1\}, k \leftarrow_R \{0,1\}^n} [ Eve(E_k(m_b))=m_b ] \leq 1/2
 \end{equation*}
 
 \begin{enumerate}
@@ -822,11 +822,11 @@ Let \((E,D)\) be a valid encryption scheme with message length
 \end{enumerate}
 
 \begin{equation*}
-\Pr_{m \sim \mathcal{D}, k \sim \{0,1\}^n}[ Eve(E_k(m))=m ] \leq \max(\mathcal{D})
+\Pr_{m \leftarrow_R \mathcal{D}, k \leftarrow_R \{0,1\}^n}[ Eve(E_k(m))=m ] \leq \max(\mathcal{D})
 \end{equation*}
 
 where we denote
-\(\max(\mathcal{D}) = \max_{m^*\in \{0,1\}^{\ell(n)}} \Pr_{m \sim \mathcal{D}}[m=m^*]\)
+\(\max(\mathcal{D}) = \max_{m^*\in \{0,1\}^{\ell(n)}} \Pr_{m \leftarrow_R \mathcal{D}}[m=m^*]\)
 to be the largest probability of any element under \(\mathcal{D}\).
 
 \end{theorem}
@@ -912,7 +912,7 @@ using the fact that for every bit \(\sigma \in \{0,1\}\),
 
 To analyze the perfect secrecy property, we claim that for every
 \(m\in \{0,1\}^n\), the distribution \(Y_m=E_k(m)\) where
-\(k \sim \{0,1\}^n\) is simply the uniform distribution over
+\(k \leftarrow_R \{0,1\}^n\) is simply the uniform distribution over
 \(\{0,1\}^n\), and hence in particular the distributions \(Y_{m}\) and
 \(Y_{m'}\) are identical for every \(m,m' \in \{0,1\}^n\). Indeed, for
 every particular \(y\in \{0,1\}^n\), the value \(y\) is output by
@@ -1057,7 +1057,8 @@ Let \(E,D\) be a valid encryption scheme with messages of length
 not perfectly secret by providing two plaintexts
 \(x_0,x_1 \in \{0,1\}^\ell\) such that the distributions \(Y_{x_0}\) and
 \(Y_{x_1}\) are not identical, where \(Y_x\) is the distribution
-obtained by picking \(k \sim \{0,1\}^n\) and outputting \(E_k(x)\).
+obtained by picking \(k \leftarrow_R \{0,1\}^n\) and outputting
+\(E_k(x)\).
 
 We choose \(x_0 = 0^\ell\). Let \(S_0 \subseteq \{0,1\}^*\) be the set
 of all ciphertexts that have nonzero probability of being output in
