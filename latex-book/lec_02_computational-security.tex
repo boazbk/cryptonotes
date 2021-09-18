@@ -19,8 +19,8 @@ from itertools import product # Import an iterator for cartesian products
 from random import choice # choose random element of list
 
 # Gets ciphertext as input and two potential plaintexts
-# Returns most likely plaintext 
-# We assume we have access to the function Encrypt(key,ciphertext)
+# Returns most likely plaintext
+# We assume we have access to the function Encrypt(key,plaintext)
 def Distinguish(ciphertext,plaintext1,plaintext2):
     for key in product([0,1], repeat = 128): # Iterate over all possible keys of length 128
         if Encrypt(key, plaintext1)==ciphertext:
@@ -31,9 +31,10 @@ def Distinguish(ciphertext,plaintext1,plaintext2):
 \end{code}
 
 The program \texttt{Distinguish} will break any \(128\)-bit key and
-\(129\)-bit message encryption
-\texttt{Encrypt', in the sense that there exist  a pair of messages \$m\_0,m\_1\$ such that}Distinguish'\((E_k(m_b),m_0,m_1)=m_b\)
-with probability at least \(0.75\) over \(k \leftarrow_R \{0,1\}^n\) and
+\(129\)-bit message encryption \texttt{Encrypt}, in the sense that there
+exist a pair of messages \(m_0,m_1\) such that
+\texttt{Distinguish}\((\)\texttt{Encrypt}\((k,m_b),m_0,m_1)=m_b\) with
+probability at least \(0.75\) over \(k \leftarrow_R \{0,1\}^n\) and
 \(b \leftarrow_R \{0,1\}\).
 
 Now, generating, distributing, and protecting huge keys causes immense
@@ -71,7 +72,7 @@ security'' if it is not possible to break it using less than \(2^{256}\)
 operations, and more generally that it has \(t\) bits of security if it
 can't be broken using less than \(2^t\) operations. Given the perfect
 secrecy definition we saw last time, a natural attempt for defining
-Computational secrecy would be the following:
+computational secrecy would be the following:
 
 \hypertarget{firstcompdef}{}
 \begin{definition}[Computational secrecy (first attempt)] \label[definition]{firstcompdef}
@@ -108,8 +109,8 @@ polynomial.
 
 \end{pause}
 
-The reason \cref{firstcompdef} can't be achieved that if the message is
-even one bit longer than the key, we can always have a very efficient
+The reason \cref{firstcompdef} can't be achieved is that if the message
+is even one bit longer than the key, we can always have a very efficient
 procedure that achieves success probability of about \(1/2 + 2^{-n-1}\)
 by guessing the key. This is because we can replace the loop in the
 Python program \texttt{Distinguish} by choosing the key at random. Since
@@ -152,7 +153,7 @@ this definition implies the analogous condition to perfect secrecy.
 \hypertarget{twotomanycomp}{}
 \begin{theorem}[Guessing game for computational secrecy] \label[theorem]{twotomanycomp}
 
-If \((E,D)\) has \(t\) bits of Computational secrecy as per
+If \((E,D)\) has \(t\) bits of computational secrecy as per
 \cref{compsecconcdef} then for every subset
 \(M \subseteq {\{0,1\}}^\ell\) and every strategy of Eve using at most
 \(2^t-(100\ell+100)\) computational steps, if we choose at random
@@ -744,34 +745,35 @@ wins in the following game is at most \(1/2 + \epsilon/2\):
 
 \begin{pause} \label[pause]{2-Working-out-this-exerc}
 
-Working out this exercise on your own is a great way to get comfort with
-computational indistinguishability, which is a fundamental notion.
+Working out this exercise on your own is a great way to get comfortable
+with computational indistinguishability, which is a fundamental notion.
 
 \end{pause}
 
-::: \{.solution data-ref=``compindex''\} For every function
-\(Eve:\{0,1\}^m \rightarrow \{0,1\}\), let \(p_X = \Pr[ Eve(X)=1]\) and
-\(p_Y = \Pr[Eve(Y)=1]\).
+\begin{solution} \label[solution]{2-For-every-function-Eve}
+
+For every function \(Eve:\{0,1\}^m \rightarrow \{0,1\}\), let
+\(p_X = \Pr[ Eve(X)=1]\) and \(p_Y = \Pr[Eve(Y)=1]\).
 
 Then the probability that \(Eve\) wins the game is:
 
 \begin{equation*}
-\Pr[ b=0] p_X + \Pr[b=1](1-p_Y)
+\Pr[ b=0](1-p_X) + \Pr[b=1] p_Y
 \end{equation*}
 
 and since \(\Pr[b=0]=\Pr[b=1]=1/2\) this is
 
 \begin{equation*}
-\tfrac{1}{2}p_X + \tfrac{1}{2} - \tfrac{1}{2}p_Y = \tfrac{1}{2} + \tfrac{1}{2}(p_X-p_Y)
+\tfrac{1}{2} - \tfrac{1}{2}p_X + \tfrac{1}{2}p_Y = \tfrac{1}{2} + \tfrac{1}{2}(p_Y-p_X)
 \end{equation*}
 
 We see that \(Eve\) wins the game with success \(1/2 + \epsilon/2\) if
 and only if
 \begin{equation*}
-\Pr[ Eve(X) = 1 ] - \Pr[Eve(Y)=1]  = \epsilon \;.
+\Pr[ Eve(Y) = 1 ] - \Pr[Eve(X)=1]  = \epsilon \;.
 \end{equation*}
 Since
-\(\Pr[ Eve(X) = 1 ] - \Pr[Eve(Y)=1] \leq \left| \Pr[ Eve(X) = 1 ] - \Pr[Eve(Y)=1] \right|\),
+\(\Pr[ Eve(Y) = 1 ] - \Pr[Eve(X)=1] \leq \left| \Pr[ Eve(X) = 1 ] - \Pr[Eve(Y)=1] \right|\),
 this already shows that if \(X\) and \(Y\) are
 \((T,\epsilon)\)-indistinguishable then \(Eve\) will win the game with
 probability at most \(\epsilon/2\).
@@ -782,6 +784,7 @@ operation function such that
 \begin{equation*}
 \left| \Pr[ Eve(X) = 1 ] - \Pr[Eve(Y)=1]  \right| \geq \epsilon \;.
 \end{equation*}
+
 Then by definition of absolute value, there are two options. Either
 \(\Pr[ Eve(X) = 1 ] - \Pr[Eve(Y)=1] \geq \epsilon\) in which case
 \(Eve\) wins the game with probability at least \(1/2 + \epsilon/2\).
@@ -794,8 +797,10 @@ compute\footnote{Above we assume that the class of ``functions
   gates (which can change the total circuit size by at most a factor of
   two), or we can allow for \(Eve'\) to require a constant additional
   number of operations, in which case the exercise is still essentially
-  true but is slightly more cumbersome to state. :::}) wins the game
-with probability at least \(1/2 + \epsilon/2\).
+  true but is slightly more cumbersome to state.}) wins the game with
+probability at least \(1/2 + \epsilon/2\).
+
+\end{solution}
 
 As we did with computational secrecy, we can also define an asymptotic
 definition of computational indistinguishability.
@@ -817,7 +822,7 @@ polynomial \(p:\N \rightarrow \N\) and sufficiently large \(n\),
 \end{definition}
 
 Solving the following asymptotic analog of \cref{compindex} is a good
-way to get comfort with the asymptotic definition of computational
+way to get comfortable with the asymptotic definition of computational
 indistinguishability:
 
 \hypertarget{asymgame}{}
@@ -856,7 +861,7 @@ sequences \(\{ X_n \}_{n\in \N}\) and \(\{ Y_n \}_{n\in\N}\) are
 computationally indistinguishable.
 
 We can use computational indistinguishability to phrase the definition
-of Computational secrecy more succinctly:
+of computational secrecy more succinctly:
 
 \hypertarget{compindsecthm}{}
 \begin{theorem}[Computational Indistinguishability phrasing of security] \label[theorem]{compindsecthm}
@@ -873,7 +878,7 @@ where each of these two distributions is obtained by sampling a random
 \end{theorem}
 
 Working out the proof is an excellent way to make sure you understand
-both the definition of Computational secrecy and computational
+both the definition of computational secrecy and computational
 indistinguishability, and hence we leave it as an exercise.
 
 One intuition for computational indistinguishability is that it is
@@ -909,7 +914,7 @@ Then \(X_1 \approx_{T, (m-1)\epsilon} X_m\).
 
 Suppose that there exists a \(T\) time \(Eve\) such that
 \begin{equation*}
-|\Pr[ Eve(X_1)=1] - \Pr[ Eve(X_m)=1]| > (m-1)\epsilon  \;.
+|\Pr[ Eve(X_1)=1] - \Pr[ Eve(X_m)=1]| > (m-1)\epsilon \;.
 \end{equation*}
 
 Write
@@ -941,9 +946,10 @@ over \({\{0,1\}}^n\) such that \(X_i \approx_{T,\epsilon} Y_i\). Then
 
 \end{theorem}
 
-::: \{.proof data-ref=``compindrepthm''\} For every
-\(i\in\{0,\ldots,\ell\}\) we define \(H_i\) to be the distribution
-\((X_1,\ldots,X_i,Y_{i+1},\ldots,Y_\ell)\). Clearly
+\begin{proof} \label[proof]{2-For-every-iinldotsell-}
+
+For every \(i\in\{0,\ldots,\ell\}\) we define \(H_i\) to be the
+distribution \((X_1,\ldots,X_i,Y_{i+1},\ldots,Y_\ell)\). Clearly
 \(H_\ell = (X_1,\ldots,X_\ell)\) and \(H_0 = (Y_1,\ldots,Y_\ell)\). We
 will prove that for every \(i\),
 \(H_{i-1} \approx_{T-10\ell n,\epsilon} H_i\), and the proof will then
@@ -988,11 +994,13 @@ distributions \(X\) and \(Y\) respectively, and so if we define
   feeding them into \(Eve'\) may take \(c\ell n\) steps for some small
   constant \(c<10\). In the future, we will usually ignore such minor
   details and simply say that if \(Eve'\) runs in polynomial time then
-  so will \(Eve\). :::} and it satisfies
+  so will \(Eve\).} and it satisfies
 \begin{equation*}
 \left| {\mathbb{E}}_{X_i} [ Eve(X_i) ] - {\mathbb{E}}_{Y_i} [ Eve(Y_i) ] \right| > \epsilon
 \end{equation*}
 contradicting the assumption that \(X_i \approx_{T,\epsilon} Y_i\).
+
+\end{proof}
 
 \hypertarget{hybridrem}{}
 \begin{remark}[The hybrid argument] \label[remark]{hybridrem}

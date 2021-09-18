@@ -441,14 +441,14 @@ be an arbitrarily large polynomial in \(n\).
 The proof is quite simple. \(\ensuremath{\mathit{EVAL}}\) will simply
 add the ciphertexts as vectors in \(\Z_q\). If \(c = \sum c_i\) then
 \begin{equation*}
-\langle c,s \rangle = \sum b_i \floor{\tfrac{q}{2}}  +  \xi \mod  q
+\langle c,s \rangle = \sum b_i \floor{\tfrac{q}{2}}  +  \xi \mod q
 \end{equation*}
 where \(\xi \in \Z_q\) is a ``noise term'' such that
 \(|\xi| \leq \ell m \sqrt{q} \ll q\). Since
 \(|\floor{\tfrac{q}{2}}- \tfrac{q}{2}|<1\), adding at most \(\ell\)
 terms of this difference adds at most \(\ell\), and so we can also write
 \begin{equation*}
-\langle c,s \rangle = \floor{ \sum b_i \tfrac{q}{2} }  +  \xi' \mod  q
+\langle c,s \rangle = \floor{ \sum b_i \tfrac{q}{2} }  +  \xi' \mod q
 \end{equation*}
 for \(|\xi'| \leq \ell m \sqrt{q} + \ell \ll q\). If \(\sum b_i\) is
 even then \(\sum b_i \tfrac{q}{2}\) is an integer multiple of \(q\) and

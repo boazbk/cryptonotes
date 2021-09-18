@@ -3,11 +3,12 @@
 People have been dreaming about heavier-than-air flight since at least
 the days of Leonardo Da Vinci (not to mention Icarus from Greek
 mythology). Jules Verne wrote with rather insightful details about going
-to the moon in 1865. But, as far as I know, in all the thousands of
-years people have been using secret writing, until about 50 years ago no
-one had considered the possibility of communicating securely without
-first exchanging a shared secret key. However, in the late 1960's and
-early 1970's, several people started to question this ``common wisdom''.
+to the moon in 1865. But, as far as I know, no one had considered the
+possibility of communicating securely without first exchanging a shared
+secret key until about 50 years ago. This is surprising given the
+thousands of years people have been using secret writing! However, in
+the late 1960's and early 1970's, several people started to question
+this ``common wisdom''.
 
 Perhaps the most surprising of these visionaries was an undergraduate
 student at Berkeley named Ralph Merkle. In the fall of 1974, he wrote a
@@ -42,17 +43,16 @@ the signal. The idea is that an adversary over the line sees only the
 sum of Alice's and Bob's signals and doesn't know what came from what.
 This got James Ellis thinking whether it would be possible to achieve
 something like that digitally. As he later recollected, in 1970 he
-realized that in principle this should be possible, since he could think
-of an hypothetical black box \(B\) that on input a ``handle'' \(\alpha\)
-and plaintext \(p\) would give a ``ciphertext'' \(c\) and that there
-would be a secret key \(\beta\) corresponding to \(\alpha\), such that
-feeding \(\beta\) and \(c\) to the box would recover \(p\). However,
-Ellis had no idea how to actually instantiate this box. He and others
-kept giving this question as a puzzle to bright new recruits until one
-of them, Clifford Cocks, came up in 1973 with a candidate solution
-loosely based on the factoring problem; in 1974 another GCHQ recruit,
-Malcolm Williamson, came up with a solution using modular
-exponentiation.
+realized that in principle this should be possible. He could think of an
+hypothetical black box \(B\) that on input a ``handle'' \(\alpha\) and
+plaintext \(p\) would give a ``ciphertext'' \(c\). There would be a
+secret key \(\beta\) corresponding to \(\alpha\) such that feeding
+\(\beta\) and \(c\) to the box would recover \(p\). However, Ellis had
+no idea how to actually instantiate this box. He and others kept giving
+this question as a puzzle to bright new recruits until one of them,
+Clifford Cocks, came up in 1973 with a candidate solution loosely based
+on the factoring problem; in 1974 another GCHQ recruit, Malcolm
+Williamson, came up with a solution using modular exponentiation.
 
 But among all those thinking of public key cryptography, probably the
 people who saw the furthest were two researchers at Stanford, Whit
@@ -87,9 +87,9 @@ could verify this by checking that \(p_k(x)=h(m)\).
 However, Diffie and Hellman were in a position not unlike physicists who
 predicted that a certain particle should exist but had no experimental
 verification. Luckily they
-\href{http://cr.yp.to/bib/1988/diffie.pdf}{met Ralph Merkle}, and his
-ideas about a probabilistic \emph{key exchange protocol}, together with
-a suggestion from their Stanford colleague
+\href{http://cr.yp.to/bib/1988/diffie.pdf}{met Ralph Merkle}. His ideas
+about a probabilistic \emph{key exchange protocol}, together with a
+suggestion from their Stanford colleague
 \href{https://profiles.stanford.edu/john-gill}{John Gill}, inspired them
 to come up with what today is known as the \emph{Diffie-Hellman Key
 Exchange} (which, unbeknownst to them, was found two years earlier at
@@ -202,14 +202,13 @@ proof has been simplified since then by the above works).
 
 Another topic we did not discuss in depth is attacks on private key
 cryptosystems. These attacks often work by ``opening the black box'' and
-looking at the internal operation of block ciphers or hash functions.
-One then often assigns variables to various internal registers, and then
-we look to finding collections of inputs that would satisfy some
-non-trivial relation between those variables. This is a rather vague
-description, but you can read KL Section 6.2.6 on \emph{linear} and
-\emph{differential} cryptanalysis and BS Sections 3.7-3.9 and 4.3 for
-more information. See also
-\href{http://www.cs.tau.ac.il/~tromer/SKC2006/}{this course of Adi
+looking at the internal operation of block ciphers or hash functions. We
+then assign variables to various internal registers, and look to find
+collections of inputs that would satisfy some non-trivial relation
+between those variables. This is a rather vague description, but you can
+read KL Section 6.2.6 on \emph{linear} and \emph{differential}
+cryptanalysis and BS Sections 3.7-3.9 and 4.3 for more information. See
+also \href{http://www.cs.tau.ac.il/~tromer/SKC2006/}{this course of Adi
 Shamir}. There is also the fascinating area of \emph{side channel}
 attacks on both public and private key crypto.
 
@@ -241,11 +240,11 @@ to what by now is the standard basic notion (see also \cref{PKCfig}):
 \centering
 \includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/pkenccartoon.png}
 \caption{In a public key encryption, the receiver Bob generates a
-\emph{pair} of keys \((e,d)\), The \emph{encryption key} \(e\) is used
+\emph{pair} of keys \((e,d)\). The \emph{encryption key} \(e\) is used
 for encryption, and the \emph{decryption key} is used for decryption. We
 call it a public key system since the security of the scheme does not
-rely on the adversary Eve not knowing the encryption key. Hence Bob can
-publicize the key \(e\) to a great many potential receivers, and still
+rely on the adversary Eve not knowing the encryption key. Hence, Bob can
+publicize the key \(e\) to a great many potential receivers and still
 ensure confidentiality of the messages he receives.}
 \label{PKCfig}
 \end{marginfigure}
@@ -344,7 +343,7 @@ encryption scheme:
 \(p_k:\{0,1\}^n \rightarrow \{0,1\}^n\), \emph{(ii)} An ``obfuscating
 compiler'' polynomial-time computable
 \(O:\{0,1\}^* \rightarrow \{0,1\}^*\) such that for every circuit \(C\),
-\(O(C)\) is a circuit that computes the same function as \(C\)
+\(O(C)\) is a circuit that computes the same function as \(C\).
 
 \begin{itemize}
 \item
@@ -430,7 +429,7 @@ The kind of results we know have the following form:
 CPA-secure public key encryption.
 \end{quote}
 
-Where \(X\) is some problem that people have tried to solve and
+Here, \(X\) is some problem that people have tried to solve and
 couldn't. Thus, we have various \emph{candidates} for public key
 encryption, and we fervently hope that at least one of them is actually
 secure. The \href{https://eprint.iacr.org/2017/365.pdf}{dirty little
@@ -486,8 +485,8 @@ The \emph{discrete logarithm} problem is the problem of computing, given
 \(a\) exists then there is always also a solution of size at most \(p\)
 (can you see why?) and so the solution can be represented using \(n\)
 bits. However, currently the best-known algorithm for computing the
-discrete logarithm runs in time roughly \(2^{n^{1/3}}\), which currently
-becomes prohibitively expensive when \(p\) is a prime of length about
+discrete logarithm runs in time roughly \(2^{n^{1/3}}\), which is
+currently prohibitively expensive when \(p\) is a prime of length about
 \(2048\) bits.\footnote{The running time of the best known algorithms
   for computing the discrete logarithm modulo \(n\) bit primes is
   \(2^{f(n)2^{n^{1/3}}}\), where \(f(n)\) is a function that depends
@@ -495,7 +494,7 @@ becomes prohibitively expensive when \(p\) is a prime of length about
   need numbers of \(128^3 \approx 2\cdot 10^6\) bits to get \(128\) bits
   of security, but because \(f(n)\) is larger than one, the current
   \href{https://goo.gl/ntszsg}{estimates} are that we need to let
-  \(n=3072\) bit key to get \(128\) bits of of security. Still the
+  \(n=3072\) bit key to get \(128\) bits of of security. Still, the
   existence of such a non-trivial algorithm means that we need much
   larger keys than those used for private key systems to get the same
   level of security. In particular, to double the estimated security to
@@ -582,7 +581,7 @@ hard.\footnote{One can get security results for this protocol without a
 
 \begin{quote}
 \textbf{Computational Diffie-Hellman Assumption:} Let \(\mathbb{G}\) be
-a group elements of which can be described in \(n\) bits, with an
+a group whose elements can be described in \(n\) bits, with an
 associative and commutative multiplication operation that can be
 computed in \(poly(n)\) time. The \emph{Computational Diffie-Hellman
 (CDH)} assumption holds with respect to the group \(\mathbb{G}\) if for
@@ -974,19 +973,19 @@ A triple of algorithms \((G,S,V)\) is a chosen-message-attack secure
 \end{definition}
 
 \hypertarget{strongunforgabilitysigrem}{}
-\begin{remark}[Strong unforgability] \label[remark]{strongunforgabilitysigrem}
+\begin{remark}[Strong unforgeability] \label[remark]{strongunforgabilitysigrem}
 
 Just like for MACs (see \cref{MACdef}), our definition of security for
 digital signatures with respect to a chosen message attack does not
 preclude the ability of the adversary to produce a new signature for the
 same message that it has seen a signature of. Just like in MACs, people
-sometimes consider the notion of \emph{strong unforgability} which
+sometimes consider the notion of \emph{strong unforgeability} which
 requires that it would not be possible for the adversary to produce a
 new message-signature pair (even if the message itself was queried
 before). Some signature schemes (such as the full domain hash and the
 DSA scheme) satisfy this stronger notion while others do not. However,
 just like MACs, it is possible to transform any signature with standard
-security into a signature that satisfies this stronger unforgability
+security into a signature that satisfies this stronger unforgeability
 condition.
 
 \end{remark}
@@ -1250,7 +1249,7 @@ such schemes later on in this course.
 practice.}\label{10-Putting-everything-tog}
 
 Let us discuss briefly how public key cryptography is used to secure web
-trafic through the SSL/TLS protocol that we all use when we use
+traffic through the SSL/TLS protocol that we all use when we use
 \texttt{https://} URLs. The security this achieve is quite amazing. No
 matter what wired or wireless network you are using, no matter what
 country you are in, as long as your device (e.g., phone/laptop/etc..)
@@ -1262,7 +1261,7 @@ interaction.\footnote{They are able to know that such an interaction
   attacks is more subtle and approaches for solutions are known as
   \emph{steganography} and \emph{anonymous routing}.}
 
-In the web setting, therre are \emph{servers} who have public keys, and
+In the web setting, there are \emph{servers} who have public keys, and
 \emph{users} who generally don't have such keys. Ideally, as a user, you
 should already know the public keys of all the entities you communicate
 with e.g., \texttt{amazon.com}, \texttt{google.com}, etc. However, how
@@ -1469,7 +1468,7 @@ there are more general groups:
 \item
   A non-commutative group (or a non-abelian group) is a group such that
   \(\exists a,b \in \mathbb{G}\) but \(a * b \neq b * a\) (where \(*\)
-  is the group operation). One example (of an infinite, non commutative
+  is the group operation). One example (of an infinite, non-commutative
   group) is the set of \(2 \times 2\) matrices (over the real numbers)
   which are invertible, and the operation is matrix multiplication. The
   identity element is the traditional identity matrix, and each matrix
@@ -1577,7 +1576,7 @@ the elements. \(4\) is not a generator because
 every element. \(5\) is a generator because
 \(5^2 \mod 6 = 4, 5^3 \mod 7 = 20 \mod 7 = 6, 5^4 \mod 7 = 30 \mod 7 = 2, 5^5 \mod 7 = 10 \mod 7 = 3, 5^6 \mod 7 = 15 \mod 7 = 1\),
 so just like \(3\), \(5\) is a generator. \(6\) is not a generator
-becaue \(6^2 \mod 7= 1 \mod 7\), so just like \(2\), the set
+because \(6^2 \mod 7= 1 \mod 7\), so just like \(2\), the set
 \(\{6,6^2,6^3,\cdots\}\) cannot contain all elements (it will just have
 \(1\) and \(6\)).
 
@@ -1618,7 +1617,7 @@ that the inverse of any element is unique (i.e.~prove that if
 
 Suppose that \(a \in \mathbb{G}\) and that \(b,c \in \mathbb{G}\) such
 that \(ab = 1\) and \(ac = 1\). Then we know that \(ab = ac\), and then
-we can apply \(a^{-1}\) to both sides (we are guarunteed that \(a\) has
+we can apply \(a^{-1}\) to both sides (we are guaranteed that \(a\) has
 SOME inverse \(a^{-1}\) in the group), and so we have
 \(a^{-1}ab = a^{-1}ac\), but we know that \(a^{-1}a = 1\) (and we can
 use associativity of a group), so \((1)b = (1)c\) so \(b = c\). QED.
@@ -1706,9 +1705,9 @@ strategy).
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{10-Suppose-that-we-reciev}
+\begin{solution} \label[solution]{10-Suppose-that-we-receiv}
 
-Suppose that we recieve some element \(g \in \mathbb{G}\). We want to
+Suppose that we receive some element \(g \in \mathbb{G}\). We want to
 know if there exists some \(g' \in \mathbb{G}\) such that \(g = (g')^2\)
 (this is equivalent to \(g\) being in \(\mathbb{H}\)). To do so, compute
 \(g^{|\mathbb{G}|/2}\). I claim that \(g^{|\mathbb{G}|/2}=1\) if and

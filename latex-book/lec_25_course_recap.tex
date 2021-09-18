@@ -6,15 +6,15 @@ It might be worthwhile to recall what we learned in this course:
 \item
   Perhaps first and foremost, that it is possible to
   \emph{mathematically define} what it means for a cryptographic scheme
-  to be secure. In the cases we studied such a definition could always
-  be described as a ``security game''. That is, we really define what it
-  means for a scheme to be \emph{insecure} and then a scheme is secure
-  if it is not insecure. The notion of ``insecurity'' is that there
-  exists some adversarial strategy that succeeds with higher probability
-  than what it should have. We normally don't limit the \emph{strategy}
-  of the adversary but only his or her \emph{capabilities}: its
+  to be secure. In the cases we studied, such a definition could always
+  be described as a ``security game''. That is, we first define what it
+  means for a scheme to be \emph{insecure}. Then, a scheme is secure if
+  it is not insecure. The notion of ``insecurity'' is that there exists
+  some adversarial strategy that succeeds with higher probability than
+  what it should have. We normally don't limit the \emph{strategy} of
+  the adversary but only his or her \emph{capabilities}: its
   computational power and the type of access it has to the system (e.g.,
-  chosen plaintext, chosen ciphertext, etc..). We also talked how the
+  chosen plaintext, chosen ciphertext, etc.). We also talked how the
   notion of \emph{secrecy} requires \emph{randomness} and how many
   real-life failures of cryptosystems amount to faulty assumptions on
   the sources of randomness.
@@ -32,14 +32,14 @@ It might be worthwhile to recall what we learned in this course:
   \(S\) might be a function that achieves the security notion of being a
   pseudorandom generator) and we use it to build a scheme \(T\) that we
   want to achieve a security notion \(Y\) (for example, we want \(T\) to
-  be a message authentication code). Then the way we prove security is
-  that we show how we can transform an adversary \(B\) that wins against
-  \(T\) in the security game of \(Y\) into an adversary \(A\) that wins
-  against \(S\) in the security game of \(X\). Typically the adversary
-  \(A\) will run \(B\) ``in its belly'' simulating for \(B\) the
-  security game \(Y\) with respect to \(T\). This can be somewhat
-  confusing so please re-read the last three sentences and make sure you
-  understand this crucial notion.
+  be a message authentication code). To prove \(T\) is secure, we show
+  how we can transform an adversary \(B\) that wins against \(T\) in the
+  security game of \(Y\) into an adversary \(A\) that wins against \(S\)
+  in the security game of \(X\). Typically, the adversary \(A\) will run
+  \(B\) ``in its belly'', simulating for \(B\) the security game \(Y\)
+  with respect to \(T\). This can be somewhat confusing, so please
+  re-read the last three sentences and make sure you understand this
+  crucial notion.
 \item
   We also saw some of the concrete wonderful things we can do in
   cryptography:
@@ -98,7 +98,7 @@ It might be worthwhile to recall what we learned in this course:
   operation.
 \item
   We talked about the notion of obfuscation, which can be thought as the
-  one tool that if it existed would imply all the others. We saw that
+  one tool that, if exists, would imply all the others. We saw that
   virtual black box obfuscation does not exist, but there might exist a
   weaker notion known as ``indistinguishability obfuscation'' and we saw
   how it can be useful via the example of a witness encryption and a
@@ -109,7 +109,7 @@ It might be worthwhile to recall what we learned in this course:
   cryptography, making lattice based constructions our main candidate
   for public key schemes.
 \item
-  Finally we discussed some of the ethical and policy issues that arise
+  Finally, we discussed some of the ethical and policy issues that arise
   in the applications of cryptography, and what is the impact
   cryptography has now, or can have in the future, on society.
 \end{itemize}
@@ -120,7 +120,7 @@ It might be worthwhile to recall what we learned in this course:
 \item
   We did not cover what is arguably the other ``fundamental theorem of
   cryptography'', namely the equivalence of one-way functions and
-  pseudorandom generators. A one-way function is en efficient map
+  pseudorandom generators. A one-way function is an efficient map
   \(F:\{0,1\}^*\rightarrow\{0,1\}^*\) that is hard to invert on a random
   input. That is, for any efficient algorithm \(A\) if \(A\) is given
   \(y=F(x)\) for uniformly chosen \(x\leftarrow_R\{0,1\}^n\), then the
@@ -151,11 +151,11 @@ It might be worthwhile to recall what we learned in this course:
 \item
   We did not go in detail into the design of private key cryptosystems
   such as the AES. Though we discussed modes of operation of block
-  ciphers we did not go into a full description of all modes that are
+  ciphers, we did not go into a full description of all modes that are
   used in practice. We also did not discuss cryptanalytic techniques
   such as linear and differential cryptanalysis. We also not discuss all
   technical issues that arise with length extension and padding of
-  encryptions in practice. In particular we did not talk
+  encryptions in practice.
 \item
   While we talked about bitcoin, the TLS protocol, two factor
   authentication systems, and some aspects of pretty good privacy, we
@@ -184,7 +184,7 @@ I hope you got an appreciation for cryptography, and an understanding of
 how it can surprise you both in the amazing security properties it can
 deliver, as well in the subtle, but often devastating ways, that it can
 fail. Beyond cryptography, I hope you got out of this course the ability
-to think a little differently- to be paranoid enough to see the world
+to think a little differently - to be paranoid enough to see the world
 from the point of view of an adversary, but also the lesson that
 sometimes if something sounds crazy but is not downright impossible it
 might just be feasible.\\
@@ -194,11 +194,11 @@ one-time pad, you should be in good shape :)
 
 I did not intend this course to teach you how to implement cryptographic
 algorithms, but I do hope that if you need to use cryptography at any
-point, you now have the skills to read up what's needed, and be able to
+point, you now have the skills to read up what's needed and be able to
 argue intelligently about the security of real-world systems. I also
 hope that you have now sufficient background to not be scared by the
 technical jargon and the abundance of adjectives in cryptography
-research papers, and be able to read up on what you need to follow any
+research papers and be able to read up on what you need to follow any
 paper that is interesting to you.
 
 Mostly, I just hope you enjoyed this last term and felt like this course

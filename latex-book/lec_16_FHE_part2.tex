@@ -33,10 +33,12 @@ homomorphically evaluated by \(\ensuremath{\mathit{EVAL}}\).
 Before the detailed description and analysis, let us first outline our
 strategy. Something of essential importance is the following.
 
-::: \# \{.definition title=``Noisy Homomorphic Encryption''
-\#NoisyHEdef\} Suppose that \((G,E,D)\) is a CPA secure public key
-scheme and that \(\eta\) is a measure which maps any ciphertext \(c\) to
-its ``noise'' \(\eta(c)\in [0, \infty).\) Denote
+\hypertarget{NoisyHEdef}{}
+\begin{definition}[Noisy Homomorphic Encryption] \label[definition]{NoisyHEdef}
+
+Suppose that \((G,E,D)\) is a CPA secure public key scheme and that
+\(\eta\) is a measure which maps any ciphertext \(c\) to its ``noise''
+\(\eta(c)\in [0, \infty).\) Denote
 \begin{equation*}
 \mathcal{C}_b^\theta=\{c:D_b(c)=b,\eta(c)\leq\theta \}.
 \end{equation*}
@@ -56,8 +58,10 @@ homomorphic encryption scheme} if the followings holds for some
   \begin{equation*}
   \ensuremath{\mathit{ENAND}}(c,c')\in\mathcal{C}_{b\overline{\wedge}b'}^{n^3\cdot \max\{\eta,\eta'\}}
   \end{equation*}
-  as long as \(n^3\cdot \max\{\eta,\eta'\}<q/4\). :::
+  as long as \(n^3\cdot \max\{\eta,\eta'\}<q/4\).
 \end{itemize}
+
+\end{definition}
 
 The noisy homomorphic encryption actually states that if \(C\) and
 \(C'\) encrypt \(b\) and \(b'\) up to error \(\eta\) and \(\eta'\),

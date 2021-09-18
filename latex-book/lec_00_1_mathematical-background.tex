@@ -25,12 +25,12 @@ Ellenberg.
 
 Although knowledge of algorithms is not strictly necessary, it would be
 quite useful. Students who did not take an algorithms class such as CS
-124 might want to look at one of the books (1) Corman, Leiserson, Rivest
-and Smith, (2) Dasgupte, Papadimitriou and Vaziarni, or (3) Kleinberg
-and Tardos. We do not require prior knowledge of complexity or
-computability but some basic familiarity could be useful. Students who
-did not take a theory of computation class such as CS 121 might want to
-look at my lecture notes or the first 2 chapters of my book with Arora.
+124 might want to look at (1) Corman, Leiserson, Rivest and Smith, (2)
+Dasgupte, Papadimitriou and Vaziarni, or (3) Kleinberg and Tardos. We do
+not require prior knowledge of complexity or computability but some
+basic familiarity could be useful. Students who did not take a theory of
+computation class such as CS 121 might want to look at my lecture notes
+or the first 2 chapters of my book with Arora.
 
 \section{A quick overview of mathematical
 prerequisites}\label{0-A-quick-overview-of-ma}
@@ -45,7 +45,7 @@ The main notions we will use in this course are the following:
 \item
   \textbf{Sets and functions:} We will assume familiarity with basic
   notions of sets and operations on sets such as union (denoted
-  \(\cup\)), intersection (denoted \(\cap\)), and set substraction
+  \(\cup\)), intersection (denoted \(\cap\)), and set subtraction
   (denoted \(\setminus\)). We denote by \(|A|\) the size of the set
   \(A\). We also assume familiarity with functions, and notions such as
   one-to-one (injective) functions and onto (surjective) functions. If
@@ -100,8 +100,8 @@ The main notions we will use in this course are the following:
   such that \(a = kn+r\) for some integer \(k\). It will be very useful
   that \(a\pmod{n} + b \pmod{n} = (a+b) \pmod{n}\) and
   \(a\pmod{n} \cdot b \pmod{n} = (a\cdot b) \pmod{n}\) and so modular
-  arithmetic inherits all of the rules (associativity, commutativity
-  etc..) of integer arithmetic. If \(a,b\) are positive integers then
+  arithmetic inherits all the rules (associativity, commutativity etc..)
+  of integer arithmetic. If \(a,b\) are positive integers then
   \(gcd(a,b)\) is the largest integer that divides both \(a\) and \(b\).
   It is known that for every \(a,b\) there exist (not necessarily
   positive) integers \(x,y\) such that \(ax + by = gcd(a,b)\) (it's a
@@ -123,8 +123,6 @@ The main notions we will use in this course are the following:
   tossing \(n\) coins is a crucial part of cryptography, since (as we'll
   see) there is no secrecy without randomness.
 \end{itemize}
-
-~
 
 \section{Mathematical Proofs}\label{0-Mathematical-Proofs}
 
@@ -199,7 +197,7 @@ ourselves of this fact. At first, it might seem obvious--- since there
 are infinitely many natural numbers, and every one of them can be
 factored into primes, there must be infinitely many primes, right?
 
-Wrong. Since we can compose a prime many times with itself, a finite
+Wrong. Since we can multiply a prime many times with itself, a finite
 number of primes can generate infinitely many numbers. Indeed the single
 prime \(3\) generates the infinite set of all numbers of the form
 \(3^n\). So, what we really need to show is that for every finite set of
@@ -209,16 +207,16 @@ prime factor outside this set.
 Now we need to start playing around. Suppose that we had just two primes
 \(p\) and \(q\). How would we find a number \(n\) that is not generated
 by \(p\) and \(q\)? If you try to draw things on the number line, you
-would see that there is always some \emph{gap} between multiples of
-\(p\) and \(q\) in the sense that they are never consecutive. It is
-possible to prove that (in fact, it's not a bad exercise) but this
-observation already suggests a guess for what would be a number that is
-divisible by neither \(p\) nor \(q\), namely \(pq+1\). Indeed, the
-remainder of \(n=pq+1\) when dividing by either \(p\) or \(q\) would be
-\(1\) (which in particular is not zero). This observation generalizes
-and we can set \(n=pqr+1\) to be a number that is divisible neither by
-\(p,q\) nor \(r\), and more generally \(n=p_1\cdots, p_k +1\) is not
-divisible by \(p_1,\ldots,p_k\).
+will see that there is always some \emph{gap} between multiples of \(p\)
+and \(q\) in the sense that they are never consecutive. It is possible
+to prove that (in fact, it's not a bad exercise) but this observation
+already suggests a guess for what would be a number that is divisible by
+neither \(p\) nor \(q\), namely \(pq+1\). Indeed, the remainder of
+\(n=pq+1\) when dividing by either \(p\) or \(q\) would be \(1\) (which
+in particular is not zero). This observation generalizes and we can set
+\(n=pqr+1\) to be a number that is divisible neither by \(p,q\) nor
+\(r\), and more generally \(n=p_1\cdots, p_k +1\) is not divisible by
+\(p_1,\ldots,p_k\).
 
 Now we have convinced ourselves of the statement and it is time to think
 of how to write this down in the clearest way. One issue that arises is
@@ -281,10 +279,12 @@ probability theory since, as we will see, there is no secrecy without
 randomness. Luckily, we only need fairly basic notions of probability
 theory and in particular only probability over finite sample spaces. If
 you have a good understanding of what happens when we toss \(k\) random
-coins, then you know most of the probability you'll need. The discussion
-below is not meant to replace a course on probability theory, and if you
-have not seen this material before, I highly recommend you look at
-additional resources to get up to speed.\footnote{Harvard's
+coins, then you know most of the probability you'll need.
+
+The discussion below is not meant to replace a course on probability
+theory, and if you have not seen this material before, I highly
+recommend you look at additional resources to get up to
+speed.\footnote{Harvard's
   \href{http://projects.iq.harvard.edu/stat110/home}{STAT 110} class
   (whose lectures are available on
   \href{http://projects.iq.harvard.edu/stat110/youtube}{youtube} ) is a
@@ -302,15 +302,15 @@ occurrences in repeated experiments? How can we define probability over
 infinite sets?
 
 These are all important questions that have been studied and debated by
-scientists, mathematicians, statisticians and philosophers. Fortunately,
-we will not need to deal directly with these questions here. We will be
-mostly interested in the setting of tossing \(n\) random, unbiased and
-independent coins. Below we define the basic probabilistic objects of
-\emph{events} and \emph{random variables} when restricted to this
-setting. These can be defined for much more general probabilistic
-experiments or \emph{sample spaces}, and later on we will briefly
-discuss how this can be done. However, the \(n\)-coin case is sufficient
-for almost everything we'll need in this course.
+scientists, mathematicians, statisticians, and philosophers.
+Fortunately, we will not need to deal directly with these questions
+here. We will be mostly interested in the setting of tossing \(n\)
+random, unbiased and independent coins. Below we define the basic
+probabilistic objects of \emph{events} and \emph{random variables} when
+restricted to this setting. These can be defined for much more general
+probabilistic experiments or \emph{sample spaces}, and later on we will
+briefly discuss how this can be done. However, the \(n\)-coin case is
+sufficient for almost everything we'll need in this course.
 
 If instead of ``heads'' and ``tails'' we encode the sides of each coin
 by ``zero'' and ``one'', we can encode the result of tossing \(n\) coins
@@ -1393,7 +1393,7 @@ outputs ``heads'' with probability \(1/2 + \epsilon\) requires at least
 Let \(P\) be the uniform distribution over \({\{0,1\}}^n\) and \(Q\) be
 the \(1/2+\epsilon\)-biased distribution corresponding to tossing \(n\)
 coins in which each one has a probability of \(1/2+\epsilon\) of
-equalling \(1\) and probability \(1/2-\epsilon\) of equalling \(0\).
+equaling \(1\) and probability \(1/2-\epsilon\) of equaling \(0\).
 Namely the probability of \(x\in{\{0,1\}}^n\) according to \(Q\) is
 equal to \(\prod_{i=1}^n (1/2 - \epsilon + 2\epsilon x_i)\).
 
@@ -1413,7 +1413,7 @@ equal to \(\prod_{i=1}^n (1/2 - \epsilon + 2\epsilon x_i)\).
   that \(F(x)=1\) under \(P\) and \(Q\) respectively differ by at most
   \(0.1\). Therefore, if the number of samples is smaller than a
   constant times \(1/\epsilon^2\) then there is simply \emph{no test}
-  that can reliably distinguish between these two possiblities.
+  that can reliably distinguish between these two possibilities.
 \end{enumerate}
 
 \end{exercise}
