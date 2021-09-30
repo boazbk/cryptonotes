@@ -930,14 +930,6 @@
   filename: .html
   href: forward-and-backward-secrecy
   title: Forward and backward secrecy
-'9':
-  filename: .html
-  href: ''
-  title: Private key crypto recap
-9.0.1:
-  filename: .html
-  href: attacks-on-private-key-cryptosystems
-  title: Attacks on private key cryptosystems
 p:
   filename: .html
   href: ''
