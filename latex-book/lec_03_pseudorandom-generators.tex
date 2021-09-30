@@ -115,7 +115,7 @@ the \emph{seed} of the pseudorandom generator, and a truly random long
 \centering
 \includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/prg_def.png}
 \caption{A function \(G:\{0,1\}^n \rightarrow \{0,1\}^{\ell(n)}\) is a
-\emph{pseuaodrandom generator} if \(G(x)\) for a random short
+\emph{pseudorandom generator} if \(G(x)\) for a random short
 \(x \leftarrow_R \{0,1\}^n\) is computationally indistinguishable from a
 long truly random \(y \leftarrow_R \{0,1\}^{\ell(n)}\).}
 \label{prgdeffig}
@@ -238,9 +238,9 @@ that are chosen independently and uniformly at random}
 
 Now suppose otherwise that there exists some adversary \(Eve\) such that
 \(\left| \E[Eve(H_i)] - \E[Eve(H_{i+1})] \right| \geq \epsilon\) for
-some non-negligible \(\epsilon\). From \(Eve\), we will an adversary
-\(Eve'\) breaking the security of the pseudorandom generator \(G'\) (see
-\cref{reductionlengthextendfig}).
+some non-negligible \(\epsilon\). From \(Eve\), we will design an
+adversary \(Eve'\) breaking the security of the pseudorandom generator
+\(G'\) (see \cref{reductionlengthextendfig}).
 
 \begin{figure}
 \centering

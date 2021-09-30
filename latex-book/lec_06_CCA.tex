@@ -19,7 +19,14 @@ Let's start by reviewing what we have learned so far:
   \(G:\{0,1\}^n\rightarrow\{0,1\}^{n+1}\) such that
   \(G(U_n)\approx U_{n+1}\) (where \(U_m\) denotes the uniform
   distribution on \(\{0,1\}^m\) and \(\approx\) denotes computational
-  indistinguishability).
+  indistinguishability).\footnote{The PRG conjecture is the name we use
+    in this course. In the literature this is known as the conjecture of
+    the existence of pseudorandom generators, and through the work of
+    \href{https://www.csc.kth.se/~johanh/prgfromowf.pdf}{Håstad,
+    Impagliazzo, Levin and Luby (HILL)} it is known to be equivalent to
+    the existence of \emph{one way functions}, see
+    \href{https://people.seas.harvard.edu/~salil/pseudorandomness/}{Vadhan,
+    Chapter 7}.}
 \item
   We showed that the PRG conjecture implies a pseudorandom generator of
   any polynomial output length which in particular via the stream cipher
@@ -33,7 +40,10 @@ Let's start by reviewing what we have learned so far:
   collection}: this is a collection \(\{ f_s \}\) of functions such that
   if we choose \(s\) at random and fix it, and give an adversary a black
   box computing \(i \mapsto f_s(i)\) then she can't tell the difference
-  between this and a blackbox computing a random function.
+  between this and a blackbox computing a random function.\footnote{This
+    was done by
+    \href{https://www.wisdom.weizmann.ac.il/~oded/X/ggm.pdf}{Goldreich,
+    Goldwasser and Micali}.}
 \item
   Pseudorandom functions turn out to be useful for \emph{identification
   protocols}, \emph{message authentication codes} and this strong notion
@@ -57,26 +67,45 @@ Please stop and play an ominous sound track at this point.
 
 \end{pause}
 
-\subsection{Example: The Wired Equivalence Protocol
+\subsection{Example: The Wired Equivalence Privacy
 (WEP)}\label{6-Example-The-Wired-Equi}
 
-The WEP is perhaps one of the most inaccurately named protocols of all
-times. It was invented in 1999 for the purpose of securing Wi-Fi
-networks so that they would have virtually the same level of security as
-wired networks, but already early on several security flaws were pointed
-out. In particular in 2001, Fluhrer, Mantin, and Shamir showed how the
-RC4 flaws we mentioned in prior lecture can be used to completely break
-WEP in less than one minute. Yet, the protocol lingered on and for many
-years after was still the most widely used WiFi encryption protocol as
-many routers had it as the default option. In 2007 the WEP was blamed
-for a hack stealing 45 million credit card numbers from T.J. Maxx. In
-2012 (after 11 years of attacks!) it was estimated that it is still used
-in about a quarter of encrypted wireless networks, and in 2014 it was
-still the default option on many Verizon home routers. (I don't know of
-more recent surveys.) Here we will talk about a different flaw of WEP
-that is in fact shared by many other protocols, including the first
-versions of the secure socket layer (SSL) protocol that is used to
-protect all encrypted web traffic.
+The Wired Equivalence Privacy (WEP) protocol is perhaps one of the most
+inaccurately named protocols of all times. It was invented in 1999 for
+the purpose of securing Wi-Fi networks so that they would have virtually
+the same level of security as wired networks, but already early on
+several security flaws were pointed out. In particular in 2001, Fluhrer,
+Mantin, and Shamir showed how the RC4 flaws we mentioned in prior
+lecture can be used to completely break WEP in less than one minute.
+Yet, the protocol lingered on and for many years after was still the
+most widely used WiFi encryption protocol as many routers had it as the
+default option. In 2007 the WEP was blamed for a hack stealing 45
+million credit card numbers from T.J. Maxx. In 2012 (after 11 years of
+attacks!) it was estimated that it is still used in about a quarter of
+encrypted wireless networks, and in 2014 it was still the default option
+on many Verizon home routers. It is still (!) used in some routers, see
+\cref{wepusage}. This is a great example of how hard it is to remove
+insecure protocols from practical usage (and so how important it is to
+get these protocols right).
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/WEP.png}
+\caption{WEP usage over time according to
+\href{https://wigle.net/stats}{Wigle.net}. Despite having documented
+security issues since 2001 and being officially deprecated since 2004,
+WEP continued to be the most popular WiFi encryption protocol up to
+2012, and at the time of writing, it is still used by a non-trivial
+number of devices (though see
+\href{https://security.stackexchange.com/a/191076}{this stackoverflow
+answer} for more).}
+\label{wepusage}
+\end{figure}
+
+Here we will talk about a different flaw of WEP that is in fact shared
+by many other protocols, including the first versions of the secure
+socket layer (SSL) protocol that is used to protect all encrypted web
+traffic.
 
 To avoid superfluous details we will consider a highly abstract (and
 somewhat inaccurate) version of WEP that still demonstrates our main
@@ -84,32 +113,44 @@ point. In this protocol Alice (the user) sends to Bob (the access point)
 an IP packet that she wants routed somewhere on the internet.
 
 Thus we can think of the message Alice sends to Bob as a string
-\(m\in\{0,1\}^\ell\) of the form \(m=(m_1,m_2)\) where \(m_1\) is the IP
+\(m\in\{0,1\}^\ell\) of the form \(m=m_1\|m_2\) where \(m_1\) is the IP
 address this packet needs to be routed to and \(m_2\) is the actual
 message that needs to be delivered. In the WEP protocol, the message
 that Alice sends to Bob has the form
 \(E_k(m\|\ensuremath{\mathit{CRC}}(m))\) (where \(\|\) denotes
-concatenation and \(\ensuremath{\mathit{CRC}}(m)\) is some cyclic
-redundancy code). The actual encryption WEP used was RC4, but for us it
-doesn't really matter. What does matter is that the encryption has the
-form \(E_k(m') = pad \oplus m'\) where \(pad\) is computed as some
-function of the key. In particular the attack we will describe works
-even if we use our stronger CPA secure PRF-based scheme where
-\(pad=f_k(r)\) for some random (or counter) \(r\) that is sent out
-separately.
+concatenation and \(\ensuremath{\mathit{CRC}}(m)\) is some
+\href{https://en.wikipedia.org/wiki/Cyclic_redundancy_check}{cyclic
+redundancy check}). A \(\ensuremath{\mathit{CRC}}\) is some function
+mapping \(\{0,1\}^n\) to \(\{0,1\}^t\) which is meant to enable
+detection of errors in typing or communication. The idea is that if a
+message \(m\) is mistyped into \(m'\), then it is very likely that
+\(\ensuremath{\mathit{CRC}}(m) \neq \ensuremath{\mathit{CRC}}(m')\). It
+is similar to the
+\href{https://en.wikipedia.org/wiki/Luhn_algorithm}{checksum digits}
+used in credit card numbers and many other cases. Unlike a message
+authentication code, a CRC does not have a secret key and is not secure
+against adversarial perturbations.
+
+The actual encryption WEP used was RC4, but for us it doesn't really
+matter. What does matter is that the encryption has the form
+\(E_k(m') = pad \oplus m'\) where \(pad\) is computed as some function
+of the key. In particular the attack we will describe works even if we
+use our stronger CPA secure PRF-based scheme where \(pad=f_k(r)\) for
+some random (or counter) \(r\) that is sent out separately.
 
 Now the security of the encryption means that an adversary seeing the
-ciphertext \(c=E_k(m\|crc(m))\) will not be able to know \(m\), but
-since this is traveling over the air, the adversary could ``spoof'' the
-signal and send a different ciphertext \(c'\) to Bob. In particular, if
-the adversary knows the IP address \(m_1\) that Alice was using (e.g.,
-for example, the adversary can guess that Alice is probably one of the
-billions of people that visit the website boazbarak.org on a regular
-basis) then she can XOR the ciphertext with a string of her choosing and
-hence convert the ciphertext
-\(c = pad \oplus (m_1,m_2,\ensuremath{\mathit{CRC}}(m_1,m_2))\) into the
-ciphertext \(c' = c \oplus x\) where \(x=(x_1,x_2,x_3)\) is computed so
-that \(x_1 \oplus m_1\) is equal to the adversary's own IP address!
+ciphertext \(c=E_k(m\|\ensuremath{\mathit{CRC}}(m))\) will not be able
+to know \(m\), but since this is traveling over the air, the adversary
+could ``spoof'' the signal and send a different ciphertext \(c'\) to
+Bob. In particular, if the adversary knows the IP address \(m_1\) that
+Alice was using (e.g., for example, the adversary can guess that Alice
+is probably one of the billions of people that visit the website
+boazbarak.org on a regular basis) then she can XOR the ciphertext with a
+string of her choosing and hence convert the ciphertext
+\(c = pad \oplus (m_1\| m_2 \|\ensuremath{\mathit{CRC}}(m_1,m_2))\) into
+the ciphertext \(c' = c \oplus x\) where \(x = x_1\|x_2\|x_3\) is
+computed so that \(x_1 \oplus m_1\) is equal to the adversary's own IP
+address!
 
 So, the adversary doesn't need to decrypt the message- by spoofing the
 ciphertext she can ensure that Bob (who is an access point, and whose
@@ -118,19 +159,18 @@ unencrypted straight into her hands. One issue is that Eve modifies
 \(m_1\) then it is unlikely that the CRC code will still check out, and
 hence Bob would reject the packet. However,
 \href{https://goo.gl/5aqEHB}{CRC 32} - the CRC algorithm used by WEP -
-is \emph{linear} modulo \(2\), which means that for every pair of
-strings \(x_1,x_2\),
-\(\ensuremath{\mathit{CRC}}(m_1\oplus x_1,m_2 \oplus m_2)=\ensuremath{\mathit{CRC}}(m_1,m_2)\oplus \ensuremath{\mathit{CRC}}(x_1,x_2)\).
+is \emph{linear} modulo \(2\), that is
+\(\ensuremath{\mathit{CRC}}(x \oplus x') = \ensuremath{\mathit{CRC}}(x)\oplus \ensuremath{\mathit{CRC}}(x')\).
 This means that if the original ciphertext \(c\) was an encryption of
-the message \(m=(m_1,m_2,\ensuremath{\mathit{CRC}}(m_1,m_2))\) then
-\(c'=c \oplus (x_1,0,\ensuremath{\mathit{CRC}}(x_1,0))\) will be an
-encryption of the message
-\(m'=(m_1 \oplus x_1, m_2, \ensuremath{\mathit{CRC}}(x_1\oplus m_1,m_2))\)
-(where \(0\) denotes a string of zeroes of the same length as \(m_2\),
-and hence \(m_2 \oplus 0 = m_2\)). Therefore by XOR'ing \(c\) with
-\((x_1,0,\ensuremath{\mathit{CRC}}(x_1,0))\), the adversary Mallory can
-ensure that Bob will deliver the message \(m_2\) to the IP address
-\(m_1 \oplus x_1\) of her choice (see \cref{WEPattackfig}).
+the message \(m= m_1 \| m_2 \| \ensuremath{\mathit{CRC}}(m_1,m_2)\) then
+\(c'=c \oplus (x_1\|0^t\|\ensuremath{\mathit{CRC}}(x_1\|0^t))\) will be
+an encryption of the message
+\(m'=(m_1 \oplus x_1) \|m_2 \| \ensuremath{\mathit{CRC}}( (x_1\oplus m_1) \| m_2)\)
+(where \(0^t\) denotes a string of zeroes of the same length \(t\) as
+\(m_2\), and hence \(m_2 \oplus 0^t = m_2\)). Therefore by XOR'ing \(c\)
+with \(x_1 \|0^t \| \ensuremath{\mathit{CRC}}(x_1\|0^t)\), the adversary
+Mallory can ensure that Bob will deliver the message \(m_2\) to the IP
+address \(m_1 \oplus x_1\) of her choice (see \cref{WEPattackfig}).
 
 \begin{figure}
 \centering
@@ -166,26 +206,34 @@ decrypted. This motivates the following notion of security (see also
 
 An encryption scheme \((E,D)\) is \emph{chosen ciphertext attack (CCA)
 secure} if every efficient adversary \emph{Mallory} wins in the
-following game with probability at most \(1/2+ negl(n)\):\\
-* Mallory gets \(1^n\) where \(n\) is the length of the key\\
-* For \(poly(n)\) rounds, Mallory gets access to the functions
-\(m \mapsto E_k(m)\) and \(c \mapsto D_k(c)\).\\
-* Mallory chooses a pair of messages \(\{ m_0,m_1 \}\), a secret \(b\)
-is chosen at random in \(\{0,1\}\), and Mallory gets
-\(c^* = E_k(m_b)\).\\
-* Mallory now gets another \(poly(n)\) rounds of access to the functions
-\(m \mapsto E_k(m)\) and \(c \mapsto D_k(c)\) except that she is not
-allowed to query \(c^*\) to her second oracle.\\
-* Mallory outputs \(b'\) and \emph{wins} if \(b'=b\).
+following game with probability at most \(1/2+ negl(n)\):
+
+\begin{itemize}
+\item
+  Mallory gets \(1^n\) where \(n\) is the length of the key
+\item
+  For \(poly(n)\) rounds, Mallory gets access to the functions
+  \(m \mapsto E_k(m)\) and \(c \mapsto D_k(c)\).
+\item
+  Mallory chooses a pair of messages \(\{ m_0,m_1 \}\), a secret \(b\)
+  is chosen at random in \(\{0,1\}\), and Mallory gets
+  \(c^* = E_k(m_b)\).
+\item
+  Mallory now gets another \(poly(n)\) rounds of access to the functions
+  \(m \mapsto E_k(m)\) and \(c \mapsto D_k(c)\) except that she is not
+  allowed to query \(c^*\) to her second oracle.
+\item
+  Mallory outputs \(b'\) and \emph{wins} if \(b'=b\).
+\end{itemize}
 
 \end{definition}
 
-\begin{marginfigure}
+\begin{figure}
 \centering
-\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/cca-game.jpg}
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/cca-game.jpg}
 \caption{The CCA security game.}
 \label{CCAgamefig}
-\end{marginfigure}
+\end{figure}
 
 This might seems a rather strange definition so let's try to digest it
 slowly. Most people, once they understand what the definition says,
@@ -297,9 +345,9 @@ Mallory is not able to modify the challenge ciphertext \(c^*\) to some
 related \(c'\). Another way to say it is that we need to ensure the
 \emph{integrity} of messages to achieve their \emph{confidentiality} if
 we want to handle \emph{active} adversaries that might modify messages
-on the channel. Since in in a great many practical scenarios, an
-adversary might be able to do so, this is an important message that
-deserves to be repeated:
+on the channel. Since in a great many practical scenarios, an adversary
+might be able to do so, this is an important message that deserves to be
+repeated:
 
 \begin{quote}
 \emph{To ensure confidentiality, you need integrity.}
@@ -363,17 +411,22 @@ will describe one way that works to achieve CCA security from MACs. We
 will explore other approaches that may or may not work in the exercises.
 
 \hypertarget{CCAfromCPAMACthm}{}
-\begin{theorem}[CCA from CPA and MAC] \label[theorem]{CCAfromCPAMACthm}
+\begin{theorem}[CCA from CPA and MAC (encrypt-then-sign)] \label[theorem]{CCAfromCPAMACthm}
 
 Let \((E,D)\) be CPA-secure encryption scheme and \((S,V)\) be a
 CMA-secure MAC with \(n\) bit keys and a canonical verification
 algorithm.\footnote{By a \emph{canonical verification algorithm} we mean
   that \(V_k(m,\sigma)=1\) iff \(S_k(m)=\sigma\).} Then the following
-encryption \((E',D')\) with keys \(2n\) bits is CCA secure:\\
-* \(E'_{k_1,k_2}(m)\) is obtained by computing \(c=E_{k_1}(m)\) ,
-\(\sigma = S_{k_2}(c)\) and outputting \((c,\sigma)\).\\
-* \(D'_{k_1,k_2}(c,\sigma)\) outputs nothing (e.g., an error message) if
-\(V_{k_2}(c,\sigma)\neq 1\), and otherwise outputs \(D_{k_1}(c)\).
+encryption \((E',D')\) with keys \(2n\) bits is CCA secure:
+
+\begin{itemize}
+\item
+  \(E'_{k_1,k_2}(m)\) is obtained by computing \(c=E_{k_1}(m)\) ,
+  \(\sigma = S_{k_2}(c)\) and outputting \((c,\sigma)\).
+\item
+  \(D'_{k_1,k_2}(c,\sigma)\) outputs nothing (e.g., an error message) if
+  \(V_{k_2}(c,\sigma)\neq 1\), and otherwise outputs \(D_{k_1}(c)\).
+\end{itemize}
 
 \end{theorem}
 
@@ -429,11 +482,11 @@ the decryption box is a pair \((c,\sigma)\) that both passes
 verification and the pair \((c,\sigma)\) was not returned before by the
 encryption oracle. Since we pass (canonical) verification, we know that
 \(\sigma=S_{k_2}(c)\), and because all encryption queries return pairs
-of the form \((c',S_{k_2}(\sigma'))\), this means that no such query
-returned \(c\) as its first element either. In other words, when the
-event \(\ensuremath{\mathit{GOOD}}\) happens the \(i_0\)-the query
-contains a pair \((c,\sigma)\) such that \(c\) was not queried before to
-the signature box, but \((c,\sigma)\) passes verification. This is the
+of the form \((c',S_{k_2}(c'))\), this means that no such query returned
+\(c\) as its first element either. In other words, when the event
+\(\ensuremath{\mathit{GOOD}}\) happens the \(i_0^{th}\) query contains a
+pair \((c,\sigma)\) such that \(c\) was not queried before to the
+signature box, but \((c,\sigma)\) passes verification. This is the
 definition of breaking \((S,V)\) in a chosen message attack, and hence
 we obtain a contradiction to the CMA security of \((S,V)\).
 
@@ -534,7 +587,7 @@ is the key for a \emph{universal hash function}.\footnote{In practice
 \item
   Choose \(\ensuremath{\mathit{IV}}\) at random in \([2^n]\).
 \item
-  Let \(z_i = E(k,\ensuremath{\mathit{IV}}+i)\) for \(i=1,\ldots,t+1\).
+  Let \(z_i = E_k(\ensuremath{\mathit{IV}}+i)\) for \(i=1,\ldots,t+1\).
 \item
   Let \(c_i = z_i \oplus m_i\).
 \item
@@ -621,3 +674,78 @@ world adversaries is highly non trivial. However, to have even a
 fighting chance, the encryption scheme needs to be as strong as
 possible, and in particular it turns out that security notions such as
 CCA play a crucial role.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/Dolev-Yao-intruder-rules.png}
+\caption{The
+\href{https://en.wikipedia.org/wiki/Dolev\%E2\%80\%93Yao_model}{Dolev-Yao}
+Algebra of what an adversary or ``intruder'' knows. Figure taken from
+\href{https://www.ceeol.com/search/article-detail?id=896120}{here}.}
+\label{dolevyaofig}
+\end{figure}
+
+\section{Reading comprehension
+exercises}\label{6-Reading-comprehension-}
+
+I recommend students do the following exercises after reading the
+lecture. They do not cover all material, but can be a good way to check
+your understanding.
+
+\begin{exercise} \label[exercise]{6-Let-ED-be-the-canonica}
+
+Let \((E,D)\) be the ``canonical'' PRF-based CPA secure encryption,
+where \(E_k(m)= (r,f_k(r)\oplus m)\) and \(\{ f_k \}\) is a PRF
+collection and \(r\) is chosen at random. Is this scheme CCA secure?
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  No it is never CCA secure.
+\item
+  It is always CCA secure.
+\item
+  It is sometimes CCA secure and sometimes not, depending on the
+  properties of the PRF \(\{ f_k \}\).
+\end{enumerate}
+
+\end{exercise}
+
+\begin{exercise} \label[exercise]{6-Suppose-that-we-allow-}
+
+Suppose that we allow a key to be as long as the message, and so we can
+use the one time pad. Would the one-time pad be:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  CPA secure
+\item
+  CCA secure
+\item
+  Neither CPA nor CCA secure.
+\end{enumerate}
+
+\end{exercise}
+
+\begin{exercise} \label[exercise]{6-Which-of-the-following}
+
+Which of the following statements is true about the proof of
+\cref{CCAfromCPAMACthm}:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  Case I corresponds to breaking the MAC and Case II corresponds to
+  breaking the CPA security of the underlying encryption scheme.
+\item
+  Case I corresponds to breaking the CPA security of the underlying
+  encryption scheme and Case II corresponds to breaking the MAC.
+\item
+  Both cases correspond to both breaking the MAC and encryption scheme
+\item
+  If neither Case I nor Case II happens then we obtain an adversary
+  breaking the security of the underlying encryption scheme.
+\end{enumerate}
+
+\end{exercise}

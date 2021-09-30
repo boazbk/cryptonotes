@@ -13,24 +13,38 @@ this ``common wisdom''.
 Perhaps the most surprising of these visionaries was an undergraduate
 student at Berkeley named Ralph Merkle. In the fall of 1974, he wrote a
 \href{http://www.merkle.com/1974/}{project proposal} for his computer
-security course that while ``it might seem intuitively obvious that if
-two people have never had the opportunity to prearrange an encryption
-method, then they will be unable to communicate securely over an
-insecure channel\ldots{} I believe it is false''. The project proposal
-was rejected by his professor as ``not good enough''. Merkle later
-submitted a paper to the communication of the ACM, where he apologized
-for the lack of references since he was unable to find any mention of
-the problem in the scientific literature, and the only source where he
-saw the problem even \emph{raised} was in a science fiction story. The
-paper was rejected with the comment that ``Experience shows that it is
-extremely dangerous to transmit key information in the clear.'' Merkle
-showed that one can design a protocol where Alice and Bob can use \(T\)
-invocations of a hash function to exchange a key, but an adversary (in
-the random oracle model, though he of course didn't use this name) would
-need roughly \(T^2\) invocations to break it. He conjectured that it may
-be possible to obtain such protocols where breaking is
-\emph{exponentially harder} than using them but could not think of any
-concrete way to doing so.
+security course that while
+
+\begin{quote}
+\emph{``it might seem intuitively obvious that if two people have never
+had the opportunity to prearrange an encryption method, then they will
+be unable to communicate securely over an insecure channel\ldots{} I
+believe it is false''.}
+\end{quote}
+
+Merkle also felt it is important to add \emph{``No.~I am not joking.''}.
+The project proposal was rejected by his professor as ``not good
+enough''. Merkle later submitted a paper to the communication of the
+ACM, where he apologized for the lack of references since he was unable
+to find any mention of the problem in the scientific literature, and the
+only source where he saw the problem even \emph{raised} was in a science
+fiction story. The paper was rejected with the comment that
+\emph{``Experience shows that it is extremely dangerous to transmit key
+information in the clear.''} Merkle showed that one can design a
+protocol where Alice and Bob can use \(T\) invocations of a hash
+function to exchange a key, but an adversary (in the random oracle
+model, though he of course didn't use this name) would need roughly
+\(T^2\) invocations to break it. He conjectured that it may be possible
+to obtain such protocols where breaking is \emph{exponentially harder}
+than using them but could not think of any concrete way to doing so.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/merkle-proposal.png}
+\caption{Ralph Merkle's Berkeley CS 224 project proposal for developing
+public key cryptography}
+\label{merklefig}
+\end{figure}
 
 We only found out much later that in the late 1960's, a few years before
 Merkle, James Ellis of the British Intelligence agency GCHQ was
@@ -84,16 +98,16 @@ send the value \(x=p_k^{-1}(h(m))\) (for a hash function \(h\)) as a way
 to certify that she endorses \(m\), and every person who knows \(k\)
 could verify this by checking that \(p_k(x)=h(m)\).
 
-However, Diffie and Hellman were in a position not unlike physicists who
-predicted that a certain particle should exist but had no experimental
-verification. Luckily they
+At this point, Diffie and Hellman were in a position similar to past
+physicists, who predicted that a certain particle should exist but had
+no experimental verification. Luckily they
 \href{http://cr.yp.to/bib/1988/diffie.pdf}{met Ralph Merkle}. His ideas
 about a probabilistic \emph{key exchange protocol}, together with a
 suggestion from their Stanford colleague
 \href{https://profiles.stanford.edu/john-gill}{John Gill}, inspired them
 to come up with what today is known as the \emph{Diffie-Hellman Key
-Exchange} (which, unbeknownst to them, was found two years earlier at
-GCHQ by Malcolm Williamson). They published their paper
+Exchange} (unbeknownst to them, a similar protocol was found two years
+earlier at GCHQ by Malcolm Williamson). They published their paper
 \href{https://www-ee.stanford.edu/~hellman/publications/24.pdf}{``New
 Directions in Cryptography''} in 1976, and it is considered to have
 brought about the birth of modern cryptography. However, they still
@@ -106,6 +120,16 @@ I can tell Cocks, Ellis and Williamson did not realize the application
 to digital signatures). From this point on began a flurry of advances in
 cryptography which hasn't really died down till this day.
 
+\begin{marginfigure}
+\centering
+\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/john-gill.png}
+\caption{John T. Gill III. Gill proposed to Diffie and Hellman to use
+modular exponentiation as a one-way function, which (together with
+Merkle's ideas) enabled what's known today as the \emph{Diffie-Hellman
+Key Exchange} protocol.}
+\label{johngillfig}
+\end{marginfigure}
+
 \section{Private key crypto recap}\label{10-Private-key-crypto-rec}
 
 Before we embark on the wonderful journey to \emph{public key}
@@ -116,7 +140,10 @@ of the Boneh Shoup (BS) book. Now would be a good time for you to read
 the corresponding proofs in one or both of these books. It is often
 helpful to see the same proof presented in a slightly different way.
 Below is a review of some of the various reductions we saw in class,
-with pointers to the corresponding sections in these books.
+with pointers to the corresponding sections in the Katz-Lindell (2nd ed)
+and Boneh-Shoup books. These are also covered in
+\href{https://web.engr.oregonstate.edu/~rosulekm/crypto/}{Rosulek's
+book}.
 
 \begin{itemize}
 \tightlist
@@ -172,25 +199,37 @@ combining works of many people):
 \hypertarget{privkeydef}{}
 \begin{theorem}[One way functions and private key cryptography] \label[theorem]{privkeydef}
 
-The following are equivalent:\\
-* One way functions exist\\
-* Pseudorandom generators (with non-trivial stretch) exist\\
-* Pseudorandom functions exist\\
-* CPA secure private key encryptions exist\\
-* CCA secure private key encryptions exist\\
-* Message Authentication Codes exist\\
-* Commitment schemes exist
+The following are equivalent:
+
+\begin{itemize}
+\item
+  One way functions exist
+\item
+  Pseudorandom generators (with non-trivial stretch) exist
+\item
+  Pseudorandom functions exist
+\item
+  CPA secure private key encryptions exist
+\item
+  CCA secure private key encryptions exist
+\item
+  Message Authentication Codes exist
+\item
+  Commitment schemes exist
+\end{itemize}
 
 \end{theorem}
 
 The key result in the proof of this theorem is the result of Hastad,
 Impagliazzo, Levin and Luby that if one way functions exist then
 pseudorandom generators exist. If you are interested in finding out
-more, Sections 7.2-7.4 in the KL book cover a special case of this
-theorem for the case that the one way function is a \emph{permutation}
-on \(\{0,1\}^n\) for every \(n\). This proof has been considerably
-simplified and quantitatively improved in works of Haitner, Holenstein,
-Reingold, Vadhan, Wee and Zheng. See
+more, see Chapter 7 in
+\href{https://people.seas.harvard.edu/~salil/pseudorandomness/}{Vadhan's
+pseudorandomness monograph}. Sections 7.2-7.4 in the KL book also cover
+a special case of this theorem for the case that the one way function is
+a \emph{permutation} on \(\{0,1\}^n\) for every \(n\). This proof has
+been considerably simplified and quantitatively improved in works of
+Haitner, Holenstein, Reingold, Vadhan, Wee and Zheng. See
 \href{http://people.seas.harvard.edu/~salil/research/CompEnt-abs.html}{this
 talk of Salil Vadhan} for more on this. See also
 \href{http://www.cs.princeton.edu/courses/archive/spring08/cos598D/scribe3.pdf}{these
@@ -198,7 +237,7 @@ lecture notes} from a Princeton seminar I gave on this topic (though the
 proof has been simplified since then by the above works).
 
 \hypertarget{privkeyattacks}{}
-\begin{remark}[Attacks on private key cryptosystems] \label[remark]{privkeyattacks}
+\begin{remark}[Cryptanalytic attacks on private key cryptosystems] \label[remark]{privkeyattacks}
 
 Another topic we did not discuss in depth is attacks on private key
 cryptosystems. These attacks often work by ``opening the black box'' and
@@ -209,8 +248,14 @@ between those variables. This is a rather vague description, but you can
 read KL Section 6.2.6 on \emph{linear} and \emph{differential}
 cryptanalysis and BS Sections 3.7-3.9 and 4.3 for more information. See
 also \href{http://www.cs.tau.ac.il/~tromer/SKC2006/}{this course of Adi
-Shamir}. There is also the fascinating area of \emph{side channel}
-attacks on both public and private key crypto.
+Shamir}, and the courses of Dunkelman on analyzing
+\href{https://www.cs.haifa.ac.il/~orrd/BlockCipherSeminar/}{block
+ciphers} and
+\href{https://www.cs.haifa.ac.il/~orrd/HashFuncSeminar/}{hash
+functions}. There is also the fascinating area of \emph{side channel}
+attacks on both public and private key crypto, see
+\href{http://www.cs.tau.ac.il/~tromer/istvr1516.html}{this course of
+Tromer}.
 
 \end{remark}
 
@@ -250,42 +295,52 @@ ensure confidentiality of the messages he receives.}
 \end{marginfigure}
 
 \hypertarget{pubkeydef}{}
-\begin{definition}[Public key encryption] \label[definition]{pubkeydef}
+\begin{definition}[Valid public key encryption] \label[definition]{pubkeydef}
 
 A triple of efficient algorithms \((G,E,D)\) is a \emph{public key
-encryption scheme} if it satisfies the following:\\
+encryption scheme} of length function \(\ell:\N \rightarrow \N\) if it
+satisfies the following:
 
 \begin{itemize}
-\tightlist
 \item
   \(G\) is a probabilistic algorithm known as the \emph{key generation
   algorithm} that on input \(1^n\) outputs a distribution over pair of
   keys \((e,d)\).\\
 \item
   \(E\) is the \emph{encryption algorithm} that takes a pair of inputs
-  \(e,m\) with \(m\in \{0,1\}^n\) and outputs \(c=E_e(m)\).\\
+  \(e,m\) with \(m\in \{0,1\}^{\ell(n)}\) and outputs \(c=E_e(m)\).\\
 \item
   \(D\) is the \emph{decryption algorithm} that takes a pair of inputs
   \(d,c\) and outputs \(m'=D_d(c)\).\\
 \item
-  For every \(m\in\{0,1\}^n\), with probability \(1-negl(n)\) over the
-  choice of \((e,d)\) output from \(G(1^n)\) and the coins of
+  For every \(m\in\{0,1\}^{\ell(n)}\), with probability \(1-negl(n)\)
+  over the choice of \((e,d)\) output from \(G(1^n)\) and the coins of
   \(E\),\(D\), \(D_d(E_e(m))=m\).\\
 \end{itemize}
+
+\end{definition}
+
+\cref{pubkeydef} just refers to the \emph{validity} of a public-key
+encryption scheme, namely the condition that we can encrypt and decrypt
+using the keys \(e\) and \(d\) respectively, but not to its security.
+The standard definition of security for public-key encryption is CPA
+security:
+
+\hypertarget{cpasecpubkeydef}{}
+\begin{definition}[CPA security for public-key encryption] \label[definition]{cpasecpubkeydef}
 
 We say that \((G,E,D)\) is \emph{CPA secure} if every efficient
 adversary \(A\) wins the following game with probability at most
 \(1/2+negl(n)\):
 
 \begin{itemize}
-\tightlist
 \item
-  \((e,d) \leftarrow_R G(1^n)\)\\
+  \((e,d) \leftarrow_R G(1^n)\)
 \item
   \(A\) is given \(e\) and outputs a pair of messages
-  \(m_0,m_1 \in \{0,1\}^n\).\\
+  \(m_0,m_1 \in \{0,1\}^n\).
 \item
-  \(A\) is given \(c=E_e(m_b)\) for \(b\leftarrow_R\{0,1\}\).\\
+  \(A\) is given \(c=E_e(m_b)\) for \(b\leftarrow_R\{0,1\}\).
 \item
   \(A\) outputs \(b'\in\{0,1\}\) and \emph{wins} if \(b'=b\).
 \end{itemize}
@@ -327,7 +382,9 @@ the encryption, even though she wouldn't have been able to break it if
 a very hard problem, so Diffie and Hellman imagined that it might be
 possible to take this ideal \(B\) and compile it to some sufficiently
 low level assembly language so that it would behave as a ``virtual black
-box''. In particular, if you took, say, the encoding procedure
+box''.
+
+In particular, if you took, say, the encoding procedure
 \(m \mapsto p_k(m)\) of a block cipher with a particular key \(k\) and
 ran it through an optimizing compiler, you might hope that while it
 would be possible to perform this map using the resulting executable, it
@@ -335,15 +392,22 @@ will be hard to extract \(k\) from it. Hence, you could treat this code
 as a ``public key''. This suggests the following approach for getting an
 encryption scheme:
 
-\begin{quote}
-\textbf{``Obfuscation based public key encyption'':}
+\begin{quote} \label[quote]{10-Obfuscation-based-publ}
 
-\textbf{Ingredients:} \emph{(i)} A pseudorandom permutation collection
+\textbf{``Obfuscation based public key encryption'':} (Thought
+experiment - not an actual construction)
+
+\textbf{Ingredients:}
+
+\emph{(i)} A pseudorandom permutation collection
 \(\{ p_k \}_{k\in \{0,1\}^*}\) where for every \(k\in \{0,1\}^n\),
-\(p_k:\{0,1\}^n \rightarrow \{0,1\}^n\), \emph{(ii)} An ``obfuscating
-compiler'' polynomial-time computable
+\(p_k:\{0,1\}^n \rightarrow \{0,1\}^n\)
+
+\emph{(ii)} An ``obfuscating compiler'' polynomial-time computable
 \(O:\{0,1\}^* \rightarrow \{0,1\}^*\) such that for every circuit \(C\),
 \(O(C)\) is a circuit that computes the same function as \(C\).
+
+\textbf{Operation:}
 
 \begin{itemize}
 \item
@@ -359,6 +423,7 @@ compiler'' polynomial-time computable
   \emph{Decryption:} To decrypt \((\ensuremath{\mathit{IV}},y)\) with
   key \(k\), output \(\ensuremath{\mathit{IV}} \oplus p_k^{-1}(y)\).
 \end{itemize}
+
 \end{quote}
 
 Diffie and Hellman couldn't really find a way to make this work, but it
@@ -395,12 +460,15 @@ program \(P'\) such that:
 
 Let me stress again that there is no known construction of obfuscators
 achieving something similar to this definition. In fact, the most
-natural formalization of this definition is \emph{impossible} to achieve
-(as we might see later in this course). Only very recently (exciting!)
-progress was finally made towards obfuscators-like notions strong enough
-to achieve these and other applications, and there are some significant
-caveats (see \href{https://eprint.iacr.org/2016/210}{my survey on this
-topic}).
+natural formalization of this definition is
+\href{https://www.boazbarak.org/Papers/obfuscate.pdf}{impossible} to
+achieve (as we might see later in this course). Only very recently
+(exciting!) progress was finally made towards obfuscators-like notions
+strong enough to achieve these and other applications, and there are
+some significant caveats, see \href{https://eprint.iacr.org/2016/210}{my
+survey on this topic} and a more recent
+\href{https://www.quantamagazine.org/computer-scientists-achieve-crown-jewel-of-cryptography-20201110/}{Quanta
+article}.
 
 However, when trying to stretch your imagination to consider the amazing
 possibilities that could be achieved in cryptography, it is not a bad
@@ -558,26 +626,10 @@ choice.
 \end{proof}
 
 Unfortunately, no such result is known in the other direction. However
-in the random oracle model, we can prove that this protocol is secure
-assuming the task of computing \(g^{ab}\) from \(g^a\) and \(g^b\)
-(which is now known as the \emph{Diffie-Hellman problem}) is
-hard.\footnote{One can get security results for this protocol without a
-  random oracle if we assume a stronger variant known as the
-  \emph{Decisional Diffie-Hellman (DDH)} assumption: for a random
-  \(a,b, u \in \mathbb{Z}_p\) (prime \(p\)), the triple
-  \((g^a, g^b, g^{ab})\approx (g^a, g^b, g^u)\). This implies CDH (can
-  you see why?). DDH also restricts our focus to groups of prime order.
-  In particular, DDH does not hold in even-order groups. For example,
-  DDH does not hold in \(\mathbb{Z}^{\*}_p=\{1,2\ldots p-1\}\) (with
-  group operation multiplication mod \(p\)) since half of its elements
-  are quadratic residues \emph{and} it is efficient to test if an
-  element is a quadratic residue using Fermat's little theorem (can you
-  see why? See Exercise 10.7). However, DDH holds in subgroups of
-  \(\mathbb{Z}^{\*}_p\) of prime order. If \(p\) is a safe prime
-  (i.e.~\(p=2q+1\) for a prime \(q\)), then we can instead use the
-  subgroup of quadratic residues, which has prime order \(q\). See
-  Boneh-Shoup 10.4.1 for more details on the underlying groups for CDH
-  and DDH.}
+in the random oracle model, we can prove that this protocol is secure in
+the random-oracle model, under the assumption that the task of computing
+\(g^{ab}\) from \(g^a\) and \(g^b\) (which is now known as the
+\emph{Diffie-Hellman problem}) is hard.
 
 \begin{quote}
 \textbf{Computational Diffie-Hellman Assumption:} Let \(\mathbb{G}\) be
@@ -602,6 +654,7 @@ In particular we can make the following conjecture:
 For a random \(n\)-bit prime and random \(g \in \mathbb{Z}_p\), the CDH
 holds with respect to the group
 \(\mathbb{G} = \{ g^a \mod p \;| a\in \mathbb{Z} \}\).
+\end{quote}
 
 That is, for every polynomial \(q:\N \rightarrow \N\), if \(n\) is large
 enough, then with probability at least \(1-1/q(n)\) over the choice of a
@@ -609,11 +662,10 @@ uniform prime \(p\in [2^n]\) and \(g\in \Z_p\), for every circuit \(A\)
 of size at most \(q(n)\), the probability that \(A(g,p,g^a,g^b)\)
 outputs \(h\) such that \(g^{ab} = h \mod p\) is at most \(1/q(n)\)
 where the probability is taken over \(a,b\) chosen at random in
-\(\Z_p\).\footnote{In practice people often take \(g\) to be a generator
-  of a group significantly smaller in size than \(p\), which enables
-  \(a,b\) to be smaller numbers and hence multiplication to be more
-  efficient. We ignore this optimization in our discussions.}
-\end{quote}
+\(\Z_p\). (In practice people often take \(g\) to be a generator of a
+group significantly smaller in size than \(p\), which enables \(a,b\) to
+be smaller numbers and hence multiplication to be more efficient; We
+ignore this optimization in our discussions.)
 
 \begin{pause} \label[pause]{10-Please-take-your-time-}
 
@@ -645,10 +697,9 @@ computationally indistinguishable for every two strings
 \(m,m' \in \{0,1\}^\ell\):
 
 \begin{itemize}
-\tightlist
 \item
   \((g^a,g^b,H(g^{ab})\oplus m)\) for \(a,b\) chosen uniformly and
-  independently in \(\Z_{p}\).\\
+  independently in \(\Z_{p}\).
 \item
   \((g^a,g^b,H(g^{ab})\oplus m')\) for \(a,b\) chosen uniformly and
   independently in \(\Z_{p}\).
@@ -687,13 +738,12 @@ in all cases \(a,b\) are chosen uniformly and independently in
 \(\Z_{p}\)):
 
 \begin{itemize}
-\tightlist
 \item
-  \(H_0\): \((g^a,g^b,H(g^{ab}) \oplus m)\)\\
+  \(H_0\): \((g^a,g^b,H(g^{ab}) \oplus m)\)
 \item
-  \(H_1\): \((g^a,g^b,U_\ell \oplus m)\)\\
+  \(H_1\): \((g^a,g^b,U_\ell \oplus m)\)
 \item
-  \(H_2\): \((g^a,g^b,U_\ell \oplus m')\)\\
+  \(H_2\): \((g^a,g^b,U_\ell \oplus m')\)
 \item
   \(H_3\): \((g^a,g^b,H(g^{ab}) \oplus m')\)
 \end{itemize}
@@ -714,6 +764,28 @@ Together these imply that \(H_0 \approx H_3\) which yields the CPA
 security of the scheme.
 
 \end{proof}
+
+\hypertarget{ddhrem}{}
+\begin{remark}[Decisional Diffie Hellman] \label[remark]{ddhrem}
+
+One can get security results for this protocol without a random oracle
+if we assume a stronger variant known as the \emph{Decisional
+Diffie-Hellman (DDH)} assumption: for a random
+\(a,b, u \in \mathbb{Z}_p\) (prime \(p\)), the triple
+\((g^a, g^b, g^{ab})\approx (g^a, g^b, g^u)\). This implies CDH (can you
+see why?). DDH also restricts our focus to groups of prime order. In
+particular, DDH does not hold in even-order groups. For example, DDH
+does not hold in \(\mathbb{Z}^{\*}_p=\{1,2\ldots p-1\}\) (with group
+operation multiplication mod \(p\)) since half of its elements are
+quadratic residues \emph{and} it is efficient to test if an element is a
+quadratic residue using Fermat's little theorem (can you see why? See
+Exercise 10.7). However, DDH holds in subgroups of \(\mathbb{Z}^{\*}_p\)
+of prime order. If \(p\) is a safe prime (i.e.~\(p=2q+1\) for a prime
+\(q\)), then we can instead use the subgroup of quadratic residues,
+which has prime order \(q\). See Boneh-Shoup 10.4.1 for more details on
+the underlying groups for CDH and DDH.
+
+\end{remark}
 
 \hypertarget{curverem}{}
 \begin{remark}[Elliptic curve cryptography] \label[remark]{curverem}
@@ -936,39 +1008,37 @@ settings, including software updates, web pages, financial transactions,
 and more.
 
 \hypertarget{sigsdef}{}
-\begin{definition}[Digital Signatures] \label[definition]{sigsdef}
+\begin{definition}[Digital Signatures and CMA security] \label[definition]{sigsdef}
 
 A triple of algorithms \((G,S,V)\) is a chosen-message-attack secure
 \emph{digital signature scheme} if it satisfies the following:
 
 \begin{itemize}
-\tightlist
 \item
   On input \(1^n\), the probabilistic \emph{key generation} algorithm
   \(G\) outputs a pair \((s,v)\) of keys, where \(s\) is the private
-  \emph{signing key} and \(v\) is the public \emph{verification} key.\\
+  \emph{signing key} and \(v\) is the public \emph{verification} key.
 \item
   On input a message \(m\) and the signing key \(s\), the signing
   algorithm \(S\) outputs a string \(\sigma = S_{s}(m)\) such that with
-  probability \(1-negl(n)\), \(V_v(m,S_s(m))=1\).\\
+  probability \(1-negl(n)\), \(V_v(m,S_s(m))=1\).
 \item
   Every efficient adversary \(A\) wins the following game with at most
-  negligible probability:\\
-\end{itemize}
+  negligible probability:
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  The keys \((s,v)\) are chosen by the key generation algorithm.\\
-\item
-  The adversary gets the inputs \(1^n\), \(v\), and black box access to
-  the signing algorithm \(S_s(\cdot)\).\\
-\item
-  The adversary \emph{wins} if they output a pair \((m^*,\sigma^*)\)
-  such that \(m^*\) was \emph{not} queried before to the signing
-  algorithm and \(V_v(m^*,\sigma^*)=1\).
-\end{enumerate}
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \item
+    The keys \((s,v)\) are chosen by the key generation algorithm.
+  \item
+    The adversary gets the inputs \(1^n\), \(v\), and black box access
+    to the signing algorithm \(S_s(\cdot)\).
+  \item
+    The adversary \emph{wins} if they output a pair \((m^*,\sigma^*)\)
+    such that \(m^*\) was \emph{not} queried before to the signing
+    algorithm and \(V_v(m^*,\sigma^*)=1\).
+  \end{enumerate}
+\end{itemize}
 
 \end{definition}
 
@@ -1011,10 +1081,9 @@ owner of the public key \(e\).
 However, this falls short of a signature scheme in two aspects:
 
 \begin{itemize}
-\tightlist
 \item
   This is only an identification protocol and does not allow Alice to
-  endorse a particular message \(m\).\\
+  endorse a particular message \(m\).
 \item
   This is an \emph{interactive} protocol, and so Alice cannot generate a
   static signature based on \(m\) that can be verified by any party
@@ -1040,7 +1109,6 @@ prove that Alice truly knew the secret key.
 follows: (See also Section 12.5.2 in the KL book)
 
 \begin{itemize}
-\tightlist
 \item
   \emph{Key generation:} Pick generator \(g\) for \(\mathbb{G}\) and
   \(a\in \{0,\ldots,|\mathbb{G}|-1\}\) and let \(h=g^a\). Pick
@@ -1053,12 +1121,12 @@ follows: (See also Section 12.5.2 in the KL book)
     cryptographic hash function but rather some very simple function
     that is still assumed to be ``good enough'' for security.} The
   public key is \((g,h)\) (as well as the functions \(H,F\)) and secret
-  key is \(a\).\\
+  key is \(a\).
 \item
   \emph{Signature:} To sign a message \(m\) with the key \(a\), pick
   \(b\) at random, and let \(f=g^b\), and then let
   \(\sigma = b^{-1}[H(m)+a\cdot F(f)]\), where all computation is done
-  modulo \(|\mathbb{G}|\). The signature is \((f,\sigma)\).\\
+  modulo \(|\mathbb{G}|\). The signature is \((f,\sigma)\).
 \item
   \emph{Verification:} To verify a signature \((f,\sigma)\) on a message
   \(m\), check that \(s\neq 0\) and \(f^\sigma=g^{H(m)}h^{F(f)}\).
@@ -1110,9 +1178,10 @@ adversary interacts with a signature oracle and oracles that compute the
 functions \(F\) and \(H\). For starters, we consider the following
 experiment \(\ensuremath{\mathit{CMA}}'\), where in the chosen message
 attack we replace the signature box with the following ``fake signature
-oracle'' and ``fake function \(F\) oracle''. On input a message \(m\),
-the fake box will choose \(\sigma,r\) at random in \(\{0,\ldots,p-1\}\)
-(where \(p=|\mathbb{G}|\)), and compute
+oracle'' and ``fake function \(F\) oracle'':
+
+On input a message \(m\), the fake box will choose \(\sigma,r\) at
+random in \(\{0,\ldots,p-1\}\) (where \(p=|\mathbb{G}|\)), and compute
 \[f=(g^{H(m)}h^{r})^{\sigma^{-1} \mod p} \label{randomfdsaeq}\] and
 output \(h\). We will then record the value \(F(f)=r\) and answer \(r\)
 on future queries to \(F\). If we've already answered \(F(f)\) before
@@ -1181,9 +1250,11 @@ means we can compute \(b\), and hence also recover the unknown value
 \(a\).
 
 If Case II happens, then we split it into two cases as well.
-\textbf{Case IIa} is that this happens and \(F(f^*)\) is queried
-\emph{before} \(H(m^*)\) is queried, and \textbf{Case IIb} is that this
-happens and \(F(f^*)\) is queried after \(H(m^*)\) is queried.
+
+\textbf{Case IIa} is the subcase of Case II where \(F(f^*)\) is queried
+\emph{before} \(H(m^*)\) is queried, and \textbf{Case IIb} is the
+subscase of Case II when \(F(f^*)\) is queried after \(H(m^*)\) is
+queried.
 
 We start by considering the setting that \textbf{Case IIa} happens with
 non-negligible probability \(\epsilon\). By the averaging argument there

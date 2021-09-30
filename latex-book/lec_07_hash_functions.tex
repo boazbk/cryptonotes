@@ -50,7 +50,7 @@ currency (like today's dollar, ever since the U.S. moved off the
 \href{https://goo.gl/SPN5BS}{gold standard}) that does not correspond to
 any commodity, but rather only relies on trust in a central authority.
 (Another example is the Roman coins, which though originally made of
-silver, have underdone a continous process of
+silver, underwent a continous process of
 \href{https://goo.gl/ZDkGzL}{debasement} until they contained less than
 two percent of it.) One advantage (sometimes disadvantage) of a fiat
 currency is that it allows for more flexible monetary policy on parts of
@@ -60,8 +60,8 @@ the central authority.
 
 Bitcoin is a fiat currency without a central authority. A priori this
 seems like a contradiction in terms. If there is no trusted central
-authority, how can we ensure a scarce resource? who settles claims of
-ownership? and who sets monetary policy?
+authority, how can we ensure a scarce resource? Who settles claims of
+ownership? And who sets monetary policy?
 
 For instance, one problem we are particularly concerned with is the
 \emph{double-spend} problem. The following scenario is a double-spend:
@@ -132,9 +132,9 @@ logic.
 
 \end{pause}
 
-One theoretical example of a puzzle is the following: if \(alpha\) is
-the puzzle, an entity can ``prove'' that they own coins assigned to
-\(alpha\) if they can produce numbers \(A,B\) such that \(N=A\cdot B\).
+One theoretical example of a puzzle is the following: if \(N\) is the
+puzzle, an entity can ``prove'' that they own coins assigned to \(N\) if
+they can produce numbers \(A,B\) such that \(N=A\cdot B\).
 
 Another more generic example (that you can keep in mind as a potential
 implementation for the puzzles we use here) is: \(\alpha\) is some
@@ -191,7 +191,7 @@ network where a single person can create multiple ``entities'' and cause
 them to behave arbitrarily maliciously (known as ``byzantine'' faults in
 distributed parlance)? Also, why would we assume that even one party
 would behave honestly- if there is no central authority and it is
-profitable to cheat then they everyone would cheat, wouldn't they?
+profitable to cheat then everyone would cheat, wouldn't they?
 
 \begin{figure}
 \centering
@@ -211,7 +211,7 @@ correspond to a ``majority of computing power'', or as the
 ``one CPU one vote'' (or perhaps more accurately, ``one cycle one
 vote''). It might not be immediately clear how to implement this, but at
 least it means that creating fictitious new entities (sometimes known as
-a \href{https://goo.gl/jMZ7Qg}{Sybill attack} after the movie about
+a \href{https://goo.gl/jMZ7Qg}{Sybil attack} after the movie about
 multiple-personality disorder) cannot help. To implement it we turn to a
 cryptographic concept known as ``proof of work'' which was originally
 suggested by Dwork and Naor in 1991 as a way to combat mass marketing
@@ -631,28 +631,28 @@ efficient\footnote{For example, the Boneh-Shoup book quotes processing
   College's}.} which also means that they are often at the ``edge of
 insecurity'' and indeed have fallen over the edge.
 
-In 1990 Ron Rivest proposed MD4, which was already shown weaknesses in
-1991, and a full collision has been found in 1995. Even faster attacks
-have been since found and MD4 is considered completely insecure.
+In 1990 Ron Rivest proposed MD4, which was already showing weaknesses in
+1991, and a full collision was found in 1995. Even faster attacks have
+been since found and MD4 is considered completely insecure.
 
 In response to these weaknesses, Rivest designed MD5 in 1991. A weakness
 was shown for it in 1996 and a full collision was shown in 2004. Hence
 it is now also considered insecure.
 
 In 1993 the National Institute of Standards proposed a standard for a
-hash function known as the \emph{Secure Hash Algorithm (SHA)}, which has
+hash function known as the \emph{Secure Hash Algorithm (SHA)}, which had
 quite a few similarities with the MD4 and MD5 functions. This function
-is known as SHA-0, and the standard was replaced in 1995 with SHA-1 that
-includes an extra ``mixing'' (i.e., bit rotation) operation. At the time
-no explanation was given for this change but SHA-0 was later found to be
-insecure. In 2002 a variant with longer output, known as SHA-256, was
-added (as well as some others). In 2005, following the MD5 collision,
-significant weaknesses were shown in SHA-1. In 2017, a
+was known as SHA-0, and the standard was replaced in 1995 with SHA-1,
+which includes an extra ``mixing'' (i.e., bit rotation) operation. At
+the time no explanation was given for this change, but SHA-0 was later
+found to be insecure. In 2002 a variant with longer output, known as
+SHA-256, was added (as well as some others). In 2005, following the MD5
+collision, significant weaknesses were shown in SHA-1. In 2017, a
 \href{https://goo.gl/jdqUX9}{full SHA-1 collision was found}. Today
 SHA-1 is considered insecure and SHA-256 is recommended.
 
-Given the weaknesses in MD-5 and SHA-1 , NIST started in 2006 a
-competition for a new hashing standard, based on functions that seem
+Given the weaknesses in MD-5 and SHA-1, NIST started a competition in
+2006 for a new hashing standard, based on functions that seem
 sufficiently different from the MD5/SHA-0/SHA-1 family. (SHA-256 is
 unbroken but it seems too close for comfort to those other systems.) The
 hash function Keccak was selected as the new standard
@@ -669,28 +669,32 @@ discovered attacks on hash functions before the cryptographic community
 (and the same holds for the differential cryptanalysis technique for
 block ciphers). That said, despite the ``mythic'' powers that are
 sometimes ascribed to the NSA, this history suggests that they are ahead
-of the open community but not so much ahead, discovering attacks on hash
-functions about 5 years or so ahead.
+of the open community, but not so much ahead, discovering attacks on
+hash functions about 5 years or so before they appear in the open
+literature.
 
 There are a few ways we can get ``insider views'' to the NSA's thinking.
 Some such insights can be obtained from the Snowden documents. The
-\href{https://en.wikipedia.org/wiki/Flame_(malware)}{Flame malware} has
-been discovered in Iran in 2012 after operating since at least 2010. It
-used an MD5 collision to achieve its goals. Such a collision was known
-in the open literature since 2008, but Flame used a different variant
-that was unknown in the literature. For this reason it is suspected that
-it was designed by a western intelligence agency.
+\href{https://en.wikipedia.org/wiki/Flame_(malware)}{Flame malware} was
+discovered in Iran in 2012 after operating since at least 2010. It used
+an MD5 collision to achieve its goals. Such a collision was known in the
+open literature since 2008, but Flame used a different variant that was
+unknown in the literature. For this reason it is suspected that it was
+designed by a western intelligence agency.
 
 Another insight into NSA's thoughts can be found in pages 12-19 of NSA's
 internal
-\href{https://www.nsa.gov/public_info/_files/cryptologs/cryptolog_126.pdf}{Cryptolog
-magazine} which has been recently declassified; one can find there a
-rather entertaining and opinionated (or obnoxious, depending on your
-point of view) review of the CRYPTO 1992 conference. In page 14 the
-author remarks that certain weaknesses of MD5 demonstrated in the
-conference are unlikely to be extended to the full version, which
-suggests that the NSA (or at least the author) was not aware of the MD5
-collisions at the time.
+\href{https://cryptome.org/2013/03/cryptologs/cryptolog_126.pdf}{Cryptolog
+newsletter} which was recently declassified; one can find there a rather
+entertaining and opinionated (or obnoxious, depending on your point of
+view) review of the CRYPTO 1992 conference. In page 14 the author
+remarks that certain weaknesses of MD5 demonstrated in the conference
+are unlikely to be extended to the full version, which suggests that the
+NSA (or at least the author) was not aware of the MD5 collisions at the
+time. (The
+\href{https://cryptome.org/2013/03/cryptologs/00-cryptolog-index.htm}{full
+archive} of the cryptolog newsletter makes for some interesting
+reading!)
 
 \subsection{Cryptographic vs Non-Cryptographic Hash
 Functions}\label{7-Cryptographic-vs-Non-C}
@@ -707,3 +711,88 @@ been used to obtain denial of service attacks. As a rule of thumb, if
 the inputs to your system might be generated by someone who does not
 have your best interests at heart, you're better off using a
 cryptographic hash function.
+
+\section{Reading comprehension
+exercises}\label{7-Reading-comprehension-}
+
+I recommend students do the following exercises after reading the
+lecture. They do not cover all material, but can be a good way to check
+your understanding.
+
+\begin{exercise} \label[exercise]{7-Choose-the-strongest-t}
+
+Choose the strongest true statement from the following options. (That
+is, choose the mathematical statement from these options that is both
+true, and one can derive the other true statements as direct
+corollaries.)
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  For every function \(h:\{0,1\}^{1024} \rightarrow \{0,1\}^{128}\)
+  there exist two strings \(x \neq x'\) in \(\{0,1\}^{1024}\) such that
+  \(h(x)=h(x')\).
+\item
+  There is a randomized algorithm \(A\) that makes at most \(2^{128}\)
+  queries to a given black box computing a function
+  \(h:\{0,1\}^{1024} \rightarrow \{0,1\}^{128}\) that with probability
+  at least \(0.9\), \(A\) outputs a pair \(x \neq x'\) in
+  \(\{0,1\}^{1024}\) such that \(h(x)=h(x')\).
+\item
+  There is a randomized algorithm \(A\) that makes at most
+  \(100 \cdot 2^{64}\) queries to a given black box computing a function
+  \(h:\{0,1\}^{1024} \rightarrow \{0,1\}^{128}\) that with probability
+  at least \(0.9\), \(A\) outputs a pair \(x \neq x'\) in
+  \(\{0,1\}^{1024}\) such that \(h(x)=h(x')\).
+\item
+  There is a randomized algorithm \(A\) that makes at most
+  \(0.01 \cdot 2^{64}\) queries to a given black box computing a
+  function \(h:\{0,1\}^{1024} \rightarrow \{0,1\}^{128}\) that with
+  probability at least \(0.9\), \(A\) outputs a pair \(x \neq x'\) in
+  \(\{0,1\}^{1024}\) such that \(h(x)=h(x')\).
+\end{enumerate}
+
+\end{exercise}
+
+\begin{exercise} \label[exercise]{7-Suppose-that-h-rightar}
+
+Suppose that \(h:\{0,1\}^{1024} \rightarrow \{0,1\}^{128}\) is chosen at
+random. If \(y\) is chosen at random in \(\{0,1\}^{128}\) and we pick
+\(x_1,\ldots,x_t\) independently at random in \(\{0,1\}^{1024}\), how
+large does \(t\) need to be so that the probability that there is some
+\(x_i\) such that \(h(x_i)=y\) is at least \(1/2\). (Pick the answer
+with the closest estimate):
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  \(2^{1024}\)
+\item
+  \(2^{256}\)
+\item
+  \(2^{128}\)
+\item
+  \(2^{64}\)
+\end{enumerate}
+
+\end{exercise}
+
+\begin{exercise} \label[exercise]{7-Suppose-that-a-message}
+
+Suppose that a message authentication code \((S,V)\) where Alice and Bob
+use as one of its components a function \(h\) as a black box is secure
+when \(h\) is a random function. Is it still secure when Alice and Bob
+uses a hash function \(h\) that is chosen from some PRF collection and
+whose key is given to the adversary?
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\item
+  It can sometimes be secure and sometimes insecure.
+\item
+  It is always secure.
+\item
+  It is always insecure.
+\end{enumerate}
+
+\end{exercise}
