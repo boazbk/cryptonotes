@@ -1,12 +1,12 @@
 \chapter{Concrete candidates for public key
-crypto}\label{11-Concrete-candidates-fo}
+crypto}\label{10-Concrete-candidates-fo}
 
 In the previous lecture we talked about \emph{public key cryptography}
 and saw the Diffie Hellman system and the DSA signature scheme. In this
 lecture, we will see the RSA trapdoor function and how to use it for
 both encryptions and signatures.
 
-\section{Some number theory.}\label{11-Some-number-theory}
+\section{Some number theory.}\label{10-Some-number-theory}
 
 (See \href{http://www.shoup.net/ntb/}{Shoup's excellent and freely
 available book} for extensive coverage of these and many other topics.)
@@ -63,7 +63,7 @@ understand what is its usage.
 
 \end{remark}
 
-\subsection{Primaliy testing}\label{11-Primaliy-testing}
+\subsection{Primaliy testing}\label{10-Primaliy-testing}
 
 One procedure we often need is to find a prime of \(n\) bits. The
 typical way people do it is by choosing a random \(n\)-bit number \(p\),
@@ -98,7 +98,7 @@ probability \(1\) and if \(A\) is not even a ``pseudoprime'' it outputs
 
 \end{lemma}
 
-\begin{proof} \label[proof]{11-The-algorithm-is-very-}
+\begin{proof} \label[proof]{10-The-algorithm-is-very-}
 
 The algorithm is very simple and is based on Fermat's Little Theorem: on
 input \(m\), pick a random \(a\in \{2,\ldots,m-1\}\), and if
@@ -139,7 +139,7 @@ factorization of a composite number. The best known algorithms run in
 time roughly \(2^{\tilde{O}(n^{1/3})}\) where \(n\) is the number of
 bits.
 
-\subsection{Fields}\label{11-Fields}
+\subsection{Fields}\label{10-Fields}
 
 If \(p\) is a prime then \(\Z_p\) is a \emph{field} which means it is
 closed under addition and multiplication and has \(0\) and \(1\)
@@ -180,7 +180,7 @@ finite fields, shown in 1967 by Berlekamp and on which much other work
 has been done; see Chapter 20 in
 \href{http://www.shoup.net/ntb/}{Shoup}).
 
-\subsection{Chinese remainder theorem}\label{11-Chinese-remainder-theo}
+\subsection{Chinese remainder theorem}\label{10-Chinese-remainder-theo}
 
 Suppose that \(m=pq\) is a product of two primes. In this case \(Z^*_m\)
 does not contain \emph{all} the numbers from \(1\) to \(m-1\). Indeed,
@@ -208,7 +208,7 @@ every \(x,y \in \Z^*_m\):\\
 
 \end{theorem}
 
-\begin{proof} \label[proof]{11-varphi-simply-maps-xin}
+\begin{proof} \label[proof]{10-varphi-simply-maps-xin}
 
 \(\varphi\) simply maps \(x\in \Z^*_m\) to the pair
 \((x \mod p, x \mod q)\). Verifying that it satisfies all desired
@@ -233,7 +233,7 @@ Suppose and there is an efficient algorithm \(A\) such that for every
 
 \end{theorem}
 
-\begin{proof} \label[proof]{11-Suppose-that-there-is-}
+\begin{proof} \label[proof]{10-Suppose-that-there-is-}
 
 Suppose that there is such an algorithm \(A\). Using the CRT we can
 define \(f:\Z^*_p\times\Z^*_q \rightarrow \Z^*_p\times \Z^*_q\) as
@@ -269,7 +269,7 @@ square root for a significant fraction of the inputs. This observation
 is crucial for cryptographic applications.
 
 \subsection{The RSA and Rabin
-functions}\label{11-The-RSA-and-Rabin-func}
+functions}\label{10-The-RSA-and-Rabin-func}
 
 We are now ready to describe the RSA and Rabin trapdoor functions:
 
@@ -316,7 +316,7 @@ has the advantage that it is a \emph{permutation} over \(\Z^*_m\):
 
 \end{lemma}
 
-\begin{proof} \label[proof]{11-Suppose-that-ensuremat}
+\begin{proof} \label[proof]{10-Suppose-that-ensuremat}
 
 Suppose that
 \(\ensuremath{\mathit{RSA}}_{m,e}(a)=\ensuremath{\mathit{RSA}}_{m,e}(a')\).
@@ -347,7 +347,7 @@ without adding some randomization.
 \end{remark}
 
 \subsection{Abstraction: trapdoor
-permutations}\label{11-Abstraction-trapdoor-p}
+permutations}\label{10-Abstraction-trapdoor-p}
 
 We can abstract away the particular construction of the RSA and Rabin
 functions to talk about a general \emph{trapdoor permutation family}. We
@@ -400,7 +400,7 @@ prime in the interval \([2^n-2^{0.6n},2^n]\).\footnote{Another, more
 \end{remark}
 
 \subsection{Public key encryption from trapdoor
-permutations}\label{11-Public-key-encryption-}
+permutations}\label{10-Public-key-encryption-}
 
 Here is how we can get a public key encryption from a trapdoor
 permutation scheme \(\{ p_k \}\).
@@ -424,7 +424,7 @@ permutation scheme \(\{ p_k \}\).
 \end{itemize}
 \end{quote}
 
-\begin{pause} \label[pause]{11-Please-verify-that-you}
+\begin{pause} \label[pause]{10-Please-verify-that-you}
 
 Please verify that you understand why TDPENC is a \emph{valid}
 encryption scheme, in the sense that decryption of an encryption of
@@ -440,7 +440,7 @@ TDPENC is a CPA secure public key encryption scheme.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{11-Suppose-towards-the-sa}
+\begin{proof} \label[proof]{10-Suppose-towards-the-sa}
 
 Suppose, towards the sake of contradiction, that there is a
 polynomial-size adversary \(A\) that succeeds in the CPA game of TDPENC
@@ -556,7 +556,7 @@ of winning in the latter experiment would still be less than
 \label{TDPENCgnomefig}
 \end{marginfigure}
 
-\begin{pause} \label[pause]{11-This-proof-of-crefTDPp}
+\begin{pause} \label[pause]{10-This-proof-of-crefTDPp}
 
 This proof of \cref{TDPpkcthm} is not very long but it is somewhat
 subtle. Please re-read it and make sure you understand it. I also
@@ -578,7 +578,7 @@ Levin.
 \end{remark}
 
 \subsection{Digital signatures from trapdoor
-permutations}\label{11-Digital-signatures-fro}
+permutations}\label{10-Digital-signatures-fro}
 
 Here is how we can get digital signatures from trapdoor permutations
 \(\{ p_k \}\). This is known as the ``full domain hash'' signatures.
@@ -611,7 +611,7 @@ FDHSIG is chosen message attack secure digital signature scheme.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{11-Suppose-towards-the-sa}
+\begin{proof} \label[proof]{10-Suppose-towards-the-sa}
 
 Suppose towards the sake of contradiction that there is a
 polynomial-sized adversary \(A\) that succeeds in a chosen message
@@ -674,7 +674,7 @@ inverter.
 
 \end{proof}
 
-\begin{pause} \label[pause]{11-Once-again-this-proof-}
+\begin{pause} \label[pause]{10-Once-again-this-proof-}
 
 Once again, this proof is somewhat subtle. I recommend you also read the
 version of this proof in Section 13.4 of Boneh-Shoup.
@@ -694,7 +694,7 @@ arbitrary length messages by defining \(S'_s(m)=S_s(h(m))\) and
 \end{remark}
 
 \section{Hardcore bits and security without random
-oracles}\label{11-Hardcore-bits-and-secu}
+oracles}\label{10-Hardcore-bits-and-secu}
 
 The main problem with using trapdoor functions as the basis of public
 key encryption is twofold: \textgreater{} * The fact that \(f\) is a
@@ -765,7 +765,7 @@ This allows us to construct semantically secure public key encryption:
   then compute \(b(x)\) and \(b(x) \oplus c' = m\)
 \end{itemize}
 
-\begin{pause} \label[pause]{11-Please-stop-to-verify-}
+\begin{pause} \label[pause]{10-Please-stop-to-verify-}
 
 Please stop to verify that this is a valid public key encryption scheme.
 
@@ -835,7 +835,7 @@ There exists a set \(S \subseteq \{0, 1\}^n\) where
 s(x) = \Pr[A(g(x, R_n)) = b(x, R_n)] \geq \frac{1}{2} + \frac{\epsilon_A(n)}{2}
 \end{equation*}
 
-\begin{proof} \label[proof]{11-The-result-follows-fro}
+\begin{proof} \label[proof]{10-The-result-follows-fro}
 
 The result follows from an averaging argument. Let
 \(k = \frac{|S|}{2^n}\),
@@ -894,7 +894,7 @@ non negligible advantage by majority vote we can retrieve each value of
 \(x_i\) to invert \(f\), thus contradicting the one-wayness of \(f\).
 \end{quote}
 
-\begin{pause} \label[pause]{11-It-is-important-that-y}
+\begin{pause} \label[pause]{10-It-is-important-that-y}
 
 It is important that you understand why we cannot rely on invoking \(A\)
 twice, on both \(b(x, r)\) and \(b(x, r \oplus e_i)\). It is also
@@ -995,7 +995,7 @@ which is non negligible in \(n\). This contradicts the assumption that
 \(b\) is a hardcore predicate of \(g\).
 
 \subsection{Extending to more than one hardcore
-bit}\label{11-Extending-to-more-than}
+bit}\label{10-Extending-to-more-than}
 
 By definition, \(b\) as constructed above is only a hardcore predicate
 of length \(1\). While it's great that this method works for any

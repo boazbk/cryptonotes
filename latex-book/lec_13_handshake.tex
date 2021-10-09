@@ -1,5 +1,5 @@
 \chapter{Establishing secure connections over insecure
-channels}\label{14-Establishing-secure-co}
+channels}\label{12-Establishing-secure-co}
 
 We've now compiled all the tools that are needed for the basic goal of
 cryptography (which is still being subverted quite often) allowing Alice
@@ -33,7 +33,7 @@ randomness, and here we use hash functions as well for entropy
 extraction.
 
 \section{Cryptography's obsession with
-adjectives.}\label{14-Cryptographys-obsessio}
+adjectives.}\label{12-Cryptographys-obsessio}
 
 As we learn more and more cryptography we see more and more adjectives,
 every notion seems to have modifiers such as ``non-malleable'',
@@ -80,7 +80,11 @@ securely transmitting information between two parties Alice and Bob:
   what happens if the adversary breaks into those. Sometimes we rely on
   the security of several entities or secrets, and we want to consider
   adversaries that control \emph{some} but not \emph{all} of them, a
-  notion known as \emph{threshold cryptography}.
+  notion known as \emph{threshold cryptography}. While we typically
+  assume that information is either fully secret or fully public, we
+  sometimes want to model \emph{side channel attacks} where the
+  adversary can learn \emph{partial information} about the secret, this
+  is known as \emph{leakage-resistant cryptography}.
 \item
   \textbf{Interaction:} Do Alice and Bob get to interact and relay
   several messages back and forth or is it a ``one shot'' protocol? You
@@ -109,7 +113,7 @@ securely transmitting information between two parties Alice and Bob:
   conversation had taken place.
 \end{itemize}
 
-\section{Basic Key Exchange protocol}\label{14-Basic-Key-Exchange-pro}
+\section{Basic Key Exchange protocol}\label{12-Basic-Key-Exchange-pro}
 
 The basic primitive for secure communication is a \emph{key exchange}
 protocol, whose goal is to have Alice and Bob share a common random
@@ -161,7 +165,7 @@ probability of guessing which is the case would be at most
 or some other parameter related to the length of bit representation of
 members in the group).
 
-\section{Authenticated key exchange}\label{14-Authenticated-key-exch}
+\section{Authenticated key exchange}\label{12-Authenticated-key-exch}
 
 The main issue with this key exchange protocol is of course that
 adversaries often are \emph{not} passive. In particular, an active Eve
@@ -173,17 +177,30 @@ by, say, modifying the message \(A\) to be \(A^2\) etc..
 For this reason, in actual applications we typically use
 \emph{authenticated} key exchange. The notion of authentication used
 depends on what we can assume on the setup assumptions. A standard
-assumption is that Alice has some public keys but Bob doesn't. (This is
-the case when Alice is a website and Bob is a user.) However, one needs
-to take care in how to use this assumption. Indeed, the standard
-protocol for securing the web: the
-\href{https://goo.gl/md9Bsa}{transport Layer Security (TLS) protocol}
-(and its predecessor SSL) has gone through six revisions (including a
-name change from SSL to TLS) largely because of security concerns. We
-now illustrate one of those attacks.
+assumption is that Alice has some public keys but Bob doesn't. The
+justification for this assumption is that Alice might be a server, which
+has the capabilities to generate a private/public key pair, disseminate
+the public key (e.g., using a certificate authority) and maintain the
+private key in a secure storage. In contrast, if Bob is an individual
+user, then it might not have access to a secure storage to maintain a
+private key (since personal devices can often are hacked). Moreover,
+Alice might not care about Bob's identity. For example, if Alice is
+nytimes.com and Bob is a reader, then Bob wants to know that the news he
+reads really came from the \emph{New York Times}, but Alice is equally
+happy to engage in communication with any reader. In other cases, such
+as gmail.com, after an initial secure connection is setup, Bob can
+authenticate himself to Alice as a registered user (by sending his login
+information or sending a ``cookie'' stored from a past interaction).
+
+It is possible to obtain a secure channel under these assumptions, but
+one needs to be careful. Indeed, the standard protocol for securing the
+web: the \href{https://goo.gl/md9Bsa}{transport Layer Security (TLS)
+protocol} (and its predecessor SSL) has gone through six revisions
+(including a name change from SSL to TLS) largely because of security
+concerns. We now illustrate one of those attacks.
 
 \subsection{Bleichenbacher's attack on RSA PKCS V1.5 and SSL
-V3.0}\label{14-Bleichenbachers-attack}
+V3.0}\label{12-Bleichenbachers-attack}
 
 If you have a public key, a natural approach is to take the
 encryption-based protocol and simply skip the first step since Bob
@@ -205,13 +222,13 @@ following attack:
   \(k\).
 \end{itemize}
 
-Specifically, the version of RSA (known as PKCS \(\sharp\) V1.5) used in
-the SSL V3.0 protocol requires the value \(x\) to have a particular
-format, with the top two bytes having a certain form. If in the course
-of the protocol, a server decrypts \(y\) and gets a value \(x\) not of
-this form then it would send an error message and halt the connection.
-While the designers of SSL V3.0 might not have thought of it that way,
-this amounts to saying that an SSL V3.0 server supplies to any party an
+Specifically, the version of RSA (known as PKCS ＃V1.5) used in the SSL
+V3.0 protocol requires the value \(x\) to have a particular format, with
+the top two bytes having a certain form. If in the course of the
+protocol, a server decrypts \(y\) and gets a value \(x\) not of this
+form then it would send an error message and halt the connection. While
+the designers of SSL V3.0 might not have thought of it that way, this
+amounts to saying that an SSL V3.0 server supplies to any party an
 oracle that on input \(y\) outputs \(1\) iff \(y^{d} \pmod{m}\) has this
 form, where \(d = e^{-1} \pmod|\Z^*_m|\) is the secret decryption key.
 It turned out that one can use such an oracle to invert the RSA
@@ -225,14 +242,23 @@ to invert the RSA function.\footnote{The first attack of this flavor was
   (and sometimes practical) \emph{constructions} of other cryptosystems.}
 
 For this reason, new versions of the SSL used a different variant of RSA
-known as PKCS \$\sharp\$1 V2.0 which satisfies (under assumptions)
-\emph{chosen ciphertext security (CCA)} and in particular such oracles
-cannot be used to break the encryption. (Nonetheless, there are still
-some implementation issues that allowed to perform some attacks, see the
-note in KL page 425 on Manfer's attack.)
+known as PKCS ＃1 V2.0 which satisfies (under assumptions) \emph{chosen
+ciphertext security (CCA)} and in particular such oracles cannot be used
+to break the encryption. Nonetheless, there are still some
+implementation issues that allowed to perform some attacks, specifically
+\href{http://archiv.infsec.ethz.ch/education/fs08/secsem/Manger01.pdf}{Manger}
+showed that depending on PKCS ＃1 V2.0 is implemented, it might be
+possible to still launch an attack. The main reason is that the
+specification states several conditions under which decryption box is
+supposed to return ``error''. The proof of CCA security crucially relies
+on the attacker not being able to distinguish which condition caused the
+error message. However, some implementations could still leak this
+information, for example by checking these conditions one by one, and so
+returning ``error'' quicker when the earlier conditions hold. See
+discussion in Katz-Lindell (3rd ed) 12.5.4.
 
 \section{Chosen ciphertext attack security for public key
-cryptography}\label{14-Chosen-ciphertext-atta}
+cryptography}\label{12-Chosen-ciphertext-atta}
 
 The concept of chosen ciphertext attack security makes perfect sense for
 \emph{public key} encryption as well. It is defined in the same way as
@@ -277,7 +303,7 @@ ciphertext. In the public key setting, one might hope that we could
 repeat the same construction using a CPA-secure \emph{public key}
 encryption and replacing the MAC with \emph{digital signatures}.
 
-\begin{pause} \label[pause]{14-Try-to-think-what-woul}
+\begin{pause} \label[pause]{12-Try-to-think-what-woul}
 
 Try to think what would be such a construction, and whether there is a
 fundamental obstacle to combining digital signatures and public key
@@ -317,51 +343,64 @@ well as the first polynomial-time construction, was given in a seminal
 1991 work of Dolev, Dwork and Naor.)
 
 \section{CCA secure public key encryption in the Random Oracle
-Model}\label{14-CCA-secure-public-key-}
+Model}\label{12-CCA-secure-public-key-}
 
 We now show how to convert any CPA-secure public key encryption scheme
 to a CCA-secure scheme in the random oracle model (this construction is
 taken from Fujisaki and Okamoto, CRYPTO 99). In the homework, you will
 see a somewhat simpler direct construction of a CCA secure scheme from a
 \emph{trapdoor permutation}, a variant of which is known as OAEP (which
-has better ciphertext expansion) has been standardized as PKCS
-\$\sharp\$1 V2.0 and is used in several protocols. The advantage of a
-generic construction is that it can be instantiated not just with the
-RSA and Rabin schemes, but also directly with Diffie-Hellman and Lattice
-based schemes (though there are direct and more efficient variants for
-these as well).
+has better ciphertext expansion) has been standardized as PKCS ＃1 V2.0
+and is used in several protocols. The advantage of a generic
+construction is that it can be instantiated not just with the RSA and
+Rabin schemes, but also directly with Diffie-Hellman and Lattice based
+schemes (though there are direct and more efficient variants for these
+as well).
 
-\begin{quote} \label[quote]{14-CCA-ROM-ENC-SchemeIngr}
+\begin{quote} \label[quote]{12-CCA-ROM-ENC-SchemeIngr}
 
 \textbf{CCA-ROM-ENC Scheme:}
 
 \begin{itemize}
 \item
-  \textbf{Ingredients:} A public key encryption scheme \((G',E',D')\)
-  and a two hash functions \(H,H':\{0,1\}^*\rightarrow\{0,1\}^n\) (which
-  we model as independent random oracles\footnote{Recall that it's easy
-    to obtain two independent random oracles \(H,H'\) from a single
-    oracle \(H''\), for example by letting \(H(x)=H''(0\|x)\) and
-    \(H'(x)=H''(1\|x)\).})
+  \textbf{Ingredients:} A CPA-secure public key encryption scheme
+  \((G',E',D')\) and three hash functions
+  \(H,H',H'':\{0,1\}^*\rightarrow\{0,1\}^n\) (which we model as
+  independent random oracles\footnote{Recall that it's easy to obtain
+    two independent random oracles \(H,H'\) from a single oracle
+    \(H''\), for example by letting \(H(x)=H''(0\|x)\) and
+    \(H'(x)=H''(1\|x)\).}).
+\item
+  \emph{Notes:} We assume that \(E'\) takes \(n\) bit messages (since
+  CPA security is preserved under concatenation, a one-bit scheme can be
+  transformed into such a scheme). Since \(E'\) is (necessarily)
+  randomized, we denote by \(E'(x;s)\) the encryption of the message
+  \(x\) using the randomness \(s\). We assume that the number of bits of
+  randomness \(E'\) uses is \(n\). (Otherwise we can modify the scheme
+  to use \(n\) bits using a pseudorandom generator, or modify the
+  co-domain of \(H\) to be the space of random choices for \(E'\).)
 \item
   \textbf{Key generation:} We generate keys \((e,d)=G'(1^n)\) for the
   underlying encryption scheme.
 \item
   \textbf{Encryption:} To encrypt a message \(m\in\{0,1\}^\ell\), we
-  select randomness \(r\leftarrow_R\{0,1\}^\ell\) for the underlying
-  encryption algorithm \(E'\) and output
-  \begin{equation*}
-  E_e(m)= E'_e(r;H(m\|r))\|(H'(r) \oplus m)\;,
-  \end{equation*}
-  where by \(E'_e(m';r')\) we denote the result of encrypting the
-  plaintext \(m'\) using the key \(e\) and the randomness \(r'\) (we
-  assume the scheme takes \(n\) bits of randomness as input; otherwise
-  modify the output length of \(H\) accordingly).
+  select \(r \leftarrow_R \{0,1\}^n\), and output
+\end{itemize}
+
+\begin{equation*}
+E_e(m) = E'_e(r ; H(m\|r)) \| H''(r) \oplus m \| H'(m \| r)
+\end{equation*}
+
+recall that \(E'_e(r ; s)\) denotes the encryption of the message \(r\)
+using randomness \(s\).
+
+\begin{itemize}
+\tightlist
 \item
-  \textbf{Decryption:} To decrypt a ciphertext \(c\|y\) first let
-  \(r=D'_d(c)\), \(m=H'(r) \oplus y\) and then check that
-  \(c=E'_e(m;H(m\|r))\). If the check fails we output \texttt{error};
-  otherwise we output \(m\).
+  \textbf{Decryption:} To decrypt a ciphertext \(c\|y \| h\) first let
+  \(r=D'_d(c)\), then compute \(m=H''(r) \oplus y\). Finally check that
+  \(c= E'_e(m ; H(m\|r))\) and \(h=H'(m\|r)\). If either check fails we
+  output \texttt{error}; otherwise we output \(m\).
 \end{itemize}
 
 \end{quote}
@@ -373,68 +412,138 @@ The above CCA-ROM-ENC scheme is CCA secure.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{14-Note-The-proof-here-re}
+\begin{proof} \label[proof]{12-Let-A-be-a-polynomial-}
 
-\textbf{Note:} The proof here refers to the original scheme in the notes
-(which was not secure) - should be updated by the scribes to the correct
-proof as presented in lecture.
+Let \(A\) be a polynomial-time adversary that wins the ``CCA Game'' with
+respect to the scheme \((G,E,D)\) with probability \(1/2 + \epsilon\).
+We will show (Claim 1) that there is an adversary \(\tilde{A}\) that can
+win in this game with probability \(1/2 + \epsilon - negl(n)\)
+\emph{without using the decryption box}. We will then show (Claim 2)
+that this implies that \(A'\) can win the \emph{CPA game} with respect
+to the scheme \((G',E',D')\) with probability
+\(1/2 + \Omega(\epsilon)\). We start by establishing the first claim:
 
-Suppose towards a contradiction that there exists an adversary \(M\)
-that wins the CCA game with probability at least \(1/2+\epsilon\) where
-\(\epsilon\) is non-negligible. Our aim is to show that the decryption
-box would be ``useless'' to \(M\) and hence reduce CCA security to CPA
-security (which we'll then derive from the CPA security of the
-underlying scheme).
+\textbf{Claim 1:} Under the above assumptions, there exists a
+polynomial-time adversary \(\tilde{A}\) that wins the CCA game with
+respect to the scheme \((G,E,D)\) without making any queries to the
+decryption box.
 
-Consider the following ``box'' \(\hat{D}\) that will answer decryption
-queries \(c\|y\|z\) of the adversary as follows:\\
-* If \(z\) was returned before to the adversary as an answer to
-\(H'(m\|r)\) for some \(m,r\), and \(c=E'_e(m\;H(m\|r))\) and
-\(y=m\oplus r\) then return \(m\).\\
-* Otherwise return \texttt{error}
+\textbf{Proof of Claim 1:} The adversary \(\tilde{A}\) will simulate
+\(A\), keeping track of all of \(A\)'s queries to its decryption and
+random oracles. Whenever \(A\) makes a query \(c\|y\|h\) to the
+decryption oracle, then \(\tilde{A}\) will respond to it using the
+following ``fake'' decryption box \(\tilde{D}\): check whether \(h\) was
+returned before from the random oracle \(H'\) as a response to a query
+\(m\|r\) by \(A\). If this is the case, then \(\tilde{A}\) will check if
+\(c = E'_e(r;H(m\|r))\) and \(y= H''(r) \oplus m\). If so, then it will
+return \(m\), otherwise it will return \texttt{error}. Note that
+\(\tilde{D}(c\|y\|h)\) is computed without any knowledge of the secret
+key \(d\).
 
-\textbf{Claim:} The probability that \(\hat{D}\) answers a query
-differently then \(D\) is negligible.
+We claim that the probability that \(\tilde{A}\) will return an answer
+that differs from the true decryption box is negligible. Indeed, for
+each particular query \(c\|y\|h\), first observe that if
+\(\tilde{D}(c\|y\|h)\) is not \texttt{error} then
+\(\tilde{D}(c\|y\|h) = D_d(c\|y\|h)\). Indeed, in this case it holds
+that \(c=E'_e(m;H(m\|r))\), \(y=H'(r) \oplus m\) and \(h=H'(m\|r)\).
+Hence this is a properly formatted encryption of \(m\), on which the
+true decryption box will return \(m\) as well.
 
-\textbf{Proof of claim:} If \(D\) gives a non \texttt{error} response to
-a query \(c\|y\|z\) then it must be that \(z=H'(m\|r)\) for some \(m,r\)
-such that \(y = r\oplus m\) and \(c=E_e(r;H(m\|r))\), in which case
-\(D\) will return \(m\). The only way that \(\hat{D}\) will answer this
-question differently is if \(z=H'(m\|r)\) but the query \(m\|r\) hasn't
-been asked before by the adversary. Here there are two options. If this
-query has never been asked before at all, then by the lazy evaluation
-principle in this case we can think of \(H'(m\|r)\) as being
-independently chosen at this point, and the probability it happens to
-equal \(z\) will be \(2^{-n}\). If this query was asked by someone apart
-from the adversary then it could only have been asked by the encryption
-oracle while producing the challenge ciphertext \(c^*\|y^*\|z^*\), but
-since the adversary is not allowed to ask this precise ciphertext, then
-it must be a ciphertext of the form \(c\|y\|z^*\) where
-\((c,y) \neq (c^*,y^*)\) and such a ciphertext would get an
-\texttt{error} response from both oracles. \textbf{QED (claim)}
+So the only way that \(D\) and \(\tilde{D}\) differ is if
+\(D_d(c\|y\|h)=m\) but \(\tilde{D}(c\|y\|h)\) returns \texttt{error}.
+For this it must be the case that for \(r=D'_d(c)\), \(h=H'(m\|r)\) but
+\(m\|r\) was \emph{not} queried before by \(A\). There are two options:
+either \(m\|r\) was not queried at all, but then by the ``lazy
+evaluation'' paradigm, the value \(H'(m\|r)\) is chosen uniformly in
+\(\{0,1\}^n\) independently of \(h\), and the probability that it equals
+\(h\) is \(2^{-n}\). The other option is that \(m\|r\) was queried by
+not by the adversary. The only other party that can make queries to the
+oracle in the CCA game is the challenger, and it only makes a single
+query to \(H'\) when producing the challenge ciphertext
+\(C^* = c^*\|y^*\|h^*\) with \(h^* = H'(m^*\|r^*)\). Now the adversary
+is not allowed to make the query \(C^*\) so in this case the query must
+have the form \(c\|y\|h^*\) where \(c\|y \neq c^*\|y^*\). But the only
+way that \(D_d(c\|y\|h^*)\) returns a value other than \texttt{error} is
+if for \(r=D'_d(c)\) and \(m = y \oplus H''(r)\), \(c=E_e(r;H(m\|r))\)
+and \(h^* = H'(m\|r)\). Since the probability of a collision in \(H'\)
+is negligible, this can only happen if \(m\|r = m^*\|r^*\), but in this
+case it will hold that \(c=c^*\) and \(y=y^*\), contradicting the fact
+that the ciphertext must differ from \(C^*\). \textbf{QED (Claim 1)}
 
-Note that we can assume without loss of generality that if \(m^*\) is
-the challenge message and \(r^*\) is the randomness chosen in this
-challenge, the adversary never asks the query \(m^*\|r^*\) to the its
-\(H\) or \(H'\) oracles, since we can modify it so that before making a
-query \(m\|r\), it will first check if \(E_e(m\;r)=c^*\) where
-\(c^*\|y^*\|z^*\) is the challenge ciphertext, and if so use this to win
-the game.
+\textbf{Claim 2:} Under the above assumptions, there exists a
+polynomial-time adversary \(A'\) that wins the CPA game with respect to
+the scheme \((G',E',D')\) with probability at least
+\(1/2 + \epsilon/10\).
 
-In other words, if we modified the experiment so the values
-\(R^*=H(r^*\|m)\) and \(z^*=H'(m^*\|r^*)\) chosen while producing the
-challenge are simply random strings chosen completely independently of
-everything else. Now note that our oracle \(\hat{D}\) did \emph{not}
-need to use the decryption key \(d\). So, if the adversary wins the CCA
-game, then it wins the \emph{CPA game} for the encryption scheme
-\(E_e(m) = E'_e(r;R)\| r \oplus m \| R'\) where \(R\) and \(R'\) are
-simply independent random strings; we leave proving that this scheme is
-CPA secure as an exercise to the reader.
+\textbf{Proof of Claim 2:}\\
+\(A'\) runs the full CCA experiment with the adversary \(\tilde{A}\)
+obtained from Claim 1, simulating the random oracles \(H,H',H''\) using
+``lazy evaluation''. When the time comes and the adversary \(\tilde{A}\)
+chooses two ciphertexts \(m_0,m_1\), then \(A'\) does the following:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The adversary \(A'\) will choose \(r_0,r_1 \leftarrow_R \{0,1\}^n\),
+  give them to its own challenger and get \(c^*\) which is either an
+  encryption of \(r_{b^*}\) under \(E'_e\) for
+  \(b^* \leftarrow_R \{0,1\}\). If the adversary \(\tilde{A}\) made in
+  the past a query of the form \(r_b\) or \(m_b\|r_{b'}\) for
+  \(b,b' \in \{0,1\}\) to one of the random oracles then we stop the
+  experiment and declare failure. (Since \(r_0,r_1\) are random in
+  \(\{0,1\}^n\) and \(\tilde{A}\) made only polynomially many queries,
+  the probability of this happening is negligible).
+\item
+  The adversary \(A'\) will now give \(c^* \| y^* \| h^*\) with
+  \(y^*,h^* \leftarrow_R \{0,1\}^n\) to \(\tilde{A}\) as the response to
+  the challenge. (Note that this ciphertext does not involve neither
+  \(m_0\) nor \(m_1\) in any way.)
+\item
+  Now if the adversary \(\tilde{A}\) makes a query of the form \(r_b\)
+  or \(m\|r_b\) for \(b\in \{0,1\}\) to one of its oracles, then \(A'\)
+  will output \(b\). Otherwise, it outputs a random output.
+\end{enumerate}
+
+Note that the adversary \(A'\) ignores the \emph{output} of
+\(\tilde{A}\). It only cares about the queries that \(\tilde{A}\) makes.
+Let's say that an ``\(r_b\) query is one that has \(r_b\) as a
+postfix''. To finish the proof we make the following two claims:
+
+\textbf{Claim 2.1:} The probability that \(\tilde{A}\) makes an
+\(r_{1-b^*}\) query is negligible. \textbf{Proof:} This is because the
+only value that \(\tilde{A}\) receives that depends on one of
+\(r_0,r_1\) is \(c^*\) which is an encryption of \(r_{b^*}\). Hence
+\(\tilde{A}\) never sees any value that depends on \(r_{1-b^*}\) and
+since it is uniform in \(\{0,1\}^n\), the probability that \(\tilde{A}\)
+makes a query with this postfix is negligible.
+
+\textbf{Claim 2.2:} \(\tilde{A}\) will make an \(r_{b^*}\) query with
+probability at least \(\epsilon/2\). \textbf{Proof:} Let
+\(c^* = E'_e(r_{b^*} ; s^*)\) where \(s^*\) is the randomness used in
+producing it. By the lazy evaluation paradigm, since no \(r_{b^*}\)
+query was made up to that point, the distribution would be identical if
+we defined \(H(m_b\|r_{b^*))=s^*\), defined
+\(H''(r_{b^*)) = y^* \oplus m_b\) and define \(h^* = H'(m_b\|r_{b^*))\).
+Hence the distribution of the ciphertext is identical to how it is
+distributed in the actual CCA game. Now, since \(\tilde{A}\) wins the
+CCA game with probability \(1/2 + \epsilon - negl(n)\), in this game it
+must query \(H''\) at \(r_{b^*}\) with probability at least
+\(\epsilon/2\). Indeed, conditioned on not querying \(H''\) at this
+value, the string \(y^*\) is independent of the message \(m_0\), and the
+adversary cannot win the game with probability more than \(1/2\).
+
+Together Claims 2.1 and 2.2 imply that the adversary \(\tilde{A}\) makes
+an \(r_{b^*}\) query with probability at least \(\epsilon/2\), and makes
+an \(r_{1-b^*}\) query with negligible probability, hence our adversary
+\(A'\) will output \(b^*\) with probability at least \(\epsilon/2\), and
+with all but a negligible part of the remaining probability will guess
+randomly, leading to an overall success in the CPA game of at least
+\(1/2 + \epsilon/2\). \textbf{QED (Claim 2 and hence theorem)}
 
 \end{proof}
 
 \subsection{Defining secure authenticated key
-exchange}\label{14-Defining-secure-authen}
+exchange}\label{12-Defining-secure-authen}
 
 The basic goal of secure communication is to set up a \emph{secure
 channel} between two parties Alice and Bob. We want to do so over an
@@ -471,18 +580,16 @@ Verisign. My communication with Amazon is an example of a setting of
 am truly talking to amazon.com, while Amazon is willing to talk to any
 client. (Though of course once we establish a secure channel, I could
 use it to login to my Amazon account.) Chapter 21 of Boneh Shoup
-contains an in depth discussion of authenticated key exchange protocols.
+contains an in depth discussion of authenticated key exchange protocols,
+see for example \cref{BSAKEfig}. Because the definition is so involved,
+we will not go over the full formal definitions in this book, but I
+recommend Boneh-Shoup for an in-depth treatment.
 
-\begin{pause} \label[pause]{14-You-should-stop-here-a}
-
-You should stop here and read Section 21.9 of Boneh Shoup with the
-formal definitions of authenticated key exchange, going back as needed
-to the previous section for the definitions of protocols AEK1 - AEK4.
-
-\end{pause}
+\includegraphics{../figure/AKEdef.png} the definitions of protocols AEK1
+- AEK4.
 
 \subsection{The compiler approach for authenticated key
-exchange}\label{14-The-compiler-approach-}
+exchange}\label{12-The-compiler-approach-}
 
 There is a generic ``compiler'' approach to obtaining authenticated key
 exchange protocols:
@@ -522,19 +629,16 @@ its variant \href{https://eprint.iacr.org/2005/176.pdf}{HMQV} by
 Krawczyk that has some improved security properties and analysis.
 
 \section{Password authenticated key
-exchange.}\label{14-Password-authenticated}
+exchange.}\label{12-Password-authenticated}
 
-To be completed (the most natural candidate: use MACS with a
-password-derived key to authenticate communication - completely fails)
+\paragraph{NOTE:} The following three parts are not yet written - we
+will discuss them in class, but please at least skim the resources
+pointed out below
 
-\begin{pause} \label[pause]{14-Please-skim-Boneh-Shou}
-
-Please skim Boneh Shoup Chapter 21.11
-
-\end{pause}
+PAKE is covered in Boneh-Shoup Chapter 21.11
 
 \section{Client to client key exchange for secure text messaging - ZRTP,
-OTR, TextSecure}\label{14-Client-to-client-key-e}
+OTR, TextSecure}\label{12-Client-to-client-key-e}
 
 To be completed. See
 \href{http://blog.cryptographyengineering.com/2013/03/here-come-encryption-apps.html}{Matthew
@@ -544,7 +648,7 @@ secure}, \href{https://otr.cypherpunks.ca/Protocol-v3-4.0.0.html}{OTR}.
 
 Security requirements: forward secrecy, deniability.
 
-\section{Heartbleed and logjam attacks}\label{14-Heartbleed-and-logjam-}
+\section{Heartbleed and logjam attacks}\label{12-Heartbleed-and-logjam-}
 
 \begin{itemize}
 \item

@@ -25,7 +25,7 @@ collection \(\{ f_s \}_{s\in\{0,1\}^*}\) such that for every
 \caption{The construction of a pseudorandom function from a pseudorandom
 generator can be illustrated by a depth \(n\) binary tree. The root is
 labeled by the seed \(s\) and for every internal node \(v\) labeled by a
-strong \(x\in\{0,1\}^n\), we use that label \(x\) as a seed into the PRG
+string \(x\in\{0,1\}^n\), we use that label \(x\) as a seed into the PRG
 \(G\) to label \(v\)'s two children. In particular, the children of
 \(v\) are labeled with \(G_0(x)\) and \(G_1(x)\) respectively. The
 output of the function \(f_s\) on input \(i\) is the label of the
@@ -301,7 +301,7 @@ is unsatisfactory. In real life, Eve might be able to have some impact
 on \emph{what} messages Alice encrypts. For example, the Katz-Lindell
 book describes several instances in World War II where Allied forces
 made particular military maneuver for the sole purpose of causing the
-axis forces to send encryptions of messages of the Allies' choosing. To
+Axis forces to send encryptions of messages of the Allies' choosing. To
 consider a more modern example, today Google uses encryption for all of
 its search traffic including (for the most part) the \emph{ads} that are
 displayed on the page. But this means that an attacker, by paying
@@ -310,7 +310,7 @@ kind of attack, where Eve \emph{chooses} the message she wants to be
 encrypted is called a \emph{chosen plaintext attack}. You might think
 that we are already covering this with our current definition that
 requires security \emph{for every} pair of messages and so in particular
-this pair could chosen by Eve. However, in the case of multiple
+this pair could be chosen by Eve. However, in the case of multiple
 messages, we would want to allow Eve to be able to choose \(m_2\)
 \emph{after} she saw the encryption of \(m_1\).
 
@@ -384,7 +384,7 @@ There is no CPA secure \((E,D)\) where \(E\) is \emph{deterministic}.
 The proof is very simple: Eve will only use a single round of
 interacting with \(E\) where she will ask for the encryption \(c_1\) of
 \(0^\ell\). In the second round, Eve will choose \(m_0=0^{\ell}\) and
-\(m_1=1^{\ell}\), and get \(c^*=E_k(m_b)\) she wil then output \(0\) if
+\(m_1=1^{\ell}\), and get \(c^*=E_k(m_b)\) she will then output \(0\) if
 and only if \(c^*=c_1\).
 
 \end{proof}
@@ -399,7 +399,7 @@ and only if \(c^*=c_1\).
 This proof is so simple that you might think it shows a problem with the
 definition, but it is actually a real problem with security. If you
 encrypt many messages and some of them repeat themselves, it is possible
-to get significant information by seeing the repetition pattern (que the
+to get significant information by seeing the repetition pattern (cue the
 XKCD cartoon again, see \cref{xkcdnavajotwofig}). To avoid this issue we
 need to use a \emph{randomized} (or \emph{probabilistic}) encryption,
 such that if we encrypt the same message twice we \emph{won't} see two

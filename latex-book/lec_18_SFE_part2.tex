@@ -56,7 +56,7 @@ controlling party \(t\) will view.
 \end{definition}
 
 \section{Constructing 2 party honest but curious computation from fully
-homomorphic encryption}\label{19-Constructing--party-ho}
+homomorphic encryption}\label{17-Constructing--party-ho}
 
 Let \(F\) be a two party functionality. Lets start with the case that
 \(F\) is \emph{deterministic} and that only Alice receives an output.
@@ -125,7 +125,7 @@ algorithm \(S\) such that \(S(y)\) is indistinguishable from Alice's
 view when interacting with Bob and their corresponding inputs are
 \((x,y)\).
 
-\begin{pause} \label[pause]{19-At-this-point-you-migh}
+\begin{pause} \label[pause]{17-At-this-point-you-migh}
 
 At this point, you might want to try to see if you can prove Claim A on
 your own. If you're having difficulties proving it, try to think whether
@@ -218,7 +218,7 @@ algorithm \(A\),
 
 \end{lemma}
 
-\begin{pause} \label[pause]{19-Please-stop-here-and-t}
+\begin{pause} \label[pause]{17-Please-stop-here-and-t}
 
 Please stop here and try to prove \cref{circprivacylem}
 
@@ -280,7 +280,7 @@ how we can construct fully homomorphic encryption schemes satisfying
 this property.
 
 \section{Achieving circuit privacy in a fully homomorphic
-encryption}\label{19-Achieving-circuit-priv}
+encryption}\label{17-Achieving-circuit-priv}
 
 We now discuss how we can modify our fully homomorphic encryption
 schemes to achieve the notion of circuit privacy. In the scheme we saw,
@@ -331,7 +331,7 @@ the two intervals.}
 \label{statdistintervalsfig}
 \end{marginfigure}
 
-\begin{proof} \label[proof]{19-This-has-a-simple-proo}
+\begin{proof} \label[proof]{17-This-has-a-simple-proo}
 
 This has a simple ``proof by picture'': consider the intervals
 \([-T,+T]\) and \([-T+a,+T+a]\) on the number line (see
@@ -359,7 +359,7 @@ satisfy \(\Delta(X^m,X'^m) \leq m\delta\).
 
 \end{lemma}
 
-\begin{pause} \label[pause]{19-We-omit-the-proof-of-c}
+\begin{pause} \label[pause]{17-We-omit-the-proof-of-c}
 
 We omit the proof of \cref{productstatisticialdistlem} and leave it as
 an exercise to prove it using the hybrid argument. We will actually only
@@ -393,7 +393,7 @@ create the effect of completely re-randomizing the noise. However,
 completely analyzing this requires non-trivial amount of care and work.
 
 \subsection{Bottom line: A two party secure computation
-protocol}\label{19-Bottom-line-A-two-part}
+protocol}\label{17-Bottom-line-A-two-part}
 
 Using the above we can obtain the following theorem:
 
@@ -438,7 +438,7 @@ that:
 
 \end{theorem}
 
-\begin{proofidea} \label[proofidea]{19-We-do-not-include-the-}
+\begin{proofidea} \label[proofidea]{17-We-do-not-include-the-}
 
 We do not include the full proof but the idea is we use our standard
 LWE-based FHE and to rerandomize a ciphertext \(c\) we will add to it an
@@ -468,7 +468,7 @@ there exists a polynomial-time protocol for computing the functionality
 
 \end{theorem}
 
-\section{Beyond two parties}\label{19-Beyond-two-parties}
+\section{Beyond two parties}\label{17-Beyond-two-parties}
 
 We now sketch how to go beyond two parties. It turns out that the
 compiler of honest-but-curious to malicious security works just as well
@@ -556,7 +556,7 @@ to honest-but-curious adversaries.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{19-To-be-completed}
+\begin{proof} \label[proof]{17-To-be-completed}
 
 To be completed.
 

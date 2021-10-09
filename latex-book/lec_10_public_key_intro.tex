@@ -1,4 +1,4 @@
-\chapter{Public key cryptography}\label{10-Public-key-cryptograph}
+\chapter{Public key cryptography}\label{9-Public-key-cryptograph}
 
 People have been dreaming about heavier-than-air flight since at least
 the days of Leonardo Da Vinci (not to mention Icarus from Greek
@@ -41,7 +41,7 @@ than using them but could not think of any concrete way to doing so.
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/merkle-proposal.png}
-\caption{Ralph Merkle's Berkeley CS 224 project proposal for developing
+\caption{Ralph Merkle's Berkeley CS 244 project proposal for developing
 public key cryptography}
 \label{merklefig}
 \end{figure}
@@ -130,7 +130,7 @@ Key Exchange} protocol.}
 \label{johngillfig}
 \end{marginfigure}
 
-\section{Private key crypto recap}\label{10-Private-key-crypto-rec}
+\section{Private key crypto recap}\label{9-Private-key-crypto-rec}
 
 Before we embark on the wonderful journey to \emph{public key}
 cryptography, let's briefly look back and see what we learned about
@@ -274,7 +274,7 @@ techniques to those used for public key encryption.
 \end{remark}
 
 \section{Public Key Encryptions:
-Definition}\label{10-Public-Key-Encryptions}
+Definition}\label{9-Public-Key-Encryptions}
 
 We now discuss how we define security for public key encryption. As
 mentioned above, it took quite a while for cryptographers to arrive at
@@ -347,7 +347,7 @@ adversary \(A\) wins the following game with probability at most
 
 \end{definition}
 
-\begin{pause} \label[pause]{10-Despite-it-being-a-cho}
+\begin{pause} \label[pause]{9-Despite-it-being-a-cho}
 
 Despite it being a ``chosen plaintext attack'', we don't explicitly give
 \(A\) access to the encryption oracle in the public key setting. Make
@@ -365,7 +365,7 @@ Alice while only \(d\) can be used to \emph{decrypt} the messages.
 Another way to think about it is that \(e\) is a ``hobbled key'' that
 can be used for only some of the functions of \(d\).
 
-\subsection{The obfuscation paradigm}\label{10-The-obfuscation-paradi}
+\subsection{The obfuscation paradigm}\label{9-The-obfuscation-paradi}
 
 Why would someone imagine that such a magical object could exist? The
 writing of both James Ellis as well as Diffie and Hellman suggests that
@@ -392,7 +392,7 @@ will be hard to extract \(k\) from it. Hence, you could treat this code
 as a ``public key''. This suggests the following approach for getting an
 encryption scheme:
 
-\begin{quote} \label[quote]{10-Obfuscation-based-publ}
+\begin{quote} \label[quote]{9-Obfuscation-based-publ}
 
 \textbf{``Obfuscation based public key encryption'':} (Thought
 experiment - not an actual construction)
@@ -476,7 +476,7 @@ heuristic to first ask yourself what could be possible if only everyone
 involved had access to a magic black box. It certainly worked well for
 Diffie and Hellman.
 
-\section{Some concrete candidates:}\label{10-Some-concrete-candidat}
+\section{Some concrete candidates:}\label{9-Some-concrete-candidat}
 
 We would have loved to prove a theorem of the form:
 
@@ -528,7 +528,7 @@ We will start by describing cryptosystems based on the first family
 and talk about the second family in future lectures.
 
 \subsection{Diffie-Hellman Encryption (aka
-El-Gamal)}\label{10-Diffie-Hellman-Encrypt}
+El-Gamal)}\label{9-Diffie-Hellman-Encrypt}
 
 The Diffie-Hellman public key system is built on the presumed difficulty
 of the \emph{discrete logarithm problem}:
@@ -616,7 +616,7 @@ problem, then the Diffie-Hellman system is \emph{insecure}.
 
 \end{lemma}
 
-\begin{proof} \label[proof]{10-Using-a-discrete-logar}
+\begin{proof} \label[proof]{9-Using-a-discrete-logar}
 
 Using a discrete logarithm algorithm, we can compute the private key
 \(a\) from the parameters \(p,g,g^a\) present in the public key, and
@@ -625,11 +625,11 @@ choice.
 
 \end{proof}
 
-Unfortunately, no such result is known in the other direction. However
-in the random oracle model, we can prove that this protocol is secure in
-the random-oracle model, under the assumption that the task of computing
-\(g^{ab}\) from \(g^a\) and \(g^b\) (which is now known as the
-\emph{Diffie-Hellman problem}) is hard.
+Unfortunately, no such result is known in the other direction. However,
+we can prove that this protocol is secure in the random-oracle model,
+under the assumption that the task of computing \(g^{ab}\) from \(g^a\)
+and \(g^b\) (which is now known as the \emph{Diffie-Hellman problem}) is
+hard.
 
 \begin{quote}
 \textbf{Computational Diffie-Hellman Assumption:} Let \(\mathbb{G}\) be
@@ -664,10 +664,10 @@ outputs \(h\) such that \(g^{ab} = h \mod p\) is at most \(1/q(n)\)
 where the probability is taken over \(a,b\) chosen at random in
 \(\Z_p\). (In practice people often take \(g\) to be a generator of a
 group significantly smaller in size than \(p\), which enables \(a,b\) to
-be smaller numbers and hence multiplication to be more efficient; We
+be smaller numbers and hence multiplication to be more efficient; we
 ignore this optimization in our discussions.)
 
-\begin{pause} \label[pause]{10-Please-take-your-time-}
+\begin{pause} \label[pause]{9-Please-take-your-time-}
 
 Please take your time to re-read the following conjecture until you are
 sure you understand what it means. Victor Shoup's excellent and online
@@ -689,7 +689,7 @@ secure in the random oracle model.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{10-For-CPA-security-we-ne}
+\begin{proof} \label[proof]{9-For-CPA-security-we-ne}
 
 For CPA security we need to prove that (for fixed \(\mathbb{G}\) of size
 \(p\) and random oracle \(H\)) the following two distributions are
@@ -722,7 +722,7 @@ independently in \(\Z_{p}\)), then there is a size \(poly(T)\) algorithm
 \(\epsilon/(2T)\).
 
 \textbf{Proof of claim:} The proof is simple. We claim that under the
-assumptions above, \(a\) makes the query \(g^{ab}\) to its oracle \(H\)
+assumptions above, \(A\) makes the query \(g^{ab}\) to its oracle \(H\)
 with probability at least \(\epsilon/2\) since otherwise, by the ``lazy
 evaluation'' paradigm, we can assume that \(H(g^{ab})\) is chosen
 independently at random after \(A\)'s attack is completed and hence
@@ -796,18 +796,18 @@ logarithm problem might be easy, and so they would be inappropriate to
 use for this system. One variant that has been proposed is
 \href{https://en.wikipedia.org/wiki/Elliptic_curve_cryptography}{elliptic
 curve cryptography}. This is a group consisting of points of the form
-\((x,y,z)\in \Z_p^3\) that satisfy a certain equation, and
-multiplication can be defined according in a certain way. The main
-advantage of elliptic curve cryptography is that the best known
-algorithms run in time \(2^{\approx n}\) as opposed to
-\(2^{\approx n^{1/3}}\), which allows for much shorter keys.
-Unfortunately, elliptic curve cryptography is just as susceptible to
-quantum algorithms as the discrete logarithm problem over \(\Z_p\).
+\((x,y,z)\in \Z_p^3\) that satisfy a certain equation, where
+multiplication can be defined in a certain way. The main advantage of
+elliptic curve cryptography is that the best known algorithms run in
+time \(2^{\approx n}\) as opposed to \(2^{\approx n^{1/3}}\), which
+allows for much shorter keys. Unfortunately, elliptic curve cryptography
+is just as susceptible to quantum algorithms as the discrete logarithm
+problem over \(\Z_p\).
 
 \end{remark}
 
 \hypertarget{DHKErem}{}
-\begin{remark}[Encryption vs Key Exchange and El Gamal] \label[remark]{DHKErem}
+\begin{remark}[Encryption vs Key Exchange and ElGamal] \label[remark]{DHKErem}
 
 In most of the cryptography literature the protocol above is called the
 \emph{Diffie-Hellman Key Exchange} protocol, and when considered as a
@@ -828,7 +828,7 @@ exchange algorithm and a public key encryption.
 
 \end{remark}
 
-\subsection{Sampling random primes}\label{10-Sampling-random-primes}
+\subsection{Sampling random primes}\label{9-Sampling-random-primes}
 
 To sample a random \(n\) bit prime, one can sample a random number
 \(0 \leq p < 2^n\) and then test if \(p\) is prime. If it is not prime,
@@ -858,7 +858,7 @@ The number of primes between \(1\) and \(N\) is \(\Omega(N/\log N)\).
 
 \end{lemma}
 
-\begin{proof} \label[proof]{10-Recall-that-the-least-}
+\begin{proof} \label[proof]{9-Recall-that-the-least-}
 
 Recall that the \emph{least common multiple (LCM)} of two or more
 \(a_1,\ldots,a_t\) is the smallest number that is a multiple of all of
@@ -875,8 +875,8 @@ factorization. Let \(k\) be the number of primes between \(1\) and
 \(\ensuremath{\mathit{LCM}}(1,\ldots,N) \geq 2^{N-1}\).
 
 The two claims immediately imply the result, since they imply that
-\(2^N \leq N^k\), and taking logs we get that \(N-2 \leq k \log N\) or
-\(k \geq (N-2)/\log N\). (We can assume that \(N\) is odd without of
+\(2^{N-1} \leq N^k\), and taking logs we get that \(N-1 \leq k \log N\)
+or \(k \geq (N-1)/\log N\). (We can assume that \(N\) is odd without of
 loss of generality, since changing from \(N\) to \(N+1\) can change the
 number of primes by at most one.) Thus, all that is left is to prove the
 two claims.
@@ -900,8 +900,8 @@ zero and one, \(x(1-x) \leq 1/4\) and hence \(I\) is at most
 \(x^{(N-1)/2}(1-x)^{(N-1)/2}\) is some polynomial of degree at most
 \(N-1\) with integer coefficients, and so
 \(I=\sum_{k=0}^{N-1} C_k \int_0^1 x^k dx\) for some integer coefficients
-\(C_0,\ldots,C_{N-1}\). Since \(\int_0^1 x^k = \tfrac{1}{k+1}\), we see
-that \(I\) is a sum of fractions with integer numerators and with
+\(C_0,\ldots,C_{N-1}\). Since \(\int_0^1 x^k dx = \tfrac{1}{k+1}\), we
+see that \(I\) is a sum of fractions with integer numerators and with
 denominators that are at most \(N\). Since all the denominators are at
 most \(N\) and \(I>0\), it follows that
 \(I \geq \tfrac{1}{LCM(1,\ldots,N)}\), and so
@@ -914,7 +914,7 @@ QED (CLAIM 2 and hence lemma)
 \end{proof}
 
 \subsection{A little bit of group
-theory.}\label{10-A-little-bit-of-group-}
+theory.}\label{9-A-little-bit-of-group-}
 
 If you haven't seen group theory, it might be useful for you to do a
 quick review. We will not use much group theory and mostly use the
@@ -929,8 +929,7 @@ following:
 \item
   A \emph{finite commutative group} \(\mathbb{G}\) is a finite set
   together with a multiplication operation that satisfies
-  \(a\cdot b = b\cdot a\) and
-  \((a\cdot b)\cdot c = (a\cdot b)\cdot c)\).
+  \(a\cdot b = b\cdot a\) and \((a\cdot b)\cdot c = a\cdot (b\cdot c)\).
 \item
   \(\mathbb{G}\) has a special element known as \(1\), where \(g1=1g=g\)
   for every \(g\in\mathbb{G}\) and for every \(g\in \mathbb{G}\) there
@@ -948,7 +947,7 @@ useful exercises:
 \item
   For every \(g\in \mathbb{G}\), the map \(a \mapsto g^a\) is a \(k\) to
   \(1\) map from \(\{0,\ldots,|\mathbb{G}|-1\}\) to \(\mathbb{G}\) where
-  \(k=|\mathbb{G}|/order(g)\). See footnote for hint\footnote{For every
+  \(k=|\mathbb{G}|/order(g)\). See footnote for hint.\footnote{For every
     \(f\in \mathbb{G}\), you can show a one to one and onto mapping
     between the set \(\{ a : g^a = 1 \}\) and the set
     \(\{b : g^b= f \}\) by choosing some element \(b\) from the latter
@@ -989,7 +988,7 @@ that \(g^a \neq 1\) for all of the fewer than \(\log |\mathbb{G}|\)
 numbers that are obtained by taking \(|\mathbb{G}|/q\) where \(q\) is a
 factor of \(|\mathbb{G}|\).
 
-\begin{pause} \label[pause]{10-Try-to-stop-here-and-v}
+\begin{pause} \label[pause]{9-Try-to-stop-here-and-v}
 
 Try to stop here and verify all the facts on groups mentioned above.
 There are additional group theory exercises at the end of the chapter as
@@ -997,7 +996,7 @@ well.
 
 \end{pause}
 
-\subsection{Digital Signatures}\label{10-Digital-Signatures}
+\subsection{Digital Signatures}\label{9-Digital-Signatures}
 
 Public key encryption solves the \emph{confidentiality} problem, but we
 still need to solve the \emph{authenticity} or \emph{integrity} problem,
@@ -1061,7 +1060,7 @@ condition.
 \end{remark}
 
 \subsection{The Digital Signature Algorithm
-(DSA)}\label{10-The-Digital-Signature-}
+(DSA)}\label{9-The-Digital-Signature-}
 
 The Diffie-Hellman protocol can be turned into a signature scheme. This
 was first done by ElGamal, and a variant of his scheme was developed by
@@ -1129,10 +1128,10 @@ follows: (See also Section 12.5.2 in the KL book)
   modulo \(|\mathbb{G}|\). The signature is \((f,\sigma)\).
 \item
   \emph{Verification:} To verify a signature \((f,\sigma)\) on a message
-  \(m\), check that \(s\neq 0\) and \(f^\sigma=g^{H(m)}h^{F(f)}\).
+  \(m\), check that \(\sigma\neq 0\) and \(f^\sigma=g^{H(m)}h^{F(f)}\).
 \end{itemize}
 
-\begin{pause} \label[pause]{10-You-should-pause-here-}
+\begin{pause} \label[pause]{9-You-should-pause-here-}
 
 You should pause here and verify that this is indeed a valid signature
 scheme, in the sense that for every \(m\), \(V_s(m,S_s(m))=1\).
@@ -1140,16 +1139,16 @@ scheme, in the sense that for every \(m\), \(V_s(m,S_s(m))=1\).
 \end{pause}
 
 Very roughly speaking, the idea behind security is that on one hand
-\(s\) does not reveal information about \(b\) and \(a\) because this is
-``masked'' by the ``random'' value \(H(m)\). On the other hand, if an
-adversary is able to come up with valid signatures, then at least if we
-treated \(H\) and \(F\) as oracles, if the signature passes verification
-then (by taking \(\log\) to the base of \(g\)) the answers \(x,y\) of
-these oracles will satisfy \(bs = x + ay\), which means that
-sufficiently many such equations should be enough to recover the
+\(\sigma\) does not reveal information about \(b\) and \(a\) because
+this is ``masked'' by the ``random'' value \(H(m)\). On the other hand,
+if an adversary is able to come up with valid signatures, then at least
+if we treated \(H\) and \(F\) as oracles, if the signature passes
+verification then (by taking \(\log\) to the base of \(g\)) the answers
+\(x,y\) of these oracles will satisfy \(b\sigma = x + ay\), which means
+that sufficiently many such equations should be enough to recover the
 discrete log \(a\).
 
-\begin{pause} \label[pause]{10-Before-seeing-the-actu}
+\begin{pause} \label[pause]{9-Before-seeing-the-actu}
 
 Before seeing the actual proof, it is a very good exercise to try to see
 how to convert the intuition above into a formal proof.
@@ -1165,7 +1164,7 @@ when \(H,F\) are modeled as random oracles.
 
 \end{theorem}
 
-\begin{proof} \label[proof]{10-Suppose-for-the-sake-o}
+\begin{proof} \label[proof]{9-Suppose-for-the-sake-o}
 
 Suppose, for the sake of contradiction, that there was a \(T\)-time
 adversary \(A\) that succeeds with probability \(\epsilon\) in a chosen
@@ -1183,10 +1182,10 @@ oracle'' and ``fake function \(F\) oracle'':
 On input a message \(m\), the fake box will choose \(\sigma,r\) at
 random in \(\{0,\ldots,p-1\}\) (where \(p=|\mathbb{G}|\)), and compute
 \[f=(g^{H(m)}h^{r})^{\sigma^{-1} \mod p} \label{randomfdsaeq}\] and
-output \(h\). We will then record the value \(F(f)=r\) and answer \(r\)
-on future queries to \(F\). If we've already answered \(F(f)\) before
-with a different value, then we halt the experiment and output an error.
-We claim that the adversary's chance of succeeding in
+output \((f,\sigma)\). We will then record the value \(F(f)=r\) and
+answer \(r\) on future queries to \(F\). If we've already answered
+\(F(f)\) before with a different value, then we halt the experiment and
+output an error. We claim that the adversary's chance of succeeding in
 \(\ensuremath{\mathit{CMA}}'\) is computationally indistinguishable from
 its chance of succeeding in the original \(\ensuremath{\mathit{CMA}}\)
 experiment. Indeed, since we choose the value \(r=F(f)\) at random, as
@@ -1198,9 +1197,8 @@ most \(T\) queries, and each \(f\) is chosen according to
 \(f\) is repeated is at most \(T/|\mathbb{G}|\), which is negligible.
 Now we computed \(\sigma\) in the fake box as a random value, but we can
 also compute \(\sigma\) as equaling \(b^{-1}(H(m)+a r) \mod p\), where
-\(b=\log_g f \mod \mathbb{G}\) is uniform as well, and so the
-distribution of the signature \((f,\sigma)\) is identical to the
-distribution by a real box.
+\(b=\log_g f \mod p\) is uniform as well, and so the distribution of the
+signature \((f,\sigma)\) is identical to the distribution by a real box.
 
 Note that we can simulate the result of the experiment
 \(\ensuremath{\mathit{CMA}}'\) without access to the value \(a\) such
@@ -1243,7 +1241,7 @@ H(m^*)+aF(f^*)=b\sigma^*
 \end{equation*}
 or
 \begin{equation*}
-b= (H(m^*)-H(m))(\sigma-\sigma^*)^{-1} \mod p
+b= (H(m)-H(m^*))(\sigma-\sigma^*)^{-1} \mod p
 \end{equation*}
 since all of the values \(H(m^*),H(m),\sigma,\sigma^*\) are known, this
 means we can compute \(b\), and hence also recover the unknown value
@@ -1317,11 +1315,11 @@ such schemes later on in this course.
 \end{remark}
 
 \section{Putting everything together - security in
-practice.}\label{10-Putting-everything-tog}
+practice.}\label{9-Putting-everything-tog}
 
 Let us discuss briefly how public key cryptography is used to secure web
 traffic through the SSL/TLS protocol that we all use when we use
-\texttt{https://} URLs. The security this achieve is quite amazing. No
+\texttt{https://} URLs. The security this achieves is quite amazing. No
 matter what wired or wireless network you are using, no matter what
 country you are in, as long as your device (e.g., phone/laptop/etc..)
 and the server you are talking to (e.g., Google, Amazon, Microsoft etc.)
@@ -1361,11 +1359,11 @@ with a signed message to the effect of
 Such a message is known as a \emph{certificate}, and it allows you to
 extend your trust in Apple to a trust in Amazon. Now when your browser
 communicates with Amazon, it can request this message, and if it is not
-present not continue with the interaction or at least display some
-warning. Clearly a person in the middle can stop this message from
-travelling and hence not allow the interaction to continue, but they
-cannot \emph{spoof} the message and send a certificate for their own
-public key, unless they know Apple's secret key. (In today's actual
+present terminate the interaction or at least display some warning.
+Clearly a person in the middle can stop this message from travelling and
+hence not allow the interaction to continue, but they cannot
+\emph{spoof} the message and send a certificate for their own public
+key, unless they know Apple's secret key. (In today's actual
 implementation, for various business and other reasons, the trusted keys
 that come pre-installed in browsers and devices do not belong to Apple
 or Microsoft but rather to particular companies such as \emph{Verisign}
@@ -1411,8 +1409,8 @@ blog post} and \href{https://weakdh.org/}{this website}.
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/certificate.jpg}
-\caption{When you connect to a webpage protected by SSL/TLS, the
-Browswer displays information on the certificate's authenticity}
+\caption{When you connect to a webpage protected by SSL/TLS, the browser
+displays information on the certificate's authenticity}
 \label{tmplabelfig}
 \end{figure}
 
@@ -1441,20 +1439,20 @@ website of the electronic signing company DocuSign.}
 trusted by default (as of spring 2016) by Mozilla products: Actalis,
 Amazon, AS Sertifitseerimiskeskuse (SK), Atos, Autoridad de
 Certificacion Firmaprofesional, Buypass, CA Disig a.s., Camerfirma,
-CerticÃ¡mara S.A., Certigna, Certinomis, certSIGN, China Financial
+Certicámara S.A., Certigna, Certinomis, certSIGN, China Financial
 Certification Authority (CFCA), China Internet Network Information
 Center (CNNIC), Chunghwa Telecom Corporation, Comodo, ComSign, Consorci
-AdministraciÃ³ Oberta de Catalunya (Consorci AOC, CATCert), Cybertrust
+Administració Oberta de Catalunya (Consorci AOC, CATCert), Cybertrust
 Japan / JCSI, D-TRUST, Deutscher Sparkassen Verlag GmbH (S-TRUST,
 DSV-Gruppe), DigiCert, DocuSign (OpenTrust/Keynectis), e-tugra, EDICOM,
 Entrust, GlobalSign, GoDaddy, Government of France (ANSSI, DCSSI),
 Government of Hong Kong (SAR), Hongkong Post, Certizen, Government of
 Japan, Ministry of Internal Affairs and Communications, Government of
-Spain, Autoritat de CertificaciÃ³ de la Comunitat Valenciana (ACCV),
+Spain, Autoritat de Certificación de la Comunitat Valenciana (ACCV),
 Government of Taiwan, Government Root Certification Authority (GRCA),
 Government of The Netherlands, PKIoverheid, Government of Turkey, Kamu
 Sertifikasyon Merkezi (Kamu SM), HARICA, IdenTrust, Izenpe S.A.,
-Microsec e-SzignÃ³ CA, NetLock Ltd., PROCERT, QuoVadis, RSA the Security
+Microsec e-Szignó CA, NetLock Ltd., PROCERT, QuoVadis, RSA the Security
 Division of EMC, SECOM Trust Systems Co.~Ltd., Start Commercial
 (StartCom) Ltd., Swisscom (Switzerland) Ltd, SwissSign AG, Symantec /
 GeoTrust, Symantec / Thawte, Symantec / VeriSign, T-Systems
@@ -1464,7 +1462,7 @@ Visa, Web.com, Wells Fargo Bank N.A., WISeKey, WoSign CA Limited
 \end{quote}
 
 \section{Appendix: An alternative proof of the density of
-primes}\label{10-Appendix-An-alternativ}
+primes}\label{9-Appendix-An-alternativ}
 
 I record here an alternative way to show that the fraction of primes in
 \([2^n]\) is \(\Omega(1/n)\).\footnote{It might be that the two ways are
@@ -1479,7 +1477,7 @@ The probability that a random \(n\) bit number is prime is at least
 
 \end{lemma}
 
-\begin{proof} \label[proof]{10-Let-Nn-We-need-to-show}
+\begin{proof} \label[proof]{9-Let-Nn-We-need-to-show}
 
 Let \(N=2^n\). We need to show that the number of primes between \(1\)
 and \(N\) is at least \(\Omega(N/\log N)\). Consider the number
@@ -1519,7 +1517,7 @@ establishing that the number of primes in \([1,N]\) is
 \end{proof}
 
 \section{Additional Group Theory Exercises and
-Proofs}\label{10-Additional-Group-Theor}
+Proofs}\label{9-Additional-Group-Theor}
 
 Below are optional group theory related exercises and proofs meant to
 help gain an intuition with group theory. Note that in this class, we
@@ -1560,18 +1558,18 @@ operation.
 \begin{itemize}
 \tightlist
 \item
-  For some prime \(p\), \(\mathbb{Z}_p^{\*}=\{1,\ldots , p-1\}\), with
-  operation multiplication mod \(p\) (Note: the \(^{\*}\) is to
+  For some prime \(p\), \(\mathbb{Z}_p^{*}=\{1,\ldots , p-1\}\), with
+  operation multiplication mod \(p\) (Note: the \(^{*}\) is to
   distinguish this group from \(\mathbb{Z}_p\) with an additive
   operation and from \(\ensuremath{\mathit{GF}}(p)\).)
 \item
-  The quadratic residues of \(\mathbb{Z}_p^{\*}\):
-  \(Q_p=\{a^2:a\in \mathbb{Z}_p^{\*}\}\) with operation multiplication
+  The quadratic residues of \(\mathbb{Z}_p^{*}\):
+  \(Q_p=\{a^2:a\in \mathbb{Z}_p^{*}\}\) with operation multiplication
   mod \(p\)
 \item
-  \(\mathbb{Z}_n^{\*}\), where \(n=p\cdot q\) (product of two primes)
+  \(\mathbb{Z}_n^{*}\), where \(n=p\cdot q\) (product of two primes)
 \item
-  The quadratic residues of \(\mathbb{Z}_n^{\*}\)::
+  The quadratic residues of \(\mathbb{Z}_n^{*}\)::
   \(Q_n=\{a^2:a\in \mathbb{Z}_n^{*}\}\), where \(n=p\cdot q\)
 \item
   Elliptic curve groups
@@ -1580,13 +1578,21 @@ operation.
 For more familiarity with group definitions, you could verify that the
 first 4 groups satisfy the group axioms. For cryptography, two
 operations need be efficient for elements \(a,b\) in group
-\(\mathbb{G}\): * Exponentiation: \(a,b\mapsto a^b\). This is done
-efficiently using repeated squaring, i.e.~generate all the squares up to
-\(2^k\) and then use the binary representation. * Inverse:
-\(a \mapsto a^{-1}\). This is done efficiently in \(\mathbb{Z}_p^{\*}\)
-by Fermat's little theorem. \(a^{-1}=a^{p-2}\) mod \(p\).
+\(\mathbb{G}\):
 
-\subsection{Solved exercises:}\label{10-Solved-exercises}
+\begin{itemize}
+\tightlist
+\item
+  Exponentiation: \(a,b\mapsto a^b\). This is done efficiently using
+  repeated squaring, i.e.~generate all the squares up to \(2^k\) and
+  then use the binary representation.
+\item
+  Inverse: \(a \mapsto a^{-1}\). This is done efficiently in
+  \(\mathbb{Z}_p^{\*}\) by Fermat's little theorem. \(a^{-1}=a^{p-2}\)
+  mod \(p\).
+\end{itemize}
+
+\subsection{Solved exercises:}\label{9-Solved-exercises}
 
 \hypertarget{grouptheoryex1}{}
 \begin{solvedexercise} \label[solvedexercise]{grouptheoryex1}
@@ -1596,7 +1602,7 @@ multiplication mod \(7\)? What if the operation is addition mod \(7\)?
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{10-Yes-if-multiplication-}
+\begin{solution} \label[solution]{9-Yes-if-multiplication-}
 
 Yes (if multiplication) and no (if addition). To prove that something is
 a group, we run through the definition of a group. This set is finite,
@@ -1629,7 +1635,7 @@ operation is multiplication mod \(7\)?
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{10--and--Recall-that-a-ge}
+\begin{solution} \label[solution]{9--and--Recall-that-a-ge}
 
 \(3\) and \(5\). Recall that a generator of a group is an element \(g\)
 such that \(\{g,g^2,g^3,\cdots\}\) is the entire group. We can directly
@@ -1661,7 +1667,7 @@ where the operation is multiplication mod \(7\)?
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{10-The-orders-of--are----}
+\begin{solution} \label[solution]{9-The-orders-of--are----}
 
 The orders (of \(1,2,3,4,5,6\)) are \(1,3, 6, 3, 6, 2\), respectively.
 This can be seen from the work of the previous problem, where we test
@@ -1684,7 +1690,7 @@ that the inverse of any element is unique (i.e.~prove that if
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{10-Suppose-that-a-in-math}
+\begin{solution} \label[solution]{9-Suppose-that-a-in-math}
 
 Suppose that \(a \in \mathbb{G}\) and that \(b,c \in \mathbb{G}\) such
 that \(ab = 1\) and \(ac = 1\). Then we know that \(ab = ac\), and then
@@ -1705,7 +1711,7 @@ then \(a=b\)).
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{10-Suppose-that-ca--c-for}
+\begin{solution} \label[solution]{9-Suppose-that-ca--c-for}
 
 Suppose that \(ca = c\) for all \(c \in \mathbb{G}\) and that \(cb = c\)
 for all \(c \in \mathbb{G}\). Then we can say that \(ca =c = cb\) (for
@@ -1719,7 +1725,7 @@ as desired. QED
 The next few problems are related to quadratic residues, but these
 problems are a bit more general (in particular, we are considering some
 group, and a subgroup which are all of the elements of the first group
-which are squares)
+which are squares).
 
 \hypertarget{quadresidueex1}{}
 \begin{solvedexercise} \label[solvedexercise]{quadresidueex1}
@@ -1731,13 +1737,14 @@ Verify that \(\mathbb{H}\) is a subgroup of \(\mathbb{G}\).
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{10-To-be-a-subgroup-we-ne}
+\begin{solution} \label[solution]{9-To-be-a-subgroup-we-ne}
 
 To be a subgroup, we need to make sure that \(\mathbb{H}\) is a group in
 its own right (in particular, that it contains the identity, that it
 contains inverses, and that it is closed under multiplication;
 associativity and commutativity follow because we are within a larger
 set \(\mathbb{G}\) which satisfies associativity and commutativity).
+
 \emph{Identity} Well, \(1^2 = 1\), so \(1 \in \mathbb{H}\), so
 \(\mathbb{H}\) has the identity element. \emph{Inverses} If
 \(h \in \mathbb{H}\), then \(g^2 = h\) for some \(g \in \mathbb{G}\),
@@ -1776,7 +1783,7 @@ strategy).
 
 \end{solvedexercise}
 
-\begin{solution} \label[solution]{10-Suppose-that-we-receiv}
+\begin{solution} \label[solution]{9-Suppose-that-we-receiv}
 
 Suppose that we receive some element \(g \in \mathbb{G}\). We want to
 know if there exists some \(g' \in \mathbb{G}\) such that \(g = (g')^2\)

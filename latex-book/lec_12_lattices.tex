@@ -1,4 +1,4 @@
-\chapter{Lattice based cryptography}\label{12-Lattice-based-cryptogr}
+\chapter{Lattice based cryptography}\label{11-Lattice-based-cryptogr}
 
 Lattice based public key encryption (and its cousins known as knapsack
 and coding based encryption) have almost as long a history as discrete
@@ -90,7 +90,7 @@ course we only touch on few aspects of it. I highly recommend
 \href{https://web.eecs.umich.edu/~cpeikert/pubs/lattice-survey.pdf}{Chris
 Peikert's Survey} for a much more in depth treatment of this area.
 
-\subsection{Quick linear algebra recap}\label{12-Quick-linear-algebra-r}
+\subsection{Quick linear algebra recap}\label{11-Quick-linear-algebra-r}
 
 A \emph{field} \(\mathbb{F}\) is a set that supports the operations
 \(+,\cdot\) and contains the numbers \(0\) and \(1\) (more formally the
@@ -235,7 +235,7 @@ see a symbol such as \(v,A,x,y\) ask yourself:
 \end{remark}
 
 \section{A world without Gaussian
-elimination}\label{12-A-world-without-Gaussi}
+elimination}\label{11-A-world-without-Gaussi}
 
 The general approach people used to get a public key encryption is to
 obtain a hard computational problem with some mathematical
@@ -271,7 +271,7 @@ linear equations, we can still combine several equations to get new
 ones. To keep things simple, let's consider the case of encrypting a
 single bit.
 
-\begin{pause} \label[pause]{12-If-you-have-a-CPA-secu}
+\begin{pause} \label[pause]{11-If-you-have-a-CPA-secu}
 
 If you have a CPA secure public key encryption scheme for single bit
 messages then you can extend it to a CPA secure encryption scheme for
@@ -318,7 +318,7 @@ Thus, at least intuitively, the following encryption scheme would be
 ``secure'' in the Gaussian-elimination free world of attackers that
 haven't taken freshman linear algebra:
 
-\begin{quote} \label[quote]{12-Scheme-LwoE-ENC-Public}
+\begin{quote} \label[quote]{11-Scheme-LwoE-ENC-Public}
 
 \textbf{Scheme ``LwoE-ENC'':} Public key encryption under the hardness
 of ``learning linear equations without errors''.
@@ -339,7 +339,7 @@ of ``learning linear equations without errors''.
 
 \end{quote}
 
-\begin{pause} \label[pause]{12-Please-stop-here-and-m}
+\begin{pause} \label[pause]{11-Please-stop-here-and-m}
 
 Please stop here and make sure that you see why this is a valid
 encryption (not in the sense that it is secure - it's not - but in the
@@ -349,7 +349,7 @@ calculations are done modulo \(q\).
 
 \end{pause}
 
-\section{Security in the real world.}\label{12-Security-in-the-real-w}
+\section{Security in the real world.}\label{11-Security-in-the-real-w}
 
 Like it or not (and cryptographers typically don't) Gaussian elimination
 \emph{is} possible in the real world and the scheme above is completely
@@ -395,7 +395,7 @@ or rationals disappears), the resulting equations have the form
 The \emph{Learning With Errors (LWE)} conjecture is that this is
 \emph{inherent}:
 
-\begin{quote} \label[quote]{12-Conjecture-Learning-wi}
+\begin{quote} \label[quote]{11-Conjecture-Learning-wi}
 
 \textbf{Conjecture (Learning with Errors, Regev 2005):} Let \(q=q(n)\)
 and \(\delta=\delta(n)\) be some functions. The \emph{Learning with
@@ -440,7 +440,7 @@ adversary \(R\) as getting access to a ``magic box'' that they can use
 form \((a_i,y_i)\) with \(a_i\in \Z_q^n\), \(y_i \in \Z_q\) where
 \(y_i = \langle a_i, x \rangle + e_i\)).
 
-\section{Search to decision}\label{12-Search-to-decision}
+\section{Search to decision}\label{11-Search-to-decision}
 
 It turns out that if the LWE is hard, then it is even hard to
 distinguish between random equations and nearly correct ones:
@@ -477,7 +477,7 @@ are computationally indistinguishable:
 
 \end{theorem}
 
-\begin{proof} \label[proof]{12-Suppose-that-we-had-a-}
+\begin{proof} \label[proof]{11-Suppose-that-we-had-a-}
 
 Suppose that we had a decisional adversary \(D\) that succeeds in
 distinguishing the two distributions above with bias \(\epsilon\). For
@@ -534,7 +534,7 @@ recover \(x\).
 
 We can now show the secure variant of our original encryption scheme:
 
-\begin{quote} \label[quote]{12-LWE-based-encryption-L}
+\begin{quote} \label[quote]{11-LWE-based-encryption-L}
 
 \textbf{LWE-based encryption LWE-ENC:} * \emph{Parameters:} Let
 \(\delta(n)=1/n^4\) and let \(q=poly(n)\) be a prime such that LWE holds
@@ -557,7 +557,7 @@ w.r.t. \(q,\delta\). We let \(m = n^2\log q\).
 
 \end{quote}
 
-\begin{pause} \label[pause]{12-The-scheme-LWEENC-is-a}
+\begin{pause} \label[pause]{11-The-scheme-LWEENC-is-a}
 
 The scheme LWEENC is also described in \cref{lweencdescfig} with
 slightly different notation. I highly recommend you stop and verify you
@@ -590,7 +590,7 @@ With high probability, the decryption of the encryption of \(b\) equals
 
 \end{lemma}
 
-\begin{proof} \label[proof]{12-langle-wtop-Ax-rangle-}
+\begin{proof} \label[proof]{11-langle-wtop-Ax-rangle-}
 
 \(\langle w^\top A,x \rangle = \langle w,Ax \rangle\). Hence, if
 \(y=Ax+e\) then
@@ -646,7 +646,7 @@ indistinguishable:
 
 \end{lemma}
 
-\begin{pause} \label[pause]{12-You-should-stop-here-a}
+\begin{pause} \label[pause]{11-You-should-stop-here-a}
 
 You should stop here and verify that \textbf{(i)} You understand the
 statement of \cref{LWEENClem} and \textbf{(ii)} you understand why this
@@ -662,7 +662,7 @@ the hybrid argument.
 We now prove \cref{LWEENClem}, which will complete the proof of
 \cref{LWEENCthm}.
 
-\begin{proof}[Proof of \cref{LWEENClem}] \label[proof]{12-Define-D-to-be-the-dis}
+\begin{proof}[Proof of \cref{LWEENClem}] \label[proof]{11-Define-D-to-be-the-dis}
 
 Define \(D\) to be the distribution
 \((A,y,w^\top A,\langle w,y \rangle)\) as in the lemma's statement
@@ -816,7 +816,7 @@ get
 
 \end{proof}
 
-\begin{pause} \label[pause]{12-The-proof-of-crefLWEEN}
+\begin{pause} \label[pause]{11-The-proof-of-crefLWEEN}
 
 The proof of \cref{LWEENCthm} is quite subtle and requires some
 re-reading and thought. To read more about this, you can look at the
@@ -826,7 +826,7 @@ Learning with Error Problem''} Sections 3 and 4.
 
 \end{pause}
 
-\section{But what are lattices?}\label{12-But-what-are-lattices}
+\section{But what are lattices?}\label{11-But-what-are-lattices}
 
 You can think of a lattice as a discrete version of a subspace. A
 lattice \(L\) is simply a discrete subset of \(\mathbb{R}^n\) such that
@@ -894,7 +894,7 @@ have an extremely good basis \(L\) for the lattice then \(v\) may indeed
 be the closest vector in the lattice, but in other more ``skewed'' bases
 it can be extremely far from it.
 
-\section{Ring based lattices}\label{12-Ring-based-lattices}
+\section{Ring based lattices}\label{11-Ring-based-lattices}
 
 One of the biggest issues with lattice based cryptosystem is the key
 size. In particular, the scheme above uses an \(m\times n\) matrix where
