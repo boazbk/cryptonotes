@@ -69,12 +69,11 @@ numbers that can be done classically (or even than can be done by hand),
 given that it takes many years to develop new standards and get them
 deployed, many believe the effort to transition away from these
 factoring/dlog based schemes should start today (or perhaps should have
-started several years ago). The NSA has
-\href{https://www.nsa.gov/ia/programs/suiteb_cryptography/index.shtml}{suggested}
-that it plans to initiate the process to ``transition to quantum
-resistant algorithms in the not too distant future''; see also this
-\href{https://cryptome.org/2016/01/CNSA-Suite-and-Quantum-Computing-FAQ.pdf}{very
-interesting FAQ} on this topic.
+started several years ago). Based on this, the National Institute of
+Standards and Technology has started a
+\href{https://csrc.nist.gov/projects/post-quantum-cryptography}{process
+to identify ``post quantum'' public key encryption scheme}. All the
+finalist for public-key encryption are based on lattices/codes.
 
 Cryptography has the peculiar/unfortunate feature that if a machine is
 built that can factor large integers in 20 years, it can still be used
@@ -113,7 +112,9 @@ number.\footnote{While this won't be of interest for us in this chapter,
   inverse) but in a different way, via interpreting these vectors as
   coefficients of a degree \(k-1\) polynomial.}
 
-You should be comfortable with the following notions:
+You should be comfortable with the following notions (these are covered
+in a number of sources, including the appendix of Katz-Lindell and
+\href{https://shoup.net/ntb/}{Shoup's online-available book}):
 
 \begin{itemize}
 \item
@@ -121,7 +122,7 @@ You should be comfortable with the following notions:
   \(M \in \mathbb{F}^{m \times n}\). An \(m\times n\) matrix has \(m\)
   rows and \(n\) columns. We think of vectors as \emph{column vectors}
   and so we can think of a vector \(v \in \mathbb{F}^n\) as an
-  \(n\times 1\) matrix. We write the \(i\)-the coordinate of \(v\) as
+  \(n\times 1\) matrix. We write the \(i\)-th coordinate of \(v\) as
   \(v_i\) and the \((i,j)\)-th coordinate of \(M\) as \(M_{i,j}\)
   (i.e.~the coordinate in the \(i\)-th row and the \(j\)-th column.) We
   often write a vector \(v\) as \((v_1,\ldots,v_n)\) but we still mean
@@ -154,22 +155,22 @@ You should be comfortable with the following notions:
 \item
   The inner product (also known as ``dot product'')
   \(\langle u,v \rangle\) between two vectors of the same dimension
-  \(n\) that is defined as \(\sum u_i v_i\) (addition done in the field
-  \(\mathbb{F}\)).\footnote{There is a much more general notion of inner
-    product typically defined, and in particular over fields such as the
-    complex numbers we would define the inner product as
-    \(\sum \overline{u}_i v_i\) where for \(a\in \mathbb{C}\),
-    \(\overline{a}\) denotes the \emph{complex conjugate} of \(a\).
-    However, we stick to the simple case above for this chapter.}
+  \(n\) is defined as \(\sum u_i v_i\) (addition done in the field
+  \(\mathbb{F}\)).\footnote{Inner products can be defined more
+    generally, and in particular over fields such as the complex numbers
+    we would define the inner product as \(\sum \overline{u}_i v_i\)
+    where for \(a\in \mathbb{C}\), \(\overline{a}\) denotes the
+    \emph{complex conjugate} of \(a\). However, we stick to this simple
+    case for this chapter.}
 \item
   The \emph{matrix product} \(\ensuremath{\mathit{AB}}\) of an
-  \(m \times k\) and a \(k\times n\) matrix, that results in an
-  \(m\times n\) matrix. If we think of the rows of \(A\) as the vectors
+  \(m \times k\) and a \(k\times n\) matrix results in an \(m\times n\)
+  matrix. If we think of the rows of \(A\) as the vectors
   \(A_1,\ldots,A_m \in \mathbb{F}^k\) and the columns of \(B\) as
-  \(B_1,\ldots,B_n\), then the \((i,j)\)-th coordinate of
-  \(\ensuremath{\mathit{AB}}\) is \(\langle A_i , B_j \rangle\). Matrix
-  product is associative and satisfies the distributive law but is
-  \emph{not commutative}: there are pairs of square matrices \(A,B\)
+  \(B_1,\ldots,B_n \in \mathbb{F}^k\), then the \((i,j)\)-th coordinate
+  of \(\ensuremath{\mathit{AB}}\) is \(\langle A_i , B_j \rangle\).
+  Matrix product is associative and satisfies the distributive law but
+  is \emph{not commutative}: there are pairs of square matrices \(A,B\)
   such that \(\ensuremath{\mathit{AB}} \neq \ensuremath{\mathit{BA}}\).
 \item
   The \emph{transpose} of an \(n\times m\) matrix \(A\) is the
@@ -195,17 +196,16 @@ You should be comfortable with the following notions:
   an \(m \times n\) matrix \(A\) and \(m\)-dimensional vector \(y\),
   finding the \(n\)-dimensional vector \(x\) such that \(Ax = y\). If
   the rank of \(A\) is at least \(n\) (which in particular means that
-  \(m \geq n\)) then it means that by dropping \(m-n\) rows of \(A\) and
-  coordinates of \(y\) we can obtain the equation \(A'x = y'\) where
-  \(A'\) is an \(n\times n\) matrix that has an inverse. In this case a
-  solution (if it exists) will be equal to \((A')^{-1}y\). If for a set
-  of equations we have \(m>n\) and we can find two such matrices
-  \(A',A''\) such that \((A')^{-1}y \neq (A'')^{-1}y\) then we say it is
-  \emph{over determined} and in such a case it has no solutions. If a
-  set of equations has more variables \(n\) than equations \(m\) we say
-  it's \emph{under-determined}. In such a case it either has no
-  solutions or the solutions form an affinte subspace of dimension at
-  least \(n-m\).
+  \(m \geq n\)) then by dropping \(m-n\) rows of \(A\) and coordinates
+  of \(y\) we can obtain the equation \(A'x = y'\) where \(A'\) is an
+  \(n\times n\) matrix that has an inverse. In this case a solution (if
+  it exists) will be equal to \((A')^{-1}y\). If for a set of equations
+  we have \(m>n\) and we can find two such matrices \(A',A''\) such that
+  \((A')^{-1}y \neq (A'')^{-1}y\) then we say it is \emph{over
+  determined} and in such a case it has no solutions. If a set of
+  equations has more variables \(n\) than equations \(m\) we say it's
+  \emph{under-determined}. In such a case it either has no solutions or
+  the solutions form an affine subspace of dimension at least \(n-m\).
 \item
   The \emph{gaussian elimination} algorithm can be used to obtain, given
   a set of equations \(Ax = y\) a solution to \(x\) if such exists or a
@@ -237,7 +237,7 @@ see a symbol such as \(v,A,x,y\) ask yourself:
 \section{A world without Gaussian
 elimination}\label{11-A-world-without-Gaussi}
 
-The general approach people used to get a public key encryption is to
+The general approach people use to get a public key encryption is to
 obtain a hard computational problem with some mathematical
 \emph{structure}. We've seen this in the \emph{discrete logarithm}
 problem, where the task is to invert the map \(a \mapsto g^a \pmod{p}\),
@@ -248,14 +248,14 @@ the task of solving linear equations.
 Pretend that we didn't know of Gaussian elimination,\footnote{Despite
   the name, \href{https://goo.gl/3HNb5U}{Gaussian elimination} has been
   known to Chinese mathematicians since 150BC or so, and was popularized
-  in the west through the 1670 notes of Isaac Newton.} and that if we
-picked a ``generic'' matrix \(A\) then the map \(x \mapsto Ax\) would be
-hard to invert. (Here and elsewhere, our default interpretation of a
-vector \(x\) is as a \emph{column} vector, and hence if \(x\) is \(n\)
-dimensional and \(A\) is \(m\times n\) then \(Ax\) is \(m\) dimensional.
-We use \(x^\top\) to denote the row vector obtained by
-\emph{transposing} \(x\).) Could we use that to get a public key
-encryption scheme?
+  in the west through the 1670 notes of Isaac Newton, more than 100
+  years before Gauss was born.} and that if we picked a ``generic''
+matrix \(A\) then the map \(x \mapsto Ax\) would be hard to invert.
+(Here and elsewhere, our default interpretation of a vector \(x\) is as
+a \emph{column} vector, and hence if \(x\) is \(n\) dimensional and
+\(A\) is \(m\times n\) then \(Ax\) is \(m\) dimensional. We use
+\(x^\top\) to denote the row vector obtained by \emph{transposing}
+\(x\).) Could we use that to get a public key encryption scheme?
 
 Here is a concrete approach. Let us fix some prime \(q\) (think of it as
 polynomial size, e.g., \(q\) is smaller than \(1024\) or so, though
@@ -287,7 +287,7 @@ will generate a new \emph{correct} equation on \(x\), while to encrypt
 the value \(1\) we will generate an \emph{incorrect} equation. To
 decrypt a ciphertext \((a,\sigma)\in \Z_q^{n+1}\), we think of it as an
 equation of the form \(\langle a,x \rangle=\sigma\) and output \(1\) if
-and only if the equation is correct.
+and only if the equation is incorrect.
 
 How does the encrypting algorithm, that does not know \(x\), get a
 correct or incorrect equation on demand? One way would be to simply take
@@ -312,10 +312,10 @@ if the rows of \(A\) are \(a_1,\ldots,a_m\), then we can pick a vector
 equation \(w^\top A x = \langle w,y \rangle\) (note that
 \(\langle w,y \rangle = w^\top y\) and so we can think of this as the
 equation that we obtain from \(Ax = y\) by multiplying both sides on the
-right by the row vector \(w^\top\)).
+left by the row vector \(w^\top\)).
 
 Thus, at least intuitively, the following encryption scheme would be
-``secure'' in the Gaussian-elimination free world of attackers that
+``secure'' in the Gaussian elimination-free world of attackers that
 haven't taken freshman linear algebra:
 
 \begin{quote} \label[quote]{11-Scheme-LwoE-ENC-Public}
@@ -357,9 +357,9 @@ insecure. However, the Gaussian elimination algorithm is extremely
 \emph{brittle}.\\
 Errors tend to be amplified when you combine equations. This is usually
 thought of as a bad thing, and numerical analysis is much about dealing
-with issue. However, from the cryptographic point of view, these errors
-can be our saving grace and enable us to salvage the security of the
-ridiculous scheme above.
+with this issue. However, from the cryptographic point of view, these
+errors can be our saving grace and enable us to salvage the security of
+the ridiculous scheme above.
 
 To see why Gaussian elimination is brittle, let us recall how it works.
 Think of \(m=n\) for simplicity. Given equations \(Ax=y\) in the unknown
@@ -407,7 +407,7 @@ for every polynomial \(m(n)\) and polynomial-time adversary \(R\),
 \Pr[ R(A,Ax+e) = x ] < negl(n)
 \end{equation*}
 where for \(q=q(n)\) and \(\delta = \delta(n)\), this probability is
-taken over \(A\) a random \(m\times n\) matrix in \(\Z_q\), \(x\) a
+taken over \(A\) a random \(m\times n\) matrix over \(\Z_q\), \(x\) a
 random vector in \(\Z_q^n,\) and \(e\) a random ``noise vector'' in
 \(\Z_q^m\) where \(|e_i| < \delta q\) for every
 \(i \in [m]\).\footnote{One can think of \(e\) as chosen by simply
@@ -438,16 +438,40 @@ an arbitrary polynomial in \(n\). Therefore we can think of such an
 adversary \(R\) as getting access to a ``magic box'' that they can use
 \(m=poly(n)\) number of times to get ``noisy equations on \(x\)'' of the
 form \((a_i,y_i)\) with \(a_i\in \Z_q^n\), \(y_i \in \Z_q\) where
-\(y_i = \langle a_i, x \rangle + e_i\)).
+\(y_i = \langle a_i, x \rangle + e_i\).
+
+\begin{pause} \label[pause]{11-The-LWE-conjecture-pos}
+
+The LWE conjecture posits that no \emph{efficient} algorithm can recover
+\(x\) given \(A\) and \(Ax + e\). But you might wonder whether it's
+possible to do this is \emph{inefficiently}. The answer is yes.
+Intuitively the reason is that if we have more equations than unknown
+(i.e., if \(m>n\)) then these equations contain enough information to
+determine the unknown variables even if they are noisy. It can be shown
+that if \(m\) is sufficiently large (\(m>10n\) will do) then with high
+probability over \(A,x,e\), given \(A\) and \(y=x +e\), if we enumerate
+over all \(\tilde{x} \in \Z_q^n\) and output the string minimizing
+\(| A\tilde{x} - y|\) (where we define \(|v| =\sum |v_i|\) for a vector
+\(v\)), then \(\tilde{x}\) will equal \(x\).
+
+It is a good exercise to work out the details, but a hint is this can be
+proven by showing that for every \(\tilde{x}\neq x\), with high
+probability over \(A\), \(|A\tilde{x} - Ax| > \delta q m\). The latter
+fact holds because \(v = A(x-\tilde{x})\) is a random vector in
+\(\Z_q^m\), and the probability that \(|v|<\delta q m\) is much smaller
+than \(q^{-0.1 m} < q^{-n}\). Hence we can take a union bound over all
+possible \(\tilde{x} \in \Z_q^n\).
+
+\end{pause}
 
 \section{Search to decision}\label{11-Search-to-decision}
 
 It turns out that if the LWE is hard, then it is even hard to
 distinguish between random equations and nearly correct ones:
 
-\begin{marginfigure}
+\begin{figure}
 \centering
-\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/lwevecindist.png}
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/lwevecindist.png}
 \caption{The search to decision reduction (\cref{LWEsearchtodecthm})
 implies that under the LWE conjecture, for every \(m=poly(n)\), if we
 choose and fix a random \(m\times n\) matrix \(A\) over \(\Z_q\), the
@@ -455,8 +479,8 @@ distribution \(Ax+e\) is indistinguishable from a random vector in
 \(\Z_q^m\), where \(x\) is a random vector in \(\Z_q^n\) and \(e\) is a
 random ``short'' vector in \(\Z_q^m\). The two distributions are
 indistinguishable even to an adversary that knows \(A\).}
-\label{figid}
-\end{marginfigure}
+\label{lwesearchtodecisionfig}
+\end{figure}
 
 \hypertarget{LWEsearchtodecthm}{}
 \begin{theorem}[Search to decision reduction for LWE] \label[theorem]{LWEsearchtodecthm}
@@ -498,8 +522,8 @@ and we need to decide whether \(x_1 = a\). Now consider the instance
 \(\Z_q^m\) and the matrix \((r\|0^m\|\cdots \|0^m)\) is simply the
 matrix with first column equal to \(r\) and all other columns equal to
 \(0\). If \(A\) is random then \(A+(r\|0^m\|\cdots \|0^m)\) is random as
-well. Now note that \(Ax + (r|0^m\cdots \|0^m)x = Ax + x_1 r\) and hence
-if \(x_1 = a\) then we still have an input of the same form
+well. Now note that \(Ax + (r\|0^m\cdots \|0^m)x = Ax + x_1 r\) and
+hence if \(x_1 = a\) then we still have an input of the same form
 \((A',A'x+e)\).
 
 In contrast, we claim that if if \(x_1 \neq a\) then the distribution
@@ -510,8 +534,8 @@ uniformly chosen vector \(y'\). Indeed, we can write this distribution
 as \((A',y')\) where \(A'\) is chosen uniformly at random, and
 \(y'= A'x + e + (a-x_1)r\) where \(r\) is a random and independent
 vector. (Can you see why?) Since \(a-x_1 \neq 0\), this amounts to
-adding a random and independent vector \(r'\) to \(y'\), which means
-that the distribution \((A',y')\) is uniform and independent.
+adding a random and independent vector \(r\) to \(y'\), which means that
+the distribution \((A',y')\) is uniform and independent.
 
 Hence if we send the input \((A',y')\) to our the decision algorithm
 \(D\), then we would get \(1\) with probability \(p+\epsilon\) if
@@ -536,11 +560,13 @@ We can now show the secure variant of our original encryption scheme:
 
 \begin{quote} \label[quote]{11-LWE-based-encryption-L}
 
-\textbf{LWE-based encryption LWE-ENC:} * \emph{Parameters:} Let
-\(\delta(n)=1/n^4\) and let \(q=poly(n)\) be a prime such that LWE holds
-w.r.t. \(q,\delta\). We let \(m = n^2\log q\).
+\textbf{LWE-based encryption LWE-ENC:}
 
 \begin{itemize}
+\item
+  \emph{Parameters:} Let \(\delta(n)=1/n^4\) and let \(q=poly(n)\) be a
+  prime such that LWE holds w.r.t. \(q,\delta\). We let
+  \(m = n^2\log q\).
 \item
   \emph{Key generation:} Pick \(x\in\Z_q^n\). The private key is \(x\)
   and the public key is \((A,y)\) with \(y=Ax+e\) with \(e\) a
@@ -565,9 +591,9 @@ understand why the two descriptions are equivalent.
 
 \end{pause}
 
-\begin{marginfigure}
+\begin{figure}
 \centering
-\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/lweencdesc.png}
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/lweencdesc.png}
 \caption{In the encryption scheme LWEENC, the public key is a matrix
 \(A'=(A|y)\), where \(y=As+e\) and \(s\) is the secret key. To encrypt a
 bit \(b\) we choose a random \(w \leftarrow_R \{0,1\}^m\), and output
@@ -576,7 +602,7 @@ bit \(b\) we choose a random \(w \leftarrow_R \{0,1\}^m\), and output
 \(|\langle c,(s,-1) \rangle| \leq q/10\) where the inner product is done
 modulo \(q\).}
 \label{lweencdescfig}
-\end{marginfigure}
+\end{figure}
 
 Unlike our typical schemes, here it is not immediately clear that this
 encryption is valid, in the sense that the decrypting an encryption of
@@ -634,8 +660,8 @@ indistinguishable:
 \item
   \(D\): The distribution over four-tuples of the form
   \((A,y,w^\top A,\langle w,y \rangle)\) where \(A\) is uniform in
-  \(\Z_q^{m\times n}\), \(x\) is uniform in \(\Z_q^n\), \(e \in Z_q\) is
-  chosen with \(e_i \in \{-\delta q,\ldots,+\delta q\}\), \(y=Ax+e\),
+  \(\Z_q^{m\times n}\), \(x\) is uniform in \(\Z_q^n\), \(e \in \Z_q^m\)
+  is chosen with \(e_i \in \{-\delta q,\ldots,+\delta q\}\), \(y=Ax+e\),
   and \(w\) is uniform in \(\{0,1\}^m\).
 \item
   \(\overline{D}\): The distribution over four-tuples
@@ -687,7 +713,7 @@ variation distance) from \(\overline{D}\). This follows from the
 following claim:
 
 \textbf{CLAIM}: Suppose that \(m > 100 n \log q\). If \(A'\) is a random
-\(m\times n+1\) matrix in \(\Z_q^m\), then with probability at least
+\(m\times n+1\) matrix over \(\Z_q\), then with probability at least
 \(1-2^{-n}\) over the choice of \(A'\), the distribution \(Z_{A'}\) over
 \(\Z_q^{n+1}\) which is obtained by choosing \(w\) at random in
 \(\{0,1\}^m\) and outputting \(w^\top A'\) has at most \(2^{-n}\)
@@ -704,8 +730,8 @@ statistically indistinguishable from the uniform distribution \((A',z)\)
 where \(z\) is a vector chosen independently at random from
 \(\Z_q^{n+1}\).
 
-The claim completes the proof of the theorem, since letting \(A'\) be
-the matrix \((A|y)\) and \(z=(a,\sigma)\), we see that the distribution
+The claim completes the proof of the lemma, since letting \(A'\) be the
+matrix \((A|y)\) and \(z=(a,\sigma)\), we see that the distribution
 \(D'\), as the form \((A',z)\) where \(A'\) is a uniformly random
 \(m\times (n+1)\) matrix and \(z\) is sampled from \(Z_{A'}\) (i.e.,
 \(z=w^\top A'\) where \(w\) is uniformly chosen in \(\{0,1\}^m\)). Hence
@@ -713,12 +739,12 @@ this means that the statistical distance of \(D'\) from \(\overline{D}\)
 (where all elements are uniform) is \(O(2^{-n})\). (Please make sure you
 understand this reasoning!)
 
-The proof of this claim relies on the
+\textbf{Proof of claim:} The proof of this claim relies on the
 \href{https://goo.gl/KXpccP}{leftover hash lemma}.
 
 First, the basic idea of the proof: For every \(m\times (n+1)\) matrix
-\(A'\) over \(\Z_q\), define \(h_{A'}:\Z_q^m \rightarrow \Z_q^n\) to be
-the map \(h_{A'}(w)=w^\top A'\). This collection can be shown to be a
+\(A'\) over \(\Z_q\), define \(h_{A'}:\Z_q^m \rightarrow \Z_q^{n+1}\) to
+be the map \(h_{A'}(w)=w^\top A'\). This collection can be shown to be a
 ``good'' hash function collection in some specific technical sense,
 which in particular implies that for every distribution \(D\) with much
 more than \(n\log q\) bits of min-entropy, with all but negligible
@@ -770,27 +796,29 @@ distance to \((z,A')\) where \(z\) is chosen uniformly in
 
 Now, we'll show this implies that for probability \(\ge 1-2^{-n}\) over
 the selection of \(A'\), the statistical distance between \(w^\top A'\)
-and \(z\) is less than \(2^{-10n}\). If not, the distance between
+and \(z\) is less than \(2^{-n}\). If not, the distance between
 \((w^\top A',A')\) and \((z,A')\) would be at least
 \(2^{-n}\cdot 2^{-n}>2^{-10n}\).
 
-Now for the proof of \cref{Leftoverhashlem} (based on notes from
-\href{http://www.ccs.neu.edu/home/wichs/class/crypto-fall15/}{Daniel
-Wichs's class} \cite{wichsnotes}).
+\textbf{Proof of \cref{Leftoverhashlem}:}\footnote{This is based on
+  notes from
+  \href{http://www.ccs.neu.edu/home/wichs/class/crypto-fall15/}{Daniel
+  Wichs's class}}
 
 Let \(Z\) be the random variable \((H(W),H)\), where the probability is
 over \(H\) and \(W\). Let \(Z'\) be an independent copy of \(Z\).
 
-Step 1: we'll show that
+\textbf{Step 1:}
 \(\Pr[Z=Z']\le\frac{1}{|\mathcal{H}|\cdot|\mathcal{V}|}(1+4\epsilon^2)\).
+Indeed,
 
 \begin{equation*}
-\begin{aligned} \Pr[Z=Z']&=\Pr[(H(W),H)=(H'(W'),H')]\\&=\Pr[H=H']\cdot\Pr[H(W)=H(W')]\\&=\frac{1}{|\mathcal{H}|}\left(\Pr[W=W']+\Pr[H(W)=H(W')\wedge X\neq X']\right)\\&\le\frac{1}{|\mathcal{H}|}\left(\frac{1}{|\mathcal{V}|}\epsilon^2\cdot 4+\frac{1}{|\mathcal{V}|}\right)\\&=\frac{1}{|\mathcal{H}|\cdot|\mathcal{V}|}(1+4\epsilon^2).\end{aligned}
+\begin{aligned} \Pr[Z=Z']&=\Pr[(H(W),H)=(H'(W'),H')]\\&=\Pr[H=H']\cdot\Pr[H(W)=H(W')]\\&=\frac{1}{|\mathcal{H}|}\left(\Pr[W=W']+\Pr[H(W)=H(W')\wedge W\neq W']\right)\\&\le\frac{1}{|\mathcal{H}|}\left(\frac{1}{|\mathcal{V}|}\epsilon^2\cdot 4+\frac{1}{|\mathcal{V}|}\right)\\&=\frac{1}{|\mathcal{H}|\cdot|\mathcal{V}|}(1+4\epsilon^2).\end{aligned}
 \end{equation*}
 
-Step 2: we'll show this implies that the statistical difference between
-\((H(W),H)\) and \((V,H)\) is less than \(\epsilon\). Denote the
-statistical difference by \(\Delta((H(W),H),(V,H))\).
+\textbf{Step 2:} The statistical difference between \((H(W),H)\) and
+\((V,H)\) is less than \(\epsilon\). Denote the statistical difference
+by \(\Delta((H(W),H),(V,H))\), then
 
 \begin{equation*}
 \begin{aligned} \Delta((H(W),H),(V,H))&=\frac{1}{2}\sum_{h,w}\left|\Pr[Z=(h(w),w)]-\frac{1}{|\mathcal{H}|\cdot|\mathcal{V}|}\right|.\end{aligned}
@@ -805,14 +833,19 @@ the \(x_{h,w}\) and \(s\) for the vector of all the \(s_{h,w}\). Then
 \end{equation*}
 
 Let's expand \(\|x\|_2\):
+
 \begin{equation*}
 \begin{aligned} \|x\|_2^2&=\sum_{h,w}\left(\Pr[Z=(h(w),h)]-\frac{1}{|\mathcal{H}|\cdot|\mathcal{V}|}\right)^2\\&=\sum_{h,w}\left(\Pr[Z=(h(w),h)]^2-\frac{2\Pr[Z=(h(w),h)]}{|\mathcal{H}|\cdot|\mathcal{V}|}+\frac{1}{(|\mathcal{H}|\cdot|\mathcal{V}|)^2}\right)\\&\le\frac{1+4\epsilon^2}{|\mathcal{H}|\cdot|\mathcal{V}|}-\frac{2}{|\mathcal{H}|\cdot|\mathcal{V}|}+\frac{|\mathcal{H}|\cdot|\mathcal{V}|}{(|\mathcal{H}|\cdot|\mathcal{V}|)^2}\\&=\frac{4\epsilon^2}{|\mathcal{H}|\cdot|\mathcal{V}|}.\end{aligned}
 \end{equation*}
+
 When we plug this in to our expression for the statistical distance, we
 get
 \begin{equation*}
 \begin{aligned}\Delta((H(W),H),(V,H))&\le\frac{\sqrt{|\mathcal{H}|\cdot|\mathcal{V}|}}{2}\|x\|_2\\&\le \epsilon.\end{aligned}
 \end{equation*}
+
+This completes the proof of \cref{Leftoverhashlem} and hence the
+theorem.
 
 \end{proof}
 
@@ -844,9 +877,9 @@ generate vectors in \(L\), as well as test whether a vector \(v\) is in
 different bases for the same lattice, and some of them are easier to
 work with than others (see \cref{latticebasesfig}).
 
-\begin{marginfigure}
+\begin{figure}
 \centering
-\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/Lattice-reduction.png}
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/Lattice-reduction.png}
 \caption{A \emph{lattice} is a discrete subspace \(L \subseteq \R^n\)
 that is closed under \emph{integer} combinations. A \emph{basis} for the
 lattice is a minimal set \(b_1,\ldots,b_m\) (typically \(m=n\)) such
@@ -857,7 +890,7 @@ ref vectors \(u_1,u_2\) are two alternative bases for it. Generally we
 consider the basis \(u_1,u_2\) ``better'' since the vectors are shorter
 and it is less ``skewed''.}
 \label{latticebasesfig}
-\end{marginfigure}
+\end{figure}
 
 Some classical computational questions on lattices are:
 
