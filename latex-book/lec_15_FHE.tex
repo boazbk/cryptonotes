@@ -333,7 +333,7 @@ homomorphic with respect to the class of linear (mod 2) functions. Let
 us recall the LWE assumption and the encryption scheme based on it.
 
 \hypertarget{LWEdef}{}
-\begin{definition}[LWE (simplified decision variant)] \label[definition]{LWEdef}
+\begin{definition}[DLWE (simplified  variant)] \label[definition]{LWEdef}
 
 Let \(q=q(n)\) be some function mapping the natural numbers to primes.
 The \emph{\(q(n)\)-decision learning with error (\(q(n)\)-dLWE)
@@ -434,9 +434,10 @@ ciphertext \(c\) whose decryption \(b_1 \oplus \cdots \oplus b_\ell\).
 This claim is not hard to prove, but working it out for yourself can be
 a good way to get more familiarity with LWE-ENC' and the kind of
 manipulations we'll be making time and again in the constructions of
-many lattice based cryptographic primitives. Try to show that
+many lattice based cryptographic primitives. Recall that a ciphertext
+\(c\) of LWE-ENC' is a vector in \(\Z_q^n\). Try to show that
 \(c = c_1 + \cdots +c_\ell\) (where addition is done as vectors in
-\(\Z_q\)) will be the encryption \(b_1 \oplus \cdots \oplus b_\ell\).
+\(\Z_q\)) will be the encryption of \(b_1 \oplus \cdots \oplus b_\ell\).
 Note that if \(q\) is \emph{super polynomial} in \(n\) then \(\ell\) can
 be an arbitrarily large polynomial in \(n\).
 
@@ -450,17 +451,21 @@ add the ciphertexts as vectors in \(\Z_q\). If \(c = \sum c_i\) then
 \langle c,s \rangle = \sum b_i \floor{\tfrac{q}{2}}  +  \xi \mod q
 \end{equation*}
 where \(\xi \in \Z_q\) is a ``noise term'' such that
-\(|\xi| \leq \ell m \sqrt{q} \ll q\). Since
-\(|\floor{\tfrac{q}{2}}- \tfrac{q}{2}|<1\), adding at most \(\ell\)
-terms of this difference adds at most \(\ell\), and so we can also write
+\(|\xi| \leq \ell m \sqrt{q} \ll q\).
+
+Since \(|\floor{\tfrac{q}{2}}- \tfrac{q}{2}|<1\), adding at most
+\(\ell\) terms of this difference adds at most \(\ell\), and so we can
+also write
 \begin{equation*}
 \langle c,s \rangle = \floor{ \sum b_i \tfrac{q}{2} }  +  \xi' \mod q
 \end{equation*}
-for \(|\xi'| \leq \ell m \sqrt{q} + \ell \ll q\). If \(\sum b_i\) is
-even then \(\sum b_i \tfrac{q}{2}\) is an integer multiple of \(q\) and
-hence in this case \(|\langle c,s \rangle| \ll q\). If \(\sum b_i\) is
-odd \(\floor{\sum b_i \tfrac{q}{2}} = \floor{q/2} \mod q\) and so in
-this case \(|\langle c,s \rangle| = q/2 \pm o(q) > q/10\).
+for \(|\xi'| \leq \ell m \sqrt{q} + \ell \ll q\).
+
+If \(\sum b_i\) is even then \(\sum b_i \tfrac{q}{2}\) is an integer
+multiple of \(q\) and hence in this case
+\(|\langle c,s \rangle| \ll q\). If \(\sum b_i\) is odd
+\(\floor{\sum b_i \tfrac{q}{2}} = \floor{q/2} \mod q\) and so in this
+case \(|\langle c,s \rangle| = q/2 \pm o(q) > q/10\).
 
 \end{proof}
 
@@ -490,19 +495,22 @@ such that the following holds:
   \(|\langle c,s \rangle| \leq n\sqrt{q}\).
 \end{itemize}
 
-Thus \(s\) can be thought of a ``trapdoor'' for the generator that
-allows to distinguish between a random vector \(c\in \Z_q^n\) (that with
-high probability would satisfy \(|\langle c,s \rangle|\geq q/10\)) and
-an output of the generator. We use \(G_s\) to encrypt a bit \(b\) by
+The generator \(G_s\) picks \(w \leftarrow_R \{0,1\}^m\) to
+\(w^\top A\). Its output will look pseudorandom but will satisfy the
+condition \(|\langle G_s(1^n),s \rangle| \leq n\sqrt{q}\) with
+probability \(1\) over the choice of \(w\). Thus \(s\) can be thought of
+a ``trapdoor'' for the generator that allows to distinguish between a
+random vector \(c\in \Z_q^n\) (that with high probability would satisfy
+\(|\langle c,s \rangle| \gg n\sqrt{q}\), assuming \(q \gg n^2\)) and an
+output of the generator. We use \(G_s\) to encrypt a bit \(b\) by
 letting \(c \leftarrow_R G_s(1^n)\) and outputting
-\(c + (b,0,\ldots,0)^\top\). In the particular instantiation above we
-obtain \(G_s\) by sampling the matrix \(A\) from the LWE assumption and
-having \(G_s\) output \(w^\top A\) for a random \(w\in\{0,1\}^n\), but
-we can ignore this particular implementation detail in the forgoing.
+\(c + (b,0,\ldots,0)^\top\). While our particular implementation mapped
+\(G_s(w)= w^\topA\), we can ignore these implementation details in the
+forgoing.
 
-\begin{marginfigure}
+\begin{figure}
 \centering
-\includegraphics[width=\linewidth, height=1.5in, keepaspectratio]{../figure/trapdoorprg.png}
+\includegraphics[width=\textwidth, height=0.25\paperheight, keepaspectratio]{../figure/trapdoorprg.png}
 \caption{In a \emph{trapdoor generator}, we have two ways to generate
 randomized algorithms. That is, we have some algorithms
 \(\ensuremath{\mathit{GEN}}\) and \(\ensuremath{\mathit{GEN}}'\) such
@@ -519,14 +527,16 @@ the uniform distribution. In particular \textbf{(1)},\textbf{(2)}, and
 \textbf{(3)} together imply that it is \emph{not} feasible to exract
 \(s\) from the description of \(G_s\).}
 \label{TDPgenfig}
-\end{marginfigure}
+\end{figure}
 
-Note that this trapdoor generator satisfies the following stronger
+Our LWE-based trapdoor generator satisfies the following stronger
 property: we can generate an alternative generator \(G'\) such that the
 description of \(G'\) is indistinguishable from the description of
 \(G_s\) but such that \(G'\) actually does produce (up to exponentially
 small statistical error) the uniform distribution over \(\Z_q^n\). We
-can define trapdoor generators formally as follows
+can do so by sampling \(A\) completely at random instead of from the
+\(\ensuremath{\mathit{LWE}}_q\) distribution. We can define trapdoor
+generators formally as follows
 
 \hypertarget{tdpgendef}{}
 \begin{definition}[Trapdoor generators] \label[definition]{tdpgendef}
@@ -539,22 +549,25 @@ the following:
 \item
   On input \(1^n\), \(\ensuremath{\mathit{GEN}}\) outputs a pair
   \((G_s,s)\) where \(G_s\) is a string describing a \emph{randomized}
-  circuit that itself takes \(1^n\) as input and outputs a string of
-  length \(t\) where \(t=t(n)\) is some polynomial.
+  circuit. The circuit \(G_s\) takes \(1^n\) as input and outputs a
+  (randomly chosen) string of length \(t\) where \(t=t(n)\) is some
+  polynomial.
 \item
   On input \(1^n\), \(\ensuremath{\mathit{GEN}}'\) outputs \(G'\) where
-  \(G'\) is a string describing a randomized circuit that itself takes
-  \(1^n\) as input.
+  \(G'\) is a string describing a randomized circuit with the same
+  inputs and outputs.
 \item
   The distributions \(\ensuremath{\mathit{GEN}}(1^n)_1\) (i.e., the
   first output of \(\ensuremath{\mathit{GEN}}(1^n)\) and
   \(\ensuremath{\mathit{GEN}}'(1^n)\) are computationally
-  indistinguishable
+  indistinguishable. (These are both distributions over
+  \emph{circuits}.)
 \item
   With probability \(1-negl(n)\) over the choice of \(G'\) output by
   \(\ensuremath{\mathit{GEN}}'\), the distribution \(G'(1^n)\) is
   \emph{statistically indistinguishable} (i.e., within \(negl(n)\) total
-  variation distance) from \(U_t\).
+  variation distance) from \(U_t\) (i.e., the uniform distribution over
+  \(\{0,1\}^t\)).
 \item
   There is an efficient algorithm \(T\) such that for every pair
   \((G_s,s)\) output by \(\ensuremath{\mathit{GEN}}\),
@@ -617,7 +630,12 @@ for more; of course unless you know to check for this, it's very hard by
 looking at the code to see that one arbitrary looking constant has been
 replaced by another). Apparently, even though this is very surprising to
 many people in law enforcement and government, inserting back doors into
-cryptographic primitives might end up making them less secure.
+cryptographic primitives might end up making them less secure. Some more
+details have emereged in this case in 2021, see
+\href{https://finance.yahoo.com/news/juniper-breach-mystery-starts-clear-130016591.html}{this
+story} and
+\href{https://twitter.com/matthew_d_green/status/1433451378391883782?s=20}{this
+Tweet thread}
 
 \end{remark}
 
